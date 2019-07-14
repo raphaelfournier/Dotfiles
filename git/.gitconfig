@@ -1,0 +1,40 @@
+[user]
+	name = Raphaël Fournier-S'niehotta
+	email = raphael@fournier-sniehotta.fr
+[core]
+	excludesfile = /home/raph/.gitignore
+[color]
+	ui = auto
+[alias]
+ co = checkout
+ cl = clone
+ st = status
+ modfiles = show --pretty="" --name-only 
+ ts = status # gros doigts
+ ci = commit
+ dt = difftool
+ psuh = push # gros doigts
+ ll = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+ lgo = log --oneline
+ lg= log --graph --date=short --pretty=format:'%Cgreen%h %Cblue%cd (%cr) %Cred%an%C(yellow)%d%Creset: %s'
+ showtool = "!f() { git difftool $1^ $1; }; f"
+ added = difftool --cached
+[merge]
+  conflictstyle = diff3
+  # Standard diff is two sets of final changes. This introduces the original text before each side's changes.
+  # https://git-scm.com/docs/git-config#git-config-mergeconflictStyle
+[diff]
+  tool = icdiff
+[difftool]
+  prompt = false
+[difftool "icdiff"]
+  cmd = /usr/bin/icdiff --line-numbers $LOCAL $REMOTE
+[pager]
+  difftool = true
+  diff = diff-so-fancy | less --tabs=1,5 -RFX
+  show = diff-so-fancy | less --tabs=1,5 -RFX
+[push]
+	default = simple
+  followTags = true
+  # Because I get sick of telling git to do it manually
+  # https://git-scm.com/docs/git-config#git-config-pushfollowTags
