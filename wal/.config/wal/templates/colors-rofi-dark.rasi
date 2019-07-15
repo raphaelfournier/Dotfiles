@@ -1,0 +1,200 @@
+configuration {{
+    display-ssh:                   "  ";
+    display-top:                    "";
+    /*display-calc:                  "🖩";*/
+    display-drun:                   "";
+    display-window:                 "";
+    display-combi:                  "";
+    show-icons: true;
+}}
+
+
+* {{
+    backlight: {color2}; /* highlight icon left panel */
+    background-color:  transparent;
+    dark: {color0};
+    tdark: {color0}cc;
+    // Black
+    black:       @background;
+    lightblack:  {color10};
+    tlightblack:  @background; /* bg color input and left panel */
+    //
+    // Red
+    red:         {color1};
+    lightred:    {color9};
+    //
+    // Green
+    green:       {color2};
+    lightgreen:  {color10};
+    //
+    // Yellow
+    yellow:      {color11};
+    lightyellow: {color3};
+    //
+    // Blue
+    blue:        {color4};
+    lightblue:   {color6};
+    //
+    // Magenta
+    magenta:      {color5};
+    lightmagenta: {color13};
+    //
+    // Cyan
+    cyan:         {color6};
+    tcyan:      #ccb0c4de;
+    lightcyan:    {color14};
+    //
+    // White
+    white:        {color7};
+    lightwhite:     #ddccbb;
+    //
+    // Bold, Italic, Underline
+    highlight:     underline bold {color15};
+
+    transparent: rgba(0,0,0,0);
+    font: "Inconsolata Nerd Font 20";
+}}
+
+#window {{
+    location: center;
+    anchor:   center;
+    transparency: "screenshot";
+    padding: 10px;
+    border:  0px;
+    border-radius: 10px;
+    color: @magenta;
+    background-color: @transparent;
+    spacing: 0;
+    children:  [vertb, mainbox];
+    orientation: horizontal;
+}}
+
+#mainbox {{
+    spacing: 0;
+    children: [ inputbar, message, listview ];
+}}
+
+#message {{
+    border-color: @white;
+    border:  0px 2px 2px 2px;
+//    border-radius: 10px;
+    padding: 5;
+    background-color: @tcyan;
+}}
+
+#message {{
+    font: "Inconsolata Nerd Font 12";
+    color: @black;
+    background-color: @yellow;
+}}
+
+#inputbar {{
+    color: @white;
+    padding: 11px;
+    background-color: @tlightblack;
+    border: 2px 2px 2px 2px;
+    border-radius:  15px 15px 0px 0px;
+    border-color: @white;
+    font: "Inconsolata Nerd Font 20";
+}}
+
+#entry,prompt,case-indicator {{
+    text-font: inherit;
+    text-color:inherit;
+}}
+
+#prompt {{
+    margin:     0px 0.3em 0em 0em ;
+}}
+
+#listview {{
+    padding: 8px;
+    border-radius: 0px 0px 15px 15px;
+    border-color: @white;
+    border: 0px 2px 2px 2px;
+    background-color: @tdark;
+    dynamic: false;
+    lines: 10;
+}}
+
+#element {{
+    padding: 3px;
+    vertical-align: 0.5;
+//    border: 2px;
+    border-radius: 4px;
+    background-color: transparent;
+    color: @white;
+    font:inherit;
+}}
+
+#element selected.normal {{
+    background-color: @green;
+    color: @black;
+}}
+
+#element normal active {{
+    foreground: @red;
+}}
+
+#element normal urgent {{
+    foreground: @lightred;
+}}
+
+#element alternate normal {{
+}}
+
+#element alternate active {{
+    foreground: @lightblue;
+}}
+
+#element alternate urgent {{
+    foreground: @lightred;
+}}
+
+#element selected active {{
+    background-color: @red;
+    color: @black; 
+}}
+
+#element selected urgent {{
+    background-color: @lightred;
+    foreground: @dark;
+}}
+
+#element normal normal {{
+
+}}
+
+#vertb {{
+    expand: false;
+    children: [ dummy0, sidebar, dummy1  ];
+}}
+
+#dummy0,  dummy1 {{
+    expand: true;
+}}
+
+#sidebar {{
+    expand: false;
+    orientation: vertical;
+    spacing: 8px;
+    border: 0px 0px 0px 0px;
+}}
+
+#button {{
+    font: "FontAwesome 22";
+    padding: 6px;
+    border: 2px 0px 2px 2px;
+    border-radius: 4px 0px 0px 4px;
+    background-color: @tlightblack;
+    border-color: @dark;
+    color: @white;
+    horizontal-align: 0.5;
+}}
+
+#button selected normal {{
+    color: @dark;
+    border: 2px 0px 2px 2px;
+    background-color: @green;
+    border-color: @white;
+}}
