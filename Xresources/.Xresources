@@ -1,0 +1,5 @@
+#include "/home/raph/.config/Xresources/Xdefaults"
+#include "/home/raph/.config/Xresources/Xdefaults.colors.zenburn"
+#include "/home/raph/.config/Xresources/Xdefaults.colors.rootterm"
+#include "/home/raph/.config/Xresources/Xdefaults.colors.scratchpad"
+#include "/home/raph/.config/Xresources/Xdefaults.colors.todotxtmachine"

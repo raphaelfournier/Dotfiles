@@ -1,0 +1,3 @@
+push @{ $self->{term}{option_popup_hook} }, sub {
+   ("my option" => $myoption, sub { $self->{myoption} = $_[0] })
+};

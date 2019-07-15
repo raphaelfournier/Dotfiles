@@ -1,0 +1,94 @@
+! ----------------------------------------------------------------------
+! file:     Xdefaults color scheme
+! author:   Thayer Williams - http://cinderwick.ca
+! vim:enc=utf-8:nu:ai:si:et:ts=4:sts=4:sw=4:ft=xdefaults:
+! ----------------------------------------------------------------------
+
+! Append the following to ~/.Xdefaults to import this color scheme:
+!   
+!       #include "/home/user/.Xdefaults.c.vimbrant"
+!
+
+urxvt*cursorColor:      #fd971f
+
+! terminal colours
+urxvt*foreground:#a0a0a0
+urxvt*background:#1b1d1e
+
+!black
+urxvt*color0:    #1b1d1e
+urxvt*color8:    #505354
+!red
+urxvt*color1:    #f92672
+urxvt*color9:    #ff5995
+!green
+urxvt*color2:    #82b414
+urxvt*color10:   #b6e354
+!yellow
+urxvt*color3:    #fd971f
+urxvt*color11:   #feed6c
+!blue
+urxvt*color4:    #56c2d6
+urxvt*color12:   #8cedff
+!magenta
+urxvt*color5:    #8c54fe
+urxvt*color13:   #9e6ffe
+!cyan
+urxvt*color6:    #465457
+urxvt*color14:   #899ca1
+urxvt*color6:    #56676b
+urxvt*color14:   #899ca1
+!white
+urxvt*color7:    #ccccc6
+urxvt*color15:   #f8f8f2
+urxvt*color7:    #bfbfba
+urxvt*color15:   #ebebe5
+urxvt*color7:    #aaaaaa
+urxvt*color15:   #ffffff
+
+! terminal colours
+xterm*foreground:#a0a0a0
+xterm*background:#1b1d1e
+
+!black
+xterm*color0:    #1b1d1e
+xterm*color8:    #505354
+!red
+xterm*color1:    #f92672
+xterm*color9:    #ff5995
+!green
+xterm*color2:    #82b414
+xterm*color10:   #b6e354
+!yellow
+xterm*color3:    #fd971f
+xterm*color11:   #feed6c
+!blue
+xterm*color4:    #56c2d6
+xterm*color12:   #8cedff
+!magenta
+xterm*color5:    #8c54fe
+xterm*color13:   #9e6ffe
+!cyan
+xterm*color6:    #465457
+xterm*color14:   #899ca1
+xterm*color6:    #56676b
+xterm*color14:   #899ca1
+!white
+xterm*color7:    #ccccc6
+xterm*color15:   #f8f8f2
+xterm*color7:    #bfbfba
+xterm*color15:   #ebebe5
+xterm*color7:    #aaaaaa
+xterm*color15:   #ffffff
+
+! alsamixer scheme
+alsamixer*color1:   #ff2759
+alsamixer*color9:   #ff2759
+alsamixer*color2:   #52aebf
+alsamixer*color10:  #52aebf
+alsamixer*color7:   #ffffff
+alsamixer*color15:  #ffffff
+alsamixer*color11:  #777777
+alsamixer*color4:   #1b1d1e
+alsamixer*scrollBar:  false
+

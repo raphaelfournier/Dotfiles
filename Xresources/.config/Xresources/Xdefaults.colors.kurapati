@@ -1,0 +1,84 @@
+! http://snk.tuxfamily.org/log/zenburn-terminal-color-scheme.html
+!!BLK Cursor
+URxvt.color0      : #000d18
+URxvt.color8      : #000d18
+
+!RED Tag
+URxvt.color1      : #e89393
+URxvt.color9      : #e89393
+
+!GRN SpecialKey
+URxvt.color2      : #9ece9e
+URxvt.color10     : #9ece9e
+
+!YEL Keyword
+URxvt.color3      : #f0dfaf
+URxvt.color11     : #f0dfaf
+
+!BLU Number
+URxvt.color4      : #8cd0d3
+URxvt.color12     : #8cd0d3
+
+!MAG Precondit
+URxvt.color5      : #c0bed1
+URxvt.color13     : #c0bed1
+
+!CYN Float
+URxvt.color6      : #dfaf8f
+URxvt.color14     : #dfaf8f
+
+!WHT Search
+URxvt.color7      : #efefef
+URxvt.color15     : #efefef
+
+!TXT Normal, Normal, Cursor
+URxvt.background  : #1f1f1f
+URxvt.foreground  : #dcdccc
+URxvt.cursorColor : #8faf9f
+
+!HLT Include, StatusLine, ErrorMsg
+URxvt.colorBD     : #ffcfaf
+URxvt.colorUL     : #ccdc90
+URxvt.colorIT     : #80d4aa
+
+!!! xterm
+xterm.color0      : #000d18
+xterm.color8      : #000d18
+
+!RED Tag
+xterm.color1      : #e89393
+xterm.color9      : #e89393
+
+!GRN SpecialKey
+xterm.color2      : #9ece9e
+xterm.color10     : #9ece9e
+
+!YEL Keyword
+xterm.color3      : #f0dfaf
+xterm.color11     : #f0dfaf
+
+!BLU Number
+xterm.color4      : #8cd0d3
+xterm.color12     : #8cd0d3
+
+!MAG Precondit
+xterm.color5      : #c0bed1
+xterm.color13     : #c0bed1
+
+!CYN Float
+xterm.color6      : #dfaf8f
+xterm.color14     : #dfaf8f
+
+!WHT Search
+xterm.color7      : #efefef
+xterm.color15     : #efefef
+
+!TXT Normal, Normal, Cursor
+xterm.background  : #1f1f1f
+xterm.foreground  : #dcdccc
+xterm.cursorColor : #8faf9f
+
+!HLT Include, StatusLine, ErrorMsg
+xterm.colorBD     : #ffcfaf
+xterm.colorUL     : #ccdc90
+xterm.colorIT     : #80d4aa

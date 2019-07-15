@@ -1,0 +1,95 @@
+scratchpad*termName:  rxvt-256color
+scratchpad*scrollBar:         false
+scratchpad*scrollstyle:         plain
+scratchpad*scrollBar_right: true
+scratchpad*scrollBar_floating: true
+scratchpad*internalBorder:        6
+scratchpad*borderWidth:           6
+scratchpad*secondaryScroll:    true
+scratchpad*borderLess: false
+scratchpad*saveLines:         65535
+scratchpad*urgentOnBell:       true
+scratchpad*visualBell:       false
+scratchpad*fading: 20
+scratchpad*cursorBlink: false
+scratchpad*cursorUnderline: false
+scratchpad*pointerBlank: true
+scratchpad*pointerBlankDelay: 2
+scratchpad*pointerColor: #dcdccc
+scratchpad*pointerColor2: #3f3f3f
+scratchpad*scrollWithBuffer:true
+scratchpad*scrollTtyOutput:false
+scratchpad*scrollTtyKeypress:true
+scratchpad*cutchars: BACKSLASH '"'&()*,;<=>?@[]^{|}-_:
+!scratchpad*tripleclickwords: true
+scratchpad*dynamicColors: on
+!!
+!! Extensions
+!
+scratchpad*perl-lib:         /usr/lib/urxvt/perl/
+scratchpad*perl-ext-common:  default,keysym-list,url-select,option-popup,font-size,keyboard-select
+scratchpad.keysym.M-Escape: perl:keyboard-select:activate
+scratchpad.keysym.M-u:    perl:url-select:select_next
+scratchpad.url-select.launcher:   /home/raph/scripts/browser-choice.sh
+scratchpad.url-select.underline: true
+!scratchpad.url-select.au true
+!scratchpad.url-select.button:  1
+scratchpad*keysym.F12: perl:urxvt-colors:cycle
+!scratchpad.matcher.button: 1
+!scratchpad.url-launcher: /home/raph/scripts/browser-choice.sh
+
+scratchpad.keysym.M-C-c: perl:clipboard:copy
+scratchpad.keysym.M-C-v: perl:clipboard:paste 
+scratchpad*keysym.M-C-s: command:\033]50;xft:Inconsolata Nerd Font Mono:style=Medium:antialias=true:size=12\007
+scratchpad*keysym.M-C-d: command:\033]50;xft:Inconsolata Nerd Font Mono:style=Medium:antialias=true:size=18\007
+scratchpad*keysym.M-C-f: command:\033]50;xft:Inconsolata Nerd Font Mono:style=Medium:antialias=true:size=28\007
+scratchpad.iso14755: false
+scratchpad.iso14755_52: false 
+
+scratchpad.perl-ext: reactivity
+scratchpad.keysym.M-C-m: perl:reactivity:mon
+scratchpad.keysym.M-C-e: perl:reactivity:vim
+scratchpad.keysym.M-C-o: perl:reactivity:resetfont
+scratchpad.keysym.M-C-u: perl:reactivity:smallerfont
+scratchpad.keysym.M-C-i: perl:reactivity:largerfont
+
+! Appearance
+scratchpad*font:     xft:Inconsolata Nerd Font Mono:style=Medium:size=18:antialias=true,-*-unifont-*-*-*-*-*-*-*-*-*-*-*-*
+!
+!! Colors
+scratchpad*background:  #3f3f3f
+scratchpad*foreground:  #dcdccc
+scratchpad*cursorColor: #dcdccc
+! black + red
+!scratchpad*color0:     #3f3f3f
+scratchpad*color0:      #1E2320
+!scratchpad*color1:      #705050
+scratchpad*color1:      #D78787
+! green + yellow
+!scratchpad*color2:      #60b48a
+scratchpad*color2:      #7f9f7f
+scratchpad*color3:      #dfaf8f
+! blue + purple
+!scratchpad*color4:      #506070
+scratchpad*color4:      #8787d7
+scratchpad*color5:      #dc8cc3
+! cyan + white
+scratchpad*color6:      #8cd0d3
+scratchpad*color7:      #dcdccc
+! bright-black + bright-red
+scratchpad*color8:      #709080
+scratchpad*color9:      #dca3a3
+! bright-green + bright-yellow
+scratchpad*color10:     #c3bf9f
+scratchpad*color11:     #f0dfaf
+! bright-blue + bright-purple
+scratchpad*color12:     #94bff3
+scratchpad*color13:     #ec93d3
+! bright-cyan + bright-white
+scratchpad*color14:     #93e0e3
+scratchpad*color15:     #ffffff
+!
+!HLT Include, StatusLine, ErrorMsg
+scratchpad*colorBD     : #f0dfaf
+scratchpad*colorUL     : #dc8cc3
+scratchpad*colorIT     : #60b48a

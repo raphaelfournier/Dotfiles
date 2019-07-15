@@ -1,0 +1,91 @@
+!! Zenburn
+todotxt*background:  #3f3f3f
+todotxt*foreground:  #dcdccc
+todotxt*cursorColor: #dcdccc
+! black + red
+!todotxt*color0:     #3f3f3f
+todotxt*color0:      #1E2320
+todotxt*color1:      #705050
+! green + yellow
+!todotxt*color2:      #60b48a
+todotxt*color2:      #7f9f7f
+todotxt*color3:      #dfaf8f
+! blue + purple
+todotxt*color4:      #506070
+todotxt*color5:      #dc8cc3
+! cyan + white
+todotxt*color6:      #8cd0d3
+todotxt*color7:      #dcdccc
+! bright-black + bright-red
+todotxt*color8:      #709080
+todotxt*color9:      #dca3a3
+! bright-green + bright-yellow
+todotxt*color10:     #c3bf9f
+todotxt*color11:     #f0dfaf
+! bright-blue + bright-purple
+todotxt*color12:     #94bff3
+todotxt*color13:     #ec93d3
+! bright-cyan + bright-white
+todotxt*color14:     #93e0e3
+todotxt*color15:     #ffffff
+!
+!HLT Include, StatusLine, ErrorMsg
+todotxt*colorBD     : #f0dfaf
+todotxt*colorUL     : #dc8cc3
+todotxt*colorIT     : #60b48a
+
+todotxt*termName:  rxvt-256color
+!urxvt*loginShell:         true
+todotxt*scrollBar:         false
+todotxt*scrollstyle:         plain
+todotxt*scrollBar_right: true
+todotxt*scrollBar_floating: true
+todotxt*internalBorder:        6
+todotxt*borderWidth:           6
+todotxt*secondaryScroll:    true
+todotxt*borderLess: false
+todotxt*saveLines:         65535
+todotxt*urgentOnBell:       true
+todotxt*visualBell:       false
+todotxt*fading: 20
+todotxt*cursorBlink: false
+todotxt*cursorUnderline: false
+todotxt*pointerBlank: true
+todotxt*pointerBlankDelay: 2
+todotxt*pointerColor: #dcdccc
+todotxt*pointerColor2: #3f3f3f
+!scrolling arrete quand ca defile...
+todotxt*scrollWithBuffer:true
+todotxt*scrollTtyOutput:false
+todotxt*scrollTtyKeypress:true
+todotxt*cutchars: BACKSLASH '"'&()*,;<=>?@[]^{|}-_:
+!urxvt*tripleclickwords: true
+todotxt*dynamicColors: on
+!!
+!! Extensions
+!
+todotxt*perl-lib:         /usr/lib/urxvt/perl/
+todotxt*perl-ext-common:  default,keysym-list,url-select,option-popup,font-size,option-fonts,keyboard-select, urxvt-colors
+todotxt*keysym.M-Escape: perl:keyboard-select:activate
+todotxt*keysym.M-u:    perl:url-select:select_next
+todotxt*keysym.F12: perl:urxvt-colors:
+todotxt*url-select.launcher:   firefox
+todotxt*url-select.underline: true
+!URxvt.url-select.autocopy: true
+todotxt*url-select.button:  1
+
+
+todotxt*keysym.C-S-c: perl:clipboard:copy
+todotxt*keysym.C-S-v: perl:clipboard:paste 
+todotxt*keysym.M-C-s: command:\033]50;xft:Inconsolata:antialias=true:size=12\007
+todotxt*keysym.M-C-d: command:\033]50;xft:Inconsolata:antialias=true:size=18\007
+todotxt*keysym.M-C-f: command:\033]50;xft:Inconsolata:antialias=true:size=28\007
+todotxt*iso14755: false
+todotxt*iso14755_52: false 
+todotxt*keysym.M-C-i: perl:font-increase
+todotxt*keysym.M-C-o: perl:font-decrease 
+todotxt*keysym.M-C-u: perl:font-reset
+
+! Appearance
+todotxt*font:     xft:Inconsolata:size=18:antialias=true,xft:Anonymous Pro:size=16
+todotxt*iconFile: /home/raph/.icons/gnome-colors-common/scalable/apps/terminal.svg

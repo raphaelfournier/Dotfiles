@@ -1,0 +1,91 @@
+!! Zenburn
+slaveterm*background:  #3f3f3f
+slaveterm*foreground:  #dcdccc
+slaveterm*cursorColor: #dcdccc
+! black + red
+!slaveterm*color0:     #3f3f3f
+slaveterm*color0:      #1E2320
+slaveterm*color1:      #705050
+! green + yellow
+!slaveterm*color2:      #60b48a
+slaveterm*color2:      #7f9f7f
+slaveterm*color3:      #dfaf8f
+! blue + purple
+slaveterm*color4:      #506070
+slaveterm*color5:      #dc8cc3
+! cyan + white
+slaveterm*color6:      #8cd0d3
+slaveterm*color7:      #dcdccc
+! bright-black + bright-red
+slaveterm*color8:      #709080
+slaveterm*color9:      #dca3a3
+! bright-green + bright-yellow
+slaveterm*color10:     #c3bf9f
+slaveterm*color11:     #f0dfaf
+! bright-blue + bright-purple
+slaveterm*color12:     #94bff3
+slaveterm*color13:     #ec93d3
+! bright-cyan + bright-white
+slaveterm*color14:     #93e0e3
+slaveterm*color15:     #ffffff
+!
+!HLT Include, StatusLine, ErrorMsg
+slaveterm*colorBD     : #f0dfaf
+slaveterm*colorUL     : #dc8cc3
+slaveterm*colorIT     : #60b48a
+
+slaveterm*termName:  rxvt-256color
+!urxvt*loginShell:         true
+slaveterm*scrollBar:         false
+slaveterm*scrollstyle:         plain
+slaveterm*scrollBar_right: true
+slaveterm*scrollBar_floating: true
+slaveterm*internalBorder:        6
+slaveterm*borderWidth:           6
+slaveterm*secondaryScroll:    true
+slaveterm*borderLess: false
+slaveterm*saveLines:         65535
+slaveterm*urgentOnBell:       true
+slaveterm*visualBell:       false
+slaveterm*fading: 20
+slaveterm*cursorBlink: false
+slaveterm*cursorUnderline: false
+slaveterm*pointerBlank: true
+slaveterm*pointerBlankDelay: 2
+slaveterm*pointerColor: #dcdccc
+slaveterm*pointerColor2: #3f3f3f
+!scrolling arrete quand ca defile...
+slaveterm*scrollWithBuffer:true
+slaveterm*scrollTtyOutput:false
+slaveterm*scrollTtyKeypress:true
+slaveterm*cutchars: BACKSLASH '"'&()*,;<=>?@[]^{|}-_:
+!urxvt*tripleclickwords: true
+slaveterm*dynamicColors: on
+!!
+!! Extensions
+!
+slaveterm*perl-lib:         /usr/lib/urxvt/perl/
+slaveterm*perl-ext-common:  default,keysym-list,url-select,option-popup,font-size,option-fonts,keyboard-select, urxvt-colors
+slaveterm*keysym.M-Escape: perl:keyboard-select:activate
+slaveterm*keysym.M-u:    perl:url-select:select_next
+slaveterm*keysym.F12: perl:urxvt-colors:
+slaveterm*url-select.launcher:   firefox
+slaveterm*url-select.underline: true
+!URxvt.url-select.autocopy: true
+slaveterm*url-select.button:  1
+
+
+slaveterm*keysym.C-S-c: perl:clipboard:copy
+slaveterm*keysym.C-S-v: perl:clipboard:paste 
+slaveterm*keysym.M-C-s: command:\033]50;xft:Inconsolata:antialias=true:size=12\007
+slaveterm*keysym.M-C-d: command:\033]50;xft:Inconsolata:antialias=true:size=18\007
+slaveterm*keysym.M-C-f: command:\033]50;xft:Inconsolata:antialias=true:size=28\007
+slaveterm*iso14755: false
+slaveterm*iso14755_52: false 
+slaveterm*keysym.M-C-i: perl:font-increase
+slaveterm*keysym.M-C-o: perl:font-decrease 
+slaveterm*keysym.M-C-u: perl:font-reset
+
+! Appearance
+slaveterm*font:     xft:Inconsolata:size=18:antialias=true,xft:Anonymous Pro:size=16
+slaveterm*iconFile: /home/raph/.icons/gnome-colors-common/scalable/apps/terminal.svg

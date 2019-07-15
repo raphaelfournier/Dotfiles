@@ -1,0 +1,103 @@
+!------------------------------
+!
+! ROOT terminal
+!
+! -----------------------------
+rootterm*termName:  rxvt-256color
+!rootterm*loginShell:         true
+rootterm*scrollBar:         false
+rootterm*scrollstyle:         plain
+rootterm*scrollBar_right: true
+rootterm*scrollBar_floating: true
+rootterm*internalBorder:        6
+rootterm*borderWidth:           6
+rootterm*secondaryScroll:    true
+rootterm*borderLess: false
+rootterm*saveLines:         65535
+rootterm*urgentOnBell:       true
+rootterm*visualBell:       false
+rootterm*fading: 20
+rootterm*cursorBlink: false
+rootterm*cursorUnderline: false
+rootterm*pointerBlank: true
+rootterm*pointerBlankDelay: 2
+rootterm*pointerColor: #dcdccc
+rootterm*pointerColor2: #3f3f3f
+!scrolling arrete quand ca defile...
+!rootterm*scrollWithBuffer:true
+!rootterm*scrollTtyOutput:false
+!pour coller des trucs sur la ligne de commande, sans revenir a celle-ci
+!rootterm*scrollTtyKeypress:false
+!rootterm*cutchars: BACKSLASH '"'&()*,;<=>?@[]^{|}-_
+!rootterm*tripleclickwords: true
+rootterm*keysym.M-C-s: command:\033]50;xft:Inconsolata:antialias=true:size=12\007
+rootterm*keysym.M-C-d: command:\033]50;xft:Inconsolata:antialias=true:size=18\007
+rootterm*keysym.M-C-f: command:\033]50;xft:Inconsolata:antialias=true:size=28\007
+rootterm*iso14755_52: false
+!!
+!! Extensions
+!!rootterm*perl-lib:         /usr/lib/urxvt/perl/
+!rootterm*perl-ext-common:  default,matcher
+rootterm*perl-ext-common:  default,url-select,option-popup
+rootterm*keysym.M-u:       perl:url-select:select_next
+rootterm*urlLauncher:      firefox
+rootterm*underlineURLs:    true
+!rootterm.urlButton:     1
+!
+
+! Appearance
+!rootterm.font:*-Terminus-medium-*-*-*-14-*-*-*-*-*-*-r
+!rootterm.boldFont: -*-terminus-bold-*-*-*-12-*-*-*-*-*-*-*
+rootterm.font:     xft:Inconsolata:size=18:antialias=true,xft:Anonymous Pro:size=16
+rootterm*iconFile: /home/raph/.icons/gnome-colors-common/scalable/apps/terminal.svg
+!rootterm.boldFont: xft:terminus:style=Bold:size=14
+!rootterm*font: xft:DejaVu Sans Mono:antialias=true:pixelsize=14
+!rootterm*boldFont: xft:DejaVu Sans Mono:style=bold:antialias=true:pixelsize=14
+!rootterm*italicFont: xft:DejaVu Sans Mono:style=italic:antialias=true:pixelsize=14
+!rootterm*boldItalicFont: xft:DejaVu Sans Mono:style=bolditalic:antialias=true:pixelsize=14
+!rootterm.tabbed.tabbar-fg:      7
+!rootterm.tabbed.tabbar-bg:      4
+!rootterm.tabbed.tab-fg:         0
+!rootterm.tabbed.tab-bg:         6
+!!
+!rootterm.shading:     30
+!rootterm.cursorColor: #FFFFFF
+!! Pseudo Transparency
+!rootterm.transparent: false
+!! Real transparency (with composite and xcompmgr)
+!roottermTrans*depth:      32
+!rootterm.depth:      32
+!rootterm.background: rgba:1111/1111/1111/dddd
+!rootterm.transparent:   true
+!rootterm.shading:       20
+!! Zenburn
+rootterm*background:  #A74444
+rootterm*foreground:  #1E2320
+rootterm*cursorColor: #dca3a3
+! black + red
+!urxvt*color0:     #3f3f3f
+rootterm*color0:      #1E2320
+rootterm*color1:      #705050
+! green + yellow
+!urxvt*color2:      #60b48a
+rootterm*color2:      #7f9f7f
+rootterm*color3:      #dfaf8f
+! blue + purple
+rootterm*color4:      #506070
+rootterm*color5:      #dc8cc3
+! cyan + white
+rootterm*color6:      #8cd0d3
+rootterm*color7:      #dcdccc
+! bright-black + bright-red
+rootterm*color8:      #709080
+rootterm*color9:      #dca3a3
+! bright-green + bright-yellow
+rootterm*color10:     #c3bf9f
+rootterm*color11:     #f0dfaf
+! bright-blue + bright-purple
+rootterm*color12:     #94bff3
+rootterm*color13:     #ec93d3
+! bright-cyan + bright-white
+rootterm*color14:     #93e0e3
+rootterm*color15:     #ffffff
+

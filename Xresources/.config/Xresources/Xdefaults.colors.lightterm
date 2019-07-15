@@ -1,0 +1,110 @@
+#define S_base3        #002b36
+#define S_base2        #073642
+#define S_base1        #586e75
+#define S_base0        #657b83
+#define S_base00         #839496
+#define S_base01         #93a1a1
+#define S_base02         #eee8d5
+#define S_base03         #fdf6e3
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
+
+lightterm*background:            S_base03
+lightterm*foreground:            S_base00
+lightterm*fadeColor:             S_base03
+lightterm*cursorColor:           S_base1
+lightterm*pointerColorBackground:S_base01
+lightterm*pointerColorForeground:S_base1
+
+!! black dark/light
+lightterm*color0:                S_base02
+lightterm*color8:                S_base03
+
+!! red dark/light
+lightterm*color1:                S_red
+lightterm*color9:                S_orange
+
+!! green dark/light
+lightterm*color2:                S_green
+lightterm*color10:               S_base01
+
+!! yellow dark/light
+lightterm*color3:                S_yellow
+lightterm*color11:               S_base00
+
+!! blue dark/light
+lightterm*color4:                S_blue
+lightterm*color12:               S_base0
+
+!! magenta dark/light
+lightterm*color5:                S_magenta
+lightterm*color13:               S_violet
+
+!! cyan dark/light
+lightterm*color6:                S_cyan
+lightterm*color14:               S_base1
+
+!! white dark/light
+lightterm*color7:                S_base2
+lightterm*color15:               S_base3
+
+lightterm*termName:  rxvt-256color
+!lightterm*loginShell:         true
+lightterm*scrollBar:         false
+lightterm*scrollstyle:         plain
+lightterm*scrollBar_right: true
+lightterm*scrollBar_floating: true
+lightterm*internalBorder:        6
+lightterm*borderWidth:           6
+lightterm*secondaryScroll:    true
+lightterm*borderLess: false
+lightterm*saveLines:         65535
+lightterm*urgentOnBell:       true
+lightterm*visualBell:       false
+lightterm*fading: 20
+lightterm*cursorBlink: false
+lightterm*cursorUnderline: false
+lightterm*pointerBlank: true
+lightterm*pointerBlankDelay: 2
+lightterm*pointerColor: #dcdccc
+lightterm*pointerColor2: #3f3f3f
+!scrolling arrete quand ca defile...
+lightterm*scrollWithBuffer:true
+lightterm*scrollTtyOutput:false
+lightterm*scrollTtyKeypress:true
+lightterm*cutchars: BACKSLASH '"'&()*,;<=>?@[]^{|}-_:
+!lightterm*tripleclickwords: true
+!!
+!! Extensions
+!
+lightterm*perl-lib:         /usr/lib/lightterm/perl/
+lightterm*perl-ext-common:  default,keysym-list,url-select,option-popup,font-size,option-fonts,keyboard-select
+lightterm.keysym.M-Escape: perl:keyboard-select:activate
+lightterm.keysym.M-u:    perl:url-select:select_next
+lightterm.url-select.launcher:   firefox
+lightterm.url-select.underline: true
+!lightterm.url-select.autocopy: true
+lightterm.url-select.button:  1
+
+
+lightterm.keysym.C-S-c: perl:clipboard:copy
+lightterm.keysym.C-S-v: perl:clipboard:paste 
+lightterm*keysym.M-C-s: command:\033]50;xft:Inconsolata:antialias=true:size=12\007
+lightterm*keysym.M-C-d: command:\033]50;xft:Inconsolata:antialias=true:size=18\007
+lightterm*keysym.M-C-f: command:\033]50;xft:Inconsolata:antialias=true:size=28\007
+lightterm.iso14755: false
+lightterm.iso14755_52: false 
+lightterm.keysym.M-C-i: perl:font-increase
+lightterm.keysym.M-C-o: perl:font-decrease 
+lightterm.keysym.M-C-u: perl:font-reset
+
+! Appearance
+lightterm.font:     xft:Inconsolata:size=18:antialias=true,xft:Anonymous Pro:size=16
+lightterm*iconFile: /home/raph/.icons/gnome-colors-common/scalable/apps/terminal.svg
+! 
