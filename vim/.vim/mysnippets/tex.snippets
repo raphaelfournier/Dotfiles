@@ -1,0 +1,40 @@
+snippet EIT
+	\begin{itemize}
+    \item ${1:#:firstitem}
+	\end{itemize}
+
+snippet EITL
+	\begin{itemize}
+  \setlength{\itemsep}{10pt}
+
+    \item ${1:#:firstitem}
+	\end{itemize}
+
+snippet frameimage
+  \begin{frame}{${1:#:frametitle}}
+    \includegraphics[width=.98\columnwidth]{${2:#:imageName}}
+  \end{frame}
+
+snippet frameminted
+  \begin[fragile]{frame}{${1:#:frametitle}}
+    \begin{minted}{php}
+    \end{minted}
+  \end{frame}
+
+snippet framecolumns
+  \begin{frame}{${1:#:frametitle}}
+    \begin{columns}
+      \begin{column}{0.48\textwidth}
+        \begin{itemize}
+            \setlength{\itemsep}{10pt}
+          \item 
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.48\textwidth}
+      \end{column}
+    \end{columns}
+  \end{frame}
+
+snippet degraph
+  \includegraphics[width=0.95\textwidth,keepaspectratio]{${1:#:imageName}}
+
