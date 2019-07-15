@@ -1,0 +1,50 @@
+mkcd Trash
+search Tra
+rename Activi
+rename RapportActivité
+rename Vulgarisation
+mkdir Perso
+open_with less
+rename .temp
+re
+rename .go
+rename CourriersCrise2019
+mkdir Prof
+cd .local/bin/
+rename .scripts
+rename Voiture
+cd Configurations/AwesomeWM/
+d
+search fina
+search Fina
+cd Admin/Machines/
+cd Recherche/Projets/Scorelib
+cd Pdf/
+cd Blogging/sbadmin2
+cd /home/raph/Professionnel/SeminaireCodesSources/
+mkcd Affiches
+filter_inode_type
+cd Professionnel/SeminaireCodesSources/
+search CNA
+mkdir Archives
+mkdir Projets
+mkdir Projets/FavManagerTwitter
+mkdir Android
+mkdir iOS
+mkdir A_Lire
+mkdir Journaux Science
+rename Journaux
+mkdir Science
+mkdir 2019-06-26
+mkdir 2019-07-01
+mkdir RèglementIntérieur
+search 
+open_with 2
+filter_inode_type f <CR>
+mkcd Bof
+
+rename 
+delete
+find 
+delete 
+search sui
