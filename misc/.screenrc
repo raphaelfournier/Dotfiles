@@ -1,0 +1,33 @@
+startup_message off
+vbell off
+autodetach on
+startup_message off
+pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."
+
+#remove some stupid / dangerous key bindings
+bind k
+bind ^k
+bind .
+bind ^\
+bind \\
+bind ^h
+bind h
+bind 'K' kill
+bind 'I' login on
+bind 'O' login off 
+bind '}' history
+
+altscreen on
+
+# C-a space to have windowlist
+bind ' ' windowlist -b
+
+#shelltitle '$STY'
+term screen-256color 
+
+#hardstatus string "%H (%n: %t)"
+# status line at the bottom, where it belongs
+caption string "%{= kg}%H-%S%{= kw} | %{= kw}%-w%{= gk} %n %t %{= kw}%+w %{= km}%-= %c"
+caption always
+#termcapinfo rxvt* 'hs:ts=\E]2;:fs=\007:ds=\E]2;\007'
+#defhstatus "screen ^E (^E) | $USER@^EH"

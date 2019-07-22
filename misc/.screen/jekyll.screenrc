@@ -1,0 +1,11 @@
+source /home/raph/.screenrc
+sessionname jekyll
+
+# create windows
+screen -t mdwn
+screen -t css
+screen -t compile 
+screen -t bash
+select 0
+
+# vim: ft=screen

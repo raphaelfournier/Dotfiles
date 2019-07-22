@@ -1,0 +1,12 @@
+source /home/raph/.screenrc
+sessionname latex
+
+# create windows
+screen -t edit 
+screen -t compile 
+screen -t zathura
+screen -t biblio
+screen -t git
+select 0
+
+# vim: ft=screen

@@ -7,3 +7,10 @@ vim/.vim/syntax/
 Old
 awesome/*
 mpd/.config/mpd/state
+mpd/.config/mpd/log
+mpd/.config/mpd/pid
+vimb/.config/vimb/closed
+vimb/.config/vimb/cookies.db
+vimb/.config/vimb/history
+ranger/.config/ranger/bookmarks
+ranger/.config/ranger/history

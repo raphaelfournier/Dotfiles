@@ -1,0 +1,9 @@
+source /home/raph/.screenrc
+sessionname django
+
+# create windows
+screen -t runserver
+screen -t bash
+select 0
+
+# vim: ft=screen

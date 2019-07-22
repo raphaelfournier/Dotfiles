@@ -1,0 +1,8 @@
+source /home/raph/.screenrc
+sessionname reunion
+
+# create windows
+screen -t compile 
+select 1
+
+# vim: ft=screen
