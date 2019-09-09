@@ -1,0 +1,218 @@
+##
+# ~/.mutt/muttrc
+###
+
+# directories and commands
+set alias_file          = ~/.mutt/aliases                         # alias file
+set header_cache        = ~/.mutt/cache/headers                 # where to store headers
+set message_cachedir    = ~/.mutt/cache/bodies                  # where to store bodies
+set certificate_file    = ~/.mutt/certificates                  # where to store certs
+set mailcap_path        = /home/raph/.mutt/mailcap                       # entrys for filetypes
+set signature           = ~/.mutt/signature                           # my signature file
+set tmpdir              = ~/.mutt/temp                          # where to keep temp files
+set ispell              = "/usr/bin/aspell -e -c"               # use aspell as ispell
+#set print_command       ="muttprint"
+#set print_command="/home/raph/scripts/pymuttprint/pymuttprint.py && zathura /tmp/texput.pdf"
+set print_command='set -e; f="/tmp/mail.pdf"; muttprint -P A4 -p TO_FILE:"$f" --verbatimnormal fontfamily=helvetica; sleep 1; zathura $f;'
+#set print_command="$HOME/scripts/print_preview-wrapper.sh"
+#set print_decode="no"
+#set print_split="no"
+#set print_command       ="lpr -PKonica-PHARE-COMNET-BW"
+set query_command = "lbdbq '%s'"
+
+#set editor              = "/usr/bin/vim -u ~/.vimrc.mutt -c 'set spell spelllang=fr' -c startinsert"                   # use vim and skip to first blank line
+#set editor="vi +/^$ ++1"
+#set editor="vim -N -c 'set ft=mail spelllang=fr,en spell tw=0 wm=0' -c 'syntax on' -c 'setlocal fo-=tcq fo+=w' -c 'startinsert' "
+#set smart_wrap="yes"            # Wrap between two words
+#set markers="yes"               # Display a '+' when a line is wrapped
+#set text_flowed=yes             # Display exerpt bar instead of '>'
+#set reflow_text=yes             # Mutt will reformat text in format=flowed mails
+#set reflow_wrap=0               # No line feed before window border
+#set wrap=0                      # Wrapping at terminal width
+
+# main options
+set mbox_type           = Maildir                               # mailbox type
+set folder              = ~/Mail                                # mailbox location
+set spoolfile           = "+CNAM/INBOX"                         #  default inbox
+set timeout             = 1800                                  # idle time before scanning
+set mail_check          = 0                                     # minimum time between scans
+set sort_alias          = alias                                 # sort alias file by alias
+set reverse_alias                                               # show names from alias file in index
+#unset move                                                      # gmail does that
+set delete                                                      # don't ask, just do
+unset confirmappend                                             # don't ask, just do!
+set quit                                                        # don't ask, just do!!
+unset mark_old                                                  # read/new is good enough for me
+set beep_new                                                    # bell on new mails
+#set pipe_decode=no # required by muttils
+set thorough_search                                             # strip headers and eval mimes before searching
+set recall = no
+
+set wait_key=no
+set sleep_time = 0                                              # be fast
+set status_chars  = " *%A"                                                      
+#set status_format = "- [ Folder: %f ] —  [%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ] %>—— %?p?( %p postponed )?"
+
+set rfc2047_parameters=yes
+set allow_8bit  
+
+# index options
+set sort                = threads                               # like gmail 
+set sort_aux=last-date-received  # last received email at bottom
+#set sort_aux            = reverse-last-date-received            # like gmail
+set uncollapse_jump                                             # don't collapse on an unread message 
+set sort_re  # thread based on regex                                            
+set uncollapse_jump  # don't collapse on an unread message
+
+# pager options
+#set pager_index_lines   = 10                                    # number of index lines to show 
+#set pager_context       = 15                                     # number of context lines to show
+#set pager_stop                                                  # don't go to next message automatically
+set menu_scroll                                                 # scroll in menus 
+
+set markers=no
+set wrap=80
+set smart_wrap                                                  # don't split words
+
+set tilde                                                       # show tildes like in vim
+auto_view text/html                                             # view html automatically
+auto_view text/calendar
+alternative_order text/plain text/enriched text/html            # save html for last
+
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+set quote_regexp        = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+
+# formats
+set date_format         = "%d/%m/%y %R"
+#set index_format        = "%4C %Z %D %-20.20F %?y?[%.20Y] ?%s %*  %X %4c"
+#set index_format        = "%4C %Z %{%b %d} %-15.15L (%4c) %s"
+set index_format        = "%4C %Z %D %-20.20F %?y?[%.20Y] ?%s %*  %X %4c"
+set folder_format="%2C %t %N %f %> %4s %d" 
+#set folder_format="%2C %t %N %F %2l %-8.8u %-8.8g %8s %d %f" # default
+#set status_format       = "[ Folder: %f, Msgs: %m%?n? New: %n?%?d? Del: %d?%?t? Tag: %t?%?l? %l? ]%?p?---- .: %p waiting to send :. ?--%>- (%P) ---"
+set alias_format        = "%4n %t %-20a  %r"
+set attach_format       = "%u%D%I %t%4n %T%d%> [%.7m/%.10M, %.6e%?C?, %C?, %s] "
+set pager_format        = "-%Z- %C/%m: %-20.20n   %s%* %4c -- (%P)"
+
+# composing mail
+set realname            = "Raphaël Fournier-S'niehotta"         # who am i?
+set envelope_from                                               # which from?
+set sig_dashes                                                  # dashes before my sig... sweet
+#set sig_on_top                                                  # signature above quoted reply
+set fast_reply                                                  # skip to compose when replying
+#set sendmail_wait       = -1                                    # don't wait for sending... to complete
+set askcc=no                                 # ask for CC:
+set fcc_attach                            # save attachments with the body
+unset mime_forward                        # forward attachments as part of body
+set forward_format      = "Re: %s"       # format for subject when forwarding
+set forward_decode                        # decode when forwarding
+set mime_forward=yes
+set mime_forward_rest=yes
+set sendmail  = "/usr/bin/msmtp -a cnam"
+set record    = "+CNAM/Archives/"
+set from      = "fournier@cnam.fr"
+
+set attribution         = "\n\nLe %d, %n a écrit:"          # set the attribution
+set reply_to                              # reply to Reply to: field
+set reverse_name                          # reply as whomever it was to
+set include                               # include message in replies
+set forward_quote                         # include message in forwards
+set reverse_name = yes
+alternates raphael.fournier@complexnetworks.lip6.fr|raphael@raphaelfournier.net|fournier@lavabit.com|raphael.*@fournier-sniehotta.fr|raphael.fournier@lip6.fr|fournier@cnam.fr|raphael.fournier@univ-paris13.fr|raphael.fournier_s_niehotta@cnam.fr|raphael@getlovepulse.com
+
+# headers to show
+ignore *                                                        # ignore all headers
+unignore from to cc date subject list-id    # show only these
+hdr_order date from list-id to cc subject    # and in this order
+# set edit_headers = yes                                                # show headers when composing 
+mailboxes `find ~/Mail/Rfnet/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur\|Archives\|Spam\|Professionnel\|MLMutt\|MLNotmuch" |xargs`
+mailboxes `find ~/Mail/RFS/* -maxdepth 0 -type d | grep -iv "tmp\|new\|MLtemp\|Flux\|cur\|Corbeille" | xargs`
+mailboxes `find ~/Mail/CNAMnet/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur\|Spam" |xargs`
+mailboxes `find ~/Mail/CNAM/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur\|Spam\|News" |xargs`
+
+#mailboxes "/var/spool/mail/raph"
+#mailboxes "~/Mail/Templates"
+#mailboxes `find ~/Mail/Yahoo/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur" |xargs`
+#mailboxes `find ~/Mail/GMX/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur\|Spam" |xargs`
+#mailboxes `find ~/Mail/Paris13/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur\|Spam" |xargs`
+#mailboxes `find ~/Mail/Lip6/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur\|201.\/" |xargs`
+#mailboxes `find ~/Mail/Lavabit/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur" |xargs`
+
+## account specific sources
+folder-hook RFS/* source ~/.mutt/rfs.muttrc
+folder-hook CNAM/* source ~/.mutt/cnam.muttrc
+folder-hook CNAMnet/* source ~/.mutt/cnamnet.muttrc
+folder-hook Rfnet/* source ~/.mutt/rfnet.muttrc
+
+#folder-hook Paris13/* source ~/.mutt/paris13.muttrc
+#folder-hook GMX/* source ~/.mutt/gmx.muttrc
+#folder-hook Lip6/* source ~/.mutt/lip6.muttrc
+#folder-hook Lavabit/* source ~/.mutt/lavabit.muttrc
+#source ~/.mutt/colors.vimbrant
+#source ~/.mutt/colors/colors.xoria`echo $TERM | sed "s:.*-::"`M
+#echo $TERM | sed "s:.*-::"
+#source ~/.mutt/gpg.rc                                     # gpg configuration 
+#source ~/.mutt/colors.solarized-light256
+#source ~/.mutt/colors.solarized-dark256
+#source ~/.mutt/colors.default
+#source ~/.mutt/sidebar.muttrc                                   # any muttng options are here
+#charset-hook ^us-ascii$ cp1252
+##charset-hook ^iso-8859-1$ cp1252
+#set assumed_charset="cp1252"
+
+charset-hook US-ASCII     ISO-8859-1
+charset-hook x-unknown    ISO-8859-1
+charset-hook windows-1250 CP1250
+charset-hook windows-1251 CP1251
+charset-hook windows-1252 CP1252
+charset-hook windows-1253 CP1253
+charset-hook windows-1254 CP1254
+charset-hook windows-1255 CP1255
+charset-hook windows-1256 CP1256
+charset-hook windows-1257 CP1257
+charset-hook windows-1258 CP1258
+
+attachments   +A */.*
+attachments   -A text/x-vcard application/pgp.*
+attachments   -A application/x-pkcs7-.*
+attachments   -A message/external-body
+attachments   -I message/external-body
+attachments   +I text/plain
+
+set mime_forward_rest=ask-yes # forward attachments w/o autoview from attmenu
+#set send_charset="us-ascii:utf-8"
+#set send_charset="us-ascii:iso-8859-15:utf-8"
+set send_charset="utf-8"
+#set file_charset="us-ascii:iso-8859-15:utf-8"
+set charset="utf-8"
+
+#set locale="fr_FR.utf8"
+
+set allow_ansi = yes
+set display_filter = ~/.mutt/displayhighlight
+                                                                                
+# Sources ----------------------------------------
+source $alias_file                                              # required for functionality
+#source ~/.mutt/colors/zenburn`echo $TERM | sed "s:.*-::"`
+source ~/.mutt/colors/zenburn.raph
+source ~/.mutt/bindings
+source ~/.mutt/gpg
+source ~/.mutt/savehooks
+#source ~/.mutt/sidebar
+#source ~/.mutt/notmuch
+
+source ~/.mutt/neomuttrc 
+
+macro pager,index,generic ,f      "<vfolder-from-query>tag:flux<enter>"
+#
+#macro pager,index,generic ,G      "<vfolder-from-query>tag:inbox and tag:rfs<enter>"
+#macro pager,index,generic ,K      "<vfolder-from-query>tag:archive and tag:cnam<enter>"
+#macro pager,index,generic ,L      "<change-folder>+Rfnet/INBOX<enter>"
+#macro pager,index,generic ,M      "<change-folder>+Rfnet/Archives<enter>"
+#macro pager,index,generic ,%      "<change-folder>+Rfnet/MLEnsica<enter>"
+#macro pager,index,generic ,µ      "<change-folder>+Archives/MailingLists<enter>"
+#bind index,pager    ,s       vfolder-from-query #looks up for notmuch query
+#bind index,pager    \\      entire-thread #Reconstruct the entire thread with notmuch
+macro index,pager   +       "<modify-labels>+"                              "+Add or -Remove notmuch tags"
+
+set reply_with_xorig = "yes"

@@ -20,6 +20,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-scripts/loremipsum'
 Plugin 'Rykka/colorv.vim'
 Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/limelight.vim'
 "Plugin 'jnurmine/Zenburn'
 Bundle 'majutsushi/tagbar'
 Plugin 'mileszs/ack.vim'
@@ -57,6 +58,7 @@ Bundle 'flazz/vim-colorschemes'
 Plugin 'luochen1990/rainbow'
 
 Plugin 'davidhalter/jedi-vim'
+Plugin 'tpope/vim-fugitive'
 
 "Bundle 'klen/python-mode'
 "Bundle 'yssource/python.vim'
@@ -67,7 +69,6 @@ let g:ip_boundary='-\?\s*$'
 let g:tex_flavor = 'latex'
 "let g:polyglot_disabled = ['latex']
 
-"Plugin 'tpope/vim-fugitive'
 "Plugin 'L9'
 
 
@@ -355,6 +356,35 @@ let g:tagbar_type_markdown = {
 "noremap <Space> <PageDown>
 filetype detect
 set viminfo='1000,f1
+
+" limelight
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
+" Color name (:help cterm-colors) or ANSI code
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+
+" Color name (:help gui-colors) or RGB color
+let g:limelight_conceal_guifg = 'DarkGray'
+let g:limelight_conceal_guifg = '#777777'
+
+" Default: 0.5
+let g:limelight_default_coefficient = 0.7
+
+" Number of preceding/following paragraphs to include (default: 0)
+let g:limelight_paragraph_span = 1
+
+" Beginning/end of paragraph
+"   When there's no empty line between the paragraphs
+"   and each paragraph starts with indentation
+let g:limelight_bop = '^\s'
+let g:limelight_eop = '\ze\n^\s'
+
+" Highlighting priority (default: 10)
+"   Set it to -1 not to overrule hlsearch
+let g:limelight_priority = -1
+" end limelight
 
 let g:calendar_google_calendar = 1
 "let g:calendar_frame = 'default'

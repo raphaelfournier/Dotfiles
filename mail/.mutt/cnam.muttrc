@@ -1,0 +1,24 @@
+###
+# CNAM specific options
+###
+
+color status black green
+set status_format = "[ Folder: %f, Msgs: %m%?n? New: %n?%?d? Del: %d?%?t? Tag: %t?%?l? %l? (%P) %?V?(%V: %M/%m)?]%?p?---- .: %p waiting to send :. ?--%>-- CNAM --(%s/%S)------"
+
+set from      = "fournier@cnam.fr"
+#set sendmail  = "/usr/bin/msmtp -a paris13"
+set sendmail  = "/usr/bin/msmtp -a cnam"
+set mbox      = "+CNAM/Archives"
+set record    = "+CNAM/Archives/"
+set postponed = "+CNAM/Drafts/"
+set signature = "~/.mutt/cnam.signature"                           # my signature file
+
+save-hook . "+CNAM/Archives/"
+
+source ~/.mutt/cnam-lists
+
+macro index za   "<shell-escape>/usr/bin/offlineimap -a CNAM -q -o<enter>" "sync IMAP" # quick-sync ~/Mail immediately with offlineimap
+#
+# https://dev.mutt.org/doc/manual.html#mailbox-hook
+folder-hook CNAM/INBOX "push <limit>!~P!~l<enter><last-entry><current-middle>"
+folder-hook . "push <last-entry><current-middle>"

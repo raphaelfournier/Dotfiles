@@ -242,7 +242,7 @@ theme.collision_resize_width=30 -- 	The size of the resize handles
 theme.wibar_bg = theme.bg_normal .. "00"
 theme.wibar_fg = theme.fg_normal
 
-theme.arcwidgets_thickness = 2
+theme.arcwidgets_thickness = 4
 theme.arcwidgets_font = "Inconsolata Medium "
 theme.arcwidgets_fontsize = "10"
 

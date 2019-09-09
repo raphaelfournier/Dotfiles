@@ -1,0 +1,125 @@
+# Main options -----------------------------------
+set nm_default_uri = "notmuch:///home/raph/Mail"     # Where is ".notmuch"
+set virtual_spoolfile=yes                           # enable virtual folders
+#set nm_open_timeout = 3                             # Faster!
+
+set nm_record = no                                 # apply notmuch to email in mutt's record
+#set nm_record_tags = "+from-me +inbox -archive"     # add tags to mutt's record
+#set nm_hidden_tags = "unread,draft,flagged,passed,replied,attachment,encrypted,signed,from-me"
+#set nm_hidden_tags = ""
+
+#set nm_unread_tag = "unread"
+
+#set nm_exclude_tags = "ignore"
+
+# Mailboxes --------------------------------------
+## The big difference between mutt-kz and mutt is to organse yourself with
+## notmuch tags instead of simply relying on maildir folders. This allows for
+## more complex mailboxes. But this only works well if you tell notmuch how to
+## apply tags to new mail. Have a look at
+## <http://notmuchmail.org/initial_tagging/> and especially about post-new
+## hooks: `man notmuch-hooks`
+
+virtual-mailboxes \
+                "CNAM           "  "notmuch://?query=tag:inbox AND tag:cnam" \
+                " archives      "  "notmuch://?query=tag:archive and tag:cnam" \
+                "RFS            "  "notmuch://?query=tag:inbox AND tag:rfs" \
+                " archives      "  "notmuch://?query=tag:archive and tag:rfs" \
+                "Rfnet          "  "notmuch://?query=tag:inbox AND tag:rfnet" \
+                "MLEnsica       "  "notmuch://?query=tag:mlensica" \
+                "Sport          "  "notmuch://?query=tag:sport" \
+                " ☕ Waiting     "  "notmuch://?query=tag:waiting" \
+                " ⚑ Flagged     "  "notmuch://?query=tag:flagged or tag:*" \
+                "   Inboxes     "  "notmuch://?query=tag:inbox                                            " \
+                "   Recent      "  "notmuch://?query=date:last_week..today NOT tag:junk                   " \
+                " ↻ Sent        "  "notmuch://?query=tag:from-me AND date:last_week..today                " \
+                #"   Trash       "  "notmuch://?query=tag:spam or tag:junk or folder:Trash or folder:Corbeille or folder:Spam or folder:Junk" \
+                #"   FSFE        "  "notmuch://?query=tag:inbox AND tag:fsfe                               " \
+                #"   lists       "  "notmuch://?query=(tag:lists OR tag:mod) NOT tag:archive               " \
+                #"    ftf        "  "notmuch://?query=tag:fsfe AND tag:ftf NOT tag:legal-network NOT tag:archive NOT tag:junk" \
+                #"    tosdrtodo  "  "notmuch://?query=tag:tosdrgroup AND tag:todo                          " \
+                #"    tsback     "  "notmuch://?query=from:tosback@tosdr.org                               " \
+                #"    2015       "  "notmuch://?query=date:01-2015..12-2015                                " \
+                #"    2014       "  "notmuch://?query=date:01-2014..12-2014                                " \
+                #"    2013       "  "notmuch://?query=date:01-2013..12-2013                                " \
+                #"    2012       "  "notmuch://?query=date:01-2012..12-2012                                " \
+                #"    2011       "  "notmuch://?query=date:01-2011..12-2011                                " \
+                #"    2010       "  "notmuch://?query=date:01-2010..12-2010                                " \
+                #"    2000s      "  "notmuch://?query=date:01-2000..12-2009                                " \
+                #" archives    "  "notmuch://?query=tag:archive OR folder:archives/ OR path:archives/**  " \
+              # " New!" "notmuch://?query=(tag:unread OR date:yesterday..today) NOT (tag:archive OR tag:tosdrgroup)" \
+              # " ★ Starred     "  "notmuch://?query=tag:*                                   &type=threads" \
+              # "  INBOX       "  "notmuch://?query=tag:inbox NOT (tag:lists OR tag:archive)             " \
+
+macro pager,index,generic ,g      "<vfolder-from-query>tag:inbox and tag:rfs<enter>"
+macro pager,index,generic ,h     "<vfolder-from-query>tag:archive and tag:rfs<enter>"
+macro pager,index,generic ,j      "<vfolder-from-query>tag:inbox and tag:cnam<enter>"
+macro pager,index,generic ,k     "<vfolder-from-query>tag:archive and tag:cnam<enter>"
+
+macro pager,index ,f "<vfolder-from-query>tag:flux<enter>"
+#macro pager,index,generic ,l      "<change-folder>+Rfnet/INBOX<enter>"
+#macro pager,index,generic ,m     "<change-folder>+Rfnet/Archives<enter>"
+#macro pager,index,generic ,ù      "<change-folder>+Rfnet/MLEnsica<enter>"
+#macro pager,index,generic ,*      "<change-folder>+Archives/MailingLists<enter>"
+
+# Tags -------------------------------------------
+tag-transforms  "inbox"   "☕"  \
+                "unread"  "✉"  \
+                "replied" "↪"  \
+                "from-me" "↻"  \
+                "*"       "★"  \
+                "waiting" "☕"  \
+                "deleted" "DEL" \
+                "invites" "CAL"
+
+tag-formats   "inbox"     "GI" \
+              "unread"    "GU" \
+              "replied"   "GR" \
+              "from-me"   "GS" \
+              "*"         "Gs" \
+              "waiting"   "Gw" \
+              "deleted"   "GD" \
+              "invites"   "Gi"
+
+# Formats ----------------------------------------
+#set index_format        = "%4C %Z %D %-20.20F %?y?[%.20Y] ?%s %*  %X %4c"
+#set index_format="%4C %Z %?Gw?%Gw& ?%?Gs?%Gs& ?%?GR?%GR& ? %D %-20.20F %?M?(%3M)&     ? %s %> %4c"
+set index_format="%4C %Z %?Gw?%Gw& ?%?Gs?%Gs& ?%?GR?%GR& ? %D %-20.20F %?y?[%.20Y] ?%s %*  %X %4c"
+#set status_format = "Folder: %f   %r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)?  %> %?p?( %p postponed )?"
+set pager_format = "-%Z- %C/%m: %-20.20n   %s%*  -- %?g?(%g)? - (%P)" # All the space corresponds to the sidebar
+#--- Notmuch ----
+bind index,pager    ,s       vfolder-from-query #looks up for notmuch query
+bind index,pager    \\      entire-thread #Reconstruct the entire thread with notmuch
+macro index,pager   +       "<modify-labels>+"                              "+Add or -Remove notmuch tags"
+macro index,pager   -       "<modify-labels-then-hide>-"                    "+Add or -Remove notmuch tags then hide the message"
+
+## Tags
+#macro index,pager   *       "<modify-labels>+*<enter><sync-mailbox>"        "star"
+#macro index,pager   µ       "<modify-labels>-*<enter><sync-mailbox>"        "unstar"
+#macro index,pager   w       "<modify-labels>+waiting<enter><sync-mailbox>"  "waiting for reply"
+#macro index,pager   W       "<modify-labels>-waiting<enter><sync-mailbox>"  "waiting for reply"
+
+#--- Archiving ----
+#bind index,pager    s       save-message
+#macro index         S       "<tag-entry><tag-prefix><toggle-new><tag-prefix><save-message>"                     "mark as read and save"
+#macro index,pager   \es  "<tag-thread><tag-prefix><save-message>"                                            "save thread"
+#bind index,pager    \ed  decrypt-save
+#macro index,pager   \ec  "<tag-entry><tag-prefix><modify-labels>+decrypted<enter><tag-prefix><decrypt-save>=archives/" "decrypt and save offline"
+#macro index,pager   a       "<modify-labels-then-hide>-unread -inbox +archive<enter><sync-mailbox>"             "archive"
+#macro index         A       "<tag-entry><tag-prefix><toggle-new><tag-prefix><modify-labels-then-hide>-unread -inbox +archive<enter><sync-mailbox>"  "mark as read and archive"
+#macro pager         A       "<modify-labels-then-hide>-unread -inbox +archive<enter><sync-mailbox>"  "archive"
+#macro index,pager   \ea  "<tag-thread><tag-prefix><modify-labels-then-hide>-unread -inbox +archive<enter><sync-mailbox>"                         "archive thread"
+#macro index         \eA  "<tag-thread><tag-prefix><toggle-new><tag-prefix><modify-labels-then-hide>-unread -inbox +archive<enter><sync-mailbox>" "mark as read and archive thread"
+
+#--- Refresh ----
+#macro index         U       "<sync-mailbox>! notmuch new<enter><sync-mailbox>"  "update notmuch database"
+#macro index,pager   o       "! offlineimap -o -f INBOX<enter><sync-mailbox>"              "sync INBOX with offlineIMAP"
+#macro index,pager   O       "! offlineimap -o<enter><sync-mailbox>"             "sync with offlineIMAP"
+
+#--- Junk ----
+#macro index,pager   x       "<save-message>=Junk<enter>"    "move to =Junk"
+#macro index,pager   X       "<modify-labels-then-hide>-inbox -unread +junk<enter><sync-mailbox>" "tag as Junk mail"
+
+#macro pager         \Cu     ":set pipe_decode\n|urlview\n:unset pipe_decode\n" "View URLs"
+#macro pager         0       ":unset display_filter; exec exit\n:exec display-message\n" "TOFU protection off"
+#macro pager         1       ":set display_filter='t-prot -cemt --bigq  -S 8 -M mutt-kz --pgp-move-vrf --pgp-short'; exec exit\n:exec display-message\n" "TOFU protection on" 

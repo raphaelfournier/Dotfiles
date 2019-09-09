@@ -1,0 +1,9 @@
+###
+# CNAMnet specific options
+###
+
+color status black green
+set status_format = "[ Folder: %f, Msgs: %m%?n? New: %n?%?d? Del: %d?%?t? Tag: %t?%?l? %l? ]%?p?---- .: %p waiting to send :. ?--%>-- CNAM --(%s/%S)-- (%P) ----"
+
+macro index za   "<shell-escape>/usr/bin/offlineimap -a CNAMnet -q -o<enter>" "sync IMAP" # quick-sync ~/Mail immediately with offlineimap
+folder-hook . "push <last-entry><current-middle>"

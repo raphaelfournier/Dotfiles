@@ -161,4 +161,6 @@ compinit
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
 
+bindkey " " magic-space # do history expansion on space
+
 #source ~/.oh-my-zsh/invoke/zsh

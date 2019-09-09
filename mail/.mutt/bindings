@@ -1,0 +1,122 @@
+# Command bind :
+# Syntax: bind <map> <key> <function>
+# Values for <map>:
+# generic, alias, attach, browser, editor, index, compose, pager, pgp, postpone
+# Special values for <key>: \t, <tab>, \r, \n, \e, <esc>, <up>, <down>, 
+#   <left>, <right>, <pageup>, <pagedown>, <backspace>, <delete>, 
+# <insert>, <enter>, <home>, <end>, <space>, <f1>,...,<f10>
+#
+# Take care, there are some defaults hardcoded in keymap.c:km_init()
+# Most defaults (Op*) are defined in functions.h.
+
+bind index ! noop
+######################################
+# macros
+macro index B   "<limit>~b "                "search message bodies"
+
+macro index \Cf "<limit>~F<enter><current-middle>" "limit to flagged messages"
+macro index <esc>a "<limit>all<enter>oi<current-middle>" "view all messages, sorted by discussion"
+macro index \Cv "<limit>~N<enter>oo<current-middle>" "view only new messages"
+macro index \Cw "<limit>!~F<enter><current-middle>" "hide flagged messages"
+macro index \Ce "<limit>!~P !~l<enter><current-middle>" "hide messages from me, and mailinglists"
+
+macro index ,o "<limit>~P | ~l<enter><current-middle>" "messages masqués par Ctrl+A"
+macro pager,index,generic A "<tag-pattern>~A<enter>" "all messages"
+macro index ,v "<limit>~l<enter><current-middle>" "view only list messages"
+macro index S ":set confirmappend=no delete=yes\n<tag-prefix-cond><clear-flag>n<tag-prefix-cond><save-message>\n<sync-mailbox>"
+
+# paris 13 specifique
+#macro index \Ce "<limit>!~s SLURM<enter><current-middle>"
+
+macro attach s <save-entry><kill-line>~/Mail/Attachments/ "save attachments in ~/Mail/Attachments" 
+macro index,pager,compose ,r <save-entry><kill-line>=CNAM/INBOX "save in CNAM/INBOX"
+bind index zt current-top
+bind index zz current-middle
+bind index zb current-bottom
+macro index Z   "<shell-escape>/usr/bin/offlineimap -q -o<enter>" "sync IMAP" # quick-sync ~/Mail immediately with offlineimap
+bind pager \c? previous-line # FIX for Rxvt-unicode backspace binding
+bind pager,index P print-message # eviter les print intempestifs
+bind pager,index p search-opposite
+bind pager,index '"' pipe-message
+macro pager,index c <change-folder>=
+#macro index,pager ,S "<enter-command>unset resolve<enter><clear-flag>N<tag-prefix>s<enter><enter-command>set resolve<enter><delete-message>"
+macro pager,index ,S "<vfolder-from-query>folder:"
+
+macro pager,index,generic \Cj "<half-down>"
+macro pager,index,generic \Ck "<half-up>"
+######################################
+
+######################################
+macro pager,index,generic ,t        ":set sendmail=\"/usr/sbin/sendmail raph\""
+macro pager,index,generic ,n      "<limit>~N<enter><current-middle>"
+macro pager,index,generic <f1>      "!links /usr/share/doc/mutt/manual.html" "Show Mutt documentation"
+macro index,compose ,c      ":set sendmail=\"/usr/bin/msmtp -a cnam\""
+macro compose ,l      ":set sendmail=\"/usr/bin/msmtp -a lip6-ext\""
+macro compose ,g      ":set sendmail=\"/usr/bin/msmtp -a google\""
+
+macro compose ,f      "<edit-fcc>=CNAM/INBOX"
+
+macro pager,index,generic ,g      "<change-folder>+RFS/INBOX<enter>"
+macro pager,index,generic ,h     "<change-folder>+RFS/Archives<enter>"
+macro pager,index,generic ,j      "<change-folder>+CNAM/INBOX<enter>"
+macro pager,index,generic ,J      "<change-folder>+CNAMnet/INBOX<enter>"
+macro pager,index,generic ,k     "<change-folder>+CNAM/Archives<enter>"
+macro pager,index,generic ,l      "<change-folder>+Rfnet/INBOX<enter>"
+macro pager,index,generic ,m     "<change-folder>+Rfnet/Archives<enter>"
+macro pager,index,generic ,ù      "<change-folder>+Rfnet/MLEnsica<enter>"
+macro pager,index,generic ,*      "<change-folder>+Archives/MailingLists<enter>"
+macro index ,e "<limit>~y " "Limit view to label"
+macro pager,index,generic ,I      '<vfolder-from-query>tag:flux<enter>'
+macro pager,index,generic ,i      '<change-folder>+RFS/Flux.<tab><tab>'
+
+set my_vi=$editor
+macro generic ,j "<enter-command>push <pipe-message>muttjump<enter><enter>" "jump to original message"
+
+# mutt macros for notmuch
+macro index ,s \
+"<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
+<shell-escape>notmuch-mutt -r --prompt search<enter>\
+<change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter>\
+<enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
+      "notmuch: search mail"
+
+macro index ,d \
+"<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
+<pipe-message>notmuch-mutt -r thread<enter>\
+<change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter>\
+<enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
+      "notmuch: reconstruct thread"
+
+macro compose v "<edit-from>^Uidentity.<tab>" "Select from" 
+
+macro index,pager \Co "\
+<enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
+pipe_decode=no wait_key=no<enter>\
+<pipe-message> viewhtmlmsg -b firefox<enter>\
+<enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
+&my_pipe_decode &my_wait_key<enter>\
+" "muttils view HTML in browser"
+macro index,pager <F12> "\
+<enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
+pipe_decode=no wait_key=no<enter>\
+<pipe-message> viewhtmlmsg -b luakit -s<enter>\
+<enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
+&my_pipe_decode &my_wait_key<enter>\
+" "muttils view HTML (safe) in browser"
+macro index,pager,attach ,u "\
+<enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
+pipe_decode=no wait_key=no<enter>\
+<pipe-message> urlpager<enter>\
+<enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
+&my_pipe_decode &my_wait_key<enter>\
+" "go to any url"
+macro index,pager,attach ,t "\
+<enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
+pipe_decode=no wait_key=no<enter>\
+<pipe-message> urlpager -b w3m -pweb<enter>\
+<enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
+&my_pipe_decode &my_wait_key<enter>\
+" "text browse web"
+
+macro index,pager ,U "<pipe-message> urlview<Enter>" "call urlview to extract URLs out of a message"
+macro attach,compose ,U "<pipe-entry> urlview<Enter>" "call urlview to extract URLs out of a message"

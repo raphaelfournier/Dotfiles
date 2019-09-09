@@ -1,0 +1,139 @@
+# Example Mutt config file for the 'initials' patch.
+# http://www.neomutt.org/feature/initials/
+# The 'initials' patch has no config of its own.
+# It adds an expando for an author's initials,
+# which can be used in the 'index_format' variable.
+# The default 'index_format' is:
+## set index_format='%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s'
+# Where %L represents the author/recipient
+# This might look like:
+#       1   + Nov 17 David Bowie   Changesbowie    ( 689)
+#       2   ! Nov 17 Stevie Nicks  Rumours         ( 555)
+#       3   + Nov 16 Jimi Hendrix  Voodoo Child    ( 263)
+#       4   + Nov 16 Debbie Harry  Parallel Lines  ( 540)
+# Using the %I expando:
+## set index_format='%4C %Z %{%b %d} %I (%?l?%4l&%4c?) %s'
+# This might look like:
+#       1   + Nov 17 DB Changesbowie    ( 689)
+#       2   ! Nov 17 SN Rumours         ( 555)
+#       3   + Nov 16 JH Voodoo Child    ( 263)
+#       4   + Nov 16 DH Parallel Lines  ( 540)
+
+# Example Mutt config file for the 'limit-current-thread' patch.
+# http://www.neomutt.org/feature/limit-current-thread/
+# Limit view to current thread
+bind index <esc>L limit-current-thread
+
+# Example Mutt config file for the 'progress' patch.
+# http://www.neomutt.org/feature/progress/
+# The 'progress' patch provides clear visual feedback for
+# slow tasks, such as indexing a large folder over the net.
+# Set the color of the progress bar
+# White text on a red background
+color progress black red
+
+# Example Mutt config file for the 'skip-quoted' patch.
+# http://www.neomutt.org/feature/skip-quoted/
+# The 'S' (skip-quoted) command scrolls the pager past the quoted text (usually
+# indented with '> '.  Setting 'skip_quoted_offset' leaves some lines of quoted
+# text on screen for context.
+# Show three quoted lines before the reply
+set skip_quoted_offset = 3
+bind pager <esc>S skip-quoted
+
+# Example Mutt config file for the 'status-color' patch.
+# http://www.neomutt.org/feature/status-color/
+# The 'status-color' patch allows you to theme different parts of
+# the status bar (also when it's used by the index).
+# For the examples below, set some defaults
+#set status_format='-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'
+#set index_format='%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s'
+#set sort=threads
+#set sort_aux=last-date-received
+## 'status color' can take up to 2 extra parameters
+## color status foreground background [ regex [ num ]]
+## 0 extra parameters
+## Set the default color for the entire status line
+#color status blue white
+## 1 extra parameter
+## Set the color for a matching pattern
+## color status foreground background regexp
+## Highlight New, Deleted, or Flagged emails
+#color status brightred white '(New|Del|Flag):[0-9]+'
+## Highlight mailbox ordering if it's different from the default
+## First, highlight anything (*/*)
+#color status brightred default '\([^)]+/[^)]+\)'
+## Then override the color for one specfic case
+#color status default   default '\(threads/last-date-received\)'
+## 2 extra parameters
+## Set the color for the nth submatch of a pattern
+## color status foreground background regexp num
+## Highlight the contents of the []s but not the [] themselves
+#color status red default '\[([^]]+)\]' 1
+## The '1' refers to the first regex submatch, which is the inner
+## part in ()s
+## Highlight the mailbox
+#color status brightwhite default 'Mutt: ([^ ]+)' 1
+# Search for 'Mutt: ' but only highlight what comes after it
+
+# Example Mutt config file for the 'nested-if' feature.
+# http://www.neomutt.org/feature/nested-if/
+# This patch uses the format: '%<VAR?TRUE&FALSE>' for conditional
+# format strings that can be nested.
+# Example 1
+# if a thread is folded
+#       display the number of messages (%M)
+# else if we know how many lines in the message
+#       display lines in message (%l)
+# else display the size of the message in bytes (%c)
+#set index_format='%4C %Z %{%b %d} %-25.25n %s%> %<M?%M Msgs &%<l?%l Lines&%c Bytes>>'
+# Example 2
+# if a thread is folded
+#       display the number of messages (%M)
+#       display the subject (%s)
+# else if we know how many lines in the message
+#       display lines in message (%l)
+# else
+#       display the size of the message in bytes (%c)
+#set index_format='%4C %Z %{%b %d} %-25.25n %<M?[%M] %s&%s%* %<l?%l&%c>>'
+
+# Example Mutt config file for the 'index-color' feature.
+# http://www.neomutt.org/feature/cond-date/
+# The default index_format is:
+#       '%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s'
+#
+# We replace the date field '%{%b %d}', giving:
+#set index_format='%4C %Z %<[y?%<[m?%<[d?%[%H:%M ]&%[%a %d]>&%[%b %d]>&%[%m/%y ]> %-15.15L (%?l?%4l&%4c?) %s'
+# Test  Date Range  Format String  Example
+# --------------------------------------------
+# %[d   Today       %[%H:%M ]      12:34
+# %[m   This month  %[%a %d]       Thu 12
+# %[y   This year   %[%b %d]       Dec 10
+# -     Older       %[%m/%y ]      06/15
+
+# Compose a new email (not a reply) to the sender
+bind index,pager @ compose-to-sender
+
+# Ask if the user wishes to abort sending if $attach_keyword is found in the
+# body, but no attachments have been added
+# It can be set to:
+#    "yes"     : always abort
+#    "ask-yes" : ask whether to abort
+#    "no"      : send the mail
+set abort_noattach = ask-yes
+
+# Search for the following regular expression in the body of the email
+
+# English: attach, attached, attachment, attachments
+#set attach_keyword = "\\<attach(|ed|ments?)\\>"
+
+# Nederlands:
+# set attach_keyword = "\\<(bijvoegen|bijgevoegd|bijlage|bijlagen)\\>"
+
+# Deutsch:
+# set attach_keyword = "\\<(anhängen|angehängt|anhang|anhänge|hängt an)\\>"
+
+# Français:
+set attach_keyword = "\\<(attached|attachments?|attach|attaché|attachés|attache|attachons|PJ|joint|jointe|joints|jointes|joins|joignons)\\>"
+
+# vim: syntax=muttrc

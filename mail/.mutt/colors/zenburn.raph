@@ -1,0 +1,184 @@
+#Screenshot http://trovao.droplinegnome.org/stuff/mutt-zenburnt.png
+#
+# This is a zenburn-based muttrc color scheme that is not (even by far)
+# complete. There's no copyright involved. Do whatever you want with it.
+# Just be aware that I won't be held responsible if the current color-scheme
+# explodes your mutt.
+#
+# Please remember that this color scheme requires a 256 color
+# terminal-emulator. Any modern X terminal emulator should have support for
+# that and you can enable it by calling mutt as "TERM=xterm-256color mutt", or
+# by adding "term screen-256color" to your .screenrc.
+#
+
+# general-doesn't-fit stuff
+color normal     color188 default
+color error      color174 default
+color message    color223 default
+color markers    color142 default
+color tilde      color108 default # ~'s after message body
+color signature  color188 color236
+color attachment color111 color236 #Add-ons to the message
+#color attachment color175 color236 #Add-ons to the message
+color status     black color242
+
+# index stuff
+color indicator  color108 color236
+color tree       color163 default
+#color index      color188 default ~A # all messages
+#color index      color188 default ~N
+# ligne modifiee ci dessous
+
+color index      color237 color221 ~N # new messages
+color index      color116 default ~l # messages from list
+color index      color237 color116 ~N~l # new messages from list
+# other lists
+#color index      color116 default "~C jgiavelli@yahoo.fr | ~C didier.bernard1@free.fr"
+#color index      color237 color116 "~N ~C jgiavelli@yahoo.fr | ~N ~C didier.bernard1@free.fr"
+
+color index      color116 default "~f news@thehustle.co"
+color index      color237 color116 "~N ~f news@thehustle.co"
+color index      color116 default "~f @jacquesdemeter.fr"
+color index      color237 color116 "~N ~f @jacquesdemeter.fr"
+color index      color116 default "(~C @meetup.com|~N ~f @meetup.com)"
+color index      color237 color116 "(~N ~C @meetup.com|~N ~f @meetup.com)"
+color index      color116 default "(~C @kaggle.com|~N ~f @kaggle.com)"
+color index      color237 color116 "(~N ~C @kaggle.com|~N ~f @kaggle.com)"
+color index      color116 default "~f redaction@curaterz.fr"
+color index      color237 color116 "~N ~f redaction@curaterz.fr"
+color index      color116 default "~f newsletters@cinematheque.fr"
+color index      color237 color116 "~N ~f newsletters@cinematheque.fr"
+color index      color116 default "~f newsletters@coach.me"
+color index      color237 color116 "~N ~f newsletters@coach.me"
+color index      color116 default "~f lenny@lennyletter.com"
+color index      color237 color116 "~N ~f lenny@lennyletter.com"
+color index      color116 default "~f digest-noreply@quora.com"
+color index      color237 color116 "~N ~f digest-noreply@quora.com"
+color index      color116 default "~f contact@newsletter.greenletter.mylittleparis.com"
+color index      color237 color116 "~N ~f contact@newsletter.greenletter.mylittleparis.com"
+color index      color116 default "~f alfred@bonsplans.mercialfred.com"
+color index      color237 color116 "~N ~f alfred@bonsplans.mercialfred.com"
+color index      color116 default "~f newsletters@technologyreview.com"
+color index      color237 color116 "~N ~f newsletters@technologyreview.com"
+color index      color116 default "~f contact@jogg.in"
+color index      color237 color116 "~N ~f contact@jogg.in"
+color index      color116 default "~f slatepartitiou@gmail.com"
+color index      color237 color116 "~N ~f slatepartitiou@gmail.com"
+color index      color116 default "~f info@massdrop.com"
+color index      color237 color116 "~N ~f info@massdrop.com"
+color index      color116 default "~f contact@openedition.org"
+color index      color237 color116 "~N ~f contact@openedition.org"
+color index      color116 default "~f mairie-treizeinfos@paris.fr"
+color index      color237 color116 "~N ~f mairie-treizeinfos@paris.fr"
+color index      color116 default "~f coladadata@gmail.com"
+color index      color237 color116 "~N ~f coladadata@gmail.com"
+color index      color116 default "~f taylor@taylorpearson.me"
+color index      color237 color116 "~N ~f taylor@taylorpearson.me"
+color index      color116 default "~f carte-citoyenne@paris.fr"
+color index      color237 color116 "~N ~f carte-citoyenne@paris.fr"
+color index      color116 default "~f sabrina@epique.fyi"
+color index      color237 color116 "~N ~f sabrina@epique.fyi"
+color index      color116 default "~f madameolympia@olympiahall.com"
+color index      color237 color116 "~N ~f madameolympia@olympiahall.com"
+color index      color116 default "~s bulle-i3"
+color index      color237 color116 "~N ~s bulle-i3"
+color index      color116 default "~s SSFAM"
+color index      color237 color116 "~N ~s SSFAM"
+color index      color116 default "~s gazettebd3"
+color index      color237 color116 "~N ~s gazettebd3"
+color index      color116 default "~f annonces@societe-informatique-de-france.fr"
+color index      color237 color116 "~N ~f annonces@societe-informatique-de-france.fr"
+
+#color index      color116 default "~f "
+#color index      default color116 "~N ~f "
+
+color index      color132 default "(~f @twitter.com ~t raphael@fournier-sniehotta.fr)"
+color index      color237 color132 "(~N ~f @twitter.com ~t raphael@fournier-sniehotta.fr)"
+color index      color24 default "(~f @twitter.com ~t foobarbaz@fournier-sniehotta.fr)"
+color index      color188 color24 "(~N ~f @twitter.com ~t foobarbaz@fournier-sniehotta.fr)"
+color index      color30 default  "(~f @twitter.com ~t scstwit@raphaelfournier.net)"
+color index      color237 color30  "(~N ~f @twitter.com ~t scstwit@raphaelfournier.net)"
+color index      color61 default "(~f @facebookmail.com ~t raphael@fournier-sniehotta.fr)"
+color index      color237 color61 "(~N ~f @facebookmail.com ~t raphael@fournier-sniehotta.fr)"
+color index      color188 default "(~t @getlovepulse.com)"
+color index      color188 color22 "(~N ~t @getlovepulse.com)"
+color index      color144 default "(~d >10d ! ~Q ! ~l ! ~N)" # unreplied messages
+color index      color143 default "(~d >30d ! ~Q ! ~l ! ~N)" # unreplied messages
+color index      color142 default "(~d >60d ! ~Q ! ~l ! ~N)" # unreplied messages
+color index      color108 default ~P # from me
+color index      color246 default ~Q # replied messages
+color index      color174 default ~F # flagged
+
+color index      color237 color232 ~D # deleted
+color index      color237 color108 ~T # tagged
+
+#http://www.mutt.org/doc/manual/manual-4.html#patterns
+
+# gpg stuff
+color body       color188 default "^gpg: Good signature.*"
+color body       color115 color236 "^gpg: BAD signature.*"
+color body       color174 default "^gpg: Can't check signature.*"
+color body       color174 default "^-----BEGIN PGP SIGNED MESSAGE-----"
+color body       color174 default "^-----BEGIN PGP SIGNATURE-----"
+color body       color174 default "^-----END PGP SIGNED MESSAGE-----"
+color body       color174 default "^-----END PGP SIGNATURE-----"
+color body       color174 default "^Version: GnuPG.*"
+color body       color174 default "^Comment: .*"
+
+# url, email and web stuff
+color body       color174 default "(finger|ftp|http|https|news|telnet)://[^ >]*"
+color body       color174 default "<URL:[^ ]*>"
+color body       color174 default "www\\.[-.a-z0-9]+\\.[a-z][a-z][a-z]?([-_./~a-z0-9]+)?"
+color body       color174 default "mailto: *[^ ]+\(\\i?subject=[^ ]+\)?"
+color body       color174 default "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+color body       color108 default "\\[[0-9]+\\]" 
+
+######################
+# header
+
+color hdrdefault color247    color236 # un peu plus sombre
+color header	color223    color234    '^from:'
+color header	color223    color234    '^list-id:'
+color header	color116    color234    '^(to|cc|bcc):'
+color header	color174    color234    '^date:'
+color header	color108    color234    '^subject:'
+color header  color31     color234    '^user-agent:'
+color header	color29     color234    '^reply-to:'
+
+# quote levels
+color quoted     color108 default # vert
+color quoted1    color116 default # bleu ciel
+color quoted2    color247 default # gris
+color quoted3    color223 default # jaune
+color quoted4    color174 default # rouge
+color quoted5    color144 default # 
+color quoted6    color108 default
+color quoted7    color116 default
+color quoted8    color247 default
+color quoted9    color108 default
+
+# Example Mutt config file for the 'index-color' feature.
+# http://www.neomutt.org/feature/index-color/
+# Entire index line
+#color index white black '.*'
+## Author name, %A %a %F %L %n
+## Give the author column a dark grey background
+#color index_author default color234 '.*'
+## Highlight a particular from (~f)
+##color index_author brightyellow color234 '~fRay Charles'
+## Message flags, %S %Z
+## Highlight the flags for flagged (~F) emails
+#color index_flags default red '~F'
+## Subject, %s
+## Look for a particular subject (~s)
+#color index_subject brightcyan default '~s\(retraite\)'
+## Number of messages in a collapsed thread, %M
+#color index_collapsed default brightblue
+## Date field
+#color index_date green default
+## Message label, %y %Y
+#color index_label default brightgreen
+## Message number, %C
+#color index_number red default
+## Message size, %c %l
+#color index_size cyan default

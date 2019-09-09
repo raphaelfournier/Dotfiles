@@ -23,6 +23,7 @@ local pomodoroarc_widget = require("awesome-wm-widgets.pomodoroarc-widget.pomodo
 local watsonarc_widget = require("awesome-wm-widgets.watsonarc-widget.watsonarc")
 local watson_shell = require("awesome-wm-widgets.watson-shell.watson-shell")
 local demoMode_widget = require("awesome-wm-widgets.demoMode-widget.demomode")
+--local buttonmpc = require("szorfein.button_only_mpc")
 
 local mpd_widget = require("awesome-wm-widgets.mpd-widget.mpd")
 local mpdarc_widget = require("awesome-wm-widgets.mpdarc-widget.mpdarc")
@@ -152,6 +153,7 @@ editor_cmd = terminal .. " -e " .. editor
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
+mod1 = "Mod1"
 
 --local toto = awful.keygrabber {
     --keybindings = {
@@ -771,8 +773,8 @@ awful.screen.connect_for_each_screen(function(s)
 
     awful.tag.add("web", {
         icon = beautiful.tag_icon_web,
-        --layout = awful.layout.suit.max,
-        layout = awful.layout.suit.tile.bottom,
+        layout = awful.layout.suit.max,
+        --layout = awful.layout.suit.tile.bottom,
         --master_fill_policy = "master_width_factor",
         master_width_factor = 0.75,
         screen = 1,
@@ -876,45 +878,49 @@ awful.screen.connect_for_each_screen(function(s)
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
 
-local layoutpopup = awful.popup {
-    widget = wibox.widget {
+    local layoutpopup = awful.popup {
+      widget = wibox.widget {
         awful.widget.layoutlist {
-            source      = awful.widget.layoutlist.source.default_layouts,
-            screen      = 1,
-            base_layout = wibox.widget {
-                spacing         = 5,
-                forced_num_cols = 2,
-                layout          = wibox.layout.grid.vertical,
+          source      = awful.widget.layoutlist.source.default_layouts,
+          screen      = 1,
+    style    = {
+      shape_selected        = gears.shape.rounded_rect,
+      bg_selected = beautiful.border_focus,
+    },
+          base_layout = wibox.widget {
+            spacing         = 5,
+            forced_num_cols = 2,
+            layout          = wibox.layout.grid.vertical,
+          },
+          widget_template = {
+            {
+              {
+                id            = 'icon_role',
+                forced_height = 46,
+                forced_width  = 46,
+                widget        = wibox.widget.imagebox,
+              },
+              margins = 4,
+              widget  = wibox.container.margin,
             },
-            widget_template = {
-                {
-                    {
-                        id            = 'icon_role',
-                        forced_height = 46,
-                        forced_width  = 46,
-                        widget        = wibox.widget.imagebox,
-                    },
-                    margins = 4,
-                    widget  = wibox.container.margin,
-                },
-                id              = 'background_role',
-                forced_width    = 48,
-                forced_height   = 48,
-                shape           = gears.shape.rounded_rect,
-                widget          = wibox.container.background,
-            },
+            id              = 'background_role',
+            forced_width    = 48,
+            forced_height   = 48,
+            shape           = gears.shape.rounded_rect,
+            widget          = wibox.container.background,
+          },
         },
         margins = 8,
         widget  = wibox.container.margin,
-    },
-    preferred_positions = 'bottom',
-    preferred_anchors = 'middle',
-    border_color      = beautiful.border_focus,
-    border_width      = beautiful.border_width,
-    shape             = gears.shape.infobubble,
-    hide_on_right_click = true,
-    visible = false,
-    ontop = true,
+      },
+      preferred_positions = 'bottom',
+      preferred_anchors = 'middle',
+      border_color      = beautiful.border_focus,
+      border_width      = beautiful.border_width,
+      shape             = gears.shape.infobubble,
+      hide_on_right_click = true,
+      visible = false,
+      ontop = true,
 }
 layoutpopup:bind_to_widget(s.mylayoutbox)
 
@@ -972,7 +978,7 @@ s.mytasklist = awful.widget.tasklist {
             local tooltip = awful.tooltip({
                 objects = { self },
                 timer_function = function()
-                  return client.name
+                  return client.name .. " | " .. tostring(client.width) .. "x" .. tostring(client.height)
                 end,
 								delay_show = 0.6
               })
@@ -1040,6 +1046,7 @@ s.mytasklist = awful.widget.tasklist {
             wibox.widget {
               smallspace,
               mpdarc_widget,
+              --buttonmpc,
               volumearc_widget,
               pomodoroarc_widget,
               watsonarc_widget,
@@ -1250,7 +1257,7 @@ local muttcommand = "kitty -e zsh -c \'echo -en \"\\e]1;mutt\\a\";echo -en \"\\e
     awful.menu.menu_keys.down = { "Down", "Alt_L", "j" }
     awful.menu.clients({theme = { width = 450 }}, { keygrabber=true, coords={x=525, y=330} })
 end),
-    awful.key({ modkey, "Ctrl" }, "x", function () 
+    awful.key({ mod1,  }, "Tab", function () 
       if testpopup.visible then 
         testpopup.visible = false 
       else testpopup.visible = true
@@ -1362,7 +1369,8 @@ end),
     local matcher = function (c)
         return awful.rules.match(c, {name = "ncmpcpp"})
     end
-    awful.client.run_or_raise(terminal .. ' -e ncmpcpp', matcher)
+    awful.client.run_or_raise("urxvtc" .. ' -e ncmpcpp', matcher)
+    --awful.client.run_or_raise(terminal .. ' -e ncmpcpp', matcher)
 end),
     awful.key({ modkey, }, "e", function () awful.util.spawn(terminal .." -e ranger") end,
               {description = "run ranger", group = "apps"}),
@@ -1371,7 +1379,7 @@ end),
     --awful.key({ modkey,           }, "w", function () awful.util.spawn("firefox") end, {description = "run firefox", group = "apps"}),
     awful.key({ modkey, }, 'w', function ()
     local matcher = function (c)
-        return awful.rules.match(c, {class = 'Firefox'})
+        return awful.rules.match(c, {class = 'firefox'})
     end
     awful.client.run_or_raise('firefox', matcher)
 end),
@@ -1379,9 +1387,11 @@ end),
     --awful.key({ modkey,           }, "c", function () awful.util.spawn("urxvt -e neomutt -F .muttrc") end, {description = "run mutt", group = "apps"}),
     --awful.key({ modkey,           }, "c", function () awful.util.with_shell("urxvt -e zsh -c \"sleep 0.1s ; screen -S mutt mutt -F .muttrc\"", {tag = "mail"}) end, {description = "run mutt", group = "apps"}),
     awful.key({ modkey,           }, "c", function () 
+      if not naughty.is_suspended() then
       awful.screen.focus(1)
       awful.tag.viewonly(awful.tag.find_by_name(screen[1], "mail"))
       awful.util.spawn(muttcommand, {tag = "mail"}) 
+    end
     end, {description = "run mutt", group = "apps"}),
 
     --awful.key({ modkey,           }, "w", function () awful.util.spawn("surf https://calendar.google.com/calendar") end, --{description = "agenda", group = "apps"}),
@@ -1589,10 +1599,10 @@ awful.rules.rules = {
     --},
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
-    { rule = { class = "Firefox" },
+    { rule = { class = "firefox" },
       properties = { screen = 1, tag = "web" } },
     { rule = { class = "Opera" },
-      properties = { screen = 1, tag = "web🖧" } },
+      properties = { screen = 1, tag = "web" } },
     { rule = { name = "screen" },
       properties = { screen = 1, tag = "work" } },
     { rule = { name = "mutt" },
@@ -1677,8 +1687,10 @@ client.connect_signal("manage", function (c)
     --if slave then awful.client.setslave(c) end
     
     -- Coins arrondis pour les fenêtres
-    c.shape = function(cr,w,h)
-        gears.shape.rounded_rect(cr,w,h,20)
+    if not c.fullscreen then
+      c.shape = function(cr,w,h)
+          gears.shape.rounded_rect(cr,w,h,20)
+      end
     end
 
 
