@@ -134,6 +134,6 @@ set abort_noattach = ask-yes
 # set attach_keyword = "\\<(anhängen|angehängt|anhang|anhänge|hängt an)\\>"
 
 # Français:
-set attach_keyword = "\\<(attached|attachments?|attach|attaché|attachés|attache|attachons|PJ|joint|jointe|joints|jointes|joins|joignons)\\>"
+set attach_keyword = "\\<(attached|attachments?|attach|attaché|attachés|attache|attachons|enclosed|PJ|joint|jointe|joints|jointes|joins|joignons)\\>"
 
 # vim: syntax=muttrc

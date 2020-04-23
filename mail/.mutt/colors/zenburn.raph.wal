@@ -23,69 +23,69 @@ color attachment color111 black #Add-ons to the message
 color status     black color242
 
 # index stuff
-color indicator  green black
+color indicator  black green 
 color tree       color163 default
 #color index      white default ~A # all messages
 #color index      white default ~N
 # ligne modifiee ci dessous
 
-color index      default yellow ~N # new messages
+color index      black yellow ~N # new messages
 color index      cyan default ~l # messages from list
-color index      default cyan ~N~l # new messages from list
+color index      black cyan ~N~l # new messages from list
 # other lists
 #color index      cyan default "~C jgiavelli@yahoo.fr | ~C didier.bernard1@free.fr"
 #color index      default cyan "~N ~C jgiavelli@yahoo.fr | ~N ~C didier.bernard1@free.fr"
 
 color index      cyan default "~f news@thehustle.co"
-color index      default cyan "~N ~f news@thehustle.co"
+color index      black cyan "~N ~f news@thehustle.co"
 color index      cyan default "~f @jacquesdemeter.fr"
-color index      default cyan "~N ~f @jacquesdemeter.fr"
-color index      cyan default "(~C @meetup.com|~N ~f @meetup.com)"
-color index      default cyan "(~N ~C @meetup.com|~N ~f @meetup.com)"
+color index      black cyan "~N ~f @jacquesdemeter.fr"
+color index      cyan default "(~C @meetup.com| ~f @meetup.com)"
+color index      black cyan "(~N ~C @meetup.com|~N ~f @meetup.com)"
 color index      cyan default "(~C @kaggle.com|~N ~f @kaggle.com)"
-color index      default cyan "(~N ~C @kaggle.com|~N ~f @kaggle.com)"
+color index      black cyan "(~N ~C @kaggle.com|~N ~f @kaggle.com)"
 color index      cyan default "~f redaction@curaterz.fr"
-color index      default cyan "~N ~f redaction@curaterz.fr"
+color index      black cyan "~N ~f redaction@curaterz.fr"
 color index      cyan default "~f newsletters@cinematheque.fr"
-color index      default cyan "~N ~f newsletters@cinematheque.fr"
+color index      black cyan "~N ~f newsletters@cinematheque.fr"
 color index      cyan default "~f newsletters@coach.me"
-color index      default cyan "~N ~f newsletters@coach.me"
+color index      black cyan "~N ~f newsletters@coach.me"
 color index      cyan default "~f lenny@lennyletter.com"
-color index      default cyan "~N ~f lenny@lennyletter.com"
+color index      black cyan "~N ~f lenny@lennyletter.com"
 color index      cyan default "~f digest-noreply@quora.com"
-color index      default cyan "~N ~f digest-noreply@quora.com"
+color index      black cyan "~N ~f digest-noreply@quora.com"
 color index      cyan default "~f contact@newsletter.greenletter.mylittleparis.com"
-color index      default cyan "~N ~f contact@newsletter.greenletter.mylittleparis.com"
+color index      black cyan "~N ~f contact@newsletter.greenletter.mylittleparis.com"
 color index      cyan default "~f alfred@bonsplans.mercialfred.com"
-color index      default cyan "~N ~f alfred@bonsplans.mercialfred.com"
+color index      black cyan "~N ~f alfred@bonsplans.mercialfred.com"
 color index      cyan default "~f newsletters@technologyreview.com"
-color index      default cyan "~N ~f newsletters@technologyreview.com"
+color index      black cyan "~N ~f newsletters@technologyreview.com"
 color index      cyan default "~f contact@jogg.in"
-color index      default cyan "~N ~f contact@jogg.in"
+color index      black cyan "~N ~f contact@jogg.in"
 color index      cyan default "~f slatepartitiou@gmail.com"
-color index      default cyan "~N ~f slatepartitiou@gmail.com"
+color index      black cyan "~N ~f slatepartitiou@gmail.com"
 color index      cyan default "~f info@massdrop.com"
-color index      default cyan "~N ~f info@massdrop.com"
+color index      black cyan "~N ~f info@massdrop.com"
 color index      cyan default "~f contact@openedition.org"
-color index      default cyan "~N ~f contact@openedition.org"
+color index      black cyan "~N ~f contact@openedition.org"
 color index      cyan default "~f mairie-treizeinfos@paris.fr"
-color index      default cyan "~N ~f mairie-treizeinfos@paris.fr"
+color index      black cyan "~N ~f mairie-treizeinfos@paris.fr"
 color index      cyan default "~f coladadata@gmail.com"
-color index      default cyan "~N ~f coladadata@gmail.com"
+color index      black cyan "~N ~f coladadata@gmail.com"
 color index      cyan default "~f taylor@taylorpearson.me"
-color index      default cyan "~N ~f taylor@taylorpearson.me"
+color index      black cyan "~N ~f taylor@taylorpearson.me"
 color index      cyan default "~f carte-citoyenne@paris.fr"
-color index      default cyan "~N ~f carte-citoyenne@paris.fr"
+color index      black cyan "~N ~f carte-citoyenne@paris.fr"
 color index      cyan default "~f sabrina@epique.fyi"
-color index      default cyan "~N ~f sabrina@epique.fyi"
+color index      black cyan "~N ~f sabrina@epique.fyi"
 color index      cyan default "~f madameolympia@olympiahall.com"
-color index      default cyan "~N ~f madameolympia@olympiahall.com"
+color index      black cyan "~N ~f madameolympia@olympiahall.com"
 color index      cyan default "~s bulle-i3"
-color index      default cyan "~N ~s bulle-i3"
+color index      black cyan "~N ~s bulle-i3"
 color index      cyan default "~s SSFAM"
-color index      default cyan "~N ~s SSFAM"
+color index      black cyan "~N ~s SSFAM"
 color index      cyan default "~s gazettebd3"
-color index      default cyan "~N ~s gazettebd3"
+color index      black cyan "~N ~s gazettebd3"
 
 #color index      cyan default "~f "
 #color index      default cyan "~N ~f "
@@ -107,8 +107,8 @@ color index      green default ~P # from me
 color index      color246 default ~Q # replied messages
 color index      red default ~F # flagged
 
-color index      brightred black ~D # deleted
-color index      default green ~T # tagged
+color index      brightwhite red ~D # deleted
+color index      black blue ~T # tagged
 
 #http://www.mutt.org/doc/manual/manual-4.html#patterns
 
@@ -154,6 +154,10 @@ color quoted6    green default
 color quoted7    cyan default
 color quoted8    color247 default
 color quoted9    green default
+
+
+color body    bold red default "(urgent|important)"
+color body    black alertyellow "(joint|jointe|PJ)"
 
 # Example Mutt config file for the 'index-color' feature.
 # http://www.neomutt.org/feature/index-color/

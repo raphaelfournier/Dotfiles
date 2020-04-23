@@ -125,10 +125,10 @@ ignore *                                                        # ignore all hea
 unignore from to cc date subject list-id    # show only these
 hdr_order date from list-id to cc subject    # and in this order
 # set edit_headers = yes                                                # show headers when composing 
-mailboxes `find ~/Mail/Rfnet/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur\|Archives\|Spam\|Professionnel\|MLMutt\|MLNotmuch" |xargs`
+mailboxes `find ~/Mail/Rfnet/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur\|Gmail\|Archives\|Spam\|Professionnel\|MLMutt\|MLNotmuch" |xargs`
 mailboxes `find ~/Mail/RFS/* -maxdepth 0 -type d | grep -iv "tmp\|new\|MLtemp\|Flux\|cur\|Corbeille" | xargs`
-mailboxes `find ~/Mail/CNAMnet/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur\|Spam" |xargs`
-mailboxes `find ~/Mail/CNAM/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur\|Spam\|News" |xargs`
+mailboxes `find ~/Mail/CNAMnet/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur\|Spam\|Conversation" |xargs`
+mailboxes `find ~/Mail/CNAM/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur\|Spam\|News\|Junk" |xargs`
 
 #mailboxes "/var/spool/mail/raph"
 #mailboxes "~/Mail/Templates"
@@ -148,13 +148,8 @@ folder-hook Rfnet/* source ~/.mutt/rfnet.muttrc
 #folder-hook GMX/* source ~/.mutt/gmx.muttrc
 #folder-hook Lip6/* source ~/.mutt/lip6.muttrc
 #folder-hook Lavabit/* source ~/.mutt/lavabit.muttrc
-#source ~/.mutt/colors.vimbrant
 #source ~/.mutt/colors/colors.xoria`echo $TERM | sed "s:.*-::"`M
-#echo $TERM | sed "s:.*-::"
 #source ~/.mutt/gpg.rc                                     # gpg configuration 
-#source ~/.mutt/colors.solarized-light256
-#source ~/.mutt/colors.solarized-dark256
-#source ~/.mutt/colors.default
 #source ~/.mutt/sidebar.muttrc                                   # any muttng options are here
 #charset-hook ^us-ascii$ cp1252
 ##charset-hook ^iso-8859-1$ cp1252
@@ -194,7 +189,15 @@ set display_filter = ~/.mutt/displayhighlight
 # Sources ----------------------------------------
 source $alias_file                                              # required for functionality
 #source ~/.mutt/colors/zenburn`echo $TERM | sed "s:.*-::"`
-source ~/.mutt/colors/zenburn.raph
+#source ~/.mutt/colors/solarized/mutt-colors-solarized-light-256.muttrc
+
+#source ~/.mutt/colors/base16-mutt/base16.muttrc
+#source ~/.mutt/colors/zenburn.raph.wal
+#
+source ~/.mutt/colors/zenburn.raph.inside
+#source ~/.mutt/colors/raph.outside
+#source ~/.mutt/colors/raph.essai
+
 source ~/.mutt/bindings
 source ~/.mutt/gpg
 source ~/.mutt/savehooks
@@ -216,3 +219,4 @@ macro pager,index,generic ,f      "<vfolder-from-query>tag:flux<enter>"
 macro index,pager   +       "<modify-labels>+"                              "+Add or -Remove notmuch tags"
 
 set reply_with_xorig = "yes"
+set read_inc=50			# show progress when reading a mailbox

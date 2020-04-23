@@ -100,7 +100,7 @@ REM_QUOTE="off"
 # /Header/ : impression en italique
 # *Header* : impression en gras
 # Si l'entête n'existe pas, elle n'est pas imprimée.
-PRINTED_HEADERS="Date_To_From_CC_Newsgroups_*Subject*"
+PRINTED_HEADERS="Date_From_To_CC_Newsgroups_*Subject*"
 
 # 
 # Ecrit les messages d'erreur de LaTeX et de dvips dans /tmp/muttprint.log

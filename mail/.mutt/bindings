@@ -56,6 +56,7 @@ macro compose ,g      ":set sendmail=\"/usr/bin/msmtp -a google\""
 
 macro compose ,f      "<edit-fcc>=CNAM/INBOX"
 
+macro pager,index,generic ,a      "<change-folder>+Archives/`date +%y`<enter>"
 macro pager,index,generic ,g      "<change-folder>+RFS/INBOX<enter>"
 macro pager,index,generic ,h     "<change-folder>+RFS/Archives<enter>"
 macro pager,index,generic ,j      "<change-folder>+CNAM/INBOX<enter>"
