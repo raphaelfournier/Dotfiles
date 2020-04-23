@@ -38,3 +38,6 @@
   followTags = true
   # Because I get sick of telling git to do it manually
   # https://git-scm.com/docs/git-config#git-config-pushfollowTags
+[gui]
+	fontui = -family \"Bitstream Vera Sans\" -size 14 -weight normal -slant roman -underline 0 -overstrike 0
+	fontdiff = -family \"Bitstream Vera Sans Mono\" -size 14 -weight normal -slant roman -underline 0 -overstrike 0
