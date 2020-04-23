@@ -1,8 +1,8 @@
 xrdb -merge ~/.Xresources
-compton -bCG & # transparence
+#compton -bCG & # transparence
 # urxvt daemon
 urxvtd -q -o -f
-xscreensaver -no-splash &
+#xscreensaver -no-splash &
 #udisksvm --auto &
 udiskie -san &
 #
@@ -14,13 +14,13 @@ udiskie -san &
 nm-applet --sm-disable &
 arandr-indicator &
 #wal -R & 
-rambox &
+#rambox &
 # xpad &
 #dunst &
 #cbatticon &
 #pidgin &
 #sudo netcfg-menu &
-dropbox &
+#dropbox &
 #udiskie --tray &
 setxkbmap -option caps:escape
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
