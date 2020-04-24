@@ -142,8 +142,8 @@ require("theme")
 local volumearc_widget = require("awesome-wm-widgets.volumearc-widget.volumearc")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "kitty"
---terminal = "urxvtc"
+--terminal = "kitty"
+terminal = "urxvtc"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -175,9 +175,9 @@ mod1 = "Mod1"
 awful.layout.layouts = {
     --awful.layout.suit.spiral.dwindle,
     awful.layout.suit.tile, 
+    awful.layout.suit.max, 
     awful.layout.suit.tile.bottom, 
     awful.layout.suit.floating, 
-    awful.layout.suit.max, 
     --awful.layout.suit.corner.nw,
     --awful.layout.suit.spiral,
     --lain.layout.termfair.center,
@@ -764,7 +764,8 @@ awful.screen.connect_for_each_screen(function(s)
    if s.index == 1 then
     awful.tag.add("work", {
 				icon = beautiful.tag_icon_term,
-        layout             = awful.layout.suit.max,
+        layout             = awful.layout.suit.tile,
+        master_width_factor = 0.6,
         --gap_single_client  = true,
         --gap                = 15,
         screen             = 1,
@@ -782,7 +783,8 @@ awful.screen.connect_for_each_screen(function(s)
 
     awful.tag.add("mail", {
         icon = beautiful.tag_icon_mail,
-        layout = awful.layout.suit.max,
+        layout = awful.layout.suit.tile,
+        master_width_factor = 0.6,
         --master_fill_policy = "master_width_factor",
         screen = 1,
       })
@@ -836,7 +838,7 @@ awful.screen.connect_for_each_screen(function(s)
         screen = 1,
       })
 
-    awful.tag.add("term2", {
+    awful.tag.add("term2", { -- hat icon
         icon = beautiful.tag_icon_term2,
         layout = awful.layout.suit.max,
         master_fill_policy = "master_width_factor",
@@ -1049,7 +1051,7 @@ s.mytasklist = awful.widget.tasklist {
               --buttonmpc,
               volumearc_widget,
               pomodoroarc_widget,
-              watsonarc_widget,
+              --watsonarc_widget,
               batteryarc_widget,
               smallspace,
               layout  = wibox.layout.fixed.horizontal,
@@ -1162,7 +1164,9 @@ local function copy_tag()
 end
 
 --local muttcommand = "urxvt -e zsh -c \'echo -en \"\\e]1;mutt\\a\";echo -en \"\\e]2;mutt\\a\";echo -en \"\\e]0;mutt\\a\";sleep 0.05s; screen -S mutt mutt -F .muttrc\'"
-local muttcommand = "kitty -e zsh -c \'echo -en \"\\e]1;mutt\\a\";echo -en \"\\e]2;mutt\\a\";echo -en \"\\e]0;mutt\\a\";sleep 0.05s; screen -S mutt mutt -F .muttrc\'"
+local muttcommand = terminal .. " -e zsh -c \'echo -en \"\\e]1;mutt\\a\";echo -en \"\\e]2;mutt\\a\";echo -en \"\\e]0;mutt\\a\";sleep 0.05s; screen -S mutt mutt -F .muttrc\'"
+--local muttcommand = "zenity --error --text=crontab-webmail"
+
 
 -- {{{ Key bindings
 			globalkeys = awful.util.table.join(
@@ -1186,6 +1190,8 @@ local muttcommand = "kitty -e zsh -c \'echo -en \"\\e]1;mutt\\a\";echo -en \"\\e
 				awful.key({ modkey, "Mod1"   }, "r", rename_tag, {description = "rename the current tag", group = "tag"}),
 
 				awful.key({ modkey,           }, "=", function () awful.util.spawn("= --") end, {description = "Calc", group = "Calc"}),
+				--awful.key({ modkey, "Shift"   }, "p", function () awful.util.spawn("cours/home/raph/.scripts/rofi/rofi-notes/rofi_notes.sh") end, {description = "Notes", group = "Calc"}),
+    awful.key({ modkey,  "Shift"  }, "p", function () awful.spawn.with_shell("/usr/bin/grep cours /home/raph/.fzf-marks | rofi -dmenu -p cours | cut -d ':' -f 2 | xargs urxvt -e ranger")       end), 
 				awful.key({ modkey, "Shift"   }, "=", function () awful.util.spawn("/home/raph/.scripts/rofi/rofi-notes/rofi_notes.sh") end, {description = "Notes", group = "Calc"}),
         awful.key({                   }, "XF86AudioPrev", function () awful.util.spawn("mpc prev") end, {description = "Previous track", group = "Audio"}),
         awful.key({                   }, "XF86AudioNext", function () awful.util.spawn("mpc next") end, {description = "Next track", group = "Audio"}),
@@ -1372,8 +1378,8 @@ end),
     awful.client.run_or_raise("urxvtc" .. ' -e ncmpcpp', matcher)
     --awful.client.run_or_raise(terminal .. ' -e ncmpcpp', matcher)
 end),
-    awful.key({ modkey, }, "e", function () awful.util.spawn(terminal .." -e ranger") end,
-              {description = "run ranger", group = "apps"}),
+    awful.key({ modkey, }, "e", function () awful.util.spawn(terminal .." -e ranger") end),
+    awful.key({ modkey, "Shift" }, "q", function () awful.spawn.with_shell("mpc lsplaylists| rofi -dmenu | xargs /home/raph/.scripts/mpc-startPlaylist.sh") end),
     awful.key({ modkey, "Shift" }, "e", function () awful.util.spawn("nemo") end, {description = "run pcmanfm", group = "apps"}),
     --awful.key({ modkey,           }, "e", function () awful.util.spawn("thunar") end, {description = "run pcmanfm", group = "apps"}),
     --awful.key({ modkey,           }, "w", function () awful.util.spawn("firefox") end, {description = "run firefox", group = "apps"}),
@@ -1401,9 +1407,9 @@ end),
 -- 
 
     --awful.key({ modkey,           }, "<", function () dmenuhelpers.run()       end,{description = "run", group = "launcher"}), 
-    awful.key({ modkey,           }, "q", function () awful.util.spawn("/home/raph/.scripts/fake-clerk.sh")       end,{description = "clerk mpd", group = "launcher"}), 
-    awful.key({ modkey, "Shift"   }, "q", function () awful.util.spawn("/home/raph/.scripts/rofi/xrandr-config.sh")       end), 
-    awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -show combi -combi-modi \"window,run,snippet\" -modi combi,calc,snippets:/home/raph/Code/langageBash/rofi-modi-snippets/snippets.sh,fileb_:/usr/share/doc/rofi/examples/rofi-file-browser.sh,top,json-dict,ssh")       end,{description = "run", group = "launcher"}), 
+    awful.key({ modkey,   }, "q", function () awful.util.spawn("rofi-mpc")       end,{description = "rofi-mpc", group = "launcher"}), 
+    awful.key({ modkey,  "Shift"  }, "d", function () awful.spawn.with_shell("/usr/bin/cat /home/raph/.fzf-marks | rofi -dmenu | cut -d ':' -f 2 | xargs urxvt -e ranger")       end), 
+    awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -show combi -combi-modi \"window,run,snippet\" -modi combi,snippets:/home/raph/Code/langageBash/rofi-modi-snippets/snippets.sh,calc,emoji,fileb_:/usr/share/doc/rofi/examples/rofi-file-browser.sh,top,json-dict,ssh")       end,{description = "run", group = "launcher"}), 
     --awful.key({ modkey,           }, "b", function () awful.util.spawn("rofi -modi \"file:./scripts/rofi/rofi-file-browser.sh\" -show file")       end,{description = "run", group = "launcher"}), 
     awful.key({ modkey, "Shift" }, "space",     function () awful.util.spawn("rofi-pass")             end),
     --awful.key({ modkey }, "a",     function () dmenuhelpers.expandtext()       end,{description = "text expansion", group = "launcher"}),
@@ -1431,26 +1437,26 @@ clientkeys = awful.util.table.join(
         {description = "toggle fullscreen", group = "client"}),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end, {description = "close", group = "client"}),
 
-    awful.key({ modkey, "Shift"}, "a", 
-        function (c)   
-          naughty.notify{ 
-            title= "debug",
-            --text = tostring(c.screen.geometry.height).."-"..tostring(c.screen.index),
-            text = 'This notification has actions!',
-    actions = {
-        naughty.action {
-            name = 'Accept',
-        },
-        naughty.action {
-            name = 'Refuse',
-        },
-        naughty.action {
-            name = 'Ignore',
-        },
-    }
-          }
-        end),
-    awful.key({ modkey }, "a", 
+    --awful.key({ modkey, "Shift"}, "a", 
+        --function (c)   
+          --naughty.notify{ 
+            --title= "debug",
+            ----text = tostring(c.screen.geometry.height).."-"..tostring(c.screen.index),
+            --text = 'This notification has actions!',
+    --actions = {
+        --naughty.action {
+            --name = 'Accept',
+        --},
+        --naughty.action {
+            --name = 'Refuse',
+        --},
+        --naughty.action {
+            --name = 'Ignore',
+        --},
+    --}
+          --}
+        --end),
+    awful.key({ modkey, "Shift" }, "f", 
         function (c)   
           c.floating = not c.floating
           c.width = c.screen.geometry.width*3/5
@@ -1601,6 +1607,8 @@ awful.rules.rules = {
     -- Set Firefox to always map on the tag named "2" on screen 1.
     { rule = { class = "firefox" },
       properties = { screen = 1, tag = "web" } },
+    { rule = { name = "Jerry" },
+      properties = { screen = 1, tag = "term2" } },
     { rule = { class = "Opera" },
       properties = { screen = 1, tag = "web" } },
     { rule = { name = "screen" },
