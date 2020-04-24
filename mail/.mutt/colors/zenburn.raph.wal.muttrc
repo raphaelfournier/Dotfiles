@@ -107,7 +107,7 @@ color index      green default ~P # from me
 color index      color246 default ~Q # replied messages
 color index      red default ~F # flagged
 
-color index      brightwhite red ~D # deleted
+color index      brightblack black ~D # deleted
 color index      black blue ~T # tagged
 
 #http://www.mutt.org/doc/manual/manual-4.html#patterns

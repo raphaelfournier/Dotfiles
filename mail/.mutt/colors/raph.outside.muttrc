@@ -1,0 +1,36 @@
+# white and black permutés ?
+color normal     white default
+color error      red default
+color message    brightyellow default
+color markers    blue default
+color tilde      green default # ~'s after message body
+color signature  red default
+color attachment black brightblue  #Add-ons to the message
+color status     black green
+
+# index stuff
+color index      white yellow ~N # new messages
+color index      blue default ~l # messages from list
+color index      black cyan ~N~l # new messages from list
+color indicator  black green 
+color tree       magenta default
+
+#color index      color144 default "(~d >10d ! ~Q ! ~l ! ~N)" # unreplied messages
+#color index      color143 default "(~d >30d ! ~Q ! ~l ! ~N)" # unreplied messages
+#color index      color142 default "(~d >60d ! ~Q ! ~l ! ~N)" # unreplied messages
+
+color index      green default ~P # from me
+color index      color244 default ~Q # replied messages
+color index      red default ~F # flagged
+color index      black white ~D # deleted
+color index      black blue ~T # tagged
+
+color header	yellow  black  '^from:'
+color header	yellow  black  '^list-id:'
+color header	cyan    black  '^(to|cc|bcc):'
+color header	red     black  '^date:'
+color header	green   black  '^subject:'
+color header  color31 black  '^user-agent:'
+color header	color29 black  '^reply-to:'
+
+# vim: filetype=muttrc
