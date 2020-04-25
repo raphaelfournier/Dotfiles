@@ -2,7 +2,7 @@ rofi.theme: myarthur
 #rofi.theme: ~/.cache/wal/colors-rofi-dark.rasi
 #rofi.theme: ~/.cache/wal/colors-rofi-light.rasi
 
-rofi.terminal:             kitty
+rofi.terminal:             alacritty
 rofi.ssh-client:           ssh
 rofi.ssh-command:          {terminal} -e {ssh-client} {host}
 rofi.run-command:          {cmd}
