@@ -192,11 +192,11 @@ source $alias_file                                              # required for f
 #source ~/.mutt/colors/solarized/mutt-colors-solarized-light-256.muttrc
 
 #source ~/.mutt/colors/base16-mutt/base16.muttrc
-#source ~/.mutt/colors/zenburn.raph.wal
 #
-source ~/.mutt/colors/zenburn.raph.inside
-#source ~/.mutt/colors/raph.outside
-#source ~/.mutt/colors/raph.essai
+source ~/.mutt/colors/zenburn.raph.wal.muttrc
+#source ~/.mutt/colors/zenburn.raph.inside.muttrc
+#source ~/.mutt/colors/raph.outside.muttrc
+#source ~/.mutt/colors/raph.essai.muttrc
 
 source ~/.mutt/bindings
 source ~/.mutt/gpg
