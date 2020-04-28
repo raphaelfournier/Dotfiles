@@ -1,18 +1,18 @@
-# white and black permutés ?
-color normal     white default
+# black and white permutés ?
+color normal     black default
 color error      red default
-color message    brightyellow default
+color message    blue default
 color markers    blue default
 color tilde      green default # ~'s after message body
 color signature  red default
 color attachment black brightblue  #Add-ons to the message
-color status     black green
+color status     white green
 
 # index stuff
-color index      white yellow ~N # new messages
+color index      black yellow ~N # new messages
 color index      blue default ~l # messages from list
-color index      black cyan ~N~l # new messages from list
-color indicator  black green 
+color index      white cyan ~N~l # new messages from list
+color indicator  white green 
 color tree       magenta default
 
 #color index      color144 default "(~d >10d ! ~Q ! ~l ! ~N)" # unreplied messages
@@ -22,8 +22,8 @@ color tree       magenta default
 color index      green default ~P # from me
 color index      color244 default ~Q # replied messages
 color index      red default ~F # flagged
-color index      black white ~D # deleted
-color index      black blue ~T # tagged
+color index      white black ~D # deleted
+color index      white blue ~T # tagged
 
 color header	yellow  black  '^from:'
 color header	yellow  black  '^list-id:'

@@ -30,3 +30,6 @@ rofi/.config/rofi/config.bac
 mpd/.config/mpd/playlists/
 ranger/.config/ranger/plugins/
 base16-mutt/
+colors/
+rofi/.config/rofi/bin/
+rofi/.config/rofi/rofi/

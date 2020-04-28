@@ -24,6 +24,7 @@ bind ' ' windowlist -b
 
 #shelltitle '$STY'
 term screen-256color 
+termcapinfo xterm* ti@:te@
 
 #hardstatus string "%H (%n: %t)"
 # status line at the bottom, where it belongs
