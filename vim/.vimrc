@@ -18,22 +18,24 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-scripts/loremipsum'
-Plugin 'Rykka/colorv.vim'
+Plugin 'gu-fan/colorv.vim' 
 Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
-"Plugin 'jnurmine/Zenburn'
 Bundle 'majutsushi/tagbar'
 Plugin 'mileszs/ack.vim'
 Plugin 'mattn/calendar-vim'
-Plugin 'dylanaraps/wal.vim'
 Plugin 'honza/vim-snippets'
-"Plugin 'SirVer/ultisnips'
-"Plugin 'Valloric/YouCompleteMe'
-"Plugin 'ervandew/supertab'
+Plugin 'francoiscabrol/ranger.vim'
+Plugin 'dylanaraps/wal.vim'
+Plugin 'yasukotelin/shirotelin'
+Plugin 'xolox/vim-misc'
+Plugin 'ayu-theme/ayu-vim'
+Plugin 'chriskempson/base16-vim'
+Plugin 'NLKNguyen/papercolor-theme'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neosnippet'
 Bundle 'Shougo/neosnippet-snippets'
-
+Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
@@ -43,34 +45,23 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'vimwiki/vimwiki'
 Plugin 'lervag/vimtex'
 Plugin 'vim-scripts/mutt-canned'
+Plugin 'Konfekt/vim-notmuch-addrlookup'
 
 Bundle 'scrooloose/syntastic'
 Bundle 'mbbill/undotree'
 Bundle 'nathanaelkane/vim-indent-guides'
 Plugin 'mhinz/vim-signify'
 Plugin 'osyo-manga/vim-over'
+Plugin 'chmp/mdnav'
 
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'tacahiroy/ctrlp-funky'
 
-Plugin 'altercation/vim-colors-solarized.git'
-Bundle 'flazz/vim-colorschemes'
-Plugin 'luochen1990/rainbow'
-
 Plugin 'davidhalter/jedi-vim'
 Plugin 'tpope/vim-fugitive'
 
-"Bundle 'klen/python-mode'
-"Bundle 'yssource/python.vim'
-"Bundle 'python_match.vim'
-"Bundle 'pythoncomplete'
-
 let g:ip_boundary='-\?\s*$'
 let g:tex_flavor = 'latex'
-"let g:polyglot_disabled = ['latex']
-
-"Plugin 'L9'
-
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -88,6 +79,7 @@ augroup WrapLineInTeXFile
   autocmd!
   autocmd FileType tex setlocal wrap linebreak nolist
   autocmd FileType tex setlocal showbreak=+++
+  autocmd FileType tex setlocal formatoptions-=t
 augroup END
 
 set spelllang=fr
@@ -114,6 +106,7 @@ au BufNewFile,BufRead *.snake set syntax=snakemake
 " <<< Bindings
 let mapleader = ","
 
+nnoremap <leader>cd :cd %:p:h<CR>
 map ,nu :set invnumber<CR>
 map ,nr :set invrelativenumber<CR>
 map ,no :set nonumber<CR>
@@ -182,18 +175,43 @@ nnoremap g{ {dap}p{
 ">>>
 
 " <<< Colors 
+nnoremap <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 "set t_Co=256
 "let g:zenburn_force_dark_Background = 1
 "
 "let g:zenburn_high_Contrast = 1
-let g:zenburn_old_Visual = 1
-colors zenburn
+"
+"let g:zenburn_old_Visual = 1
 
+" background transparent
+"hi Normal guibg=NONE ctermbg=NONE
+
+let inout = system("cat ~/.insideOutside | tr -d '\n'")
+" si on est dedans, on active thème sombre
+if inout == "in" 
+  colors zenburn
+" sinon, le thème light
+else
+  "set background=light
+  "colorscheme shirotelin
+  set termguicolors " required for kitty
+  let base16colorspace=256
+  colorscheme base16-one-light
+  
+  "set background=light
+  "colorscheme PaperColor
+  "let g:PaperColor_Theme_Options = {
+        "\   'theme': {
+        "\     'default': {
+        "\       'transparent_background': 0
+        "\     }
+        "\   }
+        "\ }
+endif
+
+"colors zenburn
+"colorscheme shirotelin
 "colorscheme wal
-
-"set background=dark
-"set background=light
-"colorscheme solarized
 ">>>
 
 " <<< Editor Options
@@ -261,6 +279,7 @@ nmap <leader>f9 :set foldlevel=9<CR>
 set foldmethod=indent
 set foldlevelstart=99
 "set foldlevel=99
+set foldcolumn=2
 " completion
 set wildmenu
 set wildmode=list:longest,full
@@ -422,7 +441,7 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
     if isdirectory(expand("~/.vim/bundle/ctrlp.vim/"))
         let g:ctrlp_working_path_mode = 'wa' " better than ra ?
         nnoremap <leader>p :CtrlP<CR>
-        nnoremap <leader>o :CtrlPMRU<CR>
+        "nnoremap <leader>o :CtrlPMRU<CR>
         let g:ctrlp_custom_ignore = {
             \ 'dir':  '\.git$\|\.hg$\|\.svn$',
             \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
@@ -469,6 +488,13 @@ au BufNewFile,BufRead *.plt,*.gnuplot,*.plot setf gnuplot
 autocmd BufNewFile,BufRead todo.txt,*.task,*.tasks  setfiletype task
 autocmd BufNewFile,BufRead *.mdwn  setfiletype markdown
 autocmd BufNewFile,BufRead *.md  setfiletype markdown
+
+"https://www.hillelwayne.com/post/intermediate-vim/
+command! Vimrc :vs $MYVIMRC
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
 
 command! -nargs=* Hardcopy call DoMyPrint('<args>')
 function DoMyPrint(args)
@@ -646,9 +672,7 @@ vnoremap // y/<C-R>"<CR>
 "au CursHoldI * stopinstert
 
 "let g:vimwiki_customwiki2html=$HOME.'/.vim/autoload/vimwiki/customwiki2html.sh'
-let g:vimwiki_list = [{'path': '~/vimwiki/', 'path_html': '~/public_html/vimwiki', 'ext': '.md', 'syntax': 'markdown'},  
-            \ {'path': '~/meetings/', 'ext': '.md', 'syntax': 'markdown'}]
-
+let g:vimwiki_list = [{'path': '~/Notes/vimwiki/', 'path_html': '~/public_html/vimwiki', 'ext': '.md', 'syntax': 'markdown'}]
 
 " a function to execute formd and return the cursor back
 " to it's original position within the buffer. 
@@ -669,28 +693,44 @@ endfunction
 
 " formd mappings
 
-"function! ToggleCalendar()
-  "execute ":Calendar"
-  "if exists("g:calendar_open")
-    "if g:calendar_open == 1
-      "execute "q"
-      "unlet g:calendar_open
-    "else
-      "g:calendar_open = 1
-    "end
-  "else
-    "let g:calendar_open = 1
-  "end
-"endfunction
-":autocmd FileType vimwiki map c :call ToggleCalendar()
-" https://superuser.com/questions/277325/create-a-file-under-the-cursor-in-vim
+function! ToggleCalendar()
+  execute ":Calendar"
+  if exists("g:calendar_open")
+    if g:calendar_open == 1
+      execute "q"
+      unlet g:calendar_open
+    else
+      g:calendar_open = 1
+    end
+  else
+    let g:calendar_open = 1
+  end
+endfunction
+
+au FileType vimwiki map <leader>wc :call ToggleCalendar() <cr>
+
+augroup vimwikigroup
+    autocmd!
+    " automatically update links on read diary
+    autocmd BufRead,BufNewFile ~/Notes/vimwiki/diary/diary.md VimwikiDiaryGenerateLinks
+    au BufNewFile ~/Notes/vimwiki/diary/*.md :silent 0r !~/.scripts/vim/generate-vimwiki-diary-template '%'
+    autocmd BufRead Notes/vimwiki/diary/????-??-??.md :silent $
+    autocmd BufRead Notes/vimwiki/diary/????-??-??.md exe "normal!O"
+    autocmd BufRead Notes/vimwiki/diary/????-??-??.md :put =strftime('%H:%M')
+    autocmd BufRead Notes/vimwiki/diary/????-??-??.md exe "normal!I- "
+    autocmd BufRead Notes/vimwiki/diary/????-??-??.md exe "normal!A:  "
+    autocmd BufRead Notes/vimwiki/diary/????-??-??.md :star!
+augroup end
+
+"
+"https://superuser.com/questions/277325/create-a-file-under-the-cursor-in-vim
 map <silent> <leader>cf :call writefile([], expand("<cfile>"), "t")<cr>
-map <leader>gf :e <cfile><cr>
+map <leader>gf :e <cfile>.tex<cr>
 nmap <C-w>f :e <cfile><CR>
 nnoremap <C-a> <C-w>
 
-nnoremap <leader><F8> :call NextColor(1)<CR>
-nnoremap <leader><S-F8> :call NextColor(-1)<CR>
+"nnoremap <leader><F8> :call NextColor(1)<CR>
+"nnoremap <leader><S-F8> :call NextColor(-1)<CR>
 "nnoremap <A-F8> :call NextColor(0)<CR>
 
 autocmd BufNewFile,BufRead *.md   setfiletype=markdown
@@ -728,16 +768,18 @@ nmap <Leader>j :call GotoJump()<CR>
 "let g:AutoCentern
 " >>>
 
-" --------------------------------------------------------------------
-"  ABBREVIATIONS ET RACCOURCIS CLAVIER:
-" --------------------------------------------------------------------
+" <<< Abréviations et raccourcis clavier
 ab ccom /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 ab fcom ! * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 ab lcom % * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 ab pcom # * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-" background transparent
-hi Normal guibg=NONE ctermbg=NONE
 "let &t_ut=''
+"
+let @r = 'o\Raphael{}l' "latex comments
+" FZF
+nnoremap <leader>o :Files<CR>
+
+" >>>
 
 " vim: set fdm=marker fmr=<<<,>>> fdl=0:fdc=2
