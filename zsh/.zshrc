@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export MAILPATH="$HOME/Mail/CNAM/INBOX/new"
+#export MAILPATH="$HOME/Mail/CNAM/INBOX/new"
 
 export FZF_MARKER_CONF_DIR=~/.config/marker
 export FZF_MARKER_COMMAND_COLOR='\x1b[38;5;255m'
@@ -139,19 +139,34 @@ PERL_LOCAL_LIB_ROOT="/home/raph/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_RO
 PERL_MB_OPT="--install_base \"/home/raph/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/raph/perl5"; export PERL_MM_OPT;
 
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+#export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --preview-window right:50% --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -500"'
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --preview-window right:50% --preview "bat --color=always --style=header,grid --line-range :300 {}"'
+
+
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+
+# Options to fzf command
+export FZF_COMPLETION_OPTS='+c -x'
+
+# Use fd (https://github.com/sharkdp/fd) instead of the default find
+# command for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
 
 # Import colorscheme from 'wal' asynchronously
 # &   # Run the process in the background.
 # ( ) # Hide shell job control messages.
-(\cat ~/.cache/wal/sequences &)
-#
-#
-#wal -q -n -i ~/.config/mainscreen.png -a 85 && clear; 
-
-eval `dircolors ~/.ls_colors` 
+#(\cat ~/.cache/wal/sequences &)
+#eval `dircolors ~/.ls_colors` 
 
 export MARKER_KEY_MARK='\C-b' # https://github.com/pindexis/marker/blob/master/README.md
 [[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
@@ -164,3 +179,8 @@ kitty + complete setup zsh | source /dev/stdin
 bindkey " " magic-space # do history expansion on space
 
 #source ~/.oh-my-zsh/invoke/zsh
+source ~/.passwordstore-variables
+
+# Base16 Shell
+#BASE16_SHELL="$HOME/.base16-manager/chriskempson/base16-shell/"
+#[ -n "$PS1" ] && [ -s "$BASE16_SHELL/profile_helper.sh" ] && eval "$("$BASE16_SHELL/profile_helper.sh")"
