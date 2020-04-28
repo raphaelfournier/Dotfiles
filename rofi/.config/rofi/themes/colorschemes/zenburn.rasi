@@ -5,4 +5,6 @@
   foreground:       #93a1a1;
   on:               #7f9f7f;
   off:              #D78787;
+  blue:             #8787d7;
+  magenta:          #dc8cc3;
 }

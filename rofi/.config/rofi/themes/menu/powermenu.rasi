@@ -34,7 +34,7 @@
   height: 25%;
   border: 4px;
   border-radius: 10px;
-  border-color: @accent;
+  border-color: @magenta;
   anchor: center;
   location: center;
   x-offset: 0%;
@@ -81,7 +81,7 @@ prompt,
 textbox-prompt-colon {
   padding: @menu-prompt-padding;
   border: 2px;
-  border-color: @accent;
+  border-color: @blue;
 }
 #prompt {
   margin: @menu-prompt-margin;
@@ -91,8 +91,8 @@ textbox-prompt-colon {
 #textbox-prompt-colon {
   expand: false;
   str: "System";
-  background-color: @accent;
-  text-color: @background;
+  background-color: @blue;
+  text-color: @background-light;
 }
 #horibox {
   padding: 0px;

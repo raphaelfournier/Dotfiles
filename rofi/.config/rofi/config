@@ -1,4 +1,5 @@
 rofi.theme: myarthur
+# /home/raph/.local/share/rofi/themes/myarthur.rasi
 #rofi.theme: ~/.cache/wal/colors-rofi-dark.rasi
 #rofi.theme: ~/.cache/wal/colors-rofi-light.rasi
 

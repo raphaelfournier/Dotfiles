@@ -3,7 +3,7 @@
 
 # rofi command. Make sure to have "$@" as last argument
 _rofi () {
-    rofi -i -width 700 -no-levenshtein-sort "$@"
+    rofi -i -width 700 -p Passwords -config ~/.config/rofi/config -no-levenshtein-sort "$@"
 }
 
 # keyboard layout (set this to your actual layout. E.g. keyboard="de us"
