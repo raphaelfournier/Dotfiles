@@ -1,0 +1,31 @@
+! xscreensaver ---------------------------------------------------------------
+
+!font settings
+xscreensaver.Dialog.headingFont:        -*-inconsolata-medium-*-*-*-24-*-*-*-*-*-*-*
+xscreensaver.Dialog.bodyFont:           -*-inconsolata-medium-*-*-*-24-*-*-*-*-*-*-*
+xscreensaver.Dialog.labelFont:          -*-inconsolata-medium-*-*-*-24-*-*-*-*-*-*-*
+xscreensaver.Dialog.unameFont:          -*-inconsolata-medium-*-*-*-24-*-*-*-*-*-*-*
+xscreensaver.Dialog.buttonFont:         -*-inconsolata-medium-*-*-*-24-*-*-*-*-*-*-*
+xscreensaver.Dialog.dateFont:           -*-inconsolata-medium-*-*-*-24-*-*-*-*-*-*-*
+xscreensaver.passwd.passwdFont:         -*-inconsolata-medium-*-*-*-24-*-*-*-*-*-*-*
+!general dialog box (affects main hostname, username, password text)
+xscreensaver.Dialog.foreground:         #383a42
+xscreensaver.Dialog.background:         #fafafa
+xscreensaver.Dialog.topShadowColor:     #a0a1a7
+xscreensaver.Dialog.bottomShadowColor:  #a0a1a7
+xscreensaver.Dialog.Button.foreground:  #fafafa
+xscreensaver.Dialog.Button.background:  #0184bc
+!username/password input box and date text colour
+xscreensaver.Dialog.text.foreground:    #ca1243
+xscreensaver.Dialog.text.background:    #a0a1a7
+xscreensaver.Dialog.internalBorderWidth:30
+xscreensaver.Dialog.borderWidth:        2
+xscreensaver.Dialog.shadowThickness:    4
+!timeout bar (background is actually determined by Dialog.text.background)
+xscreensaver.passwd.thermometer.foreground:  #4078f2
+xscreensaver.passwd.thermometer.background:  #a0a1a7
+xscreensaver.passwd.thermometer.width:       18
+!datestamp format--see the strftime(3) manual page for details
+xscreensaver.dateFormat:    
+!%H:%M %d-%m-%Y
+! /home/raph/.base16-manager/chriskempson/base16-shell/scripts/base16-one-light.sh

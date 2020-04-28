@@ -3,3 +3,4 @@
 #include "/home/raph/.config/Xresources/Xdefaults.colors.rootterm"
 #include "/home/raph/.config/Xresources/Xdefaults.colors.scratchpad"
 #include "/home/raph/.config/Xresources/Xdefaults.colors.todotxtmachine"
+#include "/home/raph/.config/Xresources/Xdefaults.xscreensaver"

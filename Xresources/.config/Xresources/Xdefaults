@@ -39,6 +39,7 @@ URxvt*pointerBlankDelay: 2
 URxvt*pointerColor: #dcdccc
 URxvt*pointerColor2: #3f3f3f
 URxvt*depth: 32
+
 !URxvt*transparent: true
 !URxvt*shading: 30
 !scrolling arrete quand ca defile...
@@ -48,6 +49,14 @@ URxvt*scrollTtyKeypress:true
 urxvt*cutchars: BACKSLASH '"'&()*,;<=>?@[]^{|}-_:
 !urxvt*tripleclickwords: true
 URxvt*dynamicColors: on
+!! Common Keybinds for Navigations
+!! https://addy-dclxvi.github.io/post/configuring-urxvt/
+URxvt.keysym.Shift-Up: command:\033]720;1\007
+URxvt.keysym.Shift-Down: command:\033]721;1\007
+URxvt.keysym.Control-Up: \033[1;5A
+URxvt.keysym.Control-Down: \033[1;5B
+URxvt.keysym.Control-Right: \033[1;5C
+URxvt.keysym.Control-Left: \033[1;5D
 !!
 !! Extensions
 !
@@ -70,11 +79,11 @@ URxvt*keysym.F12: perl:urxvt-colors:cycle
 
 URxvt.keysym.M-C-c: perl:clipboard:copy
 URxvt.keysym.M-C-v: perl:clipboard:paste 
-URxvt*keysym.M-C-s: command:\033]50;xft:Inconsolata Nerd Font Mono:style=Medium:antialias=true:size=12\007
-URxvt*keysym.M-C-d: command:\033]50;xft:Inconsolata Nerd Font Mono:style=Medium:antialias=true:size=18\007
-URxvt*keysym.M-C-f: command:\033]50;xft:Inconsolata Nerd Font Mono:style=Medium:antialias=true:size=28\007
+URxvt*keysym.M-C-s: command:\033]50;xft:Inconsolata:style=Medium:antialias=true:size=12\007
+URxvt*keysym.M-C-d: command:\033]50;xft:Inconsolata:style=Medium:antialias=true:size=18\007
+URxvt*keysym.M-C-f: command:\033]50;xft:Inconsolata:style=Medium:antialias=true:size=28\007
 URxvt.iso14755: false
-URxvt.iso14755_52: false 
+URxvt.iso14755_52: false
 
 URxvt.keysym.M-C-m: perl:reactivity:mon
 URxvt.keysym.M-C-e: perl:reactivity:vim
@@ -83,8 +92,27 @@ URxvt.keysym.M-C-u: perl:reactivity:smallerfont
 URxvt.keysym.M-C-i: perl:reactivity:largerfont
 
 ! Appearance
-URxvt*font:     xft:Inconsolata Nerd Font Mono:style=Medium:size=18:antialias=true,-*-unifont-*-*-*-*-*-*-*-*-*-*-*-*
 URxvt*iconFile: /usr/share/icons/gnome-colors-common/scalable/apps/terminal.svg
+!URxvt*letterSpace: 0
+URxvt*font: xft:Inconsolata-dz for Powerline:style=Medium:size=18:antialias=true:minspace=False, xft:Symbola,xft:DejaVu Sans:pixelsize=18,-*-unifont-*-*-*-*-*-*-*-*-*-*-*-*
+
+!#define font1         Inconsolata Nerd Font Mono
+!#define font2         Symbola
+!#define font3         DejaVu Sans Mono Nerd Font
+!#define font4         Noto Sans Mono CJK JP
+
+!URxvt*letterSpace: 0
+!URxvt*font:           xft:font1:pixelsize=18, xft:font2:pixelsize=14:minspace=false, xft:font3:pixelsize=14,xft:font4:pixelsize=14
+!URxvt*boldFont:       xft:font1:bold:pixelsize=16, xft:font2:pixelsize=14:minspace=False,xft:font3:pixelsize=14,xft:font4:pixelsize=14
+!URxvt*italicFont:     xft:font1:italic:pixelsize=16, xft:font2:pixelsize=14:minspace=False,xft:font3:pixelsize=14,xft:font4:pixelsize=14
+!URxvt*boldItalicFont: xft:font1:bold:italic:pixelsize=16, xft:font2:pixelsize=14:minspace=False, xft:font3:pixelsize=14, xft:font4:pixelsize=14
+
+!URxvt*font: xft:Inconsolata Nerd Font Mono:pixelsize=18:minspace=False, xft:DejaVu Sans:pixelsize=18
+!URxvt*boldFont: xft:Inconsolata Nerd Font Mono:pixelsize=27:minspace=False, xft:DejaVu Sans:pixelsize=18
+!URxvt*letterSpace: 4
+!URxvt*font: xft:Inconsolata-dz for Powerline,xft:Symbola
+!URxvt*letterSpace: 0
+
 
 !
 !-------------------------------------------------------------------------------
@@ -394,10 +422,43 @@ xfontsel.pane.fieldBox.MenuButton.internalHeight:1
 xfontsel.pane.fieldBox.MenuButton.internalWidth: 2
 xfontsel.pane.fieldBox.MenuButton.shapeStyle:    rectangle
 
-!
-!
-!
-!*VT100.Translations: #override Ctrl <Btn4Down>: larger-vt-font() \n\
-!  Ctrl <Btn5Down>: smaller-vt-font() \n\
-!  Shift Ctrl <Key>=: larger-vt-font() \n\
-!  Shift Ctrl <Key>-: smaller-vt-font() 
+! These are all possible options, presented with default values.
+! xst will fallback to *.option if st.option is not present.
+! see src/config.h for more information about option meanings.
+
+! These options only take effect on startup.
+st.termname:     xterm-256color
+! if you do not set shell, precedence is: -e arg, utmp option, SHELL env var, /etc/passwd shell
+st.shell:        /bin/zsh
+
+! The following options options can be reloaded via USR1 signal.
+st.font:              Inconsolata:size=18:antialias=true:autohint=true;
+st.borderpx:          10
+! Available cursor values: 2 4 6 7 = █ _ | ☃ ( 1 3 5 are blinking versions)
+st.cursorshape:       2
+! thickness of underline and bar cursors
+st.cursorthickness:   2
+! 0: normal blinking, 1: leave cursor border and blink with cursor s background
+st.cursorblinkstyle:  0
+! 0: cursor blinks with a constant interval; 1: blinking cycle resets on key input
+st.cursorblinkontype: 1
+st.bold_font:         0
+st.xfps:              120
+st.actionfps:         30
+! Amount of lines scrolled
+st.mouseScrollLines:  1
+! Kerning / character bounding-box height multiplier
+st.chscale:           1.0
+! Kerning / character bounding-box width multiplier
+st.cwscale:           1.0
+! blinking timeout for terminal and cursor blinking (0 disables)
+st.blinktimeout:      800
+! bell volume. Value between -100 and 100. (0 disables)
+st.bellvolume:        100
+! this is a char that is exposed like so: `printf '\033[z'`
+st.prompt_char:       $
+! This option is can be preedit style. Available values: `root` `overthespot` (Default taken `root`)
+st.imstyle:           root
+
+! opacity==255 means what terminal will be not transparent, 0 - fully transparent
+st.opacity:      205
