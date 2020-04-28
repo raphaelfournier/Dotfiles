@@ -26,7 +26,7 @@ local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batterya
 local pomodoroarc_widget = require("awesome-wm-widgets.pomodoroarc-widget.pomodoroarc")
 local watsonarc_widget = require("awesome-wm-widgets.watsonarc-widget.watsonarc")
 local watson_shell = require("awesome-wm-widgets.watson-shell.watson-shell")
-local demoMode_widget = require("awesome-wm-widgets.demoMode-widget.demomode")
+local demoMode_widget = require("awesome-wm-widgets.demoMode-widget.demomode") -- teaching mode
 --local buttonmpc = require("szorfein.button_only_mpc")
 
 local mpd_widget = require("awesome-wm-widgets.mpd-widget.mpd")
@@ -239,12 +239,18 @@ myawesomemenu = {
    { "quit", function() awesome.quit() end}
 }
 
+followcursormenu = {
+  {"start follow", function() awful.util.spawn("find-cursor --repeat 0 --follow --distance 1 --wait 1000 --line-width 18 --size 18 --color red") end },
+  {"stop follow", function() awful.util.spawn("killall find-cursor") end },
+}
+
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-   { "set config", configsets },
-                                    { "coffee break", function() awful.util.spawn("xscreensaver-command -lock") end },
-                                    { "open terminal", terminal }
-                                  }
-                        })
+      { "set config", configsets },
+      { "coffee break", function() awful.util.spawn("xscreensaver-command -lock") end },
+      { "cursor", followcursormenu },
+      { "open terminal", terminal }
+    }
+  })
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
@@ -1210,6 +1216,7 @@ globalkeys = awful.util.table.join(
   awful.key({                   }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -q -c 0 sset Master 2dB+") end, {description = "Raise volume", group = "Audio"}),
   awful.key({                   }, "XF86AudioMute", function () awful.util.spawn("amixer -q -c 0 sset Master toggle") end, {description = "Mute", group = "Audio"}),
 
+  awful.key({ "Mod1", "Shift" }, "a", function () awful.util.spawn("/home/raph/Dotfiles/rofi/.config/rofi/scripts/menu_backlight.sh") end, {description = "Mute", group = "helpers"}),
   awful.key({ "Mod1", "Shift" }, "q", function () awful.util.spawn("/home/raph/Dotfiles/rofi/.config/rofi/scripts/menu_powermenu.sh") end, {description = "Mute", group = "helpers"}),
   awful.key({ "Mod1", "Shift" }, "s", function () awful.util.spawn("/home/raph/Dotfiles/rofi/.config/rofi/scripts/menu_screenshot.sh") end, {description = "Mute", group = "helpers"}),
   awful.key({ "Mod1", "Shift" }, "d", function () awful.util.spawn("/home/raph/Dotfiles/rofi/.config/rofi/scripts/menu_mpd.sh") end, {description = "Mute", group = "helpers"}),
@@ -1320,10 +1327,10 @@ awful.key({ modkey,           }, "x", function () awful.spawn(terminal) end,
 --c.y = c.screen.geometry.height* 0.24
 --end) end,
 --{description = "open a terminal SLAVE", group = "launcher"}),
-    awful.key({ modkey, "Shift" }, "x", function () awful.spawn(terminal,false,function(c) awful.client.setslave(c) end) end,
-      {description = "open a terminal SLAVE", group = "launcher"}),
-    awful.key({ modkey, "Control" }, "r", awesome.restart,
-      {description = "reload awesome", group = "awesome"}),
+    awful.key({ modkey, "Shift"}, "Down",     function () awful.client.incwfact(-0.03)          end, {}),
+    awful.key({ modkey, "Shift"}, "Up",     function () awful.client.incwfact( 0.03)          end, {}),
+    awful.key({ modkey, "Shift" }, "x", function () awful.spawn(terminal,false,function(c) awful.client.setslave(c) end) end, {description = "open a terminal SLAVE", group = "launcher"}),
+    awful.key({ modkey, "Control" }, "r", awesome.restart, {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"}, "l",     function () awful.tag.incmwfact( 0.05)          end,
       {description = "increase master width factor", group = "layout"}),
 
