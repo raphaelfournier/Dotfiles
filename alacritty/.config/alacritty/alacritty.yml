@@ -10,9 +10,9 @@
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  #TERM: alacritty
+  #TERM: rxvt-256color
 
-#window:
+window:
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -33,8 +33,8 @@
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  #padding:
-  #  x: 0
+  padding:
+    x: 4
   #  y: 0
 
   # Spread additional padding evenly around the terminal content.
@@ -170,83 +170,77 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
-# Colors (Tomorrow Night Bright)
-colors:
-  # Default colors
-  primary:
-    background: '#3f3f3f'
-    foreground: '#dcdccc'
+color_schemes:
+  dark: &dark
+    primary:
+      background: '#3f3f3f'
+      foreground: '#dcdccc'
 
-    # Bright and dim foreground colors
-    #
-    # The dimmed foreground color is calculated automatically if it is not present.
-    # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
-    # is `false`, the normal foreground color will be used.
-    #dim_foreground: '#9a9a9a'
-    #bright_foreground: '#ffffff'
+    cursor:
+      cursor: '#dcdccc'
 
-  # Cursor colors
-  #
-  # Colors which should be used to draw the terminal cursor. If these are unset,
-  # the cursor color will be the inverse of the cell color.
-  cursor:
-  #  text: '#000000'
-    cursor: '#dcdccc'
+    #selection:
+    #  text: '#eaeaea'
+    #  background: '#404040'
 
-  # Selection colors
-  #
-  # Colors which should be used to draw the selection area. If selection
-  # background is unset, selection color will be the inverse of the cell colors.
-  # If only text is unset the cell text color will remain the same.
-  #selection:
-  #  text: '#eaeaea'
-  #  background: '#404040'
+    # Normal colors
+    normal:
+      black:   '#1E2320'
+      red:     '#D78787'
+      green:   '#7f9f7f'
+      yellow:  '#dfaf8f'
+      blue:    '#8787d7'
+      magenta: '#dc8cc3'
+      cyan:    '#8cd0d3'
+      white:   '#dcdccc'
 
-  # Normal colors
-  normal:
-    black:   '#1E2320'
-    red:     '#D78787'
-    green:   '#7f9f7f'
-    yellow:  '#dfaf8f'
-    blue:    '#8787d7'
-    magenta: '#dc8cc3'
-    cyan:    '#8cd0d3'
-    white:   '#dcdccc'
+    # Bright colors
+    bright:
+      black:   '#709080'
+      red:     '#dca3a3'
+      green:   '#c3bf9f'
+      yellow:  '#f0dfaf'
+      blue:    '#94bff3'
+      magenta: '#ec93d3'
+      cyan:    '#93e0e3'
+      white:   '#ffffff'
 
-  # Bright colors
-  bright:
-    black:   '#709080'
-    red:     '#dca3a3'
-    green:   '#c3bf9f'
-    yellow:  '#f0dfaf'
-    blue:    '#94bff3'
-    magenta: '#ec93d3'
-    cyan:    '#93e0e3'
-    white:   '#ffffff'
+light: &light
+    primary:
+      background: '#fafafa'
+      foreground: '#383a42'
 
-  # Dim colors
-  #
-  # If the dim colors are not set, they will be calculated automatically based
-  # on the `normal` colors.
-  #dim:
-  #  black:   '#000000'
-  #  red:     '#8c3336'
-  #  green:   '#7a8530'
-  #  yellow:  '#97822e'
-  #  blue:    '#506d8f'
-  #  magenta: '#80638e'
-  #  cyan:    '#497e7a'
-  #  white:   '#9a9a9a'
+    cursor:
+      cursor: '#383a42'
 
-  # Indexed Colors
-  #
-  # The indexed colors include all colors from 16 to 256.
-  # When these are not set, they're filled with sensible defaults.
-  #
-  # Example:
-  #   `- { index: 16, color: '#ff00ff' }`
-  #
-  #indexed_colors: []
+    #selection:
+    #  text: '#eaeaea'
+    #  background: '#404040'
+
+    # Normal colors
+    normal:
+      black:   '#383a42'
+      red:     '#ca1243'
+      green:   '#50a14f'
+      yellow:  '#c18401'
+      blue:    '#4078f2'
+      magenta: '#a626a4'
+      cyan:    '#0184bc'
+      white:   '#fafafa'
+
+    # Bright colors
+    bright:
+      black:   '#a0a1a7'
+      red:     '#ca1243'
+      green:   '#50a14f'
+      yellow:  '#c18401'
+      blue:    '#4078f2'
+      magenta: '#a626a4'
+      cyan:    '#0184bc'
+      white:   '#090a0b'
+
+colors: *dark
+#colors: *light
 
 # Visual Bell
 #
@@ -513,6 +507,8 @@ key_bindings:
   - { key: U,     mods: Control|Shift,       action: ResetFontSize    }
   - { key: I,      mods: Control|Shift,       action: IncreaseFontSize }
   - { key: O, mods: Control|Shift,       action: DecreaseFontSize }
+  - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
+  - { key: F,   mods: Control|Shift, action: ToggleFullscreen }
 
   # (Windows only)
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
