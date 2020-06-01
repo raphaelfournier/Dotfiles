@@ -8,5 +8,6 @@ screen -t zathura
 screen -t biblio
 screen -t git
 select 0
+#hardstatus alwaysignore
 
 # vim: ft=screen

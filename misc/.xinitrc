@@ -1,7 +1,7 @@
 xrdb -merge ~/.Xresources
 #compton -bCG & # transparence
 # urxvt daemon
-urxvtd -q -o -f
+#urxvtd -q -o -f
 xscreensaver -no-splash &
 #udisksvm --auto &
 udiskie -san &
