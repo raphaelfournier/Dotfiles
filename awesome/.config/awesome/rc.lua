@@ -42,7 +42,7 @@ require("naughtydefaults")
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
-    naughty.notify({ preset = naughty.config.presets.critical,
+    naughty.notification({ preset = naughty.config.presets.critical,
                      title = "Oops, there were errors during startup!",
                      text = awesome.startup_errors })
 end
@@ -87,7 +87,7 @@ do
         if in_error then return end
         in_error = true
 
-        naughty.notify({ preset = naughty.config.presets.critical,
+        naughty.notification({ preset = naughty.config.presets.critical,
                          title = "Oops, an error happened!",
                          --text = textwrap(tostring(err)) })
                          text = textwrap(tostring(err)) })
@@ -101,10 +101,10 @@ end
 function change_config_set(name)
   local theme_cmd = "cat "..theme_file.." | grep 'al the_them' | cut -c20-"
   theme_cmd = string.gsub(theme_cmd, '"', '')
-  naughty.notify{ text = "bla: " .. theme_cmd}
+  naughty.notification{ text = "bla: " .. theme_cmd}
   local current_theme = awful.spawn.easy_async_with_shell(theme_cmd,
         function(stdout, stderr, reason, exit_code)
-            naughty.notify{
+            naughty.notification{
                 text = stderr,
                 title = "current_theme",
                 timeout = 5, hover_timeout = 0.5,
@@ -112,7 +112,7 @@ function change_config_set(name)
             }
         end
     )
-  naughty.notify{ text = "coucou" .. current_theme }
+  naughty.notification{ text = "coucou" .. current_theme }
 	--update_cmd = "cat " .. theme_file .. " | sed 's/" .. current_theme .. "/"..name.."/g' | tee " .. theme_file
   --current_theme = name
 	--naughty.notify{ text = update_cmd }
@@ -246,8 +246,9 @@ followcursormenu = {
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
       { "set config", configsets },
-      { "coffee break", function() awful.util.spawn("xscreensaver-command -lock") end },
-      { "cursor", followcursormenu },
+      { "coffee break", function() awful.util.spawn("xscreensaver-command -lock") end, beautiful.coffee },
+      { "insideOutside", function() awful.util.spawn_with_shell("bash ~/.scripts/insideOutside.sh") end },
+      { "cursor", followcursormenu, beautiful.menu_submenu_icon },
       { "open terminal", terminal }
     }
   })
@@ -399,7 +400,7 @@ local taglist_buttons = awful.util.table.join(
                                                   client.focus:move_to_tag(t)
                                               end
                                           end),
-                    awful.button({ }, 2, function(t) naughty.notify{ title="tag debug", text = t.name } end),
+                    awful.button({ }, 2, function(t) naughty.notification{ title="tag debug", text = t.name } end),
                     awful.button({ }, 3, awful.tag.viewtoggle),
                     awful.button({ modkey }, 3, function(t)
                                               if client.focus then
@@ -974,7 +975,9 @@ s.mytasklist = awful.widget.tasklist {
                         id     = 'icon_role',
                         widget = wibox.widget.imagebox,
                     },
-                    margins = 2,
+                    --margins = 4,
+                    left = 4,
+                    right = 6,
                     widget  = wibox.container.margin,
                 },
                 {
@@ -1329,7 +1332,8 @@ awful.key({ modkey,           }, "x", function () awful.spawn(terminal) end,
 --{description = "open a terminal SLAVE", group = "launcher"}),
     awful.key({ modkey, "Shift"}, "Down",     function () awful.client.incwfact(-0.03)          end, {}),
     awful.key({ modkey, "Shift"}, "Up",     function () awful.client.incwfact( 0.03)          end, {}),
-    awful.key({ modkey, "Shift" }, "x", function () awful.spawn(terminal,false,function(c) awful.client.setslave(c) end) end, {description = "open a terminal SLAVE", group = "launcher"}),
+    --awful.key({ modkey, "Shift" }, "x", function () awful.spawn(terminal,false,function(c) awful.client.setslave(c) end) end, {description = "open a terminal SLAVE", group = "launcher"}),
+    awful.key({ modkey, "Shift" }, "x", function () awful.spawn("alacritty --class Alacritty-slave") end),
     awful.key({ modkey, "Control" }, "r", awesome.restart, {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"}, "l",     function () awful.tag.incmwfact( 0.05)          end,
       {description = "increase master width factor", group = "layout"}),
@@ -1375,7 +1379,6 @@ awful.key({ modkey },            "Return",     function () awful.screen.focused(
   {description = "run prompt", group = "launcher"}),
 awful.key({ modkey,        }, "v", function () watson_shell.launch() end),
 --awful.key({ modkey,           }, "d", function () awful.util.spawn("urxvt -e ncmpcpp") end, {description = "run ncmpcpp", group = "apps"}),
---awful.key({ modkey,           }, "d", function () awful.util.spawn("urxvt -e ncmpcpp") end, {description = "run ncmpcpp", group = "apps"}),
 --awful.key({ modkey, "Shift" }, "d", function ()
   --local matcher = function (c)
     --return awful.rules.match(c, {name = "Rambox"})
@@ -1398,8 +1401,8 @@ awful.key({ modkey, }, "d", function ()
   local matcher = function (c)
     return awful.rules.match(c, {name = "ncmpcpp"})
   end
-  awful.client.run_or_raise("urxvt" .. ' -e ncmpcpp', matcher)
-  --awful.client.run_or_raise(terminal .. ' -e ncmpcpp', matcher)
+  --awful.client.run_or_raise("urxvt" .. ' -e ncmpcpp', matcher)
+  awful.client.run_or_raise(terminal .. ' -e ncmpcpp', matcher)
 end),
 awful.key({ modkey, }, "e", function () awful.util.spawn(terminal .." -e ranger") end),
 awful.key({ modkey, "Shift" }, "d", function () awful.spawn.with_shell("mpc lsplaylists| rofi -config ~/.config/rofi/config -dmenu -p \"Choose playlist\" | xargs --no-run-if-empty /home/raph/.scripts/mpc-startPlaylist.sh") end),
@@ -1595,7 +1598,7 @@ awful.rules.rules = {
      }
     },
     -- get the name of the created windows/clients
-    --{rule = {}, callback = function(c) naughty.notify{ title="new window", text = c.name } end },
+    --{rule = {}, callback = function(c) naughty.notification{ title="new window", text = c.name } end },
 
     -- Floating clients.
     { rule_any = {
@@ -1630,7 +1633,15 @@ awful.rules.rules = {
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
     { rule = { class = "firefox" },
-      properties = { screen = 1, tag = "web" } },
+    properties = { screen = 1, tag = "web" } },
+    { rule = { instance = "Alacritty-slave" },
+      callback = function(c)
+        awful.client.setslave(c)
+      end },
+    { rule = { class = "microsoft teams" },
+      properties = { focus = false } },
+    { rule = { name = "drawin" },
+      properties = { focus = false } },
     { rule = { name = "Jerry" },
       properties = { screen = 1, tag = "term2" } },
     { rule = { class = "Opera" },
@@ -1742,7 +1753,7 @@ client.connect_signal("manage", function(c)
   local currentTag = awful.tag.selected(1).name
   local clientTag = c.first_tag.name
   if (clientTag ~= currentTag) and not awesome.startup then
-    naughty.notify({title = (c.name or "Application") .. " started", text = "on tag " .. clientTag  , width=300, height=100})
+    naughty.notification({title = (c.name or "Application") .. " started", text = "on tag " .. clientTag  , width=300, height=100})
   end
 end)
 
