@@ -30,8 +30,11 @@
 /* ########### */
 
 #window {
-  width: 35.5%;
-  height: 33%;
+  width: 48%;
+  height: 25%;
+  border: 4px;
+  border-radius: 10px;
+  border-color: @magenta;
   anchor: center;
   location: center;
   x-offset: 0%;
@@ -78,7 +81,8 @@ prompt,
 textbox-prompt-colon {
   padding: @menu-prompt-padding;
   border: 2px;
-  border-color: @accent;
+  /*border-color: @accent;*/
+  border-color: @blue;
 }
 #prompt {
   margin: @menu-prompt-margin;
@@ -87,16 +91,16 @@ textbox-prompt-colon {
 }
 #textbox-prompt-colon {
   expand: false;
-  str: "Brightness";
-  background-color: @accent;
-  text-color: @background;
+  str: "Backlight";
+  background-color: @blue;
+  text-color: @background-light;
 }
 #horibox {
   padding: 0px;
 }
 #listview {
   spacing: @option-6-listview-spacing;
-  lines: 3;
+  lines: 8;
 }
 #element {
   font: @icon-font;

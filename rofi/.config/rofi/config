@@ -1,7 +1,7 @@
-rofi.theme: myarthur
+#rofi.theme: myarthur-light 
+rofi.theme: myarthur-dark
+
 # /home/raph/.local/share/rofi/themes/myarthur.rasi
-#rofi.theme: ~/.cache/wal/colors-rofi-dark.rasi
-#rofi.theme: ~/.cache/wal/colors-rofi-light.rasi
 
 rofi.terminal:             alacritty
 rofi.ssh-client:           ssh

@@ -19,17 +19,39 @@ elif [[ $BLIGHT -ge 50 ]] && [[ $BLIGHT -le 69 ]]; then
     MSG="High"
 elif [[ $BLIGHT -ge 70 ]] && [[ $BLIGHT -le 99 ]]; then
     MSG="Too Much"
+elif [[ $BLIGHT -eq 100 ]]; then
+    MSG="Full. Outside Mode."
+fi
+
+# Display if outside mode is on / off
+#togOutside=""
+#togOutside="▣"
+togOutside="out"
+inOut=`cat ~/.insideOutside`
+if [[ $inOut == *"in"* ]]; then
+    urgent="-u 4"
+    message=" On sort dehors !"
+elif [[ $inOut == *"out"* ]]; then
+    active="-a 4"
+    message=" On rentre à l'intérieur !"
+else
+    togOutside=""
 fi
 
 ## Icons
-ICON_UP=""
-ICON_DOWN=""
+ICON_UP="▲"
+ICON_DOWN="▼"
 ICON_OPT=""
+ICON_FULL="☀"
+#logout=""
+#ICON_UP=""
+#ICON_OPT=""
+#ICON_FULL="⯀"
 
-options="$ICON_UP\n$ICON_OPT\n$ICON_DOWN"
+options="$ICON_UP\n$ICON_OPT\n$ICON_DOWN\n$ICON_FULL\n$togOutside"
 
 ## Main
-chosen="$(echo -e "$options" | $rofi_command -p "$BLIGHT%  :  $MSG" -dmenu -selected-row 1)"
+chosen="$(echo -e "$options" | $rofi_command -p "$BLIGHT%  :  $MSG" -dmenu $active $urgent -selected-row 1)"
 case $chosen in
     $ICON_UP)
         xbacklight -inc 10 && notify-send -u low -t 1500 "Brightness Up $ICON_UP"
@@ -39,6 +61,12 @@ case $chosen in
         ;;
     $ICON_OPT)
         xbacklight -set 35 && notify-send -u low -t 1500 "Optimal Brightness $ICON_OPT"
+        ;;
+    $ICON_FULL)
+        xbacklight -set 100 && notify-send -u low -t 1500 "Full Brightness $ICON_OPT"
+        ;;
+    $togOutside)
+        ~/.scripts/insideOutside.sh && notify-send -u low -t 1500 "$message"
         ;;
 esac
 
