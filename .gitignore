@@ -33,3 +33,7 @@ base16-mutt/
 colors/
 rofi/.config/rofi/bin/
 rofi/.config/rofi/rofi/
+mpd/.config/mpd/database
+watson/.config/watson/frames
+watson/.config/watson/frames.bak
+watson/.config/watson/state.bak
