@@ -1,6 +1,6 @@
 "| vim : set fdm=marker:fmr=<<<,>>>:fdl=0:
 
-" <<< Vundle configuration
+" <<< Vundle configuration 
 set shell=/bin/bash
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -69,7 +69,7 @@ filetype plugin indent on    " required
 
 " >>>
 
-" <<< Automatic rules for filetypes
+" <<< Automatic rules for filetypes 
 augroup LATEX
 au BufRead *tex nmap Q gqap
 "  au BufRead ~/.mutt/temp/mutt* map!  <F5>  <ESC>kgqji
@@ -103,9 +103,10 @@ au BufNewFile,BufRead Snakefile set syntax=snakemake
 au BufNewFile,BufRead *.snake set syntax=snakemake
 " >>>
 
-" <<< Bindings
+" <<< Bindings 
 let mapleader = ","
 
+"nnoremap <leader>v :vnew<CR>
 nnoremap <leader>cd :cd %:p:h<CR>
 map ,nu :set invnumber<CR>
 map ,nr :set invrelativenumber<CR>
@@ -176,7 +177,6 @@ nnoremap g{ {dap}p{
 
 " <<< Colors 
 nnoremap <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
-"set t_Co=256
 "let g:zenburn_force_dark_Background = 1
 "
 "let g:zenburn_high_Contrast = 1
@@ -190,23 +190,30 @@ let inout = system("cat ~/.insideOutside | tr -d '\n'")
 " si on est dedans, on active thème sombre
 if inout == "in" 
   colors zenburn
+  let g:airline_theme='angr'
 " sinon, le thème light
 else
-  "set background=light
   "colorscheme shirotelin
-  set termguicolors " required for kitty
-  let base16colorspace=256
-  colorscheme base16-one-light
-  
   "set background=light
-  "colorscheme PaperColor
-  "let g:PaperColor_Theme_Options = {
-        "\   'theme': {
-        "\     'default': {
-        "\       'transparent_background': 0
-        "\     }
-        "\   }
-        "\ }
+  "" This is only necessary if you use "set termguicolors".
+  "let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  "let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  "set termguicolors " required for kitty
+  "set t_Co=256
+  "let base16colorspace=256
+  "colorscheme base16-one-light
+
+  let g:airline_theme='light'
+  
+  set background=light
+  colorscheme PaperColor
+  let g:PaperColor_Theme_Options = {
+        \   'theme': {
+        \     'default': {
+        \       'transparent_background': 0
+        \     }
+        \   }
+        \ }
 endif
 
 "colors zenburn
@@ -214,7 +221,7 @@ endif
 "colorscheme wal
 ">>>
 
-" <<< Editor Options
+" <<< Editor Options 
 set textwidth=80
 set colorcolumn=80
 set linebreak " avoid cutting words
@@ -293,9 +300,8 @@ set wildmode=list:longest,full
 
 " >>>
 
-" <<< Plugins Options
+" <<< Plugins Options 
 nnoremap <silent> <leader>gg :SignifyToggle<CR>
-let g:airline_theme='luna'
 " taglist
 let tlist_tex_settings = 'latex;l:labels;s:sections;t:subsections;u:subsubsections'
 let Tlist_GainFocus_On_ToggleOpen = 1
@@ -482,19 +488,27 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
 ">>>
 
-" <<< Misc
+" <<< Misc 
 
 au BufNewFile,BufRead *.plt,*.gnuplot,*.plot setf gnuplot
 autocmd BufNewFile,BufRead todo.txt,*.task,*.tasks  setfiletype task
 autocmd BufNewFile,BufRead *.mdwn  setfiletype markdown
 autocmd BufNewFile,BufRead *.md  setfiletype markdown
 
+function! ShowColourSchemeName()
+    try
+        echo g:colors_name
+    catch /^Vim:E121/
+        echo "default
+    endtry
+endfunction
+
 "https://www.hillelwayne.com/post/intermediate-vim/
 command! Vimrc :vs $MYVIMRC
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
+"nnoremap <c-j> <c-w>j
+"nnoremap <c-k> <c-w>k
+"nnoremap <c-h> <c-w>h
+"nnoremap <c-l> <c-w>l
 
 command! -nargs=* Hardcopy call DoMyPrint('<args>')
 function DoMyPrint(args)
@@ -725,7 +739,8 @@ augroup end
 "
 "https://superuser.com/questions/277325/create-a-file-under-the-cursor-in-vim
 map <silent> <leader>cf :call writefile([], expand("<cfile>"), "t")<cr>
-map <leader>gf :e <cfile>.tex<cr>
+map <leader>gf :e <cfile><cr>
+map <leader>Gf :vs <cfile><cr>
 nmap <C-w>f :e <cfile><CR>
 nnoremap <C-a> <C-w>
 
@@ -768,7 +783,7 @@ nmap <Leader>j :call GotoJump()<CR>
 "let g:AutoCentern
 " >>>
 
-" <<< Abréviations et raccourcis clavier
+" <<< Abréviations et raccourcis clavier 
 ab ccom /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 ab fcom ! * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 ab lcom % * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -776,6 +791,8 @@ ab pcom # * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 
 "let &t_ut=''
 "
+let @t = '^c2lCcddpkc2lTo'
+
 let @r = 'o\Raphael{}l' "latex comments
 " FZF
 nnoremap <leader>o :Files<CR>
