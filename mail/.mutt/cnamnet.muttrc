@@ -2,8 +2,16 @@
 # CNAMnet specific options
 ###
 
-color status black green
 set status_format = "[ Folder: %f, Msgs: %m%?n? New: %n?%?d? Del: %d?%?t? Tag: %t?%?l? %l? ]%?p?---- .: %p waiting to send :. ?--%>-- CNAM --(%s/%S)-- (%P) ----"
 
 macro index za   "<shell-escape>/usr/bin/offlineimap -a CNAMnet -q -o<enter>" "sync IMAP" # quick-sync ~/Mail immediately with offlineimap
 folder-hook . "push <last-entry><current-middle>"
+
+set from      = "raphael.fourniersniehotta@lecnam.net"
+set sendmail  = "/usr/bin/msmtp -a cnam"
+save-hook . "+CNAMnet/Archives/"
+folder-hook CNAMnet/ "push <last-entry><current-middle>"
+set mbox      = "+CNAMnet/Archives"
+set record    = "+CNAMnet/Archives"
+set postponed = "+CNAMnet/Drafts"
+set signature = "~/.mutt/cnam.signature"                           # my signature file

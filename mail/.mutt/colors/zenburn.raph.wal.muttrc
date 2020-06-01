@@ -10,6 +10,10 @@
 # that and you can enable it by calling mutt as "TERM=xterm-256color mutt", or
 # by adding "term screen-256color" to your .screenrc.
 #
+folder-hook CNAM/* color status black green
+folder-hook RFS/* color status black red 
+folder-hook Rfnet/* color status black blue
+folder-hook CNAMnet/* color status black magenta
 
 # general-doesn't-fit stuff
 color normal     white default
@@ -23,7 +27,7 @@ color attachment color111 black #Add-ons to the message
 color status     black color242
 
 # index stuff
-color indicator  black green 
+color indicator  green black
 color tree       color163 default
 #color index      white default ~A # all messages
 #color index      white default ~N
@@ -107,7 +111,7 @@ color index      green default ~P # from me
 color index      color246 default ~Q # replied messages
 color index      red default ~F # flagged
 
-color index      color246 black ~D # deleted
+color index      bold color246 black ~D # deleted
 color index      black blue ~T # tagged
 
 #http://www.mutt.org/doc/manual/manual-4.html#patterns
@@ -158,6 +162,7 @@ color quoted9    green default
 
 color body    bold red default "(urgent|important)"
 color body    black alertyellow "(joint|jointe|PJ)"
+color body    black magenta "\\*.*\\*"
 
 # Example Mutt config file for the 'index-color' feature.
 # http://www.neomutt.org/feature/index-color/
@@ -184,3 +189,5 @@ color body    black alertyellow "(joint|jointe|PJ)"
 #color index_number red default
 ## Message size, %c %l
 #color index_size cyan default
+
+# vim: filetype=muttrc

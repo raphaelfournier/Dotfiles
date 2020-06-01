@@ -2,7 +2,6 @@
 # CNAM specific options
 ###
 
-color status black green
 set status_format = "[ Folder: %f, Msgs: %m%?n? New: %n?%?d? Del: %d?%?t? Tag: %t?%?l? %l? (%P) %?V?(%V: %M/%m)?]%?p?---- .: %p waiting to send :. ?--%>-- CNAM --(%s/%S)------"
 
 set from      = "fournier@cnam.fr"

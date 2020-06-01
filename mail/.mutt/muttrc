@@ -86,7 +86,7 @@ set quote_regexp        = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 set date_format         = "%d/%m/%y %R"
 #set index_format        = "%4C %Z %D %-20.20F %?y?[%.20Y] ?%s %*  %X %4c"
 #set index_format        = "%4C %Z %{%b %d} %-15.15L (%4c) %s"
-set index_format        = "%4C %Z %D %-20.20F %?y?[%.20Y] ?%s %*  %X %4c"
+set index_format        = "%4C %Z %D %-20.20F %?y?[%.20Y] ?%s %*  %X %2e %4c"
 set folder_format="%2C %t %N %f %> %4s %d" 
 #set folder_format="%2C %t %N %F %2l %-8.8u %-8.8g %8s %d %f" # default
 #set status_format       = "[ Folder: %f, Msgs: %m%?n? New: %n?%?d? Del: %d?%?t? Tag: %t?%?l? %l? ]%?p?---- .: %p waiting to send :. ?--%>- (%P) ---"
@@ -118,7 +118,7 @@ set reverse_name                          # reply as whomever it was to
 set include                               # include message in replies
 set forward_quote                         # include message in forwards
 set reverse_name = yes
-alternates raphael.fournier@complexnetworks.lip6.fr|raphael@raphaelfournier.net|fournier@lavabit.com|raphael.*@fournier-sniehotta.fr|raphael.fournier@lip6.fr|fournier@cnam.fr|raphael.fournier@univ-paris13.fr|raphael.fournier_s_niehotta@cnam.fr|raphael@getlovepulse.com
+alternates raphael.fournier@complexnetworks.lip6.fr|raphael@raphaelfournier.net|fournier@lavabit.com|raphael.*@fournier-sniehotta.fr|raphael.fournier@lip6.fr|fournier@cnam.fr|raphael.fournier@univ-paris13.fr|raphael.fournier_s_niehotta@cnam.fr|raphael@getlovepulse.com|raphael.fourniersniehotta@lecnam.net
 
 # headers to show
 ignore *                                                        # ignore all headers
@@ -144,6 +144,8 @@ folder-hook CNAM/* source ~/.mutt/cnam.muttrc
 folder-hook CNAMnet/* source ~/.mutt/cnamnet.muttrc
 folder-hook Rfnet/* source ~/.mutt/rfnet.muttrc
 
+#folder-hook CNAMnet/* source ~/.mutt/cnamnet.muttrc
+#folder-hook Rfnet/* source ~/.mutt/rfnet.muttrc
 #folder-hook Paris13/* source ~/.mutt/paris13.muttrc
 #folder-hook GMX/* source ~/.mutt/gmx.muttrc
 #folder-hook Lip6/* source ~/.mutt/lip6.muttrc
@@ -184,19 +186,20 @@ set charset="utf-8"
 #set locale="fr_FR.utf8"
 
 set allow_ansi = yes
-set display_filter = ~/.mutt/displayhighlight
-                                                                                
+#set display_filter = ~/.mutt/displayhighlight
+
 # Sources ----------------------------------------
 source $alias_file                                              # required for functionality
+source ~/.mutt/neomuttrc 
+
 #source ~/.mutt/colors/zenburn`echo $TERM | sed "s:.*-::"`
 #source ~/.mutt/colors/solarized/mutt-colors-solarized-light-256.muttrc
-
 #source ~/.mutt/colors/base16-mutt/base16.muttrc
-#
-source ~/.mutt/colors/zenburn.raph.wal.muttrc
 #source ~/.mutt/colors/zenburn.raph.inside.muttrc
-#source ~/.mutt/colors/raph.outside.muttrc
 #source ~/.mutt/colors/raph.essai.muttrc
+
+source ~/.mutt/colors/zenburn.raph.wal.muttrc
+#source ~/.mutt/colors/raph.outside.muttrc
 
 source ~/.mutt/bindings
 source ~/.mutt/gpg
@@ -204,7 +207,6 @@ source ~/.mutt/savehooks
 #source ~/.mutt/sidebar
 #source ~/.mutt/notmuch
 
-source ~/.mutt/neomuttrc 
 
 macro pager,index,generic ,f      "<vfolder-from-query>tag:flux<enter>"
 #

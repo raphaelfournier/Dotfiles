@@ -2,7 +2,6 @@
 # RFS specific options
 ###
 
-color status black red 
 set status_format = "[ Folder: %f, Msgs: %m%?n? New: %n?%?d? Del: %d?%?t? Tag: %t?%?l? %l? ]%?p?---- .: %p waiting to send :. ?--%>-- RFS --(%s/%S)-- (%P) %?V?(%V: %M/%m)?----"
 
 set from      = "raphael@fournier-sniehotta.fr"

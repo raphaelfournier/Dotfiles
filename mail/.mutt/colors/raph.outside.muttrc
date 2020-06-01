@@ -1,17 +1,23 @@
+folder-hook CNAM/* color status white green
+folder-hook RFS/* color status white red 
+folder-hook Rfnet/* color status white blue
+folder-hook CNAMnet/* color status white magenta
+
 # black and white permutés ?
 color normal     black default
 color error      red default
-color message    blue default
+color message    white yellow
 color markers    blue default
 color tilde      green default # ~'s after message body
 color signature  red default
-color attachment black brightblue  #Add-ons to the message
+color attachment white cyan  #Add-ons to the message
 color status     white green
+color progress white red
 
 # index stuff
-color index      black yellow ~N # new messages
+color index      white yellow ~N # new messages
 color index      blue default ~l # messages from list
-color index      white cyan ~N~l # new messages from list
+color index      black cyan ~N~l # new messages from list
 color indicator  white green 
 color tree       magenta default
 
@@ -25,12 +31,15 @@ color index      red default ~F # flagged
 color index      white black ~D # deleted
 color index      white blue ~T # tagged
 
-color header	yellow  black  '^from:'
-color header	yellow  black  '^list-id:'
-color header	cyan    black  '^(to|cc|bcc):'
-color header	red     black  '^date:'
-color header	green   black  '^subject:'
-color header  color31 black  '^user-agent:'
-color header	color29 black  '^reply-to:'
+color header	yellow  color255  '^from:'
+color header	yellow  color255  '^list-id:'
+color header	cyan    color255  '^(to|cc|bcc):'
+color header	red     color255  '^date:'
+color header	green   color255  '^subject:'
+color header  color31 color255  '^user-agent:'
+color header	color29 color255  '^reply-to:'
+
+color body    white red "\\*.*\\*"
+color body    white green "_.*_"
 
 # vim: filetype=muttrc
