@@ -16,19 +16,50 @@ bind 'K' kill
 bind 'I' login on
 bind 'O' login off 
 bind '}' history
+bind Q quit
+
+# start with window 1, not 0
+#bind c screen 1
+#bind ^c screen 1
+#bind 0 select 10                                                            
+#screen 1
 
 altscreen on
 
 # C-a space to have windowlist
 bind ' ' windowlist -b
 
-#shelltitle '$STY'
-term screen-256color 
-termcapinfo xterm* ti@:te@
+#shelltitle '$ |zsh:'
+#hardstatus alwayslastline
+
+#termcapinfo xterm* ti@:te@
+term "screen-256color"
+attrcolor b ".I"
+defbce "on"
+
+#termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E38;5;%dm'
 
 #hardstatus string "%H (%n: %t)"
 # status line at the bottom, where it belongs
-caption string "%{= kg}%H-%S%{= kw} | %{= kw}%-w%{= gk} %n %t %{= kw}%+w %{= km}%-= %c"
-caption always
+#
+#caption string "%{= kg}%H-%S%{= kw} | %{= kw}%-w%{= gk} %n %t %{= kw}%+w %{= km}%-= %c"
+#caption always
+#
 #termcapinfo rxvt* 'hs:ts=\E]2;:fs=\007:ds=\E]2;\007'
 #defhstatus "screen ^E (^E) | $USER@^EH"
+
+# enable xterm title setting; may not be necessary on some platforms
+# http://aperiodic.net/phil/configs/screenrc
+#termcapinfo xterm*|rxvt* 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen\007'
+
+# dirty hack: put xterm title escapes in the hardstatus
+# this example will yield "user@host || screen Win#:(windowtitle)
+#defhstatus "$USER@^EH || screen ^E:(^Et)"
+defhstatus "screen:^E:^ES (^En ^Et)"
+# now turn it off so it doesn't print in the hardstatus line
+hardstatus off
+
+# and finally, use caption as a replacement hardstatus
+#caption always '%{= kG}[%{G}%H%{G}][%= %{= kw}%?%-Lw%?%{R}(%{W}%n*%f%t%?(%u)%?%{R})%{w}%?%+Lw%?%?%= %{G}][%{B}%C%a %M.%d%{G}]'
+#caption always "%{= kg}%H-%S%{= kw} | %{= kw}%-w%{= gk} %n %t %{= kw}%+w %{= km}%-= %c"
+source ~/.screen/colors.status.screenrc

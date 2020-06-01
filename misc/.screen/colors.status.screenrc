@@ -1,0 +1,5 @@
+caption always "%{= kg}%H-%S%{= kw} | %{= kw}%-w%{= gk} %n %t %{= kw}%+w %{= km}%-= %c " # inside
+#caption always "%{= Kk}%H-%S%{= Kr} | %{= Kk}%-w%{= bw} %n %t %{= Kw}%+w %{+b Km}%-= %c " # outside
+
+# vim: set ft=screenrc
+
