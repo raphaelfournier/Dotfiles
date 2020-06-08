@@ -15,6 +15,7 @@ local menubar       = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 local vicious       = require("vicious")
 local lain          = require("lain")
+local rofi = require("rofi")
 local xrandr = require("xrandr")
 local poppin = require('poppin')
 
@@ -1428,6 +1429,7 @@ end, {description = "run mutt", group = "apps"}),
 
     --awful.key({ modkey,           }, "w", function () awful.util.spawn("surf https://calendar.google.com/calendar") end, --{description = "agenda", group = "apps"}),
     --awful.key({ modkey, "Shift" }, "w", function () awful.util.spawn("surf https://ticktick.com/") end, --{description = "ticktick", group = "apps"}),
+
     awful.key({ modkey, "Control" }, "a", function () awful.util.spawn("xscreensaver-command -lock")   end,
       {description = "lock screen", group = "apps"}),
     -- 
@@ -1456,33 +1458,44 @@ end, {description = "run mutt", group = "apps"}),
     )
 
 clientkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "f",
-        function (c)
-            c.fullscreen = not c.fullscreen
-            c:raise()
-        end,
-        {description = "toggle fullscreen", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end, {description = "close", group = "client"}),
+  awful.key({ modkey,           }, "f",
+    function (c)
+      c.fullscreen = not c.fullscreen
+      c:raise()
+    end,
+    {description = "toggle fullscreen", group = "client"}),
 
-    --awful.key({ modkey, "Shift"}, "a", 
-        --function (c)   
-          --naughty.notify{ 
-            --title= "debug",
-            ----text = tostring(c.screen.geometry.height).."-"..tostring(c.screen.index),
-            --text = 'This notification has actions!',
-    --actions = {
-        --naughty.action {
-            --name = 'Accept',
-        --},
-        --naughty.action {
-            --name = 'Refuse',
-        --},
-        --naughty.action {
-            --name = 'Ignore',
-        --},
-    --}
-          --}
-        --end),
+  awful.key({ modkey, "Shift"   }, "c", 
+    function (c) 
+      c:kill()
+    end, 
+    {description = "close", group = "client"}),
+
+    awful.key({ modkey, "Shift"}, "a", function (c) 
+      rofi.client_flags(c)
+      --naughty.notify{ 
+        --title= "debug",
+        --text = " coucou "..tostring(c.screen.geometry.height).."-"..tostring(c.screen.index)
+      --}
+    end),
+awful.key({ modkey, "Shift"}, "i", 
+  function (c)   
+    naughty.notify{ 
+      title= "debug",
+      text = 'This notification has actions!',
+      actions = {
+        naughty.action {
+          name = 'Accept',
+        },
+        naughty.action {
+          name = 'Refuse',
+        },
+        naughty.action {
+          name = 'Ignore',
+        },
+      }
+    }
+  end),
     awful.key({ modkey, "Shift" }, "f", 
         function (c)   
           c.floating = not c.floating
@@ -1490,10 +1503,10 @@ clientkeys = awful.util.table.join(
           c.x = c.screen.geometry.x+(c.screen.geometry.width/5)
           c.height = c.screen.geometry.height * 0.93
           c.y = c.screen.geometry.y+c.screen.geometry.height* 0.04
-          --naughty.notify{ 
-            --title= "debug",
-            --text = tostring(c.screen.geometry.height).."-"..tostring(c.screen.index)
-          --}
+          naughty.notify{ 
+            title= "debug",
+            text = tostring(c.screen.geometry.height).."-"..tostring(c.screen.index)
+          }
         end),
     --awful.key({ modkey, "Control" }, "<",  awful.client.floating.toggle                     , {description = "toggle floating", group = "client"}),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end, {description = "move to master", group = "client"}),

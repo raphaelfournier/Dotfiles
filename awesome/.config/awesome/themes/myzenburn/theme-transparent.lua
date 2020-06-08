@@ -172,9 +172,11 @@ theme.titlebar_maximized_button_normal_inactive = "/usr/share/awesome/themes/zen
 
 -- {{{ Hotkey popup
 
-theme.hotkeys_font = "Inconsolata Medium 14"
-theme.hotkeys_description_font = "Inconsolata Medium 14"
-theme.hotkeys_modifiers_fg = "#F0DFAF"
+theme.hotkeys_font = "Inconsolata Medium 18"
+theme.hotkeys_description_font = "Inconsolata Medium 18"
+theme.hotkeys_modifiers_fg = "#ca1243"
+theme.hotkeys_bg ="#fafafa"
+theme.hotkeys_fg = "#383a42"
 
 -- }}}
 
@@ -256,4 +258,4 @@ theme.tooltip_opacity = 0.8
 theme.tooltip_shape = shape.rounded_bar
 return theme
 
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80 set fdm=marker fmr={{{,}}} fdl=0:fdc=2
