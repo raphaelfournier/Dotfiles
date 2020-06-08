@@ -40,8 +40,15 @@ color index      black cyan ~N~l # new messages from list
 #color index      cyan default "~C jgiavelli@yahoo.fr | ~C didier.bernard1@free.fr"
 #color index      default cyan "~N ~C jgiavelli@yahoo.fr | ~N ~C didier.bernard1@free.fr"
 
+#color index      cyan default "(~C @foo| ~f @foo)"
+#color index      black cyan "(~N ~C @foo|~N ~f @foo)"
+
+color index      cyan default "(~C gdr-securite.appcovid@inria.fr| ~f gdr-securite.appcovid@inria.fr)"
+color index      black cyan "~N (~C gdr-securite.appcovid@inria.fr | ~f gdr-securite.appcovid@inria.fr)"
+
 color index      cyan default "~f news@thehustle.co"
 color index      black cyan "~N ~f news@thehustle.co"
+
 color index      cyan default "~f @jacquesdemeter.fr"
 color index      black cyan "~N ~f @jacquesdemeter.fr"
 color index      cyan default "(~C @meetup.com| ~f @meetup.com)"

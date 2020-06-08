@@ -20,4 +20,4 @@ macro index za   "<shell-escape>/usr/bin/offlineimap -a CNAM -q -o<enter>" "sync
 #
 # https://dev.mutt.org/doc/manual.html#mailbox-hook
 folder-hook CNAM/INBOX "push <limit>!~P!~l<enter><last-entry><current-middle>"
-folder-hook . "push <last-entry><current-middle>"
+folder-hook CNAM/ "push <last-entry><current-middle>"

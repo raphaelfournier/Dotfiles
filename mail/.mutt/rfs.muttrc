@@ -17,4 +17,6 @@ save-hook "~f newsletters@technologyreview.com ~C fournier-sniehotta.fr" "=Archi
 subscribe swiftparis-announce@meetup.com
 
 macro index za   "<shell-escape>/usr/bin/offlineimap -a RFS -q -o<enter>" "sync IMAP" # quick-sync ~/Mail immediately with offlineimap
+
+folder-hook RFS/INBOX "push <limit>!~P!~l<enter><last-entry><current-middle>"
 folder-hook RFS/ "push <last-entry><current-middle>"
