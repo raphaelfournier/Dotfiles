@@ -94,15 +94,16 @@ URxvt.keysym.M-C-i: perl:reactivity:largerfont
 ! Appearance
 URxvt*iconFile: /usr/share/icons/gnome-colors-common/scalable/apps/terminal.svg
 !URxvt*letterSpace: 0
-URxvt*font: xft:Inconsolata-dz for Powerline:style=Medium:size=18:antialias=true:minspace=False, xft:Symbola,xft:DejaVu Sans:pixelsize=18,-*-unifont-*-*-*-*-*-*-*-*-*-*-*-*
+!URxvt*font: xft:Inconsolata:style=Medium:size=18:antialias=true:minspace=False, xft:Symbola,xft:DejaVu Sans:pixelsize=18,-*-unifont-*-*-*-*-*-*-*-*-*-*-*-*
+!URxvt*font: xft:Noto Sans:style=Medium:size=18, xft:Symbola,xft:DejaVu Sans:pixelsize=18,-*-unifont-*-*-*-*-*-*-*-*-*-*-*-*
 
-!#define font1         Inconsolata Nerd Font Mono
-!#define font2         Symbola
-!#define font3         DejaVu Sans Mono Nerd Font
-!#define font4         Noto Sans Mono CJK JP
+#define font1         Inconsolata Nerd Font
+#define font2         Symbola
+#define font3         DejaVu Sans Mono Nerd Font
+#define font4         Noto Sans Mono CJK JP
 
 !URxvt*letterSpace: 0
-!URxvt*font:           xft:font1:pixelsize=18, xft:font2:pixelsize=14:minspace=false, xft:font3:pixelsize=14,xft:font4:pixelsize=14
+URxvt*font:           xft:font1:style=Medium:size=18:antialias=true:minspace=False, xft:font2:pixelsize=14:minspace=false, xft:font3:pixelsize=14,xft:font4:pixelsize=14
 !URxvt*boldFont:       xft:font1:bold:pixelsize=16, xft:font2:pixelsize=14:minspace=False,xft:font3:pixelsize=14,xft:font4:pixelsize=14
 !URxvt*italicFont:     xft:font1:italic:pixelsize=16, xft:font2:pixelsize=14:minspace=False,xft:font3:pixelsize=14,xft:font4:pixelsize=14
 !URxvt*boldItalicFont: xft:font1:bold:italic:pixelsize=16, xft:font2:pixelsize=14:minspace=False, xft:font3:pixelsize=14, xft:font4:pixelsize=14
@@ -421,44 +422,3 @@ xfontsel.pane.fieldBox.MenuButton.borderWidth:   1
 xfontsel.pane.fieldBox.MenuButton.internalHeight:1
 xfontsel.pane.fieldBox.MenuButton.internalWidth: 2
 xfontsel.pane.fieldBox.MenuButton.shapeStyle:    rectangle
-
-! These are all possible options, presented with default values.
-! xst will fallback to *.option if st.option is not present.
-! see src/config.h for more information about option meanings.
-
-! These options only take effect on startup.
-st.termname:     xterm-256color
-! if you do not set shell, precedence is: -e arg, utmp option, SHELL env var, /etc/passwd shell
-st.shell:        /bin/zsh
-
-! The following options options can be reloaded via USR1 signal.
-st.font:              Inconsolata:size=18:antialias=true:autohint=true;
-st.borderpx:          10
-! Available cursor values: 2 4 6 7 = █ _ | ☃ ( 1 3 5 are blinking versions)
-st.cursorshape:       2
-! thickness of underline and bar cursors
-st.cursorthickness:   2
-! 0: normal blinking, 1: leave cursor border and blink with cursor s background
-st.cursorblinkstyle:  0
-! 0: cursor blinks with a constant interval; 1: blinking cycle resets on key input
-st.cursorblinkontype: 1
-st.bold_font:         0
-st.xfps:              120
-st.actionfps:         30
-! Amount of lines scrolled
-st.mouseScrollLines:  1
-! Kerning / character bounding-box height multiplier
-st.chscale:           1.0
-! Kerning / character bounding-box width multiplier
-st.cwscale:           1.0
-! blinking timeout for terminal and cursor blinking (0 disables)
-st.blinktimeout:      800
-! bell volume. Value between -100 and 100. (0 disables)
-st.bellvolume:        100
-! this is a char that is exposed like so: `printf '\033[z'`
-st.prompt_char:       $
-! This option is can be preedit style. Available values: `root` `overthespot` (Default taken `root`)
-st.imstyle:           root
-
-! opacity==255 means what terminal will be not transparent, 0 - fully transparent
-st.opacity:      205

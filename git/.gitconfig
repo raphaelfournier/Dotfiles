@@ -41,3 +41,5 @@
 [gui]
 	fontui = -family \"Bitstream Vera Sans\" -size 14 -weight normal -slant roman -underline 0 -overstrike 0
 	fontdiff = -family \"Bitstream Vera Sans Mono\" -size 14 -weight normal -slant roman -underline 0 -overstrike 0
+[pull]
+	rebase = false

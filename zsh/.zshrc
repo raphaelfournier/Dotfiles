@@ -166,7 +166,8 @@ _fzf_compgen_dir() {
 # &   # Run the process in the background.
 # ( ) # Hide shell job control messages.
 #(\cat ~/.cache/wal/sequences &)
-#eval `dircolors ~/.ls_colors` 
+
+eval `dircolors ~/.ls_colors` 
 
 export MARKER_KEY_MARK='\C-b' # https://github.com/pindexis/marker/blob/master/README.md
 [[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
@@ -174,7 +175,7 @@ export MARKER_KEY_MARK='\C-b' # https://github.com/pindexis/marker/blob/master/R
 autoload -Uz compinit
 compinit
 # Completion for kitty
-kitty + complete setup zsh | source /dev/stdin
+#kitty + complete setup zsh | source /dev/stdin
 
 bindkey " " magic-space # do history expansion on space
 
