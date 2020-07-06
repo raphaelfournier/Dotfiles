@@ -26,7 +26,7 @@
 [diff]
   tool = icdiff
 [difftool]
-  prompt = false
+	prompt = false
 [difftool "icdiff"]
   cmd = /usr/bin/icdiff --line-numbers $LOCAL $REMOTE
 [pager]

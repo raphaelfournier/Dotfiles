@@ -29,6 +29,8 @@ macro index S ":set confirmappend=no delete=yes\n<tag-prefix-cond><clear-flag>n<
 #macro index \Ce "<limit>!~s SLURM<enter><current-middle>"
 
 macro attach s <save-entry><kill-line>~/Mail/Attachments/ "save attachments in ~/Mail/Attachments" 
+macro attach S <save-entry><kill-line>~/downloads/ "save attachments in ~/downloads/" 
+macro compose ,a "<attach-file>`xsel -p | sed "s/ /$(printf \\026)&/g"`<enter>"
 macro index,pager,compose ,r <save-entry><kill-line>=CNAM/INBOX "save in CNAM/INBOX"
 bind index zt current-top
 bind index zz current-middle
