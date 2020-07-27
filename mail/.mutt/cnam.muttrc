@@ -13,6 +13,7 @@ set postponed = "+CNAM/Drafts/"
 set signature = "~/.mutt/cnam.signature"                           # my signature file
 
 save-hook . "+CNAM/Archives/"
+macro index S   "<save-message><enter>"
 
 source ~/.mutt/cnam-lists
 

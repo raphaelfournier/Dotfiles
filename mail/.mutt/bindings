@@ -23,7 +23,7 @@ macro index \Ce "<limit>!~P !~l<enter><current-middle>" "hide messages from me, 
 macro index ,o "<limit>~P | ~l<enter><current-middle>" "messages masqués par Ctrl+A"
 macro pager,index,generic A "<tag-pattern>~A<enter>" "all messages"
 macro index ,v "<limit>~l<enter><current-middle>" "view only list messages"
-macro index S ":set confirmappend=no delete=yes\n<tag-prefix-cond><clear-flag>n<tag-prefix-cond><save-message>\n<sync-mailbox>"
+#macro index S ":set confirmappend=no delete=yes\n<tag-prefix-cond><clear-flag>n<tag-prefix-cond><save-message>\n<sync-mailbox>"
 
 # paris 13 specifique
 #macro index \Ce "<limit>!~s SLURM<enter><current-middle>"
