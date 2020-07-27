@@ -171,6 +171,33 @@ font:
 #draw_bold_text_with_bright_colors: false
 
 color_schemes:
+  qualia: &qualia
+    primary:
+      background: '0x101010'
+      foreground: '0xc0c0c0'
+
+    # Normal colors
+    normal:
+      black:   '0x101010'
+      red:     '0xefa6a2'
+      green:   '0x80c990'
+      yellow:  '0xa69460'
+      blue:    '0xa3b8ef'
+      magenta: '0xe6a3dc'
+      cyan:    '0x50cacd'
+      white:   '0x808080'
+
+    # Bright colors
+    bright:
+      black:   '0x454545'
+      red:     '0xe0af85'
+      green:   '0x5accaf'
+      yellow:  '0xc8c874'
+      blue:    '0xccaced'
+      magenta: '0xf2a1c2'
+      cyan:    '0x74c3e4'
+      white:   '0xc0c0c0'
+
   dark: &dark
     primary:
       background: '#3f3f3f'
@@ -504,11 +531,11 @@ key_bindings:
   #- { key: Add,      mods: Control,       action: IncreaseFontSize }
   #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
   #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
-  - { key: U,     mods: Control|Shift,       action: ResetFontSize    }
-  - { key: I,      mods: Control|Shift,       action: IncreaseFontSize }
-  - { key: O, mods: Control|Shift,       action: DecreaseFontSize }
-  - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
-  - { key: F,   mods: Control|Shift, action: ToggleFullscreen }
+  - {key: U, mods: Control|Shift, action: ResetFontSize}
+  - {key: I, mods: Control|Shift, action: IncreaseFontSize}
+  - {key: O, mods: Control|Shift, action: DecreaseFontSize}
+  - {key: Return, mods: Control|Shift, action: SpawnNewInstance}
+  - {key: F, mods: Control|Shift, action: ToggleFullscreen}
 
   # (Windows only)
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }

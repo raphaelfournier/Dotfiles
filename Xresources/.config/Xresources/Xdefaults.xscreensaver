@@ -1,29 +1,42 @@
 ! xscreensaver ---------------------------------------------------------------
 
 !font settings
-xscreensaver.Dialog.headingFont:        xft:Inconsolata Nerd Font:style=Medium:size=18
-xscreensaver.Dialog.bodyFont:           xft:Inconsolata Nerd Font:style=Medium:size=18
-xscreensaver.Dialog.labelFont:          xft:Inconsolata Nerd Font:style=Medium:size=18
-xscreensaver.Dialog.unameFont:          xft:Inconsolata Nerd Font:style=Medium:size=18
-xscreensaver.Dialog.buttonFont:         xft:Inconsolata Nerd Font:style=Medium:size=18
-xscreensaver.Dialog.dateFont:           xft:Inconsolata Nerd Font:style=Medium:size=18
-xscreensaver.passwd.passwdFont:         xft:Inconsolata Nerd Font:style=Medium:size=18
+
+xscreensaver.Dialog.headingFont:   -*-dejavu sans mono-*-r-*-*-20-*-*-*-*-*-*-*
+xscreensaver.Dialog.bodyFont:      -*-dejavu sans mono-*-r-*-*-20-*-*-*-*-*-*-*
+xscreensaver.Dialog.labelFont:     -*-dejavu sans mono-*-r-*-*-20-*-*-*-*-*-*-*
+xscreensaver.Dialog.unameFont:     -*-dejavu sans mono-*-r-*-*-20-*-*-*-*-*-*-*
+xscreensaver.Dialog.buttonFont:    -*-dejavu sans mono-*-r-*-*-20-*-*-*-*-*-*-*
+xscreensaver.Dialog.dateFont:      -*-dejavu sans mono-*-r-*-*-20-*-*-*-*-*-*-*
+xscreensaver.passwd.passwdFont:    -*-dejavu sans mono-*-r-*-*-20-*-*-*-*-*-*-*
+
+
+!
+!xscreensaver.Dialog.headingFont:        -*-verdana-bold-r-*-*-28-*-*-*-*-*-*-*
+!xscreensaver.Dialog.bodyFont:           -*-verdana-medium-r-*-*-20-*-*-*-*-*-*-*
+!xscreensaver.Dialog.labelFont:          -*-verdana-medium-r-*-*-20-*-*-*-*-*-*-*
+!xscreensaver.Dialog.unameFont:          -*-verdana-medium-r-*-*-26-*-*-*-*-*-*-*
+!xscreensaver.Dialog.buttonFont:         -*-verdana-bold-r-*-*-20-*-*-*-*-*-*-*
+!xscreensaver.Dialog.dateFont:           -*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*
+!xscreensaver.passwd.passwdFont:         -*-verdana-bold-r-*-*-20-*-*-*-*-*-*-*
+
+
 !general dialog box (affects main hostname, username, password text)
-xscreensaver.Dialog.foreground:         #383a42
-xscreensaver.Dialog.background:         #fafafa
-xscreensaver.Dialog.topShadowColor:     #a0a1a7
-xscreensaver.Dialog.bottomShadowColor:  #a0a1a7
-xscreensaver.Dialog.Button.foreground:  #fafafa
-xscreensaver.Dialog.Button.background:  #0184bc
+xscreensaver.Dialog.foreground:         #dcdccc
+xscreensaver.Dialog.background:         #3f3f3f
+xscreensaver.Dialog.topShadowColor:     #dfaf8f
+xscreensaver.Dialog.bottomShadowColor:  #dfaf8f
+xscreensaver.Dialog.Button.foreground:  #1E2320
+xscreensaver.Dialog.Button.background:  #7f9f7f
 !username/password input box and date text colour
-xscreensaver.Dialog.text.foreground:    #ca1243
-xscreensaver.Dialog.text.background:    #a0a1a7
+xscreensaver.Dialog.text.foreground:    #1E2320
+xscreensaver.Dialog.text.background:    #dc8cc3
 xscreensaver.Dialog.internalBorderWidth:30
 xscreensaver.Dialog.borderWidth:        2
 xscreensaver.Dialog.shadowThickness:    4
 !timeout bar (background is actually determined by Dialog.text.background)
-xscreensaver.passwd.thermometer.foreground:  #4078f2
-xscreensaver.passwd.thermometer.background:  #a0a1a7
+xscreensaver.passwd.thermometer.foreground:  #D78787
+xscreensaver.passwd.thermometer.background:  #3f3f3f
 xscreensaver.passwd.thermometer.width:       18
 !datestamp format--see the strftime(3) manual page for details
 xscreensaver.dateFormat:    

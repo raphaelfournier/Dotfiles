@@ -13,6 +13,7 @@ udiskie -san &
 /home/raph/scripts/setDbusSessionBusAddress.sh &
 nm-applet --sm-disable &
 arandr-indicator &
+vgrive &
 #wal -R & 
 #rambox &
 # xpad &

@@ -24,7 +24,7 @@ local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batterya
     --awful.util.spawn("/home/raph/Dotfiles/rofi/.config/rofi/scripts/battery.sh")
 --end)
 
-local pomodoroarc_widget = require("awesome-wm-widgets.pomodoroarc-widget.pomodoroarc")
+--local pomodoroarc_widget = require("awesome-wm-widgets.pomodoroarc-widget.pomodoroarc")
 local watsonarc_widget = require("awesome-wm-widgets.watsonarc-widget.watsonarc")
 local watson_shell = require("awesome-wm-widgets.watson-shell.watson-shell")
 local demoMode_widget = require("awesome-wm-widgets.demoMode-widget.demomode") -- teaching mode
@@ -1067,7 +1067,7 @@ s.mytasklist = awful.widget.tasklist {
               mpdarc_widget,
               --buttonmpc,
               volumearc_widget,
-              pomodoroarc_widget,
+              --pomodoroarc_widget,
               --watsonarc_widget,
               batteryarc_widget,
               smallspace,
@@ -1372,8 +1372,10 @@ awful.key({ modkey, "Control" }, "n",
   {description = "restore minimized", group = "client"}),
 
 -- scratchpads
-awful.key({ modkey,           }, "z", function () poppin.pop("terminal", "kitty ", "center", 600) end),
---awful.key({ modkey,           }, "y", function () scratch.toggle("urxvt -name scratchpad-watson ", {instance = "scratch-watson"}) end),
+-- poppin.pop(name, command, [position[, size[, properties[, callback]]]])
+-- https://github.com/raksooo/poppin
+awful.key({ modkey,           }, "z", function () poppin.pop("terminal", terminal, "center", 600) end),
+awful.key({ modkey,           }, "a", function () poppin.pop("calc", terminal .. " -e sh -c 'echo \"---- bc -lq ----\n\";bc -lq'", "center", 600) end),
 awful.key({ modkey, "Shift"   }, "z", function () poppin.pop("python", "kitty --name scratchpad -e python", "center", 600) end),
 -- Prompt
 awful.key({ modkey },            "Return",     function () awful.screen.focused().mypromptbox:run() end,
@@ -1403,9 +1405,9 @@ awful.key({ modkey, }, "d", function ()
     return awful.rules.match(c, {name = "ncmpcpp"})
   end
   --awful.client.run_or_raise("urxvt" .. ' -e ncmpcpp', matcher)
-  awful.client.run_or_raise(terminal .. ' -e ncmpcpp', matcher)
+  awful.client.run_or_raise(terminal .. ' --class ncmpcpp -e ncmpcpp', matcher)
 end),
-awful.key({ modkey, }, "e", function () awful.util.spawn(terminal .." -e ranger") end),
+awful.key({ modkey, }, "e", function () awful.util.spawn(terminal .." --class ranger -e ranger") end),
 awful.key({ modkey, "Shift" }, "d", function () awful.spawn.with_shell("mpc lsplaylists| rofi -config ~/.config/rofi/config -dmenu -p \"Choose playlist\" | xargs --no-run-if-empty /home/raph/.scripts/mpc-startPlaylist.sh") end),
 awful.key({ modkey, "Shift" }, "e", function () awful.util.spawn("nemo") end, {description = "run pcmanfm", group = "apps"}),
 --awful.key({ modkey,           }, "e", function () awful.util.spawn("thunar") end, {description = "run pcmanfm", group = "apps"}),
@@ -1441,7 +1443,6 @@ end, {description = "run mutt", group = "apps"}),
     awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -config ~/.config/rofi/config -show combi -combi-modi \"window,run,snippet\" -modi combi,calc")       end,{description = "run", group = "launcher"}), 
     --awful.key({ modkey,           }, "b", function () awful.util.spawn("rofi -modi \"file:./scripts/rofi/rofi-file-browser.sh\" -show file")       end,{description = "run", group = "launcher"}), 
     awful.key({ modkey, "Shift" }, "space",     function () awful.util.spawn("rofi-pass")             end),
-    --awful.key({ modkey }, "a",     function () dmenuhelpers.expandtext()       end,{description = "text expansion", group = "launcher"}),
     --
     awful.key({ modkey }, "r",
       function ()
@@ -1651,8 +1652,6 @@ awful.rules.rules = {
       callback = function(c)
         awful.client.setslave(c)
       end },
-    { rule = { class = "microsoft teams" },
-      properties = { focus = false } },
     { rule = { name = "drawin" },
       properties = { focus = false } },
     { rule = { name = "Jerry" },
@@ -1663,19 +1662,25 @@ awful.rules.rules = {
       properties = { screen = 1, tag = "work" } },
     { rule = { name = "mutt" },
       properties = { screen = 1, tag = "mail", switchtotag = true } },
+    { rule = { instance = "microsoft teams" },
+      properties = { screen = screen:count(), tag = "im", focus = false} },
     { rule = { name = "Rambox" },
       properties = { screen = screen:count(), tag = "im"} },
     { rule = { name = "Franz" },
       properties = { screen = screen:count(), tag = "im"} },
+    { rule = { name = "FreeCAD" },
+      properties = { screen = 1, tag = "root", switchtotag = false  } },
     { rule = { name = "Eclipse" },
       properties = { screen = 1, tag = "work", switchtotag = false  } },
     { rule = { name = "Sonata" },
       properties = { screen = screen:count(), tag = "media", switchtotag = true  } },
-    { rule = { name = "ncmpcpp" },
+    { rule = { instance = "ncmpcpp" },
       properties = { screen = screen:count(), tag = "media", switchtotag = true  } },
     { rule = { class = "Acroread" },
       properties = { screen = screen:count(), tag = "pdf", switchtotag = true } },
     { rule = { class = "Epdfview" },
+      properties = { screen = screen:count(), tag = "pdf", switchtotag = true } },
+    { rule = { class = "okular" },
       properties = { screen = screen:count(), tag = "pdf", switchtotag = true } },
     { rule = { class = "Zathura" },
       properties = { screen = screen:count(), tag = "pdf", switchtotag = true } },

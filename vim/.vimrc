@@ -46,6 +46,7 @@ Plugin 'vimwiki/vimwiki'
 Plugin 'lervag/vimtex'
 Plugin 'vim-scripts/mutt-canned'
 Plugin 'Konfekt/vim-notmuch-addrlookup'
+Plugin 'felipec/notmuch-vim'
 
 Bundle 'scrooloose/syntastic'
 Bundle 'mbbill/undotree'
