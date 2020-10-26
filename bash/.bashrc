@@ -144,3 +144,4 @@ PS1='\D{%d} \[${RED}\]\t \[$yellow\]$(__git_ps1 "[%s $(get_sha)] ")\[${green}\]\
 
 # à modifier pour changer le nom de la fenêtre urxvt
 #PROMPT_COMMAND='DEFTITLE="${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}"; echo -ne "\033]0;${TITLE:-$DEFTITLE}\007"'
+source ~/.kb_alias

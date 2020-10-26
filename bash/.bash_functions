@@ -32,3 +32,7 @@ function email {
 function infos { 
     info --vi-keys --subnodes -o - "$@" | less; 
 }
+
+cgrep(){
+    grep -a "$1" "/home/raph/COMMANDES"
+}

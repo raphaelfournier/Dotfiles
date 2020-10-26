@@ -14,6 +14,9 @@ alias clock='tty-clock -c -C6'
 alias cdd='cd && ls -tr'
 alias chmoad="chmod"
 alias ds='cd ~/downloads && ls -tr'
+alias dpsa='docker ps -a --format "table {{.ID}} {{.Names}}\t{{printf \"%.25s\" .Image}}\t{{.Status}}\t{{.Ports}}"'
+alias dsr='docker stop '
+function dsr() { docker stop $@ && docker rm $@; }
 alias cdc='cd ~/Current'
 alias cleanOfflineimap='echo rm .offlineimap/*lock; rm .offlineimap/*lock'
 #alias g='sudo netcfg labo'
@@ -98,7 +101,7 @@ function hier() {
 
 alias pptview='wine ~/.wine/drive_c/Program\ Files/Microsoft\ Office/Office12/PPTVIEW.EXE'
 alias killnewsbeuter='kill -9 `pgrep newsb`'
-alias cgrep="grep --color=always"
+#alias cgrep="grep --color=always"
 alias alsamixer='alsamixer -D hw:0'
 alias synchroBT='sudo /etc/rc.d/bluetooth restart && sync-ui'
 alias skype='LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so skype'
@@ -109,7 +112,7 @@ alias riazan='ssh -Y -l fournier riazan'
 alias ovh='ssh -l fournier 91.121.183.150'
 alias webcam='mplayer tv:// -tv driver=v4l2:device=/dev/video0:brightness=40 -fps 30'
 alias grepc='grep --color=auto'
-alias dfh='df -h'
+alias dfh='df -h | grep -v tmpfs'
 alias cpuondemand='sudo cpufreq-set -g ondemand'
 alias battery='ibam -a'
 alias temperature='cat /proc/acpi/thermal_zone/THRM/temperature'
@@ -219,3 +222,4 @@ alias awesomeWorronBlue="cd ~/.config/; rm awesome -f; ln -s awesomeConfigs/Worr
 alias awesomeRFSWorpan="cd ~/.config/; rm awesome -f; ln -s awesomeConfigs/rfsWorpan awesome; cd ; echo \"awesome.restart()\" | awesome-client"
 
 export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(vim {})+abort'"
+alias youtube-mp3='youtube-dl -x --audio-format mp3'
