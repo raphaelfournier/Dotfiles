@@ -14,6 +14,7 @@ udiskie -san &
 nm-applet --sm-disable &
 arandr-indicator &
 vgrive &
+stretchly &
 #wal -R & 
 #rambox &
 # xpad &

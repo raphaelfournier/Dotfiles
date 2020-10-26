@@ -32,7 +32,7 @@ bind ' ' windowlist -b
 #shelltitle '$ |zsh:'
 #hardstatus alwayslastline
 
-#termcapinfo xterm* ti@:te@
+termcapinfo alacr* ti@:te@
 term "screen-256color"
 attrcolor b ".I"
 defbce "on"

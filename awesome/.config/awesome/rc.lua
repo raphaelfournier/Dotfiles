@@ -1097,7 +1097,7 @@ s.mytasklist = awful.widget.tasklist {
 					widget       = wibox.container.background
 				},
         {
-          {
+          --{
             {
                 systray,
               left   = 10,
@@ -1110,9 +1110,9 @@ s.mytasklist = awful.widget.tasklist {
             bg           = beautiful.tasklist_bg_normal,
             fg           = beautiful.tasklist_fg_normal,
             widget       = wibox.container.background
-          },
-          layout = awful.widget.only_on_screen,
-          screen = 1, -- Only display on screen 1
+          --},
+          --layout = awful.widget.only_on_screen,
+          --screen = 1, -- Only display on screen 1
         }
 				--mykeyboardlayout,
 				--space,
@@ -1388,18 +1388,18 @@ awful.key({ modkey,        }, "v", function () watson_shell.launch() end),
   --end
   --awful.client.run_or_raise('rambox', matcher)
 --end),
-awful.key({ modkey, }, "s", function ()
-  local matcher = function (c)
-    return awful.rules.match(c, {class = "calendar"})
-  end
-  awful.client.run_or_raise('vimb --class=calendar https://calendar.google.com/calendar/r/month', matcher)
-end),
-awful.key({ modkey, "Shift" }, "s", function ()
-  local matcher = function (c)
-    return awful.rules.match(c, {class = "todolist"})
-  end
-  awful.client.run_or_raise('vimb --class=todolist https://www.ticktick.com/', matcher)
-end),
+--awful.key({ modkey, }, "s", function ()
+  --local matcher = function (c)
+    --return awful.rules.match(c, {class = "calendar"})
+  --end
+  --awful.client.run_or_raise('vimb --class=calendar https://calendar.google.com/calendar/r/month', matcher)
+--end),
+--awful.key({ modkey, "Shift" }, "s", function ()
+  --local matcher = function (c)
+    --return awful.rules.match(c, {class = "todolist"})
+  --end
+  --awful.client.run_or_raise('vimb --class=todolist https://www.ticktick.com/', matcher)
+--end),
 awful.key({ modkey, }, "d", function ()
   local matcher = function (c)
     return awful.rules.match(c, {name = "ncmpcpp"})
@@ -1440,7 +1440,7 @@ end, {description = "run mutt", group = "apps"}),
     awful.key({ modkey,   }, "q", function () awful.util.spawn("rofi-mpc -config ~/.config/rofi/config ")       end,{description = "rofi-mpc", group = "launcher"}), 
     awful.key({ modkey,  "Shift"  }, "w", function () awful.spawn.with_shell("/usr/bin/cat /home/raph/.fzf-marks | rofi -config ~/.config/rofi/config -dmenu -p ranger-marks | cut -d ':' -f 2 | xargs --no-run-if-empty " .. terminal .. "-e ranger")       end), 
     --awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -config ~/.config/rofi/config -show combi -combi-modi \"window,run,snippet\" -modi combi,snippet:/home/raph/Code/langageBash/rofi-modi-snippets/snippets.sh,calc,emoji,fileb_:/usr/share/doc/rofi/examples/rofi-file-browser.sh,top,json-dict,ssh")       end,{description = "run", group = "launcher"}), 
-    awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -config ~/.config/rofi/config -show combi -combi-modi \"window,run,snippet\" -modi combi,calc")       end,{description = "run", group = "launcher"}), 
+    awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -config ~/.config/rofi/config -show combi -combi-modi \"window,run\" -modi combi,xr:/home/raph/Code/langageBash/rofi-modi-xrandr.sh,calc")       end,{description = "run", group = "launcher"}), 
     --awful.key({ modkey,           }, "b", function () awful.util.spawn("rofi -modi \"file:./scripts/rofi/rofi-file-browser.sh\" -show file")       end,{description = "run", group = "launcher"}), 
     awful.key({ modkey, "Shift" }, "space",     function () awful.util.spawn("rofi-pass")             end),
     --
@@ -1684,6 +1684,8 @@ awful.rules.rules = {
       properties = { screen = screen:count(), tag = "pdf", switchtotag = true } },
     { rule = { class = "Zathura" },
       properties = { screen = screen:count(), tag = "pdf", switchtotag = true } },
+    { rule = { instance = "floating" },
+      properties = { floating = true, placement = awful.placement.centered }},
     { rule = { class = "Zathura", name = "Imprimer" },
       properties = { floating = false }},
     { rule = { class = "QtPass" }, properties = { 
