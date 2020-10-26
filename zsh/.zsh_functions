@@ -26,3 +26,7 @@ bookmark() {
         fi
     fi
 }
+
+newwindowtitle(){
+echo echo -e "\033]0;$*\a"
+}

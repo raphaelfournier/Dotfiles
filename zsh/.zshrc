@@ -124,7 +124,13 @@ source $HOME/.shell_path
 #
 #export PATH="$HOME/.dynamic-colors/bin:$PATH"
 
-export HISTSIZE=10000
+#export HISTSIZE=10000
+HISTSIZE=100000000
+SAVEHIST=100000000
+setopt INC_APPEND_HISTORY
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_DUPS
+
 export EDITOR="vim"
 export MANPAGER=most
 export XDG_CONFIG_HOME="/home/raph/.config"
@@ -178,6 +184,29 @@ compinit
 #kitty + complete setup zsh | source /dev/stdin
 
 bindkey " " magic-space # do history expansion on space
+
+# https://sgeb.io/posts/2014/04/zsh-zle-custom-widgets/#list-of-widgets
+# https://linuxfr.org/users/perdu/journaux/faire-de-la-magie-avec-son-inputrc
+bindkey '^P' history-search-backward
+bindkey '^N' history-search-forward
+bindkey -s '\ej' "jobs\n"
+bindkey -s '\ev' "^A\edvim "
+bindkey -s '\el' "^E | less "
+bindkey -s '\ec' "^A\edcat "
+bindkey -s '\es' "^Asudo "
+bindkey -s '\em' "^Aman \ef^K" 
+## Pratique lorsqu'on écrit "mv nom_de\ -\ fichier_\[\ complexe\] nom_de\ -\ fichier_\[\ complexe\].txt"
+bindkey -s '\er' "^A\ef^k^y ^y" 
+
+source ~/.zsh-zle
+
+bindkey "\e[A" history-beginning-search-backward
+bindkey "\e[B" history-beginning-search-forward
+
+##### VIM STUFF
+bindkey '\e' vi-cmd-mode 
+# Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
+export KEYTIMEOUT=1 
 
 #source ~/.oh-my-zsh/invoke/zsh
 source ~/.passwordstore-variables
