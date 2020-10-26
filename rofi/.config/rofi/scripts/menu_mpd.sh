@@ -37,7 +37,7 @@ next=""
 previous=""
 
 # Variable passed to rofi
-options="$previous\n$play_pause\n$next\n$stop\n$tog_repeat\n$tog_random"
+options="$previous\n$next\n$play_pause\n$stop\n$tog_repeat\n$tog_random"
 
 # Get the current playing song
 current=$(mpc current)
