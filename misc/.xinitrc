@@ -15,8 +15,9 @@ nm-applet --sm-disable &
 arandr-indicator &
 vgrive &
 stretchly &
+ticktick &
 #wal -R & 
-#rambox &
+rambox &
 # xpad &
 #dunst &
 #cbatticon &

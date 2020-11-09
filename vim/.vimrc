@@ -21,7 +21,7 @@ Plugin 'vim-scripts/loremipsum'
 Plugin 'gu-fan/colorv.vim' 
 Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
-Bundle 'majutsushi/tagbar'
+Plugin 'preservim/tagbar'
 Plugin 'mileszs/ack.vim'
 Plugin 'mattn/calendar-vim'
 Plugin 'honza/vim-snippets'
@@ -39,6 +39,7 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
+Plugin 'universal-ctags/ctags'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
@@ -312,6 +313,8 @@ set iskeyword=@,48-57,_,-,:,192-255
 nnoremap <silent> <F8> :TagbarToggle<CR>
 nnoremap <silent> <F9> :NERDTreeToggle<CR>
 
+let g:airline#extensions#tagbar#enabled = 0
+
 let g:minimap_show='<leader>ms'
 let g:minimap_update='<leader>mu'
 let g:minimap_close='<leader>gc'
@@ -324,23 +327,26 @@ let NERDTreeShowBookmarks=1
 let NERDTreeQuitOnOpen=1
 
 let g:tagbar_autofocus=1
+"let g:tagbar_ctags_bin='/usr/bin/ctags'
 let g:tagbar_compact = 1
 let g:tagbar_indent = 1
 "let g:tagbar_width = 30
 let g:tagbar_autoclose = 1
 let g:tagbar_show_linenumbers = 1
 let g:tagbar_type_tex = {
-            \ 'ctagstype' : 'latex',
-            \ 'kinds' : [
-                \ 's:sections',
-                \ 'f:frames',
-                \ 'g:graphics:0:0'
-            \ ],
-            \ 'sort' : 0,
-        \ }
+			\ 'ctagstype' : 'tex',
+			\ 'kinds'     : [
+				\ 's:sections',
+				\ 'g:graphics:0:0',
+				\ 'l:labels',
+				\ 'r:refs:1:0',
+				\ 'p:pagerefs:1:0'
+			\ ],
+			\ 'sort'    : 0,
+			\ }
 let g:tagbar_type_rst = {
     \ 'ctagstype': 'rst',
-    \ 'ctagsbin' : '/home/raph/scripts/rst2ctags/rst2ctags.py',
+    \ 'ctagsbin' : '/home/raph/.scripts/rst2ctags/rst2ctags.py',
     \ 'ctagsargs' : '-f - --sort=yes',
     \ 'kinds' : [
         \ 's:sections',
@@ -741,8 +747,10 @@ augroup end
 "https://superuser.com/questions/277325/create-a-file-under-the-cursor-in-vim
 map <silent> <leader>cf :call writefile([], expand("<cfile>"), "t")<cr>
 map <leader>gf :e <cfile><cr>
-map <leader>Gf :vs <cfile><cr>
 nmap <C-w>f :e <cfile><CR>
+nnoremap <C-W><C-F> <C-W>vgf 
+"C-WC-F - Edit existing file under cursor in vertically split window
+map <leader>Gf :vs <cfile><cr>
 nnoremap <C-a> <C-w>
 
 "nnoremap <leader><F8> :call NextColor(1)<CR>
@@ -784,7 +792,7 @@ nmap <Leader>j :call GotoJump()<CR>
 "let g:AutoCentern
 " >>>
 
-" <<< AbrÃ©viations et raccourcis clavier 
+" <<< Abréviations et raccourcis clavier 
 ab ccom /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 ab fcom ! * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 ab lcom % * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -794,10 +802,13 @@ ab pcom # * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 "
 let @t = '^c2lCcddpkc2lTo'
 
+" help:
+" record macro, then paste content of register to get desired sequence
 let @r = 'o\Raphael{}l' "latex comments
+let @s = 'yyPvt{lc% <<< $r ' " latex modeline.
+let @d = 'kO% >>>€ýa'
 " FZF
 nnoremap <leader>o :Files<CR>
-
 " >>>
 
 " vim: set fdm=marker fmr=<<<,>>> fdl=0:fdc=2

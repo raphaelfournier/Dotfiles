@@ -137,7 +137,7 @@ xterm*utf8:          2
 xterm*eightBitInput: true
 !xterm*faceName:      terminus:size=13
 !XTerm*faceName: Anonymous Pro 12
-XTerm*faceName: Inconsolata-dz for Powerline
+XTerm*faceName: Inconsolata
 !XTerm*faceName: Liberation Mono
 XTerm*faceSize: 18
 xterm*cursorColor:   #FFFFFF
