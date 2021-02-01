@@ -13,6 +13,7 @@ alias cat='bat'
 alias clock='tty-clock -c -C6'
 alias cdd='cd && ls -tr'
 alias chmoad="chmod"
+alias deeptask='bla=`od -vAn -N1 -tu1 < /dev/urandom | tr -d " "`; cp Templates/template-deepwork.mdwn /tmp/deeptask$bla; mpc load korn; mpc play; vim /tmp/deeptask$bla +Goyo +'
 alias ds='cd ~/downloads && ls -tr'
 alias dpsa='docker ps -a --format "table {{.ID}} {{.Names}}\t{{printf \"%.25s\" .Image}}\t{{.Status}}\t{{.Ports}}"'
 alias dsr='docker stop '
@@ -48,6 +49,7 @@ alias lmc='latexmk -c'
 alias ltr='ls -tr --color=auto'
 alias ls='ls --g --color=auto'
 alias lspp='ls++'
+alias lastmeeting='vim `find  Notes/meetings/_posts -type f -printf "%T@ %p\n" | sort -n | cut -d " " -f2 | tail -n1`'
 alias m='neomutt -F ~/.muttrc'
 alias mkz='mutt -F ~/.mutt/muttrc.kz'
 alias marksedit='vim ~/.fzf-marks +'
@@ -57,6 +59,7 @@ alias mp='mplayer'
 alias n='ncmpcpp'
 alias ping='prettyping --nolegend'
 alias pwdcopy="pwd | tr -d '\n' | xclip"
+alias pwdcd='cd `xclip -o`'
 #alias preview="fzf --preview 'bat --color \"always\" {}'"
 alias r='ranger'
 alias restartNginx='sudo systemctl restart nginx.service'
@@ -71,6 +74,8 @@ alias t='tree -L 1'
 alias ur='unrar'
 alias u='unzip'
 alias v='vim'
+alias vpncnam='nmcli con up id "VPN CNAM"'
+alias wifimaison='nmcli connection up Livebox-E5C0'
 #v() {
   #vim "$(fzf --preview '[[ $(file --mime {}) =~ binary ]] &&
                  #echo {} is a binary file ||
@@ -112,7 +117,8 @@ alias awt='vim ~/.config/awesome/themes/zenburn/theme.lua'
 alias delhi='ssh -Y -l fournier woolthorpe.lip6.fr'
 alias riazan='ssh -Y -l fournier riazan'
 alias ovh='ssh -l fournier 91.121.183.150'
-alias webcam='mplayer tv:// -tv driver=v4l2:device=/dev/video0:brightness=40 -fps 30'
+alias webcam-laptop='mplayer tv:// -tv driver=v4l2:device=/dev/video0:brightness=40 -fps 30'
+alias webcam='mplayer tv:// -tv driver=v4l2:device=/dev/video2:brightness=40 -vf mirror -fps 30'
 alias grepc='grep --color=auto'
 alias dfh='df -h | grep -v tmpfs'
 alias cpuondemand='sudo cpufreq-set -g ondemand'
@@ -177,6 +183,7 @@ alias ssh='( ssh-add -l > /dev/null || ssh-add ) && ssh'
 alias vimrc='vim ~/.vimrc'
 alias screenrc='vim ~/.screenrc'
 alias rangerconf='vim ~/.config/ranger/rc.conf'
+alias rifleconf='vim ~/.config/ranger/rifle.conf'
 alias muttrc='vim ~/.mutt/muttrc'
 alias alacrittyconf='vim ~/.config/alacritty/alacritty.yml'
 alias xdefaults='vim /home/raph/.config/Xresources/Xdefaults'
@@ -217,6 +224,7 @@ alias ncmpcppmaxblack="ncmpcpp -h maxblack"
 alias lsFiles="find . -maxdepth 1 -type f -a ! -iname '\.*' -print0 | sed \"s:\.\/::g\" | xargs -0r ls --color=auto"
 alias lsFilesAll="find . -maxdepth 1 -type f -a ! -iname '\.*' -print0 | sed \"s:\.\/::g\" | xargs -0r ls --color=auto"
 alias lsDirectories="find . -maxdepth 1 -type d -a ! -iname '\.*' -print0 | sed \"s:\.\/::g\" | xargs -0r ls --color=auto -d"
+alias lsdd="ls -d */"
 
 alias awesomeElenapan="cd ~/.config/; rm awesome -f; ln -s awesomeConfigs/Elenapan awesome; cd ; echo \"awesome.restart()\" | awesome-client"
 alias awesomeZenburn="cd ~/.config/; rm awesome -f; ln -s awesomeConfigs/zenburnClassic awesome; cd ; echo \"awesome.restart()\" | awesome-client"

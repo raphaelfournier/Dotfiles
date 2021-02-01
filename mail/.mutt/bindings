@@ -126,3 +126,5 @@ pipe_decode=no wait_key=no<enter>\
 
 macro index,pager ,U "<pipe-message> urlview<Enter>" "call urlview to extract URLs out of a message"
 macro attach,compose ,U "<pipe-entry> urlview<Enter>" "call urlview to extract URLs out of a message"
+#macro pager Q <search>\^Sub<enter><next-line>
+macro pager Q <search>\^\\s+\$<enter>

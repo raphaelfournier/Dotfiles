@@ -42,12 +42,13 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'universal-ctags/ctags'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plugin 'junegunn/fzf.vim'
+"Plugin 'junegunn/fzf.vim'
 Plugin 'vimwiki/vimwiki'
 Plugin 'lervag/vimtex'
 Plugin 'vim-scripts/mutt-canned'
 Plugin 'Konfekt/vim-notmuch-addrlookup'
 Plugin 'felipec/notmuch-vim'
+Plugin 'alok/notational-fzf-vim'
 
 Bundle 'scrooloose/syntastic'
 Bundle 'mbbill/undotree'
@@ -55,6 +56,7 @@ Bundle 'nathanaelkane/vim-indent-guides'
 Plugin 'mhinz/vim-signify'
 Plugin 'osyo-manga/vim-over'
 Plugin 'chmp/mdnav'
+Plugin 'mzlogin/vim-markdown-toc'
 
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'tacahiroy/ctrlp-funky'
@@ -83,6 +85,10 @@ augroup WrapLineInTeXFile
   autocmd FileType tex setlocal showbreak=+++
   autocmd FileType tex setlocal formatoptions-=t
 augroup END
+
+autocmd FileType python set sw=4
+autocmd FileType python set ts=4
+autocmd FileType python set sts=4
 
 set spelllang=fr
 
@@ -126,6 +132,8 @@ map ,wc :w !detex \| wc -w<CR>
 " Allow using the repeat operator with a visual selection (!)
 " http://stackoverflow.com/a/8064607/127816
 vnoremap . :normal .<CR>
+
+vnoremap <C-X> <Esc>`.``gvP``P
 
 " For when you forget to sudo.. Really Write the file.
 cmap w!! w !sudo tee % >/dev/null
@@ -315,6 +323,8 @@ nnoremap <silent> <F9> :NERDTreeToggle<CR>
 
 let g:airline#extensions#tagbar#enabled = 0
 
+let g:markdown_folding = 1
+
 let g:minimap_show='<leader>ms'
 let g:minimap_update='<leader>mu'
 let g:minimap_close='<leader>gc'
@@ -325,6 +335,77 @@ let g:polyglot_disabled = ['latex']
 
 let NERDTreeShowBookmarks=1
 let NERDTreeQuitOnOpen=1
+
+" notational
+let g:nv_search_paths = ['~/Notes', '/home/raph/Publications/Blogging/sbadmin2']
+" String. Set to '' (the empty string) if you don't want an extension appended by default.
+" Don't forget the dot, unless you don't want one.
+let g:nv_default_extension = '.md'
+
+" String. Default is first directory found in `g:nv_search_paths`. Error thrown
+"if no directory found and g:nv_main_directory is not specified
+"let g:nv_main_directory = g:nv_main_directory or (first directory in g:nv_search_paths)
+
+" Dictionary with string keys and values. Must be in the form 'ctrl-KEY':
+" 'command' or 'alt-KEY' : 'command'. See examples below.
+let g:nv_keymap = {
+                    \ 'ctrl-s': 'split ',
+                    \ 'ctrl-v': 'vertical split ',
+                    \ 'ctrl-t': 'tabedit ',
+                    \ }
+
+" String. Must be in the form 'ctrl-KEY' or 'alt-KEY'
+let g:nv_create_note_key = 'ctrl-x'
+
+" String. Controls how new note window is created.
+let g:nv_create_note_window = 'vertical split'
+
+" Boolean. Show preview. Set by default. Pressing Alt-p in FZF will toggle this for the current search.
+let g:nv_show_preview = 1
+
+" Boolean. Respect .*ignore files in or above nv_search_paths. Set by default.
+let g:nv_use_ignore_files = 1
+
+" Boolean. Include hidden files and folders in search. Disabled by default.
+let g:nv_include_hidden = 0
+
+" Boolean. Wrap text in preview window.
+let g:nv_wrap_preview_text = 1
+
+" String. Width of window as a percentage of screen's width.
+let g:nv_window_width = '40%'
+
+" String. Determines where the window is. Valid options are: 'right', 'left', 'up', 'down'.
+let g:nv_window_direction = 'down'
+
+" String. Command to open the window (e.g. `vertical` `aboveleft` `30new` `call my_function()`).
+"let g:nv_window_command = 'call my_function()'
+
+" Float. Width of preview window as a percentage of screen's width. 50% by default.
+let g:nv_preview_width = 50
+
+" String. Determines where the preview window is. Valid options are: 'right', 'left', 'up', 'down'.
+let g:nv_preview_direction = 'right'
+
+" String. Yanks the selected filenames to the default register.
+let g:nv_yank_key = 'ctrl-y'
+
+" String. Separator used between yanked filenames.
+let g:nv_yank_separator = "\n"
+
+" Boolean. If set, will truncate each path element to a single character. If
+" you have colons in your pathname, this will fail. Set by default.
+let g:nv_use_short_pathnames = 1
+
+"List of Strings. Shell glob patterns. Ignore all filenames that match any of
+" the patterns.
+let g:nv_ignore_pattern = ['summarize-*', 'misc*']
+
+" List of Strings. Key mappings like above in case you want to define your own
+" handler function. Most users won't want to set this to anything.
+let g:nv_expect_keys = []
+
+nnoremap <silent> <c-s> :NV<space> 
 
 let g:tagbar_autofocus=1
 "let g:tagbar_ctags_bin='/usr/bin/ctags'
@@ -388,6 +469,27 @@ let g:tagbar_type_markdown = {
 "noremap <Space> <PageDown>
 filetype detect
 set viminfo='1000,f1
+
+function! s:goyo_enter()
+  let b:quitting = 0
+  let b:quitting_bang = 0
+  autocmd QuitPre <buffer> let b:quitting = 1
+  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+endfunction
+
+function! s:goyo_leave()
+  " Quit Vim if this is the only remaining buffer
+  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+    if b:quitting_bang
+      qa!
+    else
+      qa
+    endif
+  endif
+endfunction
+
+autocmd! User GoyoEnter call <SID>goyo_enter()
+autocmd! User GoyoLeave call <SID>goyo_leave()
 
 " limelight
 autocmd! User GoyoEnter Limelight
@@ -694,6 +796,7 @@ vnoremap // y/<C-R>"<CR>
 
 "let g:vimwiki_customwiki2html=$HOME.'/.vim/autoload/vimwiki/customwiki2html.sh'
 let g:vimwiki_list = [{'path': '~/Notes/vimwiki/', 'path_html': '~/public_html/vimwiki', 'ext': '.md', 'syntax': 'markdown'}]
+let g:vimwiki_markdown_link_ext = 1
 
 " a function to execute formd and return the cursor back
 " to it's original position within the buffer. 

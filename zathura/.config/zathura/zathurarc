@@ -1,8 +1,8 @@
 " zathurarc
 "
 "  colors
-set statusbar-bg #00FF00
-set statusbar-fg #FF0000
+"set statusbar-bg #00FF00
+"set statusbar-fg #FF0000
 set font "Inconsolata 18"
 
 set window-title-basename true
@@ -42,8 +42,10 @@ set zoom-min 10
 # zathurarc-dark
 set default-bg "#3f3f3f" #00
 set default-fg "#dcdccc" #01
-set statusbar-fg "#dcdccc" #04
-set statusbar-bg "#1E2320" #01
+set statusbar-bg "#3f3f3f" #04
+set statusbar-fg "#dcdccc" #01
+"set statusbar-fg "#dcdccc" #04
+"set statusbar-bg "#1E2320" #01
 set inputbar-fg "#dcdccc" #02
 set notification-error-bg "#dca3a3" #08
 set notification-error-fg "#1E2320" #00
@@ -58,6 +60,15 @@ set completion-bg "#303030" #02
 set completion-fg "#8cd0d3" #0C
 set notification-bg "#709080" #0B
 set notification-fg "#1E2320" #00
+
+set index-fg "#DDDDDD"
+set index-bg "#232323"
+set index-active-fg "#232323"
+set index-active-bg "#7f9f7f"
+"set index-fg "#DDDDDD"
+"set index-bg "#232323"
+"set index-active-fg "#232323"
+"set index-active-bg "#9FBC00"
 
 "set recolor-lightcolor "#1E2320" #00
 "set recolor-darkcolor "#dcdccc" #06
@@ -79,3 +90,5 @@ set statusbar-home-tilde true
 set window-title-basename true
 map <C-Button5> zoom in
 map <C-Button4> zoom out
+
+" vim: set filetype=vim:

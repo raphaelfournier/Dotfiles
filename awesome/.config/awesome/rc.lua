@@ -18,6 +18,7 @@ local lain          = require("lain")
 local rofi = require("rofi")
 local xrandr = require("xrandr")
 local poppin = require('poppin')
+--local bling = require("bling")
 
 local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
 --batteryarc_widget:connect_signal('mouse::enter', function()
@@ -35,6 +36,8 @@ local mpdarc_widget = require("awesome-wm-widgets.mpdarc-widget.mpdarc")
 --mpdarc_widget:connect_signal('mouse::enter', function()
     --awful.util.spawn("/home/raph/Dotfiles/rofi/.config/rofi/scripts/mpd.sh")
 --end)
+
+--bling.module.flash_focus.enable()
 
 require("naughtydefaults")
 -- }}}
@@ -189,6 +192,10 @@ awful.layout.layouts = {
     --awful.layout.suit.corner.nw,
     --awful.layout.suit.spiral,
     --lain.layout.termfair.center,
+    --bling.layout.mstab,
+    --bling.layout.centered,
+    --bling.layout.vertical,
+    --bling.layout.horizontal,
 
     --awful.layout.suit.tile.left, 
     --awful.layout.suit.tile.top, 
@@ -1225,7 +1232,7 @@ globalkeys = awful.util.table.join(
   awful.key({ "Mod1", "Shift" }, "s", function () awful.util.spawn("/home/raph/Dotfiles/rofi/.config/rofi/scripts/menu_screenshot.sh") end, {description = "Mute", group = "helpers"}),
   awful.key({ "Mod1", "Shift" }, "d", function () awful.util.spawn("/home/raph/Dotfiles/rofi/.config/rofi/scripts/menu_mpd.sh") end, {description = "Mute", group = "helpers"}),
   awful.key({ "Mod1", "Shift" }, "w", function () awful.util.spawn("/home/raph/Dotfiles/rofi/.config/rofi/scripts/menu_volume.sh") end, {description = "Mute", group = "helpers"}),
-  awful.key({ "Mod1",  "Shift"  }, "x", function () awful.spawn.with_shell("find /home/raph/.screenlayout/* -type f -print | rofi -config ~/.config/rofi/config -dmenu -p ScreenLayout | xargs --no-run-if-empty " .. terminal .. " -e zsh")       end), 
+  --awful.key({ "Mod1",  "Shift"  }, "x", function () awful.spawn.with_shell("find /home/raph/.screenlayout/* -type f -print | rofi -config ~/.config/rofi/config -dmenu -p ScreenLayout | xargs --no-run-if-empty " .. terminal .. " -e zsh")       end), 
 
   -- 0 for tag 10
   awful.key({ modkey }, "à",
@@ -1375,7 +1382,7 @@ awful.key({ modkey, "Control" }, "n",
 -- poppin.pop(name, command, [position[, size[, properties[, callback]]]])
 -- https://github.com/raksooo/poppin
 awful.key({ modkey,           }, "z", function () poppin.pop("terminal", terminal, "center", 600) end),
-awful.key({ modkey,           }, "a", function () poppin.pop("calc", terminal .. " -e sh -c 'echo \"---- bc -lq ----\n\";bc -lq'", "center", 600) end),
+awful.key({ modkey,           }, "a", function () poppin.pop("calc", terminal .. " -e sh -c 'echo \"---- eva ----\nprevious answer _\n\";eva'", "center", 600) end),
 awful.key({ modkey, "Shift"   }, "z", function () poppin.pop("python", "kitty --name scratchpad -e python", "center", 600) end),
 -- Prompt
 awful.key({ modkey },            "Return",     function () awful.screen.focused().mypromptbox:run() end,
@@ -1432,15 +1439,15 @@ end, {description = "run mutt", group = "apps"}),
     --awful.key({ modkey,           }, "w", function () awful.util.spawn("surf https://calendar.google.com/calendar") end, --{description = "agenda", group = "apps"}),
     --awful.key({ modkey, "Shift" }, "w", function () awful.util.spawn("surf https://ticktick.com/") end, --{description = "ticktick", group = "apps"}),
 
-    awful.key({ modkey, "Control" }, "a", function () awful.util.spawn("xscreensaver-command -lock")   end,
-      {description = "lock screen", group = "apps"}),
+    --awful.key({ modkey, "Control" }, "a", function () awful.util.spawn("xscreensaver-command -lock")   end, {description = "lock screen", group = "apps"}),
+    awful.key({ modkey, "Control" }, "a", function () awful.util.spawn("xautolock -locknow")   end, {description = "lock screen", group = "apps"}),
     -- 
 
     --awful.key({ modkey,           }, "<", function () dmenuhelpers.run()       end,{description = "run", group = "launcher"}), 
     awful.key({ modkey,   }, "q", function () awful.util.spawn("rofi-mpc -config ~/.config/rofi/config ")       end,{description = "rofi-mpc", group = "launcher"}), 
     awful.key({ modkey,  "Shift"  }, "w", function () awful.spawn.with_shell("/usr/bin/cat /home/raph/.fzf-marks | rofi -config ~/.config/rofi/config -dmenu -p ranger-marks | cut -d ':' -f 2 | xargs --no-run-if-empty " .. terminal .. "-e ranger")       end), 
     --awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -config ~/.config/rofi/config -show combi -combi-modi \"window,run,snippet\" -modi combi,snippet:/home/raph/Code/langageBash/rofi-modi-snippets/snippets.sh,calc,emoji,fileb_:/usr/share/doc/rofi/examples/rofi-file-browser.sh,top,json-dict,ssh")       end,{description = "run", group = "launcher"}), 
-    awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -config ~/.config/rofi/config -show combi -combi-modi \"window,run\" -modi combi,xr:/home/raph/Code/langageBash/rofi-modi-xrandr.sh,calc")       end,{description = "run", group = "launcher"}), 
+    awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -config ~/.config/rofi/config -show combi -combi-modi \"window,run\" -modi combi,xr:/home/raph/Code/langageBash/rofi-modi-xrandr.sh,emoji:~/.scripts/rofiemoji/rofiemoji.sh,calc")       end,{description = "run", group = "launcher"}), 
     --awful.key({ modkey,           }, "b", function () awful.util.spawn("rofi -modi \"file:./scripts/rofi/rofi-file-browser.sh\" -show file")       end,{description = "run", group = "launcher"}), 
     awful.key({ modkey, "Shift" }, "space",     function () awful.util.spawn("rofi-pass")             end),
     --
@@ -1664,6 +1671,10 @@ awful.rules.rules = {
       properties = { screen = 1, tag = "mail", switchtotag = true } },
     { rule = { instance = "microsoft teams" },
       properties = { screen = screen:count(), tag = "im", focus = false} },
+    { rule = { instance = "zoom" },
+      properties = { screen = screen:count(), tag = "im"} },
+    { rule = { name = "Signal" },
+      properties = { screen = screen:count(), tag = "im"} },
     { rule = { name = "Rambox" },
       properties = { screen = screen:count(), tag = "im"} },
     { rule = { name = "Franz" },
@@ -1714,7 +1725,7 @@ awful.rules.rules = {
     { rule = { class = "Homebank" },
       properties = { screen = screen:count(), tag = "media", switchtotag = true} },
     { rule = { class = "ticktick-" },
-      properties = { screen = screen:count(), tag = "im"} },
+      properties = { screen = screen:count(), tag = "todo"} },
     { rule = { class = "yakyak" },
       properties = { screen = screen:count(), tag = "im"} },
     { rule = { class = "Chromium" },
@@ -1822,12 +1833,12 @@ client.connect_signal("request::titlebars", function(c)
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
---client.connect_signal("mouse::enter", function(c)
-    --if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
-        --and awful.client.focus.filter(c) then
-        --client.focus = c
-    --end
---end)
+client.connect_signal("mouse::enter", function(c)
+    if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
+        and awful.client.focus.filter(c) then
+        client.focus = c
+    end
+end)
 
 client.connect_signal("focus", function(c) 
   c.border_color = beautiful.border_focus 

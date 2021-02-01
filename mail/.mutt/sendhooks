@@ -1,0 +1,4 @@
+send2-hook "~t val.bouillennec@gmail.com" "my_hdr Cc: dannec@essilor.fr"
+#set muttlisp_inline_eval
+#send2-hook "~t val.bouillennec@gmail.com" "my_hdr CC: dannec@essilor.fr"
+#send2-hook "~t val.bouillennec@gmail.com" "my_hdr CC: valentin.bouillennec.encadrant"

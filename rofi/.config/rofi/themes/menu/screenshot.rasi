@@ -30,7 +30,7 @@
 /* ########### */
 
 #window {
-  width: 26%;
+  width: 33%;
   height: 26%;
   border: 4px;
   border-radius: 10px;
@@ -99,7 +99,7 @@ textbox-prompt-colon {
 }
 #listview {
   spacing: @option-6-listview-spacing;
-  lines: 3;
+  lines: 4;
 }
 #element {
   font: @icon-font;

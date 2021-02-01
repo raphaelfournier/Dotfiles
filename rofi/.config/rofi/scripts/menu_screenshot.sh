@@ -11,20 +11,25 @@ rofi_command="rofi -theme themes/menu/screenshot.rasi"
 screen=""
 area=""
 window=""
+sec="5"
+
 
 # Variable passed to rofi
-options="$screen\n$area\n$window"
+options="$screen\n$area\n$window\n$sec"
 
 chosen="$(echo -e "$options" | $rofi_command -p 'scrot' -dmenu -selected-row 1)"
 case $chosen in
     $screen)
-        sleep 1; scrot 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES)/Screenshots ; alacritty -e ranger $$(xdg-user-dir PICTURES)/Screenshots/'
+        sleep 1; scrot 'Screenshot_%Y-%m-%d_%H-%M-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES)/Screenshots ; alacritty -e ranger $$(xdg-user-dir PICTURES)/Screenshots/'
         ;;
     $area)
-        scrot -s 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES)/Screenshots ; alacritty -e ranger $$(xdg-user-dir PICTURES)/Screenshots/'
+        scrot -s 'Screenshot_%Y-%m-%d_%H-%M-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES)/Screenshots ; alacritty -e ranger $$(xdg-user-dir PICTURES)/Screenshots/'
         ;;
     $window)
-        sleep 1; scrot -u 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES)/Screenshots ; alacritty -e ranger $$(xdg-user-dir PICTURES)/Screenshots/'
+        sleep 1; scrot -u 'Screenshot_%Y-%m-%d_%H-%M-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES)/Screenshots ; alacritty -e ranger $$(xdg-user-dir PICTURES)/Screenshots/'
+        ;;
+    $sec)
+        sleep 5; scrot 'Screenshot_%Y-%m-%d_%H-%M-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES)/Screenshots ; alacritty -e ranger $$(xdg-user-dir PICTURES)/Screenshots/'
         ;;
 esac
 

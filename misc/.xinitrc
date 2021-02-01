@@ -2,7 +2,8 @@ xrdb -merge ~/.Xresources
 #compton -bCG & # transparence
 # urxvt daemon
 #urxvtd -q -o -f
-xscreensaver -no-splash &
+#xscreensaver -no-splash &
+/home/raph/.scripts/locker.sh &
 #udisksvm --auto &
 udiskie -san &
 #
@@ -10,12 +11,12 @@ udiskie -san &
 #xcompmgr &
 #skype &
 #wicd-client &
-/home/raph/scripts/setDbusSessionBusAddress.sh &
+/home/raph/.scripts/setDbusSessionBusAddress.sh &
 nm-applet --sm-disable &
 arandr-indicator &
 vgrive &
 stretchly &
-ticktick &
+#ticktick &
 #wal -R & 
 rambox &
 # xpad &

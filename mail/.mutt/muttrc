@@ -208,6 +208,7 @@ source ~/.mutt/gpg
 source ~/.mutt/savehooks
 #source ~/.mutt/sidebar
 #source ~/.mutt/notmuch
+source ~/.mutt/sendhooks
 
 
 macro pager,index,generic ,f      "<vfolder-from-query>tag:flux<enter>"
