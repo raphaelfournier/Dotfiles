@@ -18,6 +18,9 @@ local lain          = require("lain")
 local rofi = require("rofi")
 local xrandr = require("xrandr")
 local poppin = require('poppin')
+
+local tagBlocked = false
+
 --local bling = require("bling")
 
 local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
@@ -166,22 +169,6 @@ editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
 mod1 = "Mod1"
 
---local toto = awful.keygrabber {
-    --keybindings = {
-        --{{'Mod1'         }, 'Tab', awful.client.focus.history.select_previous},
-        --{{'Mod1', 'Shift'}, 'Tab', awful.client.focus.history.select_next    },
-    --},
-    ---- Note that it is using the key name and not the modifier name.
-    --stop_key           = 'Mod1',
-    --stop_event         = 'release',
-    --start_callback     = awful.client.focus.history.disable_tracking,
-    --stop_callback      = awful.client.focus.history.enable_tracking,
-    --export_keybindings = true,
---}
-
---toto:run()
-
-
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     --awful.layout.suit.spiral.dwindle,
@@ -196,28 +183,6 @@ awful.layout.layouts = {
     --bling.layout.centered,
     --bling.layout.vertical,
     --bling.layout.horizontal,
-
-    --awful.layout.suit.tile.left, 
-    --awful.layout.suit.tile.top, 
-    --awful.layout.suit.fair, 
-    --awful.layout.suit.max.fullscreen, 
-    --awful.layout.suit.corner.nw,
-    --treetile,
-    --awful.layout.suit.floating,
-    --awful.layout.suit.tile,
-    --awful.layout.suit.tile.left,
-    --awful.layout.suit.tile.bottom,
-    --awful.layout.suit.tile.top,
-    --awful.layout.suit.fair,
-    --awful.layout.suit.fair.horizontal,
-    --awful.layout.suit.spiral,
-    --awful.layout.suit.max,
-    --awful.layout.suit.max.fullscreen,
-    --awful.layout.suit.magnifier,
-    --awful.layout.suit.corner.nw,
-    -- awful.layout.suit.corner.ne,
-    -- awful.layout.suit.corner.sw,
-    -- awful.layout.suit.corner.se,
 }
 -- }}}
 
@@ -257,6 +222,15 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
       { "coffee break", function() awful.util.spawn("xscreensaver-command -lock") end, beautiful.coffee },
       { "insideOutside", function() awful.util.spawn_with_shell("bash ~/.scripts/insideOutside.sh") end },
       { "cursor", followcursormenu, beautiful.menu_submenu_icon },
+      { "blockOnTag", function(self) 
+              tagBlocked = not tagBlocked
+              --if tagBlocked then
+                  --self.icon:set_image(beautiful.tag_icon_pdf)
+              --else
+                  --self.icon:set_image(beautiful.awesome_icon)
+              --end
+              naughty.notify{ title="TagBlocked", text = tostring(tagBlocked), timeout = 3} 
+          end },
       { "open terminal", terminal }
     }
   })
@@ -402,21 +376,37 @@ end, 61, "BAT0")
 
 
 local taglist_buttons = awful.util.table.join(
-                    awful.button({ }, 1, function(t) t:view_only() end),
+                    awful.button({ }, 1, function(t) 
+                        if not tagBlocked then
+                            t:view_only() 
+                        end
+                    end),
                     awful.button({ modkey }, 1, function(t)
                                               if client.focus then
                                                   client.focus:move_to_tag(t)
                                               end
                                           end),
-                    awful.button({ }, 2, function(t) naughty.notification{ title="tag debug", text = t.name } end),
-                    awful.button({ }, 3, awful.tag.viewtoggle),
+                    --awful.button({ }, 2, function(t) naughty.notify{ title="tag debug", text = t.name } end),
+                    awful.button({ }, 3, function(t) 
+                        if not tagBlocked then
+                            awful.tag.viewtoggle()
+                        end
+                    end),
                     awful.button({ modkey }, 3, function(t)
                                               if client.focus then
                                                   client.focus:toggle_tag(t)
                                               end
                                           end),
-                    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-                    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+                    awful.button({ }, 4, function(t) 
+                        if not tagBlocked then
+                            awful.tag.viewnext(t.screen) 
+                        end
+                end),
+                    awful.button({ }, 5, function(t) 
+                        if not tagBlocked then
+                            awful.tag.viewprev(t.screen) 
+                        end
+                end)
                 )
 
 testpopup = awful.popup {
@@ -556,13 +546,21 @@ local tasklist_buttons = awful.util.table.join(
                                                   c:raise()
                                               end
                                           end),
-                     awful.button({ }, 2, function (c) c:kill() end),
+                     awful.button({ }, 2, function (c) 
+                         if not tagBlocked then
+                             c:kill() 
+                         end
+                     end),
                      --awful.button({ }, 3, client_menu_toggle_fn()),
                      awful.button({ }, 4, function ()
-                                              awful.client.focus.byidx(1)
+                         if not tagBlocked then
+                             awful.client.focus.byidx(1)
+                         end
                                           end),
                      awful.button({ }, 5, function ()
-                                              awful.client.focus.byidx(-1)
+                         if not tagBlocked then
+                             awful.client.focus.byidx(-1)
+                         end
                                           end))
 
 function set_wallpaper(s)
@@ -951,8 +949,16 @@ layoutpopup:bind_to_widget(s.mylayoutbox)
     s.mylayoutbox:buttons(awful.util.table.join(
                            --awful.button({ }, 1, function () awful.layout.inc( 1) end),
                            --awful.button({ }, 3, function () awful.layout.inc(-1) end),
-                           awful.button({ }, 4, function () awful.layout.inc( 1) end),
-                           awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+                           awful.button({ }, 4, function () 
+                        if not tagBlocked then
+                           awful.layout.inc( 1) 
+                        end
+                       end),
+                           awful.button({ }, 5, function () 
+                        if not tagBlocked then
+                       awful.layout.inc(-1) 
+                        end
+                   end)))
 
     -- Create a taglist widget
     --s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
@@ -1132,8 +1138,16 @@ s.mytasklist = awful.widget.tasklist {
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
     awful.button({ }, 3, function () mymainmenu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev)
+    awful.button({ }, 4, function() 
+        if not tagBlocked then
+            awful.tag.viewnext()
+        end
+    end),
+    awful.button({ }, 5, function() 
+        if not tagBlocked then
+            awful.tag.viewprev()
+        end
+    end)
 ))
 -- }}}
 
