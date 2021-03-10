@@ -11,6 +11,7 @@ udiskie -san &
 #xcompmgr &
 #skype &
 #wicd-client &
+blueman-applet &
 /home/raph/.scripts/setDbusSessionBusAddress.sh &
 nm-applet --sm-disable &
 arandr-indicator &

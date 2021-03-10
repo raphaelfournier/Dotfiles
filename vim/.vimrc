@@ -8,6 +8,7 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+let g:polyglot_disabled = ['latex']
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
@@ -41,6 +42,7 @@ Plugin 'vim-airline/vim-airline-themes'
 
 Plugin 'universal-ctags/ctags'
 Plugin 'sheerun/vim-polyglot'
+Plugin 'jdonaldson/vim-markdown-link-convert'
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Plugin 'junegunn/fzf.vim'
 Plugin 'vimwiki/vimwiki'
@@ -49,6 +51,9 @@ Plugin 'vim-scripts/mutt-canned'
 Plugin 'Konfekt/vim-notmuch-addrlookup'
 Plugin 'felipec/notmuch-vim'
 Plugin 'alok/notational-fzf-vim'
+
+Plugin 'Konfekt/FastFold'
+Plugin 'tmhedberg/SimpylFold'
 
 Bundle 'scrooloose/syntastic'
 Bundle 'mbbill/undotree'
@@ -61,7 +66,7 @@ Plugin 'mzlogin/vim-markdown-toc'
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'tacahiroy/ctrlp-funky'
 
-Plugin 'davidhalter/jedi-vim'
+"Plugin 'davidhalter/jedi-vim'
 Plugin 'tpope/vim-fugitive'
 
 let g:ip_boundary='-\?\s*$'
@@ -331,10 +336,27 @@ let g:minimap_close='<leader>gc'
 let g:minimap_toggle='<leader>gt'
 let g:minimap_highlight='Visual'
 
-let g:polyglot_disabled = ['latex']
 
 let NERDTreeShowBookmarks=1
 let NERDTreeQuitOnOpen=1
+
+let g:SimpylFold_docstring_preview = 1
+nmap zuz <Plug>(FastFoldUpdate)
+let g:fastfold_savehook = 1
+let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
+let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
+let g:markdown_folding = 1
+let g:tex_fold_enabled = 1
+let g:vimsyn_folding = 'af'
+let g:xml_syntax_folding = 1
+let g:javaScript_fold = 1
+let g:sh_fold_enabled= 7
+let g:ruby_fold = 1
+let g:perl_fold = 1
+let g:perl_fold_blocks = 1
+let g:r_syntax_folding = 1
+let g:rust_fold = 1
+let g:php_folding = 1
 
 " notational
 let g:nv_search_paths = ['~/Notes', '/home/raph/Publications/Blogging/sbadmin2']
@@ -806,16 +828,18 @@ function! Formd(option)
     :let save_view = winsaveview()
     :let flag = a:option
     :if flag == "-r"
-        :%! /usr/bin/formd.py -r
+        :%! /usr/bin/formd -r
     :elseif flag == "-i"
-        :%! /usr/bin/formd.py -i
+        :%! /usr/bin/formd -i
     :else
-        :%! /usr/bin/formd.py -f
+        :%! /usr/bin/formd -f
     :endif
     :call winrestview(save_view)
 endfunction
 
 " formd mappings
+nmap <leader>Fr :call Formd("-r")<CR>
+nmap <leader>Fi :call Formd("-i")<CR>
 
 function! ToggleCalendar()
   execute ":Calendar"

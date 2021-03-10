@@ -20,6 +20,7 @@ local xrandr = require("xrandr")
 local poppin = require('poppin')
 
 local tagBlocked = false
+local SCREENLOCK_COMMAND = "xautolock -locknow"
 
 --local bling = require("bling")
 
@@ -199,6 +200,7 @@ local function client_menu_toggle_fn()
         end
     end
 end
+
 -- }}}
 
 -- {{{ Menu
@@ -217,19 +219,26 @@ followcursormenu = {
   {"stop follow", function() awful.util.spawn("killall find-cursor") end },
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, icon=beautiful.awesome_icon },
       { "set config", configsets },
-      { "coffee break", function() awful.util.spawn("xscreensaver-command -lock") end, beautiful.coffee },
+      { "coffee break", function() awful.util.spawn(SCREENLOCK_COMMAND) end, beautiful.coffee },
       { "insideOutside", function() awful.util.spawn_with_shell("bash ~/.scripts/insideOutside.sh") end },
       { "cursor", followcursormenu, beautiful.menu_submenu_icon },
       { "blockOnTag", function(self) 
               tagBlocked = not tagBlocked
-              --if tagBlocked then
-                  --self.icon:set_image(beautiful.tag_icon_pdf)
-              --else
-                  --self.icon:set_image(beautiful.awesome_icon)
-              --end
-              naughty.notify{ title="TagBlocked", text = tostring(tagBlocked), timeout = 3} 
+              if tagBlocked then
+                  mylauncher.image = gears.color.recolor_image(beautiful.awesome_icon, beautiful.fg_urgent)
+                  local s = awful.screen.focused()
+                  local i = find_empty_tag()
+                  local tag = s.tags[i]
+                  if tag then
+                      tag:view_only()
+                  end
+              --naughty.notify{ title="emptytag", text = tostring(find_empty_tag()), timeout = 5} 
+              else
+                  mylauncher.image = beautiful.awesome_icon
+              end
+              --naughty.notify{ title="TagBlocked", text = tostring(tagBlocked), timeout = 3} 
           end },
       { "open terminal", terminal }
     }
@@ -274,7 +283,7 @@ styles.month   = {
   border_width = 2, 
   --shape        = rounded_shape(10)
 }
-styles.normal  = { shape    = rounded_shape(5) }
+styles.normal  = { shape    = rounded_shape(5), }
 styles.focus   = { fg_color = beautiful.fg_focus or '#000000',
                    bg_color = beautiful.border_focus or '#ff9800',
                    markup   = function(t) return '<b>' .. t .. '</b>' end,
@@ -297,10 +306,6 @@ styles.weekday = { fg_color = '#7788af',
 local month_calendar = awful.widget.calendar_popup.month(
 {
   bg=beautiful.fg_normal,
-  --opacity=50,
---font
---spacing
---margin
   week_numbers=true,
   start_sunday=false,
   long_weekdays=false,
@@ -450,6 +455,48 @@ testpopup = awful.popup {
   ontop        = true,
     hide_on_right_click = true,
 }
+
+--tagpopup = awful.popup : setup {{
+    --{
+        --{
+            --{
+                --id = 'maintext',
+                --text   = 'foobar',
+                --widget = wibox.widget.textbox
+            --},
+            --{
+                --{
+                    --text   = 'barbaz',
+                    --widget = wibox.widget.textbox
+                --},
+                --bg     = '#ff00ff',
+                --clip   = true,
+                --shape  = gears.shape.rounded_bar,
+                --widget = wibox.widget.background
+            --},
+            --{
+                --value         = 0.5,
+                --forced_height = 30,
+                --forced_width  = 100,
+                --widget        = wibox.widget.progressbar
+            --},
+            --layout = wibox.layout.fixed.vertical,
+        --},
+        --id = 'margins',
+        --margins = 10,
+        --widget  = wibox.container.margin
+    --},
+    --id = 'tagpopup',
+    --border_color = '#00ff00',
+    --border_width = 5,
+    --placement    = awful.placement.centered,
+    --shape        = gears.shape.rounded_rect,
+    --ontop        = true,
+    --visible      = false,
+--},
+--layout = wibox.layout.align.horizontal
+--}
+
 
 -- https://www.reddit.com/r/awesomewm/comments/bqzxz8/alttablike_cycle_widget_on_two_screens/
 --awful.keygrabber {
@@ -1204,6 +1251,15 @@ end
 
 -- }}}
 
+function find_empty_tag()
+    local s = awful.screen.focused()
+    --local next = next
+    for i = 1, #s.tags do
+        local tag = s.tags[i]
+        if next(tag:clients()) == nil then return i end
+    end
+end
+
 -- {{{ Key bindings
 
 local muttcommand = terminal .. " -e zsh -c \'echo -en \"\\e]1;mutt\\a\";echo -en \"\\e]2;mutt\\a\";echo -en \"\\e]0;mutt\\a\";sleep 0.05s; screen -S mutt mutt -F .muttrc\'"
@@ -1312,6 +1368,7 @@ globalkeys = awful.util.table.join(
     awful.menu.clients({theme = { width = 450 }}, { keygrabber=true, coords={x=525, y=330} })
   end),
   awful.key({ mod1,  }, "Tab", function () 
+      --tagpopup.tagpopup.margins.maintext.text = "bla"
     if testpopup.visible then 
       testpopup.visible = false 
     else testpopup.visible = true
@@ -1454,7 +1511,7 @@ end, {description = "run mutt", group = "apps"}),
     --awful.key({ modkey, "Shift" }, "w", function () awful.util.spawn("surf https://ticktick.com/") end, --{description = "ticktick", group = "apps"}),
 
     --awful.key({ modkey, "Control" }, "a", function () awful.util.spawn("xscreensaver-command -lock")   end, {description = "lock screen", group = "apps"}),
-    awful.key({ modkey, "Control" }, "a", function () awful.util.spawn("xautolock -locknow")   end, {description = "lock screen", group = "apps"}),
+    awful.key({ modkey, "Control" }, "a", function () awful.util.spawn(SCREENLOCK_COMMAND) end, {description = "lock screen", group = "apps"}),
     -- 
 
     --awful.key({ modkey,           }, "<", function () dmenuhelpers.run()       end,{description = "run", group = "launcher"}), 
@@ -1709,8 +1766,12 @@ awful.rules.rules = {
       properties = { screen = screen:count(), tag = "pdf", switchtotag = true } },
     { rule = { class = "Zathura" },
       properties = { screen = screen:count(), tag = "pdf", switchtotag = true } },
+    { rule = { class = "Xephyr" },
+      properties = { placement = awful.placement.centered }},
     { rule = { instance = "floating" },
       properties = { floating = true, placement = awful.placement.centered }},
+    { rule = { class = "Xsane", name = "Information" },
+      properties = { floating = true, geometry = { height=200, width=300 } }},
     { rule = { class = "Zathura", name = "Imprimer" },
       properties = { floating = false }},
     { rule = { class = "QtPass" }, properties = { 
