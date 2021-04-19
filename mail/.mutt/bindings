@@ -20,7 +20,7 @@ macro index <esc>z "<limit>~P | ~l<enter><current-middle>" "view all messages, s
 macro index <esc>q "<tag-pattern>~=<enter><tag-prefix>d" "tag and delete duplicate messages"
 macro index \Cv "<limit>~N<enter>oo<current-middle>" "view only new messages"
 macro index \Cw "<limit>!~F<enter><current-middle>" "hide flagged messages"
-macro index \Ce "<limit>!~P !~l<enter><current-middle><last-entry>" "show messages from me and lists, only"
+macro index \Ce "<limit>!~P !~l<enter><current-middle><last-entry>" "hide messages from me and lists"
 
 macro index ,o "<limit>~P | ~l<enter><current-middle>" "messages masqués par Ctrl+A"
 macro pager,index,generic A "<tag-pattern>~A<enter>" "all messages"
@@ -61,6 +61,7 @@ macro compose ,g      ":set sendmail=\"/usr/bin/msmtp -a google\""
 macro compose ,f      "<edit-fcc>=CNAM/INBOX"
 
 macro pager,index,generic ,a      "<change-folder>+Archives/`date +%y`<enter>"
+macro pager,index,generic ,A      "<change-folder>+Archives/`eval 'date +%y-1 | bc'`<enter>"
 macro pager,index,generic ,g      "<change-folder>+RFS/INBOX<enter>"
 macro pager,index,generic ,h     "<change-folder>+RFS/Archives<enter>"
 macro pager,index,generic ,j      "<change-folder>+CNAM/INBOX<enter>"

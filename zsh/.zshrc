@@ -71,7 +71,7 @@ ZSH_THEME="rfs"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   #git fzf-marker jump invoke
-  git jump invoke
+  git jump invoke k
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -84,6 +84,7 @@ source /home/raph/.zsh_aliases
 # https://github.com/urbainvaes/fzf-marks
 source /usr/share/fzf-marks/fzf-marks.zsh
 source /home/raph/.scripts/zsh-syntax-highlighting-filetypes/zsh-syntax-highlighting-filetypes.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 #source /usr/share/cdargs/cdargs-bash.sh
 
 # User configuration

@@ -3,6 +3,7 @@
 "  colors
 "set statusbar-bg #00FF00
 "set statusbar-fg #FF0000
+
 set font "Inconsolata 18"
 
 set window-title-basename true
@@ -20,7 +21,10 @@ map i recolor
 map r reload
 map R rotate
 
-"
+# https://unix.stackexchange.com/questions/153190/zathura-how-do-i-add-a-keybind-for-exec
+"map y focus_inputbar ":exec /home/raph/.scripts/rofi-printers.sh %"
+map y exec '/home/raph/.scripts/rofi-printers.sh "%"'
+
 # Zathura configuration file
 # See man `man zathurarc'
 
@@ -79,7 +83,8 @@ set index-active-bg "#7f9f7f"
 "set recolor-keephue "true"
 set scroll-step 200
 
-"map u exec "urxvt"
+map u exec "urxvt"
+
 set synctex true
 set synctex-editor-command "gvim +%{line} %{input}"
 set first-page-column 1:3

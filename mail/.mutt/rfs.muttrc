@@ -1,3 +1,4 @@
+# vim: ft=muttrc
 ###
 # RFS specific options
 ###
@@ -15,6 +16,7 @@ save-hook . "+RFS/Archives/"
 save-hook "~f newsletters@technologyreview.com ~C fournier-sniehotta.fr" "=Archives/MailingLists/"
 
 subscribe swiftparis-announce@meetup.com
+source ~/.mutt/cnam-lists
 
 macro index za   "<shell-escape>/usr/bin/offlineimap -a RFS -q -o<enter>" "sync IMAP" # quick-sync ~/Mail immediately with offlineimap
 

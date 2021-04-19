@@ -1,3 +1,4 @@
+# vim: ft=muttrc
 #Screenshot http://trovao.droplinegnome.org/stuff/mutt-zenburnt.png
 #
 # This is a zenburn-based muttrc color scheme that is not (even by far)
@@ -38,6 +39,8 @@ color index      color237 color116 ~N~l # new messages from list
 
 color index      color116 default "~f news@thehustle.co"
 color index      color237 color116 "~N ~f news@thehustle.co"
+color index      color116 default "~f @cool-tools.org"
+color index      color237 color116 "~N ~f @cool-tools.org"
 color index      color116 default "~f @jacquesdemeter.fr"
 color index      color237 color116 "~N ~f @jacquesdemeter.fr"
 color index      color116 default "(~C @meetup.com|~N ~f @meetup.com)"
@@ -184,3 +187,4 @@ color quoted8    color247 default
 #color index_number red default
 ## Message size, %c %l
 #color index_size cyan default
+

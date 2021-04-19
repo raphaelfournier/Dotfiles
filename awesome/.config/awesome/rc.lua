@@ -18,6 +18,7 @@ local lain          = require("lain")
 local rofi = require("rofi")
 local xrandr = require("xrandr")
 local poppin = require('poppin')
+--local fakescreen = require("awesomewm-fakescreen")
 
 local tagBlocked = false
 local SCREENLOCK_COMMAND = "xautolock -locknow"
@@ -782,15 +783,34 @@ end
 
 
 
---local myclock_t = awful.tooltip {margins = 14 }
---myclock_t:add_to_object(s.mytaglist)
---s.mytaglist:connect_signal('mouse::enter', function()
+-- local myclock_t = awful.tooltip {margins = 14 }
+-- myclock_t:add_to_object(s.mytaglist)
+-- s.mytaglist:connect_signal('mouse::enter', function()
 		--myclock_t.text = os.date('Today is %A %B %d %Y\nThe time is %T')
 --end)
 --end
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
+
+--if screen:count() == 2 then 
+    --naughty.notify{ 
+        --title= "debug",
+        --text = " nbscreens: "..tostring(screen:count())
+    --}
+    --local geo = screen[2].geometry
+    --local new_height = math.ceil(geo.height/4)
+    --local new_height2 = geo.height - new_height
+    --screen[2]:fake_resize(geo.x, geo.y, geo.width, new_height)
+    --screen.fake_add(geo.x, geo.y + new_height, geo.width, new_height2)
+--end
+
+--local geo = screen[1].geometry
+--local width_portrait = 764
+--local width_landscape = geo.width - width_portrait
+
+--screen[1]:fake_resize(geo.x, geo.y, width_landscape, geo.height)
+--screen.fake_add(geo.x + width_landscape, geo.y, width_portrait, geo.height)
 
 local systray = wibox.widget.systray()
 systray.opacity = 0.1
@@ -929,10 +949,21 @@ awful.screen.connect_for_each_screen(function(s)
     end
   end
 
+	if s.index == 2 then
+			awful.tag.add("foo", {
+							icon = beautiful.tag_icon_todo,
+							layout = awful.layout.suit.tile.bottom,
+							screen = 2,
+        selected = true,
+					})
+	end
+
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
     s.screencount = wibox.widget.textbox()
-    s.screencount:set_text(s.index .. "/" .. screen:count())
+    if screen:count() ~= 1 then
+        s.screencount:set_text(s.index .. "/" .. screen:count())
+    end
 
 		--local coffeebreak_widget = wibox.widget {
 			--image  = beautiful.coffee,
@@ -1130,6 +1161,7 @@ s.mytasklist = awful.widget.tasklist {
               --pomodoroarc_widget,
               --watsonarc_widget,
               batteryarc_widget,
+              s.screencount,
               smallspace,
               layout  = wibox.layout.fixed.horizontal,
               spacing       = 8,
@@ -1176,7 +1208,6 @@ s.mytasklist = awful.widget.tasklist {
         }
 				--mykeyboardlayout,
 				--space,
-				--s.screencount,
 			},
 		}
 	end)
@@ -1268,7 +1299,7 @@ local muttcommand = terminal .. " -e zsh -c \'echo -en \"\\e]1;mutt\\a\";echo -e
 
 globalkeys = awful.util.table.join(
   awful.key({ modkey, "Control"   }, "s",      hotkeys_popup.show_help, {description="show help", group="awesome"}),
-  --awful.key({ modkey, "Shift"   }, "w",       function() xrandr.xrandr() end, {description="show help", group="awesome"}),
+  --awful.key({ modkey, "Control"   }, "x",       function() xrandr.xrandr() end, {description="show help", group="awesome"}),
   -- {{{ Non-empty tag browsing
   awful.key({ modkey,           }, "Prior",   awful.tag.viewprev, {description = "view previous", group = "tag"}),
   awful.key({ modkey,           }, "Next",  awful.tag.viewnext, {description = "view next", group = "tag"}),
@@ -1385,7 +1416,7 @@ awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1
   {description = "focus the next screen", group = "screen"}),
 awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end,
   {description = "focus the previous screen", group = "screen"}),
-awful.key({ modkey, "Control" }, "l", function () mouse.coords { x = 185, y = 10, silent=true } end,{description = "remove cursor", group = "mouse"}),
+awful.key({ modkey, "Control" }, "l", function () mouse.coords { x = 185, y = 38, silent=true } end,{description = "remove cursor", group = "mouse"}),
 awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
   {description = "jump to urgent client", group = "client"}),
 awful.key({ modkey,           }, "Tab",
@@ -1596,6 +1627,11 @@ awful.key({ modkey, "Shift"}, "i",
         c.screen = c.original_screen
       end, 
       {description = "restore tags", group = "client"}),
+    awful.key({ modkey, "Control"   }, "o",  
+      function (c) 
+        awful.rules.apply(c)
+      end, 
+      {description = "rules on the client", group = "client"}),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end, {description = "toggle keep on top", group = "client"}),
     awful.key({ modkey,  "Shift"  }, "t",      awful.client.floating.toggle                     , {description = "toggle floating", group = "client"}),
     awful.key({ modkey,  "Shift"  }, "n",

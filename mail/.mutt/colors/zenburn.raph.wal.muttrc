@@ -46,6 +46,12 @@ color index      black cyan ~N~l # new messages from list
 color index      cyan default "(~C gdr-securite.appcovid@inria.fr| ~f gdr-securite.appcovid@inria.fr)"
 color index      black cyan "~N (~C gdr-securite.appcovid@inria.fr | ~f gdr-securite.appcovid@inria.fr)"
 
+color index      cyan default "~f laviematerielle@substack.com"
+color index      black cyan "~N ~f laviematerielle@substack.com"
+color index      cyan default "~f tout@mg.buttondown.email"
+color index      black cyan "~N ~f tout@mg.buttondown.email"
+color index      cyan default "~f recomendo@cool-tools.org"
+color index      black cyan "~N ~f recomendo@cool-tools.org"
 color index      cyan default "~f news@thehustle.co"
 color index      black cyan "~N ~f news@thehustle.co"
 
