@@ -18,6 +18,7 @@ local lain          = require("lain")
 local rofi = require("rofi")
 local xrandr = require("xrandr")
 local poppin = require('poppin')
+local bling = require("bling")
 --local fakescreen = require("awesomewm-fakescreen")
 
 local tagBlocked = false
@@ -914,7 +915,7 @@ awful.screen.connect_for_each_screen(function(s)
     awful.tag.add("graph", {
         icon = beautiful.tag_icon_graph,
         layout = awful.layout.suit.tile,
-        master_fill_policy = "master_width_factor",
+        --master_fill_policy = "master_width_factor",
         screen = 1,
       })
 
@@ -1619,6 +1620,13 @@ awful.key({ modkey, "Shift"}, "i",
           }
         end),
     --awful.key({ modkey, "Control" }, "<",  awful.client.floating.toggle                     , {description = "toggle floating", group = "client"}),
+    --
+    -- BLING TABS
+    awful.key( {mod1, "Shift"}, "t", function() bling.module.tabbed.pick() end, { description = "Add tab to tabbing group", group = "User" }),
+    awful.key( {mod1, "Shift"}, "r", function() bling.module.tabbed.pop() end, {description = "Remove tab from tabbing group", group = "User"}),
+    -- END
+
+    --
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end, {description = "move to master", group = "client"}),
     awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end, {description = "move to screen", group = "client"}),
     awful.key({ modkey, "Shift"   }, "o",  

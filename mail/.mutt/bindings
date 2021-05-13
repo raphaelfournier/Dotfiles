@@ -18,7 +18,7 @@ macro index \Cf "<limit>~F<enter><current-middle>" "limit to flagged messages"
 macro index <esc>a "<limit>all<enter>oi<current-middle>" "view all messages, sorted by discussion"
 macro index <esc>z "<limit>~P | ~l<enter><current-middle>" "view all messages, sorted by discussion"
 macro index <esc>q "<tag-pattern>~=<enter><tag-prefix>d" "tag and delete duplicate messages"
-macro index \Cv "<limit>~N<enter>oo<current-middle>" "view only new messages"
+macro index \Cv "<limit>~N<enter>od<current-middle>" "view only new messages"
 macro index \Cw "<limit>!~F<enter><current-middle>" "hide flagged messages"
 macro index \Ce "<limit>!~P !~l<enter><current-middle><last-entry>" "hide messages from me and lists"
 
@@ -129,3 +129,5 @@ macro index,pager ,U "<pipe-message> urlview<Enter>" "call urlview to extract UR
 macro attach,compose ,U "<pipe-entry> urlview<Enter>" "call urlview to extract URLs out of a message"
 #macro pager Q <search>\^Sub<enter><next-line>
 macro pager Q <search>\^\\s+\$<enter>
+macro compose A "<shell-escape>bash $HOME/.scripts/rangerpick.sh<enter><enter-command>source $HOME/.mutt/rangerpick<enter>" "Attach with Ranger"
+#macro compose A "<shell-escape>bash $HOME/.scripts/rangerpick.sh<enter><enter-command>source $HOME/.mutt/rangerpick<enter><shell-escape>bash $HOME/.scripts/rangerpick.sh clean<enter>" "Attach with Ranger"

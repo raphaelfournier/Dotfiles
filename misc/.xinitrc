@@ -16,7 +16,7 @@ blueman-applet &
 nm-applet --sm-disable &
 arandr-indicator &
 vgrive &
-stretchly &
+#stretchly &
 #ticktick &
 #wal -R & 
 rambox &

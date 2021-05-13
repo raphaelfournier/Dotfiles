@@ -12,18 +12,18 @@ passwords[1] =
 musicdirs[1] = /home/raph/Musique/
 
 [connection]
-auto = False
+auto = True
 profile_num = 0
 
 [player]
 w = 1882
-h = 658
+h = 1007
 x = 14
 y = 49
 expanded = True
 withdrawn = False
 screen = 0
-covers_type = 1
+covers_type = 0
 stop_on_exit = False
 initial_run = False
 sticky = False
@@ -47,7 +47,7 @@ show_header = True
 tabs_expanded = False
 covers = True
 minimize = False
-statusbar = False
+statusbar = True
 lyrics = True
 notification = False
 popup_time = 2

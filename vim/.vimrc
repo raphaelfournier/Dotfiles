@@ -25,7 +25,7 @@ Plugin 'junegunn/limelight.vim'
 Plugin 'preservim/tagbar'
 Plugin 'mileszs/ack.vim'
 Plugin 'mattn/calendar-vim'
-Plugin 'honza/vim-snippets'
+"Plugin 'honza/vim-snippets'
 Plugin 'francoiscabrol/ranger.vim'
 Plugin 'dylanaraps/wal.vim'
 Plugin 'yasukotelin/shirotelin'
@@ -39,6 +39,7 @@ Bundle 'Shougo/neosnippet-snippets'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'codota/tabnine-vim'
 
 Plugin 'universal-ctags/ctags'
 Plugin 'sheerun/vim-polyglot'
@@ -251,7 +252,7 @@ syn on
 set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show unicode glyphs
 set splitbelow
-set splitright
+"set splitright
 set cursorline " Highlight current line
 set showmatch
 filetype plugin on
@@ -616,6 +617,18 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
     endif
 "}
 
+call vimtex#imaps#add_map({
+      \ 'lhs' : 'i',
+      \ 'rhs' : '\item ',
+    \ 'leader' : ',',
+      \ 'wrapper' : 'vimtex#imaps#wrap_trivial'
+      \})
+call vimtex#imaps#add_map({
+      \ 'lhs' : 'o',
+      \ 'rhs' : 'itemize',
+    \ 'leader' : ',',
+      \ 'wrapper' : 'vimtex#imaps#wrap_trivial'
+      \})
 
 ">>>
 
@@ -687,6 +700,8 @@ let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_enable_auto_delimiter = 1
 let g:neocomplcache_max_list = 15
 let g:neocomplcache_force_overwrite_completefunc = 1
+
+let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 " Define dictionary.
 let g:neocomplcache_dictionary_filetype_lists = {
@@ -773,15 +788,15 @@ autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-    let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.go = '\h\w*\.\?'
+"if !exists('g:neocomplcache_omni_patterns')
+    "let g:neocomplcache_omni_patterns = {}
+"endif
+"let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+"let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+"let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+"let g:neocomplcache_omni_patterns.go = '\h\w*\.\?'
 " }
 
 " find next occurence of character under cursor
@@ -932,10 +947,19 @@ let @t = '^c2lCcddpkc2lTo'
 " help:
 " record macro, then paste content of register to get desired sequence
 let @r = 'o\Raphael{}l' "latex comments
+let @i = 'o\setlength{\itemsep}{8pt}' "beamer
+let @p = 'o\bigskip' "beamer
+let @o = 'oitemize' "beamer
+"let @P = 'o\medskip' "beamer
 let @s = 'yyPvt{lc% <<< $r ' " latex modeline.
 let @d = 'kO% >>>€ýa'
 " FZF
 nnoremap <leader>o :Files<CR>
 " >>>
+
+" todolist
+"map gg ^rx: <Esc>:r! date +" [\%H:\%M]"<ENTER>kJA<Esc>$
+"" create a new todo item
+"map gt o  _
 
 " vim: set fdm=marker fmr=<<<,>>> fdl=0:fdc=2

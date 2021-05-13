@@ -256,6 +256,44 @@ theme.tooltip_bg = theme.fg_focus
 theme.tooltip_fg = theme.bg_focus
 theme.tooltip_opacity = 0.8
 theme.tooltip_shape = shape.rounded_bar
+
+-- For tabbed only
+theme.tabbed_spawn_in_tab = false           -- whether a new client should spawn into the focused tabbing container
+
+-- For tabbar in general
+--theme.tabbar_position = "left"
+--theme.tabbar_style = "boxes" 
+--theme.tabbar_ontop  = false
+--theme.tabbar_bg_normal = "#282828"
+--theme.tabbar_bg_focus  = "#3c3836"
+
+theme.tabbar_ontop  = false
+theme.tabbar_radius = 5                     -- border radius of the tabbar
+theme.tabbar_style = "modern"              -- style of the tabbar ("default", "boxes" or "modern")
+theme.tabbar_font = "Sans 11"               -- font of the tabbar
+theme.tabbar_size = 40                      -- size of the tabbar
+theme.tabbar_position = "bottom"               -- position of the tabbar
+theme.tabbar_bg_normal = "#1E2320"          -- background color of the focused client on the tabbar
+theme.tabbar_fg_normal = "#DCDCCC"          -- foreground color of the focused client on the tabbar
+theme.tabbar_bg_focus  = "#1A2026"          -- background color of unfocused clients on the tabbar
+theme.tabbar_fg_focus  = "#ff0000"          -- foreground color of unfocused clients on the tabbar
+
+--theme.widget_main_color = "#DCDCCC"
+--theme.widget_red = "#CC9393"
+--theme.widget_yellow = "#F0DFAF"
+--theme.widget_green = "#7f9f7f"
+--theme.widget_black = "#1E2320"
+--theme.widget_blue = "#8787d7"
+--theme.widget_transparent = "#00000000"
+
+-- the following variables are currently only for the "modern" tabbar style
+theme.tabbar_color_close = "#f9929b"        -- chnges the color of the close button
+theme.tabbar_color_min   = "#fbdf90"        -- chnges the color of the minimize button
+theme.tabbar_color_float = "#ccaced"        -- chnges the color of the float button
+
+
+
+
 return theme
 
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80 set fdm=marker fmr={{{,}}} fdl=0:fdc=2
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80 fdm=marker fmr={{{,}}} fdl=0:fdc=2

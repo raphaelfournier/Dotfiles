@@ -226,3 +226,4 @@ macro index,pager   +       "<modify-labels>+"                              "+Ad
 
 set reply_with_xorig = "yes"
 set read_inc=50			# show progress when reading a mailbox
+folder-hook flux "push <last-entry><current-middle>"

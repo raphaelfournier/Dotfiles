@@ -10,6 +10,28 @@ snippet EITL
     \item ${1:#:firstitem}
 	\end{itemize}
 
+snippet alertblockit
+  \begin{alertblock}{${1:#:blocktitle}}
+    \begin{itemize}
+        \item ${2:#: }
+    \end{itemize}
+  \end{alertblock}
+
+snippet exampleblockit
+  \begin{exampleblock}{${1:#:blocktitle}}
+    \begin{itemize}
+        \item ${2:#: }
+    \end{itemize}
+  \end{exampleblock}
+
+snippet frameait
+  \begin{frame}{${1:#:frametitle}}
+    \begin{itemize}
+      \setlength{\itemsep}{10pt}
+        \item ${2:#:premier}
+    \end{itemize}
+  \end{frame}
+
 snippet frameimage
   \begin{frame}{${1:#:frametitle}}
     \includegraphics[width=.98\columnwidth]{${2:#:imageName}}
