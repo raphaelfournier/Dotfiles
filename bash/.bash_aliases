@@ -58,6 +58,7 @@ alias metro='feh -FZ ~/Images/plan-de-metro-bonne-definition.gif'
 alias mp='mplayer'
 alias n='ncmpcpp'
 alias ping='prettyping --nolegend'
+alias tt='tig status'
 alias wdcopy="pwd | tr -d '\n' | xclip"
 alias wdcd='cd `xclip -o`'
 #alias preview="fzf --preview 'bat --color \"always\" {}'"

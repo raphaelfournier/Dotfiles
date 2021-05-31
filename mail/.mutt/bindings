@@ -129,5 +129,5 @@ macro index,pager ,U "<pipe-message> urlview<Enter>" "call urlview to extract UR
 macro attach,compose ,U "<pipe-entry> urlview<Enter>" "call urlview to extract URLs out of a message"
 #macro pager Q <search>\^Sub<enter><next-line>
 macro pager Q <search>\^\\s+\$<enter>
-macro compose A "<shell-escape>bash $HOME/.scripts/rangerpick.sh<enter><enter-command>source $HOME/.mutt/rangerpick<enter>" "Attach with Ranger"
-#macro compose A "<shell-escape>bash $HOME/.scripts/rangerpick.sh<enter><enter-command>source $HOME/.mutt/rangerpick<enter><shell-escape>bash $HOME/.scripts/rangerpick.sh clean<enter>" "Attach with Ranger"
+macro compose ,A "<shell-escape>bash $HOME/.scripts/rangerpick.sh<enter><enter-command>source $HOME/.mutt/rangerpick<enter>" "Attach with Ranger"
+macro index,pager X "<pipe-message>ripmime -i - --no-nameless -d "
