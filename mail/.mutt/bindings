@@ -16,8 +16,8 @@ macro index B   "<limit>~b "                "search message bodies"
 
 macro index \Cf "<limit>~F<enter><current-middle>" "limit to flagged messages"
 macro index <esc>a "<limit>all<enter>oi<current-middle>" "view all messages, sorted by discussion"
-macro index <esc>z "<limit>~P | ~l<enter><current-middle>" "view all messages, sorted by discussion"
-macro index <esc>q "<tag-pattern>~=<enter><tag-prefix>d" "tag and delete duplicate messages"
+macro index <esc>z "<limit>~P | ~l<enter><current-middle>" "view messages excluded from default view"
+macro index <esc>d "<tag-pattern>~=<enter><tag-prefix>d" "tag and delete duplicate messages"
 macro index \Cv "<limit>~N<enter>od<current-middle>" "view only new messages"
 macro index \Cw "<limit>!~F<enter><current-middle>" "hide flagged messages"
 macro index \Ce "<limit>!~P !~l<enter><current-middle><last-entry>" "hide messages from me and lists"
@@ -34,6 +34,7 @@ macro attach s <save-entry><kill-line>~/Mail/Attachments/ "save attachments in ~
 macro attach S <save-entry><kill-line>~/downloads/ "save attachments in ~/downloads/" 
 macro compose ,a "<attach-file>`xsel -p | sed "s/ /$(printf \\026)&/g"`<enter>"
 macro index,pager,compose ,r <save-entry><kill-line>=CNAM/INBOX "save in CNAM/INBOX"
+macro index,pager,compose ,R <save-entry><kill-line>=CNAMnet/INBOX "save in CNAMnet/INBOX"
 bind index zt current-top
 bind index zz current-middle
 bind index zb current-bottom

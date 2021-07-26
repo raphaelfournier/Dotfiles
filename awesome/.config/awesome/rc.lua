@@ -264,6 +264,7 @@ smallspace.font = "Play 10"
 space = wibox.widget.textbox()
 space:set_text(' ')
 mytextclock = wibox.widget.textclock("%a %d %H:%M")
+mytextclock.font = "Inconsolata Medium 14"
 
 local styles = {}
 local function rounded_shape(size, partial)
@@ -712,7 +713,7 @@ local function set_taglist(s)
 						filter  = awful.widget.taglist.filter.noempty,
 						style   = {
 						shape        = gears.shape.rounded_bar,
-						spacing = 4,
+						spacing = 2,
 				},
 				widget_template = 
 			{
@@ -728,9 +729,9 @@ local function set_taglist(s)
 							widget = wibox.widget.imagebox,
 						},
 							layout  = wibox.layout.fixed.horizontal,
-							--spacing = 4,
+              spacing = 0,
 					},
-					left = 4,
+					left = 0,
 					right = 4,
 					widget  = wibox.container.margin,
 				},
@@ -825,8 +826,6 @@ awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
 
-    -- Each screen has its own tag table.
-    --awful.tag(
       --{"work",
         --"web",
         --"mail",
@@ -836,19 +835,7 @@ awful.screen.connect_for_each_screen(function(s)
         --"graph",
         --"root",
         --"term"
-      --},
-      --s,
-      -- {awful.layout.layouts[9],
-        --awful.layout.layouts[9],
-        --awful.layout.layouts[9],
-        --awful.layout.layouts[9],
-        --awful.layout.layouts[9],
-        --awful.layout.layouts[9],
-        --awful.layout.layouts[3],
-        --awful.layout.layouts[9],
-        --awful.layout.layouts[9],
---})
---
+
    if s.index == 1 then
     awful.tag.add("work", {
 				icon = beautiful.tag_icon_term,
@@ -876,7 +863,9 @@ awful.screen.connect_for_each_screen(function(s)
         --master_fill_policy = "master_width_factor",
         screen = 1,
       })
+
   end
+
   if s.index == screen:count() then
     awful.tag.add("im", {
         icon = beautiful.tag_icon_im,
@@ -886,12 +875,13 @@ awful.screen.connect_for_each_screen(function(s)
       })
 
   if s.index == 1 then
-    awful.tag.add("media", {
-        icon = beautiful.tag_icon_media,
-        layout = awful.layout.suit.tile.bottom,
-        master_width_factor = 0.66,
-        screen = screen:count(),
-      })
+      awful.tag.add("media", {
+              icon = beautiful.tag_icon_media,
+              layout = awful.layout.suit.tile.bottom,
+              master_width_factor = 0.66,
+              screen = screen:count(),
+          })
+
   else
     awful.tag.add("media", {
         icon = beautiful.tag_icon_media,
@@ -902,16 +892,17 @@ awful.screen.connect_for_each_screen(function(s)
       })
   end
 
-    awful.tag.add("pdf", {
-        icon = beautiful.tag_icon_pdf,
-        layout = awful.layout.suit.max,
-        master_fill_policy = "master_width_factor",
-        screen = screen:count(),
-      })
+
   end
 
-
   if s.index == 1 then
+      awful.tag.add("pdf", {
+              icon = beautiful.tag_icon_pdf,
+              layout = awful.layout.suit.max,
+              master_fill_policy = "master_width_factor",
+        screen = 1,
+          })
+
     awful.tag.add("graph", {
         icon = beautiful.tag_icon_graph,
         layout = awful.layout.suit.tile,
@@ -980,42 +971,45 @@ awful.screen.connect_for_each_screen(function(s)
     s.mylayoutbox = awful.widget.layoutbox(s)
 
     local layoutpopup = awful.popup {
-      widget = wibox.widget {
-        awful.widget.layoutlist {
-          source      = awful.widget.layoutlist.source.default_layouts,
-          screen      = 1,
-    style    = {
-      shape_selected        = gears.shape.rounded_rect,
-      bg_selected = beautiful.border_focus,
-    },
-          base_layout = wibox.widget {
-            spacing         = 5,
-            forced_num_cols = 2,
-            layout          = wibox.layout.grid.vertical,
-          },
-          widget_template = {
-            {
-              {
-                id            = 'icon_role',
-                forced_height = 46,
-                forced_width  = 46,
-                widget        = wibox.widget.imagebox,
-              },
-              margins = 4,
-              widget  = wibox.container.margin,
+        widget = wibox.widget {
+            awful.widget.layoutlist {
+                source      = awful.widget.layoutlist.source.default_layouts,
+                style    = {
+                    shape_selected        = gears.shape.rounded_rect,
+                    bg_selected = beautiful.border_focus,
+                },
+                base_layout = wibox.widget {
+                    spacing         = 5,
+                    forced_num_cols = 2,
+                    layout          = wibox.layout.grid.vertical,
+                },
+                widget_template = {
+                    {
+                        {
+                            id            = 'icon_role',
+                            forced_height = 46,
+                            forced_width  = 46,
+                            widget        = wibox.widget.imagebox,
+                        },
+                        margins = 4,
+                        widget  = wibox.container.margin,
+                    },
+                    id              = 'background_role',
+                    forced_width    = 48,
+                    forced_height   = 48,
+                    shape           = gears.shape.rounded_rect,
+                    widget          = wibox.container.background,
+                },
             },
-            id              = 'background_role',
-            forced_width    = 48,
-            forced_height   = 48,
-            shape           = gears.shape.rounded_rect,
-            widget          = wibox.container.background,
-          },
-        },
         margins = 8,
         widget  = wibox.container.margin,
       },
       preferred_positions = 'bottom',
       preferred_anchors = 'middle',
+      screen   = s,
+      -- https://awesomewm.org/doc/api/classes/awful.popup.html#awful.popup.preferred_positions
+      --preferred_positions = 'left',
+      --preferred_anchors   = {'front', 'back'},
       border_color      = beautiful.border_focus,
       border_width      = beautiful.border_width,
       shape             = gears.shape.infobubble,
@@ -1103,6 +1097,7 @@ s.mytasklist = awful.widget.tasklist {
 		s.mywibox = awful.wibar({ 
 				position = "top", 
 				screen = s,
+        height = 32,
 				shape              = gears.shape.rounded_bar,
 				bg = beautiful.wibar_bg,
 				fg = beautiful.wibar_fg
@@ -1124,7 +1119,7 @@ s.mytasklist = awful.widget.tasklist {
               s.mypromptbox,
           --coffeebreak_widget,
               layout  = wibox.layout.fixed.horizontal,
-              spacing       = 4,
+              spacing       = 2,
             },
             shape        = gears.shape.rounded_bar,
             bg           = beautiful.tasklist_bg_normal,
@@ -1133,13 +1128,13 @@ s.mytasklist = awful.widget.tasklist {
           },
           s.mytaglist,
         },
-        spacing       = 4,
+        spacing       = 2,
         layout        = wibox.layout.fixed.horizontal
       },
 			s.mytasklist, -- Middle widget
 			{ -- Right widgets
         layout = wibox.layout.fixed.horizontal,
-        spacing       = 4,
+        spacing       = 2,
 				--space,
 				--volumewidget,
 				--batwidget,
@@ -1162,10 +1157,10 @@ s.mytasklist = awful.widget.tasklist {
               --pomodoroarc_widget,
               --watsonarc_widget,
               batteryarc_widget,
-              s.screencount,
+              --s.screencount,
               smallspace,
               layout  = wibox.layout.fixed.horizontal,
-              spacing       = 8,
+              spacing       = 4,
             },
             shape        = gears.shape.rounded_bar,
             bg           = beautiful.tasklist_bg_normal,
@@ -1178,8 +1173,8 @@ s.mytasklist = awful.widget.tasklist {
         {
 					{
 						mytextclock,
-						left   = 10,  -- space between border of shape and text
-						right  = 10,
+						left   = 5,  -- space between border of shape and text
+						right  = 5,
 						top    = 3,
 						bottom = 3,
 						widget = wibox.container.margin
@@ -1309,14 +1304,12 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey,           }, "Left", function () lain.util.tag_view_nonempty(-1) end, {description = "view previous nonempty", group = "tag"}),
   awful.key({ modkey,           }, "Right", function () lain.util.tag_view_nonempty(1) end, {description = "view next nonempty", group = "tag"}),
   -- }}}
-  awful.key({ modkey, "Control" }, "<", function () systray.visible = not systray.visible end, {description = "Toggle systray visibility", group = "custom"}),
   awful.key({ modkey,           }, "Escape", awful.tag.history.restore, {description = "go back", group = "tag"}),
-
-  awful.key({ modkey, "Mod1"   }, "a", add_tag, {description = "add a tag", group = "tag"}),
+  awful.key({ modkey, "Mod1"    }, "a", add_tag, {description = "add a tag", group = "tag"}),
   --awful.key({ modkey, "Control" }, "a", move_to_new_tag, {description = "add a tag with the focused client", group = "tag"}),
   --awful.key({ modkey, "Mod1"    }, "a", copy_tag, {description = "create a copy of the current tag", group = "tag"}),
-  awful.key({ modkey, "Mod1"   }, "d", delete_tag, {description = "delete the current tag", group = "tag"}),
-  awful.key({ modkey, "Mod1"   }, "r", rename_tag, {description = "rename the current tag", group = "tag"}),
+  awful.key({ modkey, "Mod1"    }, "d", delete_tag, {description = "delete the current tag", group = "tag"}),
+  awful.key({ modkey, "Mod1"    }, "r", rename_tag, {description = "rename the current tag", group = "tag"}),
 
   awful.key({ modkey,           }, "=", function () awful.util.spawn("= --") end, {description = "Calc", group = "Calc"}),
   --awful.key({ modkey, "Shift"   }, "p", function () awful.util.spawn("cours/home/raph/.scripts/rofi/rofi-notes/rofi_notes.sh") end, {description = "Notes", group = "Calc"}),
@@ -1334,7 +1327,7 @@ globalkeys = awful.util.table.join(
   awful.key({ "Mod1", "Shift" }, "s", function () awful.util.spawn("/home/raph/Dotfiles/rofi/.config/rofi/scripts/menu_screenshot.sh") end, {description = "Mute", group = "helpers"}),
   awful.key({ "Mod1", "Shift" }, "d", function () awful.util.spawn("/home/raph/Dotfiles/rofi/.config/rofi/scripts/menu_mpd.sh") end, {description = "Mute", group = "helpers"}),
   awful.key({ "Mod1", "Shift" }, "w", function () awful.util.spawn("/home/raph/Dotfiles/rofi/.config/rofi/scripts/menu_volume.sh") end, {description = "Mute", group = "helpers"}),
-  --awful.key({ "Mod1",  "Shift"  }, "x", function () awful.spawn.with_shell("find /home/raph/.screenlayout/* -type f -print | rofi -config ~/.config/rofi/config -dmenu -p ScreenLayout | xargs --no-run-if-empty " .. terminal .. " -e zsh")       end), 
+  --awful.key({ "Mod1",  "Shift"  }, "x", function () awful.spawn.with_shell("find /home/raph/.screenlayout/* -type f -print | rofi -config ~/.config/rofi/config -dmenu -p Screenawful.layout. terminal .. " -e zsh")       end), 
 
   -- 0 for tag 10
   awful.key({ modkey }, "à",
@@ -1399,14 +1392,14 @@ globalkeys = awful.util.table.join(
     awful.menu.menu_keys.down = { "Down", "Alt_L", "j" }
     awful.menu.clients({theme = { width = 450 }}, { keygrabber=true, coords={x=525, y=330} })
   end),
-  awful.key({ mod1,  }, "Tab", function () 
-      --tagpopup.tagpopup.margins.maintext.text = "bla"
-    if testpopup.visible then 
-      testpopup.visible = false 
-    else testpopup.visible = true
-    end
-  end
-  ),
+  --awful.key({ mod1,  }, "Tab", function () 
+      ----tagpopup.tagpopup.margins.maintext.text = "bla"
+    --if testpopup.visible then 
+      --testpopup.visible = false 
+    --else testpopup.visible = true
+    --end
+  --end
+  --),
 
 -- Layout manipulation
 awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
@@ -1430,17 +1423,8 @@ awful.key({ modkey,           }, "Tab",
   {description = "go back", group = "client"}),
 
 -- Standard program
-awful.key({ modkey,           }, "x", function () awful.spawn(terminal) end,
-  {description = "open a terminal", group = "launcher"}),
---awful.key({ modkey, "Shift" }, "z", function () awful.spawn(terminal,false,
---function(c) 
---c.floating = not c.floating
---c.width = c.screen.geometry.width*2/5
---c.x = c.screen.geometry.x+c.screen.geometry.width - (c.width + (c.screen.geometry.width/12))
---c.height = c.screen.geometry.height * 0.53
---c.y = c.screen.geometry.height* 0.24
---end) end,
---{description = "open a terminal SLAVE", group = "launcher"}),
+    awful.key({ modkey,           }, "x", function () awful.spawn(terminal) end, {description = "open a terminal", group = "launcher"}),
+
     awful.key({ modkey, "Shift"}, "Down",     function () awful.client.incwfact(-0.03)          end, {}),
     awful.key({ modkey, "Shift"}, "Up",     function () awful.client.incwfact( 0.03)          end, {}),
     --awful.key({ modkey, "Shift" }, "x", function () awful.spawn(terminal,false,function(c) awful.client.setslave(c) end) end, {description = "open a terminal SLAVE", group = "launcher"}),
@@ -1451,24 +1435,19 @@ awful.key({ modkey,           }, "x", function () awful.spawn(terminal) end,
 
     awful.key({ modkey, "Shift"}, "h",     function () awful.tag.incmwfact(-0.05)          end,
       {description = "decrease master width factor", group = "layout"}),
-    --
-    --awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
-    --{description = "increase the number of master clients", group = "layout"}),
   awful.key({ modkey,           }, "n",     function () awful.tag.incnmaster( 1, nil, true) end,
     {description = "increase the number of master clients", group = "layout"}),
 
   --awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,
   --{description = "decrease the number of master clients", group = "layout"}),
-awful.key({ modkey,           }, "p",     function () awful.tag.incnmaster(-1, nil, true) end,
-  {description = "decrease the number of master clients", group = "layout"}),
-awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1, nil, true)    end,
-  {description = "increase the number of columns", group = "layout"}),
-awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
-  {description = "decrease the number of columns", group = "layout"}),
-awful.key({ modkey,           }, "<", function () awful.layout.inc( 1)                end,
-  {description = "select next", group = "layout"}),
-awful.key({ modkey, "Shift"   }, "<", function () awful.layout.inc(-1)                end,
-  {description = "select previous", group = "layout"}),
+  awful.key({ modkey,           }, "p",  function () awful.tag.incnmaster(-1, nil, true) end, {description = "decrease the number of master clients", group = "layout"}),
+  awful.key({ modkey, "Control" }, "h",  function () awful.tag.incncol( 1, nil, true)    end, {description = "increase the number of columns", group = "layout"}),
+  awful.key({ modkey, "Control" }, "l",  function () awful.tag.incncol(-1, nil, true)    end, {description = "decrease the number of columns", group = "layout"}),
+  awful.key({ modkey,           }, "<", function () awful.layout.inc( 1)  end, {description = "select next", group = "layout"}),
+  awful.key({ modkey, "Shift"   }, "<", function () awful.layout.inc(-1)  end),
+  awful.key({ modkey,           }, "w", function () awful.layout.set(awful.layout.suit.max) end, {description = "Layout max", group = "layout"}),
+  awful.key({ modkey, "Shift"   }, "w", function () awful.layout.set(awful.layout.suit.tile) end, {description = "Layout tile", group = "layout"}),
+  awful.key({ modkey, "Control" }, "<", function () systray.visible = not systray.visible end, {description = "Toggle systray visibility", group = "custom"}, {description = "select previous", group = "layout"}),
 
 awful.key({ modkey, "Control" }, "n",
   function ()
@@ -1522,12 +1501,14 @@ awful.key({ modkey, "Shift" }, "d", function () awful.spawn.with_shell("mpc lspl
 awful.key({ modkey, "Shift" }, "e", function () awful.util.spawn("nemo") end, {description = "run pcmanfm", group = "apps"}),
 --awful.key({ modkey,           }, "e", function () awful.util.spawn("thunar") end, {description = "run pcmanfm", group = "apps"}),
 --awful.key({ modkey,           }, "w", function () awful.util.spawn("firefox") end, {description = "run firefox", group = "apps"}),
-awful.key({ modkey, }, 'w', function ()
-  local matcher = function (c)
-    return awful.rules.match(c, {class = 'firefox'})
-  end
-  awful.client.run_or_raise('firefox', matcher)
-end),
+
+--awful.key({ modkey, }, "w", function ()
+  --local matcher = function (c)
+    --return awful.rules.match(c, {class = 'firefox'})
+  --end
+  --awful.client.run_or_raise('firefox', matcher)
+--end),
+
 --
 --awful.key({ modkey,           }, "c", function () awful.util.spawn("urxvt -e neomutt -F .muttrc") end, {description = "run mutt", group = "apps"}),
 --awful.key({ modkey,           }, "c", function () awful.util.with_shell("urxvt -e zsh -c \"sleep 0.1s ; screen -S mutt mutt -F .muttrc\"", {tag = "mail"}) end, {description = "run mutt", group = "apps"}),
@@ -1548,7 +1529,7 @@ end, {description = "run mutt", group = "apps"}),
 
     --awful.key({ modkey,           }, "<", function () dmenuhelpers.run()       end,{description = "run", group = "launcher"}), 
     awful.key({ modkey,   }, "q", function () awful.util.spawn("rofi-mpc -config ~/.config/rofi/config ")       end,{description = "rofi-mpc", group = "launcher"}), 
-    awful.key({ modkey,  "Shift"  }, "w", function () awful.spawn.with_shell("/usr/bin/cat /home/raph/.fzf-marks | rofi -config ~/.config/rofi/config -dmenu -p ranger-marks | cut -d ':' -f 2 | xargs --no-run-if-empty " .. terminal .. "-e ranger")       end), 
+    --awful.key({ modkey,  "Shift"  }, "w", function () awful.spawn.with_shell("/usr/bin/cat /home/raph/.fzf-marks | rofi -config ~/.config/rofi/config -dmenu -p ranger-marks | cut -d ':' -f 2 | xargs --no-run-if-empty " .. terminal .. "-e ranger")       end), 
     --awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -config ~/.config/rofi/config -show combi -combi-modi \"window,run,snippet\" -modi combi,snippet:/home/raph/Code/langageBash/rofi-modi-snippets/snippets.sh,calc,emoji,fileb_:/usr/share/doc/rofi/examples/rofi-file-browser.sh,top,json-dict,ssh")       end,{description = "run", group = "launcher"}), 
     awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -config ~/.config/rofi/config -show combi -combi-modi \"window,run\" -modi combi,xr:/home/raph/Code/langageBash/rofi-modi-xrandr.sh,emoji:~/.scripts/rofiemoji/rofiemoji.sh,calc")       end,{description = "run", group = "launcher"}), 
     --awful.key({ modkey,           }, "b", function () awful.util.spawn("rofi -modi \"file:./scripts/rofi/rofi-file-browser.sh\" -show file")       end,{description = "run", group = "launcher"}), 
@@ -1614,10 +1595,10 @@ awful.key({ modkey, "Shift"}, "i",
           c.x = c.screen.geometry.x+(c.screen.geometry.width/5)
           c.height = c.screen.geometry.height * 0.93
           c.y = c.screen.geometry.y+c.screen.geometry.height* 0.04
-          naughty.notify{ 
-            title= "debug",
-            text = tostring(c.screen.geometry.height).."-"..tostring(c.screen.index)
-          }
+          --naughty.notify{ 
+            --title= "debug",
+            --text = tostring(c.screen.geometry.height).."-"..tostring(c.screen.index)
+          --}
         end),
     --awful.key({ modkey, "Control" }, "<",  awful.client.floating.toggle                     , {description = "toggle floating", group = "client"}),
     --
@@ -1768,8 +1749,12 @@ awful.rules.rules = {
     --},
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
-    { rule = { class = "firefox" },
-    properties = { screen = 1, tag = "web" } },
+    -- WM_CLASS(STRING) = "messagingFF", "firefox" : instance, class
+    -- set INSTANCE with xdotool selectwindow set_window --classname "messagingFF"
+    --
+    { rule = { class = "firefox" }, except = { instance = "messagingFF" }, properties = { screen = 1, tag = "web" } },
+    { rule = { instance = "messagingFF" }, properties = { screen = screen:count(), tag = "im", focus = false} },
+
     { rule = { instance = "Alacritty-slave" },
       callback = function(c)
         awful.client.setslave(c)
@@ -1803,13 +1788,13 @@ awful.rules.rules = {
     { rule = { instance = "ncmpcpp" },
       properties = { screen = screen:count(), tag = "media", switchtotag = true  } },
     { rule = { class = "Acroread" },
-      properties = { screen = screen:count(), tag = "pdf", switchtotag = true } },
+      properties = { tag = "pdf", switchtotag = true } },
     { rule = { class = "Epdfview" },
-      properties = { screen = screen:count(), tag = "pdf", switchtotag = true } },
+      properties = { tag = "pdf", switchtotag = true } },
     { rule = { class = "okular" },
-      properties = { screen = screen:count(), tag = "pdf", switchtotag = true } },
+      properties = { tag = "pdf", switchtotag = true } },
     { rule = { class = "Zathura" },
-      properties = { screen = screen:count(), tag = "pdf", switchtotag = true } },
+      properties = { tag = "pdf", switchtotag = true } },
     { rule = { class = "Xephyr" },
       properties = { placement = awful.placement.centered }},
     { rule = { instance = "floating" },
@@ -1826,19 +1811,16 @@ awful.rules.rules = {
           --c.x = c.screen.geometry.x+(c.screen.geometry.width/5)
           --c.height = c.screen.geometry.height * 0.93
           --c.y = c.screen.geometry.height* 0.04
-    { rule = { class = "Alarm-clock" },
-      properties = { floating = true } },
-    { rule = { class = "LibreOffice" },
-      properties = { screen = screen:count(), tag = "pdf", floating = false, switchtotag = true, maximized_vertical = true, maximized_horizontal = true } },
-    { rule = { name = "alsamixer" },
-      properties = { screen = 1, tag = "root", switchtotag = true } },
+    { rule = { class = "Alarm-clock" }, properties = { floating = true } },
+    { rule = { class = "libreoffice" }, properties = { tag = "pdf", floating = false, switchtotag = true } },
+    { rule = { name = "alsamixer" }, properties = { screen = 1, tag = "root", switchtotag = true } },
     { rule = { class = "communications" }, properties = { screen = screen:count(),tag = "im"} },
     { rule = { class = "calendar" }, properties = { screen = screen:count(),tag = "todo",switchtotag=true, maximized = false} },
     { rule = { class = "wordreference" }, properties = { screen = screen:count(),tag = "todo",switchtotag=true,maximized=false} },
     { rule = { class = "todolist" }, properties = { screen = screen:count(),tag = "todo",switchtotag=true, maximized = false} },
     { rule = { instance = "watson" }, properties = { screen = screen:count(),tag = "todo",switchtotag=true,maximized=false} },
-    { rule = { instance = "rootterm" },
-      properties = { screen = 1, tag = "root", switchtotag = true } },
+    { rule = { class = "code-oss" }, properties = { screen = 1, tag = "work", switchtotag = true } },
+    { rule = { instance = "rootterm" }, properties = { screen = 1, tag = "root", switchtotag = true } },
     { rule = { class = "Deluge" },
       properties = { screen = screen:count(), tag = "media" } },
     { rule = { class = "Homebank" },

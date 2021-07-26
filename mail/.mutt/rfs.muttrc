@@ -20,3 +20,4 @@ macro index za   "<shell-escape>/usr/bin/offlineimap -a RFS -q -o<enter>" "sync 
 
 folder-hook RFS/INBOX "push <limit>!~P!~l!%Lpersonal-lists<enter><last-entry><current-middle>"
 folder-hook RFS/ "push <last-entry><current-middle>"
+macro index <esc>z "<limit>~P | ~l | %L personal-lists<enter><last-entry><current-middle>"

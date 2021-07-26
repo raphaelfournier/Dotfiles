@@ -36,6 +36,8 @@ alias hostsSansFacebook="sudo mv /etc/hosts.d/allow-11-stayfocused.local /etc/ho
 #alias l='ls --color=auto -trsh'
 alias l='ls -1'
 alias lh='ls --color=auto -altrh'
+alias lds='ls -trd ~/downloads/* | tail'
+alias ldsc='ls -trd ~/downloads/* | tail -n1 | xclip -r && echo "In clipboard: `ls -trd ~/downloads/* | tail -n1`"'
 alias la='ls -lha --color=auto'
 alias ll='ls -lh --color=auto'
 alias lla='ls -lha --color=auto'
@@ -63,6 +65,7 @@ alias wdcopy="pwd | tr -d '\n' | xclip"
 alias wdcd='cd `xclip -o`'
 #alias preview="fzf --preview 'bat --color \"always\" {}'"
 alias r='ranger'
+alias rapport='cp -rv ~/Templates/RapportCA/* .'
 alias restartNginx='sudo systemctl restart nginx.service'
 alias recupAttachments='ranger ~/Mail/Attachments/ ~'
 alias s='screen'
@@ -230,6 +233,7 @@ alias lsFiles="find . -maxdepth 1 -type f -a ! -iname '\.*' -print0 | sed \"s:\.
 alias lsFilesAll="find . -maxdepth 1 -type f -a ! -iname '\.*' -print0 | sed \"s:\.\/::g\" | xargs -0r ls --color=auto"
 alias lsDirectories="find . -maxdepth 1 -type d -a ! -iname '\.*' -print0 | sed \"s:\.\/::g\" | xargs -0r ls --color=auto -d"
 alias lsdd="ls -d */"
+alias listeFenetres="wmctrl -lpG | sort -k2,2n"
 
 alias awesomeElenapan="cd ~/.config/; rm awesome -f; ln -s awesomeConfigs/Elenapan awesome; cd ; echo \"awesome.restart()\" | awesome-client"
 alias awesomeZenburn="cd ~/.config/; rm awesome -f; ln -s awesomeConfigs/zenburnClassic awesome; cd ; echo \"awesome.restart()\" | awesome-client"
@@ -237,4 +241,6 @@ alias awesomeWorronBlue="cd ~/.config/; rm awesome -f; ln -s awesomeConfigs/Worr
 alias awesomeRFSWorpan="cd ~/.config/; rm awesome -f; ln -s awesomeConfigs/rfsWorpan awesome; cd ; echo \"awesome.restart()\" | awesome-client"
 
 export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(vim {})+abort'"
+
 alias youtube-mp3='youtube-dl -x --audio-format mp3'
+alias tailleCorbeille='du -sh ~/.local/share/Trash/'

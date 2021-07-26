@@ -4,6 +4,7 @@
 set shell=/bin/bash
 set nocompatible              " be iMproved, required
 filetype off                  " required
+set t_Co=256
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
