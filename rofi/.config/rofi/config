@@ -1,10 +1,1 @@
-#rofi.theme: myarthur-light 
-rofi.theme: myarthur-dark
-
-# /home/raph/.local/share/rofi/themes/myarthur-light.rasi
-
-rofi.terminal:             alacritty
-rofi.ssh-client:           ssh
-rofi.ssh-command:          {terminal} -e {ssh-client} {host}
-rofi.run-command:          {cmd}
-rofi.run-shell-command:    {terminal} -e {cmd}
+config.rasi

@@ -22,17 +22,19 @@ theme.fg_urgent  = "#CC9393"
 theme.bg_normal  = "#3F3F3F"
 theme.bg_focus   = "#1E2320"
 theme.bg_urgent  = "#3F3F3F"
+theme.default_focus  = "#7f9f7f" -- vert
 --theme.bg_systray = "#FF000000" -- theme.bg_normal
 theme.bg_systray = theme.bg_normal 
 -- }}}
 
 -- {{{ Borders
-theme.useless_gap   = 5
-theme.border_width  = 5
---theme.border_normal = "#000000"
+theme.useless_gap   = 4
+theme.border_width  = 4
+theme.border_normal = "#1E2320"
 theme.border_normal = "#3F3F3F"
---theme.border_focus  = "#111111" -- vert
-theme.border_focus  = "#7f9f7f" -- vert
+--theme.border_focus  = "#111111" 
+--theme.border_focus  = "#7f9f7f" -- vert
+theme.border_focus  = "#F0DFAF"
 theme.border_marked = "#91231c"
 -- }}}
 
@@ -108,7 +110,7 @@ theme.taglist_squares_unsel = "/usr/share/awesome/themes/zenburn/taglist/squarez
 
 theme.taglist_fg_occupied = theme.fg_normal
 theme.taglist_bg_occupied = theme.bg_focus .. "80"
-theme.taglist_bg_focus = theme.border_focus
+theme.taglist_bg_focus = theme.default_focus
 theme.taglist_bg_urgent = theme.fg_urgent
 --
 --theme.taglist_fg_focus = theme.bg_focus

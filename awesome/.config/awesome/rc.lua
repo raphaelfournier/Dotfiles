@@ -253,10 +253,11 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
+-- {{{ Wibar
+            
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
--- {{{ Wibar
 smallspace = wibox.widget.textbox()
 smallspace:set_text(' ')
 smallspace.font = "Play 10"
@@ -288,12 +289,12 @@ styles.month   = {
 }
 styles.normal  = { shape    = rounded_shape(5), }
 styles.focus   = { fg_color = beautiful.fg_focus or '#000000',
-                   bg_color = beautiful.border_focus or '#ff9800',
+                   bg_color = beautiful.default_focus or '#ff9800',
                    markup   = function(t) return '<b>' .. t .. '</b>' end,
                    shape    = rounded_shape(5, true)
 }
 styles.header  = { fg_color = beautiful.fg_normal,
-                   bg_color = beautiful.border_focus or '#ff9800',
+                   bg_color = beautiful.default_focus or '#ff9800',
                    markup   = function(t) return '<b>' .. t .. '</b>' end,
                    shape    = rounded_shape(10)
 }
@@ -504,7 +505,7 @@ testpopup = awful.popup {
 -- https://www.reddit.com/r/awesomewm/comments/bqzxz8/alttablike_cycle_widget_on_two_screens/
 --awful.keygrabber {
     --keybindings = {
-        --{{modkey    }, 'Tab', function() awful.clent.focus.byidx(-1) end,}
+        --{{modkey    }, 'Tab', function() awful.client.focus.byidx(-1) end,}
     --},
     --stop_key       = modkey,
     --stop_event     = "release",
@@ -601,6 +602,7 @@ local tasklist_buttons = awful.util.table.join(
                              c:kill() 
                          end
                      end),
+                     awful.button({ }, 3, function (c) rofi.client_flags(c) end),
                      --awful.button({ }, 3, client_menu_toggle_fn()),
                      awful.button({ }, 4, function ()
                          if not tagBlocked then
@@ -712,7 +714,7 @@ local function set_taglist(s)
 						screen  = s,
 						filter  = awful.widget.taglist.filter.noempty,
 						style   = {
-						shape        = gears.shape.rounded_bar,
+            shape        = gears.shape.rounded_bar,
 						spacing = 2,
 				},
 				widget_template = 
@@ -774,7 +776,7 @@ local function set_taglist(s)
 			},
 			shape        = gears.shape.rounded_bar,
 			bg           = beautiful.tasklist_bg_normal .. "00",
-			fg           = beautiful.tasklist_fg_normal,
+			fg           = beautiful.tasklist_fg_normal, -- couleurs des chiffres des tags
 			widget = wibox.container.background,
 		},
 		right =8,
@@ -976,7 +978,7 @@ awful.screen.connect_for_each_screen(function(s)
                 source      = awful.widget.layoutlist.source.default_layouts,
                 style    = {
                     shape_selected        = gears.shape.rounded_rect,
-                    bg_selected = beautiful.border_focus,
+                    bg_selected = beautiful.default_focus,
                 },
                 base_layout = wibox.widget {
                     spacing         = 5,
@@ -1276,8 +1278,6 @@ local function copy_tag()
 	t2:view_only()
 end
 
--- }}}
-
 function find_empty_tag()
     local s = awful.screen.focused()
     --local next = next
@@ -1286,6 +1286,8 @@ function find_empty_tag()
         if next(tag:clients()) == nil then return i end
     end
 end
+
+-- }}}
 
 -- {{{ Key bindings
 
@@ -1413,6 +1415,7 @@ awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1
 awful.key({ modkey, "Control" }, "l", function () mouse.coords { x = 185, y = 38, silent=true } end,{description = "remove cursor", group = "mouse"}),
 awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
   {description = "jump to urgent client", group = "client"}),
+awful.key({ mod1,           }, "Tab", function () awful.spawn.with_shell("rofi -modi windowcd -show windowcd -kb-accept-entry '!Alt-Tab' -kb-row-down Alt-Tab -kb-row-up Alt+Shift+Tab") end),
 awful.key({ modkey,           }, "Tab",
   function ()
     awful.client.focus.history.previous()
@@ -1444,7 +1447,8 @@ awful.key({ modkey,           }, "Tab",
   awful.key({ modkey, "Control" }, "h",  function () awful.tag.incncol( 1, nil, true)    end, {description = "increase the number of columns", group = "layout"}),
   awful.key({ modkey, "Control" }, "l",  function () awful.tag.incncol(-1, nil, true)    end, {description = "decrease the number of columns", group = "layout"}),
   awful.key({ modkey,           }, "<", function () awful.layout.inc( 1)  end, {description = "select next", group = "layout"}),
-  awful.key({ modkey, "Shift"   }, "<", function () awful.layout.inc(-1)  end),
+  --awful.key({ modkey, "Shift"   }, "<", function () awful.layout.inc(-1)  end),
+  awful.key({ modkey, "Shift"   }, "<", function () awful.spawn("find-cursor --color red --line-width 16")  end),
   awful.key({ modkey,           }, "w", function () awful.layout.set(awful.layout.suit.max) end, {description = "Layout max", group = "layout"}),
   awful.key({ modkey, "Shift"   }, "w", function () awful.layout.set(awful.layout.suit.tile) end, {description = "Layout tile", group = "layout"}),
   awful.key({ modkey, "Control" }, "<", function () systray.visible = not systray.visible end, {description = "Toggle systray visibility", group = "custom"}, {description = "select previous", group = "layout"}),
@@ -1530,8 +1534,8 @@ end, {description = "run mutt", group = "apps"}),
     --awful.key({ modkey,           }, "<", function () dmenuhelpers.run()       end,{description = "run", group = "launcher"}), 
     awful.key({ modkey,   }, "q", function () awful.util.spawn("rofi-mpc -config ~/.config/rofi/config ")       end,{description = "rofi-mpc", group = "launcher"}), 
     --awful.key({ modkey,  "Shift"  }, "w", function () awful.spawn.with_shell("/usr/bin/cat /home/raph/.fzf-marks | rofi -config ~/.config/rofi/config -dmenu -p ranger-marks | cut -d ':' -f 2 | xargs --no-run-if-empty " .. terminal .. "-e ranger")       end), 
-    --awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -config ~/.config/rofi/config -show combi -combi-modi \"window,run,snippet\" -modi combi,snippet:/home/raph/Code/langageBash/rofi-modi-snippets/snippets.sh,calc,emoji,fileb_:/usr/share/doc/rofi/examples/rofi-file-browser.sh,top,json-dict,ssh")       end,{description = "run", group = "launcher"}), 
-    awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -config ~/.config/rofi/config -show combi -combi-modi \"window,run\" -modi combi,xr:/home/raph/Code/langageBash/rofi-modi-xrandr.sh,emoji:~/.scripts/rofiemoji/rofiemoji.sh,calc")       end,{description = "run", group = "launcher"}), 
+    --awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -config ~/.config/rofi/config -show combi -combi-modi \"window,run,snippet\" -modi combi,snippet:/home/raph/Code/langageBash/rofi-modi-snippets/snippets.sh,calc,emoji,fileb_:/usr/share/doc/rofi/examples/rofi-file-browser.sh,top,ssh")       end,{description = "run", group = "launcher"}), 
+    awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -config ~/.config/rofi/config.rasi -show combi -combi-modi \"window,run\" -modi combi,xr:/home/raph/Code/langageBash/rofi-modi-xrandr.sh,emoji:~/.scripts/rofiemoji/rofiemoji.sh,calc")       end,{description = "run", group = "launcher"}), 
     --awful.key({ modkey,           }, "b", function () awful.util.spawn("rofi -modi \"file:./scripts/rofi/rofi-file-browser.sh\" -show file")       end,{description = "run", group = "launcher"}), 
     awful.key({ modkey, "Shift" }, "space",     function () awful.util.spawn("rofi-pass")             end),
     --
@@ -1623,7 +1627,7 @@ awful.key({ modkey, "Shift"}, "i",
       {description = "rules on the client", group = "client"}),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end, {description = "toggle keep on top", group = "client"}),
     awful.key({ modkey,  "Shift"  }, "t",      awful.client.floating.toggle                     , {description = "toggle floating", group = "client"}),
-    awful.key({ modkey,  "Shift"  }, "n",
+    awful.key({ modkey,  "Shift"  }, "m",
         function (c)
             -- The client currently has the input focus, so it cannot be
             -- minimized, since minimized clients can't have the focus.
@@ -1823,8 +1827,8 @@ awful.rules.rules = {
     { rule = { instance = "rootterm" }, properties = { screen = 1, tag = "root", switchtotag = true } },
     { rule = { class = "Deluge" },
       properties = { screen = screen:count(), tag = "media" } },
-    { rule = { class = "Homebank" },
-      properties = { screen = screen:count(), tag = "media", switchtotag = true} },
+    --{ rule = { class = "Homebank" },
+      --properties = { screen = screen:count(), tag = "media", switchtotag = true} },
     { rule = { class = "ticktick-" },
       properties = { screen = screen:count(), tag = "todo"} },
     { rule = { class = "yakyak" },
@@ -1864,11 +1868,11 @@ client.connect_signal("manage", function (c)
     --if slave then awful.client.setslave(c) end
     
     -- Coins arrondis pour les fenêtres
-    if not c.fullscreen then
-      c.shape = function(cr,w,h)
-          gears.shape.rounded_rect(cr,w,h,20)
-      end
-    end
+    --if not c.fullscreen then
+      --c.shape = function(cr,w,h)
+          --gears.shape.rounded_rect(cr,w,h,20)
+      --end
+    --end
 
 
     if awesome.startup and
