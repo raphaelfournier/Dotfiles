@@ -16,6 +16,7 @@ blueman-applet &
 nm-applet --sm-disable &
 arandr-indicator &
 vgrive &
+greenclip daemon &
 #stretchly &
 #ticktick &
 #wal -R & 

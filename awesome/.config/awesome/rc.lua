@@ -822,9 +822,9 @@ systray.visible = true
 --systray.forced_width = 150
 
 awful.screen.connect_for_each_screen(function(s)
-    -- on enlève ce padding moche
-    --awful.screen.padding(s,0)
-    s.padding = 4
+    awful.screen.padding(s,0)
+    -- gaps on the edges of the screen
+    --s.padding = 0
     -- Wallpaper
     set_wallpaper(s)
 
@@ -873,7 +873,7 @@ awful.screen.connect_for_each_screen(function(s)
         icon = beautiful.tag_icon_im,
         layout = awful.layout.suit.max,
         screen = screen:count(),
-        selected = true,
+        --selected = true,
       })
 
   if s.index == 1 then
@@ -1324,12 +1324,11 @@ globalkeys = awful.util.table.join(
   awful.key({                   }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -q -c 0 sset Master 2dB+") end, {description = "Raise volume", group = "Audio"}),
   awful.key({                   }, "XF86AudioMute", function () awful.util.spawn("amixer -q -c 0 sset Master toggle") end, {description = "Mute", group = "Audio"}),
 
-  awful.key({ "Mod1", "Shift" }, "a", function () awful.util.spawn("/home/raph/Dotfiles/rofi/.config/rofi/scripts/menu_backlight.sh") end, {description = "Mute", group = "helpers"}),
-  awful.key({ "Mod1", "Shift" }, "q", function () awful.util.spawn("/home/raph/Dotfiles/rofi/.config/rofi/scripts/menu_powermenu.sh") end, {description = "Mute", group = "helpers"}),
-  awful.key({ "Mod1", "Shift" }, "s", function () awful.util.spawn("/home/raph/Dotfiles/rofi/.config/rofi/scripts/menu_screenshot.sh") end, {description = "Mute", group = "helpers"}),
-  awful.key({ "Mod1", "Shift" }, "d", function () awful.util.spawn("/home/raph/Dotfiles/rofi/.config/rofi/scripts/menu_mpd.sh") end, {description = "Mute", group = "helpers"}),
-  awful.key({ "Mod1", "Shift" }, "w", function () awful.util.spawn("/home/raph/Dotfiles/rofi/.config/rofi/scripts/menu_volume.sh") end, {description = "Mute", group = "helpers"}),
-  --awful.key({ "Mod1",  "Shift"  }, "x", function () awful.spawn.with_shell("find /home/raph/.screenlayout/* -type f -print | rofi -config ~/.config/rofi/config -dmenu -p Screenawful.layout. terminal .. " -e zsh")       end), 
+  awful.key({ "Mod1", "Shift" }, "a", function () awful.util.spawn("/home/raph/.config/rofi/applets/menu/backlight.sh") end, {description = "Mute", group = "helpers"}),
+  awful.key({ "Mod1", "Shift" }, "q", function () awful.util.spawn("/home/raph/.config/rofi/applets/menu/powermenu.sh") end, {description = "Mute", group = "helpers"}),
+  awful.key({ "Mod1", "Shift" }, "s", function () awful.util.spawn("/home/raph/.config/rofi/applets/menu/screenshot.sh") end, {description = "Mute", group = "helpers"}),
+  awful.key({ "Mod1", "Shift" }, "d", function () awful.util.spawn("/home/raph/.config/rofi/applets/menu/mpd.sh") end, {description = "Mute", group = "helpers"}),
+  awful.key({ "Mod1", "Shift" }, "w", function () awful.util.spawn("/home/raph/.config/rofi/applets/menu/volume.sh") end, {description = "Mute", group = "helpers"}),
 
   -- 0 for tag 10
   awful.key({ modkey }, "à",
@@ -1415,7 +1414,7 @@ awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1
 awful.key({ modkey, "Control" }, "l", function () mouse.coords { x = 185, y = 38, silent=true } end,{description = "remove cursor", group = "mouse"}),
 awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
   {description = "jump to urgent client", group = "client"}),
-awful.key({ mod1,           }, "Tab", function () awful.spawn.with_shell("rofi -modi windowcd -show windowcd -kb-accept-entry '!Alt-Tab' -kb-row-down Alt-Tab -kb-row-up Alt+Shift+Tab") end),
+awful.key({ mod1,           }, "Tab", function () awful.spawn.with_shell("rofi -modi windowcd -show windowcd -kb-accept-entry '!Alt-Tab' -kb-row-down Alt-Tab,Down -kb-row-up Alt+Shift+Tab,Up") end),
 awful.key({ modkey,           }, "Tab",
   function ()
     awful.client.focus.history.previous()
@@ -1427,6 +1426,7 @@ awful.key({ modkey,           }, "Tab",
 
 -- Standard program
     awful.key({ modkey,           }, "x", function () awful.spawn(terminal) end, {description = "open a terminal", group = "launcher"}),
+    awful.key({ modkey,           }, "s", function () awful.spawn("urxvt") end, {description = "open urxvt terminal", group = "launcher"}),
 
     awful.key({ modkey, "Shift"}, "Down",     function () awful.client.incwfact(-0.03)          end, {}),
     awful.key({ modkey, "Shift"}, "Up",     function () awful.client.incwfact( 0.03)          end, {}),
@@ -1500,6 +1500,12 @@ awful.key({ modkey, }, "d", function ()
   --awful.client.run_or_raise("urxvt" .. ' -e ncmpcpp', matcher)
   awful.client.run_or_raise(terminal .. ' --class ncmpcpp -e ncmpcpp', matcher)
 end),
+awful.key({ modkey, "Shift"}, "q", function ()
+  local matcher = function (c)
+    return awful.rules.match(c, {name = "ticktick"})
+  end
+  awful.client.run_or_raise('ticktick', matcher)
+end),
 awful.key({ modkey, }, "e", function () awful.util.spawn(terminal .." --class ranger -e ranger") end),
 awful.key({ modkey, "Shift" }, "d", function () awful.spawn.with_shell("mpc lsplaylists| rofi -config ~/.config/rofi/config -dmenu -p \"Choose playlist\" | xargs --no-run-if-empty /home/raph/.scripts/mpc-startPlaylist.sh") end),
 awful.key({ modkey, "Shift" }, "e", function () awful.util.spawn("nemo") end, {description = "run pcmanfm", group = "apps"}),
@@ -1535,8 +1541,17 @@ end, {description = "run mutt", group = "apps"}),
     awful.key({ modkey,   }, "q", function () awful.util.spawn("rofi-mpc -config ~/.config/rofi/config ")       end,{description = "rofi-mpc", group = "launcher"}), 
     --awful.key({ modkey,  "Shift"  }, "w", function () awful.spawn.with_shell("/usr/bin/cat /home/raph/.fzf-marks | rofi -config ~/.config/rofi/config -dmenu -p ranger-marks | cut -d ':' -f 2 | xargs --no-run-if-empty " .. terminal .. "-e ranger")       end), 
     --awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -config ~/.config/rofi/config -show combi -combi-modi \"window,run,snippet\" -modi combi,snippet:/home/raph/Code/langageBash/rofi-modi-snippets/snippets.sh,calc,emoji,fileb_:/usr/share/doc/rofi/examples/rofi-file-browser.sh,top,ssh")       end,{description = "run", group = "launcher"}), 
-    awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -config ~/.config/rofi/config.rasi -show combi -combi-modi \"window,run\" -modi combi,xr:/home/raph/Code/langageBash/rofi-modi-xrandr.sh,emoji:~/.scripts/rofiemoji/rofiemoji.sh,calc")       end,{description = "run", group = "launcher"}), 
+    awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -config ~/.config/rofi/config.rasi -show combi -combi-modi \"window,run\" -modi combi,xr:/home/raph/Code/langageBash/rofi-modi-xrandr.sh,clip:\"greenclip print\",emoji:~/.scripts/rofiemoji/rofiemoji.sh,calc")       end,{description = "run", group = "launcher"}), 
     --awful.key({ modkey,           }, "b", function () awful.util.spawn("rofi -modi \"file:./scripts/rofi/rofi-file-browser.sh\" -show file")       end,{description = "run", group = "launcher"}), 
+    awful.key({ modkey }, "b", function ()
+             for s in screen do
+                 s.mywibox.visible = not s.mywibox.visible
+                 if s.mybottomwibox then
+                     s.mybottomwibox.visible = not s.mybottomwibox.visible
+                 end
+            end
+         end,
+         {description = "toggle wibox", group = "awesome"}),
     awful.key({ modkey, "Shift" }, "space",     function () awful.util.spawn("rofi-pass")             end),
     --
     awful.key({ modkey }, "r",
@@ -1627,6 +1642,15 @@ awful.key({ modkey, "Shift"}, "i",
       {description = "rules on the client", group = "client"}),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end, {description = "toggle keep on top", group = "client"}),
     awful.key({ modkey,  "Shift"  }, "t",      awful.client.floating.toggle                     , {description = "toggle floating", group = "client"}),
+    awful.key({ modkey,  "Control"  }, "m",
+        function ()
+            for _, c in ipairs(mouse.screen.selected_tag:clients()) do
+                if c ~= client.focus then
+                    c.minimized = true
+                end
+            end
+        end ,
+        {description = "minimize all but focused", group = "client"}),
     awful.key({ modkey,  "Shift"  }, "m",
         function (c)
             -- The client currently has the input focus, so it cannot be
@@ -1797,6 +1821,8 @@ awful.rules.rules = {
       properties = { tag = "pdf", switchtotag = true } },
     { rule = { class = "okular" },
       properties = { tag = "pdf", switchtotag = true } },
+    { rule = { class = "Evince" },
+      properties = { tag = "pdf", switchtotag = true } },
     { rule = { class = "Zathura" },
       properties = { tag = "pdf", switchtotag = true } },
     { rule = { class = "Xephyr" },
@@ -1816,7 +1842,7 @@ awful.rules.rules = {
           --c.height = c.screen.geometry.height * 0.93
           --c.y = c.screen.geometry.height* 0.04
     { rule = { class = "Alarm-clock" }, properties = { floating = true } },
-    { rule = { class = "libreoffice" }, properties = { tag = "pdf", floating = false, switchtotag = true } },
+    { rule = { class = "libreoffice" }, properties = { tag = "pdf", maximized = false, switchtotag = true } },
     { rule = { name = "alsamixer" }, properties = { screen = 1, tag = "root", switchtotag = true } },
     { rule = { class = "communications" }, properties = { screen = screen:count(),tag = "im"} },
     { rule = { class = "calendar" }, properties = { screen = screen:count(),tag = "todo",switchtotag=true, maximized = false} },
@@ -1846,7 +1872,7 @@ awful.rules.rules = {
     { rule = { class = "Gorilla" },
       properties = { screen = 1, tag = "graph", switchtotag = true, floating = true } },
     { rule = { class = "Inkscape" },
-      properties = { screen = 1, tag = "graph" } },
+      properties = { screen = 1, tag = "graph", maximized = false } },
     { rule = { class = "Pinentry" },
       properties = { floating = true } },
     { rule = { class = "Openshot" },
@@ -1856,7 +1882,7 @@ awful.rules.rules = {
     { rule = { class = "mpv" },
       properties = { floating = true, skip_taskbar = true } },
     { rule = { class = "Gimp" },
-      properties = { screen = 1, tag = "graph", floating = false } },
+      properties = { screen = 1, tag = "graph", floating = false, maximized = false } },
 }
 -- }}}
 

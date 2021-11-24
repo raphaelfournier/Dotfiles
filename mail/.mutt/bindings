@@ -104,6 +104,7 @@ pipe_decode=no wait_key=no<enter>\
 <enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
 &my_pipe_decode &my_wait_key<enter>\
 " "muttils view HTML in browser"
+
 macro index,pager <F12> "\
 <enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
 pipe_decode=no wait_key=no<enter>\
@@ -111,13 +112,15 @@ pipe_decode=no wait_key=no<enter>\
 <enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
 &my_pipe_decode &my_wait_key<enter>\
 " "muttils view HTML (safe) in browser"
+
 macro index,pager,attach ,u "\
 <enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
 pipe_decode=no wait_key=no<enter>\
-<pipe-message> urlpager<enter>\
+<pipe-message> urlpager -b firefox<enter>\
 <enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
 &my_pipe_decode &my_wait_key<enter>\
 " "go to any url"
+
 macro index,pager,attach ,t "\
 <enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
 pipe_decode=no wait_key=no<enter>\
@@ -125,6 +128,8 @@ pipe_decode=no wait_key=no<enter>\
 <enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
 &my_pipe_decode &my_wait_key<enter>\
 " "text browse web"
+
+#source ~/.scripts/muttils/contrib/example-muttrc
 
 macro index,pager ,U "<pipe-message> urlview<Enter>" "call urlview to extract URLs out of a message"
 macro attach,compose ,U "<pipe-entry> urlview<Enter>" "call urlview to extract URLs out of a message"

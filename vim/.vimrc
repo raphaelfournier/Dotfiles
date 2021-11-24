@@ -40,6 +40,7 @@ Bundle 'Shougo/neosnippet-snippets'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-scripts/VST'
 "Plugin 'codota/tabnine-vim'
 
 Plugin 'universal-ctags/ctags'
@@ -64,12 +65,15 @@ Plugin 'mhinz/vim-signify'
 Plugin 'osyo-manga/vim-over'
 Plugin 'chmp/mdnav'
 Plugin 'mzlogin/vim-markdown-toc'
+Plugin 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'tacahiroy/ctrlp-funky'
 
 "Plugin 'davidhalter/jedi-vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+
 
 let g:ip_boundary='-\?\s*$'
 let g:tex_flavor = 'latex'
@@ -116,6 +120,25 @@ augroup END
 
 au BufNewFile,BufRead Snakefile set syntax=snakemake
 au BufNewFile,BufRead *.snake set syntax=snakemake
+
+function! MarkdownLevel()
+    if getline(v:lnum) =~ '^---$'
+        return ">1"
+    endif
+    "if getline(v:lnum) =~ '^## .*$'
+        "return ">2"
+    "endif
+    "if getline(v:lnum) =~ '^### .*$'
+        "return ">3"
+    "endif
+    "if getline(v:lnum) =~ '^#### .*$'
+        "return ">4"
+    "endif
+    return "=" 
+endfunction
+au BufEnter *.md setlocal foldexpr=MarkdownLevel()  
+au BufEnter *.md setlocal foldmethod=expr     
+
 " >>>
 
 " <<< Bindings 
@@ -253,7 +276,7 @@ syn on
 set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show unicode glyphs
 set splitbelow
-"set splitright
+set splitright
 set cursorline " Highlight current line
 set showmatch
 filetype plugin on
@@ -329,6 +352,7 @@ nnoremap <silent> <F8> :TagbarToggle<CR>
 nnoremap <silent> <F9> :NERDTreeToggle<CR>
 
 let g:airline#extensions#tagbar#enabled = 0
+let g:muttaliases_file = '~/.mutt/aliases'
 
 let g:markdown_folding = 1
 
@@ -337,6 +361,9 @@ let g:minimap_update='<leader>mu'
 let g:minimap_close='<leader>gc'
 let g:minimap_toggle='<leader>gt'
 let g:minimap_highlight='Visual'
+
+" fugitive Gdiff = Gvdiff
+set diffopt+=vertical
 
 
 let NERDTreeShowBookmarks=1

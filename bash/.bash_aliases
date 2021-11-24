@@ -12,6 +12,7 @@ alias c='chromium'
 alias cat='bat'
 alias clock='tty-clock -c -C6'
 alias cdd='cd && ls -tr'
+alias cde='cd ..'
 alias chmoad="chmod"
 alias deeptask='bla=`od -vAn -N1 -tu1 < /dev/urandom | tr -d " "`; cp Templates/template-deepwork.mdwn /tmp/deeptask$bla; mpc load korn; mpc play; vim /tmp/deeptask$bla +Goyo +'
 alias ds='cd ~/downloads && ls -tr'
@@ -58,6 +59,7 @@ alias marksedit='vim ~/.fzf-marks +'
 alias metro='feh -FZ ~/Images/plan-de-metro-bonne-definition.gif'
 #alias metro='feh -FZ Images/metro/plan-metro-rer-paris-resized.png'
 alias mp='mplayer'
+alias mvd="find ~/downloads -type f -printf '%C@ %p\0' | sort -rz | sed -Ezn '1s/[^ ]* //p' | xargs -0 mv -v -t ."
 alias n='ncmpcpp'
 alias ping='prettyping --nolegend'
 alias tt='tig status'
@@ -90,8 +92,8 @@ alias wifimaison='nmcli connection up Livebox-E5C0'
                   #cat {}) 2> /dev/null | head -500')"
 #}
 alias vt='vim ~/Dropbox/todo/todo.txt'
-#alias y='yaourt'
-alias y='yay --nodiffmenu'
+alias y='yaourt'
+#alias y='yay --nodiffmenu'
 alias z='zathura'
 alias mencal='mencal -3 -m --config s=20120726'
 alias e='screen -c /home/raph/.screen/tex.screenrc'
@@ -121,7 +123,7 @@ alias alsamixer='alsamixer -D hw:0'
 alias synchroBT='sudo /etc/rc.d/bluetooth restart && sync-ui'
 alias skype='LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so skype'
 alias awc='vim ~/.config/awesome/rc.lua'
-alias awt='vim ~/.config/awesome/themes/zenburn/theme.lua'
+alias awt='vim ~/.config/awesome/themes/myzenburn/theme.lua'
 alias delhi='ssh -Y -l fournier woolthorpe.lip6.fr'
 alias riazan='ssh -Y -l fournier riazan'
 alias ovh='ssh -l fournier 91.121.183.150'
@@ -233,7 +235,8 @@ alias lsFiles="find . -maxdepth 1 -type f -a ! -iname '\.*' -print0 | sed \"s:\.
 alias lsFilesAll="find . -maxdepth 1 -type f -a ! -iname '\.*' -print0 | sed \"s:\.\/::g\" | xargs -0r ls --color=auto"
 alias lsDirectories="find . -maxdepth 1 -type d -a ! -iname '\.*' -print0 | sed \"s:\.\/::g\" | xargs -0r ls --color=auto -d"
 alias lsdd="ls -d */"
-alias listeFenetres="wmctrl -lpG | sort -k2,2n"
+#alias listeFenetres="wmctrl -lpG | sort -k2,2n"
+alias updateArch="yaourt -S --sysupgrade --aur --noconfirm"
 
 alias awesomeElenapan="cd ~/.config/; rm awesome -f; ln -s awesomeConfigs/Elenapan awesome; cd ; echo \"awesome.restart()\" | awesome-client"
 alias awesomeZenburn="cd ~/.config/; rm awesome -f; ln -s awesomeConfigs/zenburnClassic awesome; cd ; echo \"awesome.restart()\" | awesome-client"
@@ -244,3 +247,6 @@ export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(vim {})+abort'"
 
 alias youtube-mp3='youtube-dl -x --audio-format mp3'
 alias tailleCorbeille='du -sh ~/.local/share/Trash/'
+alias muttaliases='vim ~/.mutt/aliases'
+alias marks-check='for line in `cut -d":" -f2 /home/raph/.fzf-marks`; do [[ ! -d $line ]] && echo "pas de : $line"; done'
+alias meteoVillejuif='links http://wttr.in/villejuif'

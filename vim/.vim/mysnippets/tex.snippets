@@ -3,6 +3,9 @@ snippet EIT
     \item ${1:#:firstitem}
 	\end{itemize}
 
+snippet temsep
+  \setlength{\itemsep}{10pt}
+
 snippet EITL
 	\begin{itemize}
   \setlength{\itemsep}{10pt}
@@ -23,6 +26,12 @@ snippet exampleblockit
         \item ${2:#: }
     \end{itemize}
   \end{exampleblock}
+
+snippet ff
+  \begin{frame}{${1:#:frametitle}}
+  \end{frame}
+  ${2}
+  ${3}
 
 snippet frameait
   \begin{frame}{${1:#:frametitle}}

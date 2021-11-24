@@ -12,7 +12,6 @@ theme.wallpaperlandscape = "/home/raph/.config/landscape.jpg"
 theme.wallpaperportrait = "/home/raph/.config/portrait.jpg"
 -- }}}
 
--- {{{ Styles
 theme.font      = "Inconsolata Medium 16"
 
 -- {{{ Colors
@@ -29,12 +28,13 @@ theme.bg_systray = theme.bg_normal
 
 -- {{{ Borders
 theme.useless_gap   = 4
-theme.border_width  = 4
+theme.border_width  = 2
 theme.border_normal = "#1E2320"
 theme.border_normal = "#3F3F3F"
 --theme.border_focus  = "#111111" 
---theme.border_focus  = "#7f9f7f" -- vert
-theme.border_focus  = "#F0DFAF"
+theme.border_focus  = "#7f9f7f" -- vert
+--theme.border_focus  = "#F0DFAF"
+theme.border_focus  = "#DCDCCC"
 theme.border_marked = "#91231c"
 -- }}}
 
