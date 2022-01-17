@@ -20,7 +20,8 @@ greenclip daemon &
 #stretchly &
 #ticktick &
 #wal -R & 
-rambox &
+#rambox &
+ferdi &
 # xpad &
 #dunst &
 #cbatticon &

@@ -1803,6 +1803,10 @@ awful.rules.rules = {
       properties = { screen = screen:count(), tag = "im"} },
     { rule = { name = "Signal" },
       properties = { screen = screen:count(), tag = "im"} },
+    { rule = { instance = "biscuit" },
+      properties = { screen = screen:count(), tag = "im"} },
+    { rule = { name = "Ferdi" },
+      properties = { screen = screen:count(), tag = "im"} },
     { rule = { name = "Rambox" },
       properties = { screen = screen:count(), tag = "im"} },
     { rule = { name = "Franz" },
@@ -1842,7 +1846,7 @@ awful.rules.rules = {
           --c.height = c.screen.geometry.height * 0.93
           --c.y = c.screen.geometry.height* 0.04
     { rule = { class = "Alarm-clock" }, properties = { floating = true } },
-    { rule = { class = "libreoffice" }, properties = { tag = "pdf", maximized = false, switchtotag = true } },
+    { rule = { instance = "libreoffice" }, properties = { tag = "pdf", maximized = false, switchtotag = true } },
     { rule = { name = "alsamixer" }, properties = { screen = 1, tag = "root", switchtotag = true } },
     { rule = { class = "communications" }, properties = { screen = screen:count(),tag = "im"} },
     { rule = { class = "calendar" }, properties = { screen = screen:count(),tag = "todo",switchtotag=true, maximized = false} },

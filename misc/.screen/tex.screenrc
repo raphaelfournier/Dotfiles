@@ -5,6 +5,7 @@ sessionname latex
 screen -t edit 
 screen -t compile 
 screen -t zathura
+screen -t figs
 screen -t biblio
 screen -t git
 select 0

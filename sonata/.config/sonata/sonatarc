@@ -16,10 +16,10 @@ auto = True
 profile_num = 0
 
 [player]
-w = 1882
-h = 1007
-x = 14
-y = 49
+w = 1900
+h = 1028
+x = 8
+y = 40
 expanded = True
 withdrawn = False
 screen = 0
@@ -77,7 +77,7 @@ lib_album = !NONE!
 lib_artist = !NONE!
 lib_genre = !NONE!
 lib_year = !NONE!
-lib_path = /
+lib_path = Scorpions [2010] Greatest Hits [mp3]
 lib_view = 0
 
 [currformat]

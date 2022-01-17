@@ -33,12 +33,17 @@ snippet ff
   ${2}
   ${3}
 
-snippet frameait
+snippet fit
   \begin{frame}{${1:#:frametitle}}
     \begin{itemize}
       \setlength{\itemsep}{10pt}
         \item ${2:#:premier}
     \end{itemize}
+  \end{frame}
+
+snippet fimg
+  \begin{frame}{${1:#:frametitle}}
+    \includegraphics[width=.98\columnwidth]{${2:#:imageName}}
   \end{frame}
 
 snippet frameimage
@@ -47,10 +52,14 @@ snippet frameimage
   \end{frame}
 
 snippet frameminted
-  \begin[fragile]{frame}{${1:#:frametitle}}
+  \begin{frame}[fragile]{${1:#:frametitle}}
     \begin{minted}{php}
     \end{minted}
   \end{frame}
+
+snippet minted
+    \begin{minted}[fontsize=\scriptsize]{bash}
+    \end{minted}
 
 snippet 2col
     \begin{columns}

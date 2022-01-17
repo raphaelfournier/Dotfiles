@@ -1,3 +1,5 @@
 # Set the theme to "TwoDark"
---theme="zenburn" # dark theme
+#--theme="zenburn" # dark theme
 #--theme="GitHub" # light theme
+--theme="base16-256"
+

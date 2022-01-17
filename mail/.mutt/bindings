@@ -57,6 +57,7 @@ macro pager,index,generic ,n      "<limit>~N<enter><current-middle>"
 macro pager,index,generic <f1>      "!links /usr/share/doc/mutt/manual.html" "Show Mutt documentation"
 macro index,compose ,c      ":set sendmail=\"/usr/bin/msmtp -a cnam\""
 macro compose ,l      ":set sendmail=\"/usr/bin/msmtp -a lip6-ext\""
+macro compose ,x      ":set sendmail=\"/home/raph/.scripts/msmtp-queue-scheduler/msmtpq -a cnam\""
 macro compose ,g      ":set sendmail=\"/usr/bin/msmtp -a google\""
 
 macro compose ,f      "<edit-fcc>=CNAM/INBOX"
@@ -97,13 +98,14 @@ macro index ,d \
 
 macro compose v "<edit-from>^Uidentity.<tab>" "Select from" 
 
-macro index,pager \Co "\
-<enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
-pipe_decode=no wait_key=no<enter>\
-<pipe-message> viewhtmlmsg -b firefox<enter>\
-<enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
-&my_pipe_decode &my_wait_key<enter>\
-" "muttils view HTML in browser"
+macro index,pager \Co view-mailcap
+#macro index,pager \Co "\
+#<enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
+#pipe_decode=no wait_key=no<enter>\
+#<pipe-message> viewhtmlmsg -b firefox<enter>\
+#<enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
+#&my_pipe_decode &my_wait_key<enter>\
+#" "muttils view HTML in browser"
 
 macro index,pager <F12> "\
 <enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \

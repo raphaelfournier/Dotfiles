@@ -28,12 +28,14 @@ Plugin 'mileszs/ack.vim'
 Plugin 'mattn/calendar-vim'
 "Plugin 'honza/vim-snippets'
 Plugin 'francoiscabrol/ranger.vim'
+
 Plugin 'dylanaraps/wal.vim'
 Plugin 'yasukotelin/shirotelin'
 Plugin 'xolox/vim-misc'
 Plugin 'ayu-theme/ayu-vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'NLKNguyen/papercolor-theme'
+
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neosnippet'
 Bundle 'Shougo/neosnippet-snippets'
@@ -43,17 +45,16 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/VST'
 "Plugin 'codota/tabnine-vim'
 
+Plugin 'vim-scripts/mutt-canned'
+
 Plugin 'universal-ctags/ctags'
 Plugin 'sheerun/vim-polyglot'
-Plugin 'jdonaldson/vim-markdown-link-convert'
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Plugin 'junegunn/fzf.vim'
-Plugin 'vimwiki/vimwiki'
 Plugin 'lervag/vimtex'
-Plugin 'vim-scripts/mutt-canned'
-Plugin 'Konfekt/vim-notmuch-addrlookup'
-Plugin 'felipec/notmuch-vim'
-Plugin 'alok/notational-fzf-vim'
+"Plugin 'Konfekt/vim-notmuch-addrlookup'
+"Plugin 'felipec/notmuch-vim'
+"Plugin 'alok/notational-fzf-vim'
 
 Plugin 'Konfekt/FastFold'
 Plugin 'tmhedberg/SimpylFold'
@@ -61,18 +62,22 @@ Plugin 'tmhedberg/SimpylFold'
 Bundle 'scrooloose/syntastic'
 Bundle 'mbbill/undotree'
 Bundle 'nathanaelkane/vim-indent-guides'
-Plugin 'mhinz/vim-signify'
+"Plugin 'mhinz/vim-signify'
 Plugin 'osyo-manga/vim-over'
+
 Plugin 'chmp/mdnav'
 Plugin 'mzlogin/vim-markdown-toc'
 Plugin 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plugin 'jdonaldson/vim-markdown-link-convert'
+Plugin 'vimwiki/vimwiki'
 
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'tacahiroy/ctrlp-funky'
 
 "Plugin 'davidhalter/jedi-vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
+"Plugin 'tpope/vim-fugitive'
+"Plugin 'airblade/vim-gitgutter'
+
 
 
 let g:ip_boundary='-\?\s*$'
@@ -112,6 +117,7 @@ au BufRead ~/.mutt/temp/*mutt* nmap  <F7>  kgqj
 au BufRead ~/.mutt/temp/*mutt* map!  <F5>  <ESC>gqapi
 au BufRead ~/.mutt/temp/*mutt* map!  <F6>  <ESC>gqqji
 au BufRead ~/.mutt/temp/*mutt* map!  <F7>  <ESC>kgqji
+au BufRead ~/Dotfiles/mail/.mutt/temp/*mutt* nmap  ,S  <ESC>oScheduler: 7am tomorrow
 "au BufRead ~/.mutt/temp/*mutt* setlocal fo+=aw
 
 au BufRead ~/.mutt/temp/mutt* source ~/.vim/bundle/mutt-canned/plugin/mutt-canned.vim
@@ -267,16 +273,16 @@ set colorcolumn=80
 set linebreak " avoid cutting words
 set wrap
 set columns=86
-set numberwidth=6
+"set numberwidth=6
+
 "autocmd VimResized * if (&columns > 80) | set columns=80 | endif
 "set showbreak=+++
-
 
 syn on
 set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show unicode glyphs
 set splitbelow
-set splitright
+"set splitright
 set cursorline " Highlight current line
 set showmatch
 filetype plugin on
@@ -326,7 +332,7 @@ nmap <leader>f9 :set foldlevel=9<CR>
 set foldmethod=indent
 set foldlevelstart=99
 "set foldlevel=99
-set foldcolumn=2
+set foldcolumn=0
 " completion
 set wildmenu
 set wildmode=list:longest,full
@@ -341,7 +347,34 @@ set wildmode=list:longest,full
 " >>>
 
 " <<< Plugins Options 
-nnoremap <silent> <leader>gg :SignifyToggle<CR>
+"
+" gitgutter. Reenable with :GitGutterToggle
+let g:gitgutter_enabled = 0
+
+"let scl = "number"
+"
+nnoremap <leader>gG :call FoldColumnToggle()<cr>
+
+function! FoldColumnToggle()
+    if &foldcolumn
+        setlocal foldcolumn=0
+    else
+        setlocal foldcolumn=3
+    endif
+endfunction
+
+nnoremap <Leader>gg :call ToggleSignColumn()<CR>
+" Toggle signcolumn. Works on vim>=8.1 or NeoVim
+function! ToggleSignColumn()
+    if !exists("b:signcolumn_on") || b:signcolumn_on
+        set signcolumn=no
+        let b:signcolumn_on=0
+    else
+        set signcolumn=number
+        let b:signcolumn_on=1
+    endif
+endfunction
+
 " taglist
 let tlist_tex_settings = 'latex;l:labels;s:sections;t:subsections;u:subsubsections'
 let Tlist_GainFocus_On_ToggleOpen = 1
@@ -645,6 +678,12 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
     endif
 "}
 
+call vimtex#imaps#add_map({
+      \ 'lhs' : 'b',
+      \ 'rhs' : '\bigskip ',
+    \ 'leader' : ',',
+      \ 'wrapper' : 'vimtex#imaps#wrap_trivial'
+      \})
 call vimtex#imaps#add_map({
       \ 'lhs' : 'i',
       \ 'rhs' : '\item ',

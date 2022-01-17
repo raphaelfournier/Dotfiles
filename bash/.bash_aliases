@@ -8,6 +8,7 @@ alias kls='ls --color=auto'
 
 alias a='alsamixer -D hw:0'
 alias b='bc -lq'
+alias birthdays='vim ~/.remind/birthdays.rem'
 alias c='chromium'
 alias cat='bat'
 alias clock='tty-clock -c -C6'
@@ -64,6 +65,7 @@ alias n='ncmpcpp'
 alias ping='prettyping --nolegend'
 alias tt='tig status'
 alias wdcopy="pwd | tr -d '\n' | xclip"
+alias pwdc="pwd | tr -d '\n' | xclip"
 alias wdcd='cd `xclip -o`'
 #alias preview="fzf --preview 'bat --color \"always\" {}'"
 alias r='ranger'
@@ -97,13 +99,16 @@ alias y='yaourt'
 alias z='zathura'
 alias mencal='mencal -3 -m --config s=20120726'
 alias e='screen -c /home/raph/.screen/tex.screenrc'
+alias activateAnaconda='source /opt/anaconda/bin/activate root'
+
+# screen
 alias s.tex='screen -c /home/raph/.screen/tex.screenrc'
 alias s.django='screen -c /home/raph/.screen/django.screenrc'
 alias s.jekyll='screen -c /home/raph/.screen/jekyll.screenrc'
+alias sls='screen -ls'
 alias screen.tex='screen -c /home/raph/.screen/tex.screenrc'
 alias screen.django='screen -c /home/raph/.screen/django.screenrc'
 alias screen.jekyll='screen -c /home/raph/.screen/jekyll.screenrc'
-alias activateAnaconda='source /opt/anaconda/bin/activate root'
 
 # watson
 alias wt='watson'
@@ -248,5 +253,8 @@ export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(vim {})+abort'"
 alias youtube-mp3='youtube-dl -x --audio-format mp3'
 alias tailleCorbeille='du -sh ~/.local/share/Trash/'
 alias muttaliases='vim ~/.mutt/aliases'
+alias aliases='vim ~/.bash_aliases'
 alias marks-check='for line in `cut -d":" -f2 /home/raph/.fzf-marks`; do [[ ! -d $line ]] && echo "pas de : $line"; done'
 alias meteoVillejuif='links http://wttr.in/villejuif'
+
+alias doc2pdf='lowriter --headless --convert-to pdf'

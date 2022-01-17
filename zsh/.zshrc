@@ -2,12 +2,6 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 #export MAILPATH="$HOME/Mail/CNAM/INBOX/new"
 
-export FZF_MARKER_CONF_DIR=~/.config/marker
-export FZF_MARKER_COMMAND_COLOR='\x1b[38;5;255m'
-export FZF_MARKER_COMMENT_COLOR='\x1b[38;5;8m'
-export FZF_MARKER_MAIN_KEY='\C-@'
-export FZF_MARKER_PLACEHOLDER_KEY='\C-v'
-
 # Path to your oh-my-zsh installation.
 export ZSH="/home/raph/.oh-my-zsh"
 
@@ -176,8 +170,9 @@ _fzf_compgen_dir() {
 
 eval `dircolors ~/.ls_colors` 
 
-export MARKER_KEY_MARK='\C-b' # https://github.com/pindexis/marker/blob/master/README.md
-[[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
+# bookmarks for commands (history is enough?)
+#export MARKER_KEY_MARK='\C-b' # https://github.com/pindexis/marker/blob/master/README.md
+#[[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
 
 autoload -Uz compinit
 compinit
@@ -211,6 +206,10 @@ export KEYTIMEOUT=1
 
 #source ~/.oh-my-zsh/invoke/zsh
 source ~/.passwordstore-variables
+
+# https://superuser.com/questions/117841/when-reading-a-file-with-less-or-more-how-can-i-get-the-content-in-colors
+export LESS='-R'
+export LESSOPEN='|~/.lessfilter %s'
 
 # Base16 Shell
 #BASE16_SHELL="$HOME/.base16-manager/chriskempson/base16-shell/"
