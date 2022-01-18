@@ -1,6 +1,0 @@
-/** Configured For AwesomeWM flags **/
-
-configuration {
-  lines: 6;
-  hide-scrollbar: true;
-}
