@@ -14,7 +14,8 @@
     // Black
     black:       #3F3F3F;
     lightblack:  #554444;
-    tlightblack:  #554444cc;
+    /*tlightblack:  #554444cc;*/ 
+    tlightblack:  #3F3F3Fcc;
     //
     // Red
     red:         #D78787;
@@ -50,7 +51,7 @@
     highlight:     underline bold #ffffff;
 
     transparent: rgba(0,0,0,0);
-    font: "Inconsolata 18";
+    font: "Inconsolata 16";
 }
 window {
     location: center;
@@ -81,7 +82,7 @@ message {
     color: @black;
 }
 inputbar {
-    color: @lightgreen;
+    color: @white;
     padding: 11px;
     background-color: @tlightblack;
     border: 2px 2px 2px 2px;
