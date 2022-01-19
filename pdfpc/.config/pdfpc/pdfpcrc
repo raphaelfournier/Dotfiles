@@ -1,0 +1,124 @@
+#### Keybindings
+
+# Standard forward movement
+bind Next               next
+bind Return             next
+bind Right              next
+bind space              next
+bind Down               next
+
+# Standard backward movement
+bind Prior              prev
+bind Left               prev
+bind Up                 prev
+bind BackSpace          prev
+bind S+space            prev
+
+# Overlay paging
+bind S+Next             nextOverlay
+bind S+Prior            prevOverlay
+
+# Intra-slide navigation
+bind S+Down             lastOverlay
+bind S+Up               firstOverlay
+
+# Fast forward/backward (10 pages)
+bind S+Right            next10
+bind S+Left             prev10
+
+# Jumps
+bind Home               gotoFirst
+bind End                gotoLast
+bind g                  goto
+
+# Bookmarking
+bind m                  saveBookmark
+bind S+m                loadBookmark
+
+# History
+bind S+BackSpace        histBack
+#bind S+space            histFwd
+bind S+End              nextUnseen
+bind S+Home             prevSeen
+
+# The overview mode
+bind Tab                overview
+
+# Toolbox
+bind t                  toggleToolbox
+
+# Exit
+bind C+q                quit
+bind q                  quit
+
+# Exit
+bind C+r                reload
+
+# Presenter state
+bind w                  windowed
+
+# Presentation state
+bind b                  blank
+bind f                  freeze
+bind h                  hide
+bind Escape             exitState
+
+# Timer related
+bind s                  start
+bind p                  pause
+bind C+t                resetTimer
+
+# Presentation editing
+bind C+n                note
+bind C+o                overlay
+bind C+e                endSlide
+
+# Annotation modes
+bind 1                  switchMode normal
+bind KP_1               switchMode normal
+bind n                  switchMode normal
+bind 2                  switchMode pointer
+bind KP_2               switchMode pointer
+bind N                  switchMode pointer
+bind 3                  switchMode pen
+bind KP_3               switchMode pen
+bind v                  switchMode pen
+bind 4                  switchMode eraser
+bind KP_4               switchMode eraser
+bind V                  switchMode eraser
+bind 5                  switchMode spotlight
+bind KP_5               switchMode spotlight
+
+# Mode-sensitive size adjustment (notes|pointer|pen|eraser)
+bind plus               increaseSize
+bind equal              increaseSize
+bind KP_Add             increaseSize
+bind minus              decreaseSize
+bind KP_Subtract        decreaseSize
+
+bind z                  zoom
+
+bind A                  toggleMaxCurrent
+
+bind C                  customize
+
+# Drawings
+bind c                  clearDrawing
+bind d                  toggleDrawings
+
+# Pen colors
+# Can be set by
+# bind S+1              setPenColor red|orange|yellow|green|blue|violet|black|white
+
+# Script execution
+bind S+x                executeScript
+
+# Short help
+bind question           showHelp
+
+#### Mouse bindings
+mouse 1                 next
+mouse S+1               next10
+mouse 2                 overview
+mouse 3                 prev
+mouse S+3               prev10

@@ -1315,7 +1315,7 @@ globalkeys = awful.util.table.join(
 
   awful.key({ modkey,           }, "=", function () awful.util.spawn("= --") end, {description = "Calc", group = "Calc"}),
   --awful.key({ modkey, "Shift"   }, "p", function () awful.util.spawn("cours/home/raph/.scripts/rofi/rofi-notes/rofi_notes.sh") end, {description = "Notes", group = "Calc"}),
-  awful.key({ modkey,  "Shift"  }, "p", function () awful.spawn.with_shell("/usr/bin/grep cours /home/raph/.fzf-marks | rofi -config ~/.config/rofi/config -dmenu -p Cours | cut -d ':' -f 2 | xargs --no-run-if-empty " .. terminal .. " -e ranger")       end), 
+  awful.key({ modkey,  "Shift"  }, "p", function () awful.spawn.with_shell("/usr/bin/grep cours /home/raph/.fzf-marks | rofi -config ~/.config/rofi/config.rasi -dmenu -p Cours | cut -d ':' -f 2 | xargs --no-run-if-empty " .. terminal .. " -e ranger")       end), 
   awful.key({ modkey, "Shift"   }, "=", function () awful.util.spawn("/home/raph/.scripts/rofi/rofi-notes/rofi_notes.sh") end, {description = "Notes", group = "Calc"}),
   awful.key({                   }, "XF86AudioPrev", function () awful.util.spawn("mpc prev") end, {description = "Previous track", group = "Audio"}),
   awful.key({                   }, "XF86AudioNext", function () awful.util.spawn("mpc next") end, {description = "Next track", group = "Audio"}),
@@ -1507,7 +1507,7 @@ awful.key({ modkey, "Shift"}, "q", function ()
   awful.client.run_or_raise('ticktick', matcher)
 end),
 awful.key({ modkey, }, "e", function () awful.util.spawn(terminal .." --class ranger -e ranger") end),
-awful.key({ modkey, "Shift" }, "d", function () awful.spawn.with_shell("mpc lsplaylists| rofi -config ~/.config/rofi/config -dmenu -p \"Choose playlist\" | xargs --no-run-if-empty /home/raph/.scripts/mpc-startPlaylist.sh") end),
+awful.key({ modkey, "Shift" }, "d", function () awful.spawn.with_shell("mpc lsplaylists| rofi -config ~/.config/rofi/config.rasi -dmenu -p \"Choose playlist\" | xargs --no-run-if-empty /home/raph/.scripts/mpc-startPlaylist.sh") end),
 awful.key({ modkey, "Shift" }, "e", function () awful.util.spawn("nemo") end, {description = "run pcmanfm", group = "apps"}),
 --awful.key({ modkey,           }, "e", function () awful.util.spawn("thunar") end, {description = "run pcmanfm", group = "apps"}),
 --awful.key({ modkey,           }, "w", function () awful.util.spawn("firefox") end, {description = "run firefox", group = "apps"}),
@@ -1538,7 +1538,7 @@ end, {description = "run mutt", group = "apps"}),
     -- 
 
     --awful.key({ modkey,           }, "<", function () dmenuhelpers.run()       end,{description = "run", group = "launcher"}), 
-    awful.key({ modkey,   }, "q", function () awful.util.spawn("rofi-mpc -config ~/.config/rofi/config ")       end,{description = "rofi-mpc", group = "launcher"}), 
+    awful.key({ modkey,   }, "q", function () awful.util.spawn("rofi-mpc -config ~/.config/rofi/config.rasi ")       end,{description = "rofi-mpc", group = "launcher"}), 
     --awful.key({ modkey,  "Shift"  }, "w", function () awful.spawn.with_shell("/usr/bin/cat /home/raph/.fzf-marks | rofi -config ~/.config/rofi/config -dmenu -p ranger-marks | cut -d ':' -f 2 | xargs --no-run-if-empty " .. terminal .. "-e ranger")       end), 
     --awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -config ~/.config/rofi/config -show combi -combi-modi \"window,run,snippet\" -modi combi,snippet:/home/raph/Code/langageBash/rofi-modi-snippets/snippets.sh,calc,emoji,fileb_:/usr/share/doc/rofi/examples/rofi-file-browser.sh,top,ssh")       end,{description = "run", group = "launcher"}), 
     awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -config ~/.config/rofi/config.rasi -show combi -combi-modi \"window,run\" -modi combi,xr:/home/raph/Code/langageBash/rofi-modi-xrandr.sh,ssh,clip:\"greenclip print\",emoji:~/.scripts/rofiemoji/rofiemoji.sh,calc")       end,{description = "run", group = "launcher"}), 
