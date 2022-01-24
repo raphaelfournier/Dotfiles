@@ -1329,6 +1329,7 @@ globalkeys = awful.util.table.join(
   awful.key({ "Mod1", "Shift" }, "s", function () awful.util.spawn("/home/raph/.config/rofi/applets/menu/screenshot.sh") end, {description = "Mute", group = "helpers"}),
   awful.key({ "Mod1", "Shift" }, "d", function () awful.util.spawn("/home/raph/.config/rofi/applets/menu/mpd.sh") end, {description = "Mute", group = "helpers"}),
   awful.key({ "Mod1", "Shift" }, "w", function () awful.util.spawn("/home/raph/.config/rofi/applets/menu/volume.sh") end, {description = "Mute", group = "helpers"}),
+  --awful.key({ "Mod1", "Shift" }, "e", function () awful.util.spawn("zoomx") end, {description = "Mute", group = "helpers"}),
 
   -- 0 for tag 10
   awful.key({ modkey }, "à",

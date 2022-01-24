@@ -1,3 +1,12 @@
+option timer-pace-color false
+option toolbox true
+option next-height 90
+#option windowed-mode presenter
+#option time-of-day true
+
+# below for AwesomeWM
+option move-on-mapped true
+
 #### Keybindings
 
 # Standard forward movement
@@ -55,7 +64,7 @@ bind q                  quit
 bind C+r                reload
 
 # Presenter state
-bind w                  windowed
+bind C+w                  windowed
 
 # Presentation state
 bind b                  blank
@@ -76,10 +85,10 @@ bind C+e                endSlide
 # Annotation modes
 bind 1                  switchMode normal
 bind KP_1               switchMode normal
-bind n                  switchMode normal
+bind W                  switchMode normal
 bind 2                  switchMode pointer
 bind KP_2               switchMode pointer
-bind N                  switchMode pointer
+bind w                  switchMode pointer
 bind 3                  switchMode pen
 bind KP_3               switchMode pen
 bind v                  switchMode pen
@@ -88,6 +97,7 @@ bind KP_4               switchMode eraser
 bind V                  switchMode eraser
 bind 5                  switchMode spotlight
 bind KP_5               switchMode spotlight
+bind x                  switchMode spotlight
 
 # Mode-sensitive size adjustment (notes|pointer|pen|eraser)
 bind plus               increaseSize
