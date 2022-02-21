@@ -256,6 +256,6 @@ alias muttaliases='vim ~/.mutt/aliases'
 alias aliases='vim ~/.bash_aliases'
 alias marks-check='for line in `cut -d":" -f2 /home/raph/.fzf-marks`; do [[ ! -d $line ]] && echo "pas de : $line"; done'
 alias meteoVillejuif='links http://wttr.in/villejuif'
-alias garminStats='garmindb_cli.py --all --download --import --analyze'
+alias garminStats='garmindb_cli.py --all --download --import --latest --analyze && python /home/raph/Code/langagePython/GarminPerso/lastStats.py'
 
 alias doc2pdf='lowriter --headless --convert-to pdf'

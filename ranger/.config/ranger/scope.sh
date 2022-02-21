@@ -88,7 +88,13 @@ case "$extension" in
         try transmission-show "$path" && { dump | trim; exit 5; } || exit 1;;
     # ODT Files
     odt|ods|odp|sxw)
-        try odt2txt "$path" && { dump | trim; exit 5; } || exit 1;;
+    try odt2txt "$path" && { dump | trim; exit 5; } || exit 1;;
+    # Jupyter notebooks     
+    ipynb)         
+    # try jupyter nbconvert --to html --stdout "$path" | w3m -T text/html -dump && dtfe 0 || exit 1;;
+        jupyter nbconvert --to html --stdout "$path" | w3m -T text/html -dump && dtfe 4 f         
+        # echo "$path" && dtfe 4 f         
+        exit 1;;
     # HTML Pages:
     htm|html|xhtml)
         try w3m    -dump "$path" && { dump | trim | fmt -s -w $width; exit 4; }

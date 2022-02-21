@@ -117,7 +117,7 @@ au BufRead ~/.mutt/temp/*mutt* nmap  <F7>  kgqj
 au BufRead ~/.mutt/temp/*mutt* map!  <F5>  <ESC>gqapi
 au BufRead ~/.mutt/temp/*mutt* map!  <F6>  <ESC>gqqji
 au BufRead ~/.mutt/temp/*mutt* map!  <F7>  <ESC>kgqji
-au BufRead ~/Dotfiles/mail/.mutt/temp/*mutt* nmap  ,S  <ESC>oScheduler: 7am tomorrow
+au BufRead ~/Dotfiles/mail/.mutt/temp/*mutt* nmap  ,x  <ESC>oScheduler: 8:05 AM tomorrow
 "au BufRead ~/.mutt/temp/*mutt* setlocal fo+=aw
 
 au BufRead ~/.mutt/temp/mutt* source ~/.vim/bundle/mutt-canned/plugin/mutt-canned.vim
@@ -126,14 +126,15 @@ augroup END
 
 au BufNewFile,BufRead Snakefile set syntax=snakemake
 au BufNewFile,BufRead *.snake set syntax=snakemake
+au BufNewFile,BufRead *.md set syntax=liquid
 
 function! MarkdownLevel()
-    if getline(v:lnum) =~ '^---$'
+    "if getline(v:lnum) =~ '^---$'
+        "return ">1"
+    "endif
+    if getline(v:lnum) =~ '^# .*$'
         return ">1"
     endif
-    "if getline(v:lnum) =~ '^## .*$'
-        "return ">2"
-    "endif
     "if getline(v:lnum) =~ '^### .*$'
         "return ">3"
     "endif
@@ -142,8 +143,8 @@ function! MarkdownLevel()
     "endif
     return "=" 
 endfunction
-au BufEnter *.md setlocal foldexpr=MarkdownLevel()  
-au BufEnter *.md setlocal foldmethod=expr     
+au BufEnter *.md* setlocal foldexpr=MarkdownLevel()  
+au BufEnter *.md* setlocal foldmethod=expr     
 
 " >>>
 

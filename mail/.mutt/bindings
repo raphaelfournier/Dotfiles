@@ -139,3 +139,6 @@ macro attach,compose ,U "<pipe-entry> urlview<Enter>" "call urlview to extract U
 macro pager Q <search>\^\\s+\$<enter>
 macro compose ,A "<shell-escape>bash $HOME/.scripts/rangerpick.sh<enter><enter-command>source $HOME/.mutt/rangerpick<enter>" "Attach with Ranger"
 macro index,pager X "<pipe-message>ripmime -i - --no-nameless -d "
+
+bind pager <up> previous-line #scroll inside the message rather than the index
+bind pager <down> next-line"
