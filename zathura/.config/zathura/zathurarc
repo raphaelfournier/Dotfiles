@@ -28,6 +28,7 @@ map R rotate
 # https://unix.stackexchange.com/questions/153190/zathura-how-do-i-add-a-keybind-for-exec
 "map y focus_inputbar ":exec /home/raph/.scripts/rofi-printers.sh %"
 map y exec '/home/raph/.scripts/rofi-printers/rofi-printers.sh "%"'
+"map Y exec '/usr/bin/briss "%"'
 
 # Zathura configuration file
 # See man `man zathurarc'

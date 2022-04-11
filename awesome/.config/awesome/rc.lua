@@ -13,7 +13,7 @@ local theme_file = os.getenv("HOME") .. '/.config/awesome/theme.lua'
 local naughty       = require("naughty")
 local menubar       = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
-local vicious       = require("vicious")
+--local vicious       = require("vicious")
 local lain          = require("lain")
 local rofi = require("rofi")
 local xrandr = require("xrandr")
@@ -340,27 +340,28 @@ green = "<span color='#87af5f'>"
 --azure = "<span color='#80d9d8'>"
 --lightgreen = "<span color='#62b786'>"
 --font = "<span font='Source Code Pro 10'>"
-volumewidget = wibox.widget.textbox()
-volumewidget:buttons(awful.util.table.join(
-    awful.button({ }, 1, function () awful.util.spawn("amixer -q -c 1 sset Master toggle", false) end),
-    awful.button({ }, 4, function () awful.util.spawn("amixer -q -c 0 sset Master 2dB+", false) end),
-    awful.button({ }, 5, function () awful.util.spawn("amixer -q -c 0 sset Master 2dB-", false) end),
-    awful.button({ }, 3, function () awful.util.spawn("pavucontrol", false) end)
-    --awful.button({ }, 2, function () awful.util.spawn("".. terminal.. " -e alsamixer", true) end)
-))
-vicious.register(volumewidget, vicious.widgets.volume, "$1%",1,"Master")
-batwidget = wibox.widget.textbox()
-vicious.register(batwidget, vicious.widgets.bat,
-function(widget, args)
-    if args[2]<=10 then
-        return red .. args[1].. args[2] .."%" .. coldef 
-    end
-    if args[2]>10 and args[2]<24 then
-        return orange .. args[1] .. args[2] .. "%" .. coldef 
-    else
-        return white .. args[1] .. args[2] .. "%" .. coldef
-    end
-end, 61, "BAT0")
+
+--volumewidget = wibox.widget.textbox()
+--volumewidget:buttons(awful.util.table.join(
+    --awful.button({ }, 1, function () awful.util.spawn("amixer -q -c 1 sset Master toggle", false) end),
+    --awful.button({ }, 4, function () awful.util.spawn("amixer -q -c 0 sset Master 2dB+", false) end),
+    --awful.button({ }, 5, function () awful.util.spawn("amixer -q -c 0 sset Master 2dB-", false) end),
+    --awful.button({ }, 3, function () awful.util.spawn("pavucontrol", false) end)
+    ----awful.button({ }, 2, function () awful.util.spawn("".. terminal.. " -e alsamixer", true) end)
+--))
+--vicious.register(volumewidget, vicious.widgets.volume, "$1%",1,"Master")
+--batwidget = wibox.widget.textbox()
+--vicious.register(batwidget, vicious.widgets.bat,
+--function(widget, args)
+    --if args[2]<=10 then
+        --return red .. args[1].. args[2] .."%" .. coldef 
+    --end
+    --if args[2]>10 and args[2]<24 then
+        --return orange .. args[1] .. args[2] .. "%" .. coldef 
+    --else
+        --return white .. args[1] .. args[2] .. "%" .. coldef
+    --end
+--end, 61, "BAT0")
 
 --local notif = naughty.notification {
     --title   = 'A notification',
