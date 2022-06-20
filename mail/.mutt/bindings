@@ -142,3 +142,4 @@ macro index,pager X "<pipe-message>ripmime -i - --no-nameless -d "
 
 bind pager <up> previous-line #scroll inside the message rather than the index
 bind pager <down> next-line"
+macro compose V "<shell-escape>ranger --choosefile=/tmp/muttattach<enter><enter-command>source ~/.mutt/attach.macro<enter><enter-command>push W<enter>" "open ranger, redefine macro and attach"

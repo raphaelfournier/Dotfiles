@@ -311,7 +311,7 @@ set scrolloff=8
 set expandtab
 set sw=2
 set ts=2
-set softtabstop=2
+"set softtabstop=2
 " export html ok
 let html_use_css = 1
 set nojoinspaces

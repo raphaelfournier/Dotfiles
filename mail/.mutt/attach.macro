@@ -1,0 +1,4 @@
+# https://unix.stackexchange.com/questions/612134/neomutt-run-command-to-attach-file-on-macro-key-press/612194#612194
+macro compose W \
+"<attach-file>`cat /tmp/muttattach`<enter>" \
+"attach file"

@@ -1,0 +1,2 @@
+#set index_format="%4C %Z %b %-15.15L (%?l?%4l&%4c?) %s"
+

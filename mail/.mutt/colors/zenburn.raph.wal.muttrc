@@ -39,6 +39,8 @@ color index      black cyan ~N~l # new messages from list
 
 color index      cyan default "%f personal-lists"
 color index      black cyan "~N %f personal-lists"
+color index      cyan default "%f work-lists"
+color index      black cyan "~N %f work-lists"
 
 # other lists
 #color index      cyan default "~C jgiavelli@yahoo.fr | ~C didier.bernard1@free.fr"

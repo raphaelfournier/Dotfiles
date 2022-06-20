@@ -145,6 +145,7 @@ folder-hook RFS/* source ~/.mutt/rfs.muttrc
 folder-hook CNAM/* source ~/.mutt/cnam.muttrc
 folder-hook CNAMnet/* source ~/.mutt/cnamnet.muttrc
 folder-hook Rfnet/* source ~/.mutt/rfnet.muttrc
+#folder-hook ~/.cache/notmuch/mutt/results source ~/.mutt/notmuch-search
 
 #folder-hook CNAMnet/* source ~/.mutt/cnamnet.muttrc
 #folder-hook Rfnet/* source ~/.mutt/rfnet.muttrc
