@@ -1293,6 +1293,7 @@ end
 -- {{{ Key bindings
 
 local muttcommand = terminal .. " -e zsh -c \'echo -en \"\\e]1;mutt\\a\";echo -en \"\\e]2;mutt\\a\";echo -en \"\\e]0;mutt\\a\";sleep 0.05s; screen -S mutt mutt -F .muttrc\'"
+--local muttcommand = terminal .. " -e zsh -c \'echo -en \"\\e]1;mutt\\a\";echo -en \"\\e]2;mutt\\a\";echo -en \"\\e]0;mutt\\a\";sleep 0.05s; screen -c ~/.screen/mutt.screenrc"
 --local muttcommand = "urxvt -e zsh -c \'echo -en \"\\e]1;mutt\\a\";echo -en \"\\e]2;mutt\\a\";echo -en \"\\e]0;mutt\\a\";sleep 0.05s; screen -S mutt mutt -F .muttrc\'"
 --local muttcommand = "zenity --error --text=crontab-webmail"
 
@@ -1803,11 +1804,15 @@ awful.rules.rules = {
       properties = { screen = screen:count(), tag = "im", focus = false} },
     { rule = { instance = "zoom" },
       properties = { screen = screen:count(), tag = "im"} },
+    { rule = { class = "zoom", name = "Discussion" },
+      properties = { screen = screen:count(), tag = "im"}}, 
     { rule = { name = "Signal" },
       properties = { screen = screen:count(), tag = "im"} },
     { rule = { instance = "biscuit" },
       properties = { screen = screen:count(), tag = "im"} },
     { rule = { name = "Ferdi" },
+      properties = { screen = screen:count(), tag = "im"} },
+    { rule = { name = "zihap" },
       properties = { screen = screen:count(), tag = "im"} },
     { rule = { name = "Rambox" },
       properties = { screen = screen:count(), tag = "im"} },

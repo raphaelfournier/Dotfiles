@@ -13,6 +13,7 @@ map <Button8> navigate previous
 map <Button9> navigate next
 map b focus_inputbar ":blist "
 map + zoom in
+map <C-=> zoom in
 map - zoom out
 map <C-Button4> zoom in
 map <C-Button5> zoom out

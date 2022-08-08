@@ -1,0 +1,9 @@
+source /home/raph/.screenrc
+sessionname jekyll
+
+# create windows
+screen -t mutt mutt -F ~/.muttrc
+screen -t ranger ranger
+select 0
+
+# vim: ft=screen

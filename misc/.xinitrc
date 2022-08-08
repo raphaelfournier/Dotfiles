@@ -11,17 +11,18 @@ udiskie -san &
 #xcompmgr &
 #skype &
 #wicd-client &
+dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 blueman-applet &
 /home/raph/.scripts/setDbusSessionBusAddress.sh &
 nm-applet --sm-disable &
 arandr-indicator &
-vgrive &
+#vgrive &
 greenclip daemon &
 #stretchly &
 #ticktick &
 #wal -R & 
 #rambox &
-ferdi &
+#ferdi &
 # xpad &
 #dunst &
 #cbatticon &

@@ -56,7 +56,7 @@ class Zenburn(ColorScheme):
                     attr |= bold
             if context.link:
                 fg = context.good and 223 or 116
-                bg = 234
+                # bg = 234
             if context.bad:
                 bg = 235
             if context.tag_marker and not context.selected:
