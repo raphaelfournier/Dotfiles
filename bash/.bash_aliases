@@ -17,7 +17,7 @@ alias cde='cd ..'
 alias chmoad="chmod"
 alias deeptask='bla=`od -vAn -N1 -tu1 < /dev/urandom | tr -d " "`; cp Templates/template-deepwork.mdwn /tmp/deeptask$bla; mpc load korn; mpc play; vim /tmp/deeptask$bla +Goyo +'
 alias ds='cd ~/downloads && ls -tr'
-alias dpsa='docker ps -a --format "table {{.ID}} {{.Names}}\t{{printf \"%.25s\" .Image}}\t{{.Status}}\t{{.Ports}}"'
+alias dpsa='docker ps -a --format "table {{.ID}} {{.Names}}\t{{printf \"%.25s\" .Image}}\t{{.Status}}\t{{.Ports}}" | (read -r; printf "%s\n" "$REPLY"; sort -rk 4 )'
 alias dsr='docker stop '
 function dsr() { docker stop $@ && docker rm $@; }
 alias cdc='cd ~/Current'
@@ -136,7 +136,7 @@ alias ovh='ssh -l fournier 91.121.183.150'
 alias webcam-laptop='mplayer tv:// -tv driver=v4l2:device=/dev/video0:brightness=40 -fps 30'
 alias webcam='mplayer tv:// -tv driver=v4l2:device=/dev/video2:brightness=40 -vf mirror -fps 30'
 alias grepc='grep --color=auto'
-alias dfh='df -h | grep -v tmpfs'
+alias dfh="df -h | grep -v tmpfs | sed '/sdb5/i ================================================' | sed '/sdb5/a ================================================'"
 alias cpuondemand='sudo cpufreq-set -g ondemand'
 alias battery='ibam -a'
 alias temperature='cat /proc/acpi/thermal_zone/THRM/temperature'

@@ -169,6 +169,8 @@ map ,wc :w !detex \| wc -w<CR>
 " Allow using the repeat operator with a visual selection (!)
 " http://stackoverflow.com/a/8064607/127816
 vnoremap . :normal .<CR>
+" close the quickfix window return to position
+nnoremap <leader>q :cclose<CR>`A 
 
 vnoremap <C-X> <Esc>`.``gvP``P
 
@@ -963,6 +965,13 @@ nnoremap <C-W><C-F> <C-W>vgf
 "C-WC-F - Edit existing file under cursor in vertically split window
 map <leader>gf :vs <cfile><cr>
 nnoremap <C-a> <C-w>
+ 
+" Use ctrl-[hjkl] to select the active split!
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
+nmap <silent> <c-_> :wincmd _<CR>
 
 "nnoremap <leader><F8> :call NextColor(1)<CR>
 "nnoremap <leader><S-F8> :call NextColor(-1)<CR>

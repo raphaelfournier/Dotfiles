@@ -141,7 +141,7 @@ PERL_MB_OPT="--install_base \"/home/raph/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/raph/perl5"; export PERL_MM_OPT;
 
 #export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --preview-window right:50% --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -500"'
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --preview-window right:50% --preview "bat --color=always --style=header,grid --line-range :300 {}"'
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border '
 
 
 source /usr/share/fzf/key-bindings.zsh
@@ -201,6 +201,9 @@ bindkey "\e[B" history-beginning-search-forward
 
 ##### VIM STUFF
 bindkey '\e' vi-cmd-mode 
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export KEYTIMEOUT=1 
 

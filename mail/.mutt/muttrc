@@ -209,7 +209,7 @@ source ~/.mutt/bindings
 source ~/.mutt/gpg
 source ~/.mutt/savehooks
 #source ~/.mutt/sidebar
-#source ~/.mutt/notmuch
+source ~/.mutt/notmuch
 source ~/.mutt/sendhooks
 
 

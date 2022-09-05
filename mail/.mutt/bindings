@@ -72,8 +72,8 @@ macro pager,index,generic ,k     "<change-folder>+CNAM/Archives<enter>"
 macro pager,index,generic ,K     "<change-folder>+CNAMnet/Archives<enter>"
 macro pager,index,generic ,l      "<change-folder>+Rfnet/INBOX<enter>"
 macro pager,index,generic ,m     "<change-folder>+Rfnet/Archives<enter>"
-macro pager,index,generic ,ù      "<change-folder>+Rfnet/MLEnsica<enter>"
-macro pager,index,generic ,*      "<change-folder>+Archives/MailingLists<enter>"
+macro pager,index,generic ,ù      "<change-folder>+Archives/MailingLists<enter>"
+macro pager,index,generic ,*      "<change-folder>+CNAM/TRIED<enter>"
 macro index ,e "<limit>~y " "Limit view to label"
 macro pager,index,generic ,I      '<vfolder-from-query>tag:flux<enter>'
 macro pager,index,generic ,i      '<change-folder>+RFS/Flux.<tab><tab>'
