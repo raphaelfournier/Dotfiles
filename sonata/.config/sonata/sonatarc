@@ -88,7 +88,7 @@ currsong1 = %T
 currsong2 = par %A de %B
 
 [streams]
-num_streams = 9
+num_streams = 10
 names[0] = Fip Autour du rock
 uris[0] = http://direct.fipradio.fr/live/fip-webradio1.mp3
 names[1] = finter
@@ -107,6 +107,8 @@ names[7] = Nova
 uris[7] = http://novazz.ice.infomaniak.ch/novazz-128.mp3
 names[8] = Virgin
 uris[8] = http://vr-live-mp3-128.scdn.arkena.com/virginradio.mp3
+names[9] = RMC
+uris[9] = http://rmc.bfmtv.com/rmcinfo-mp3
 
 [audioscrobbler]
 use_audioscrobbler = False

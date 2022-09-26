@@ -13,12 +13,14 @@ bind index ! noop
 ######################################
 # macros
 macro index B   "<limit>~b "                "search message bodies"
+#macro pager,attach B "<enter-command>set pipe_decode=no<enter><pipe-message>cat > /tmp/mutt.html; firefox /tmp/mutt.html<enter>"
 
 macro index \Cf "<limit>~F<enter><current-middle>" "limit to flagged messages"
 macro index <esc>a "<limit>all<enter>oi<current-middle>" "view all messages, sorted by discussion"
 macro index <esc>z "<limit>~P | ~l<enter><current-middle>" "view messages excluded from default view"
 macro index <esc>d "<tag-pattern>~=<enter><tag-prefix>d" "tag and delete duplicate messages"
 macro index \Cv "<limit>~N<enter>od<current-middle>" "view only new messages"
+macro index \Cb "<limit>~(~U)<enter>" "view only threads with new messages"
 macro index \Cw "<limit>!~F<enter><current-middle>" "hide flagged messages"
 macro index \Ce "<limit>!~P !~l<enter><current-middle><last-entry>" "hide messages from me and lists"
 
@@ -61,6 +63,7 @@ macro compose ,x      ":set sendmail=\"/home/raph/.scripts/msmtp-queue-scheduler
 macro compose ,g      ":set sendmail=\"/usr/bin/msmtp -a google\""
 
 macro compose ,f      "<edit-fcc>=CNAM/INBOX"
+macro compose ,F      "<edit-fcc>=CNAM/TRIED/"
 
 macro pager,index,generic ,a      "<change-folder>+Archives/`date +%y`<enter>"
 macro pager,index,generic ,A      "<change-folder>+Archives/`eval 'date +%y-1 | bc'`<enter>"
@@ -98,43 +101,15 @@ macro index ,d \
 
 macro compose v "<edit-from>^Uidentity.<tab>" "Select from" 
 
-macro index,pager \Co view-mailcap
-#macro index,pager \Co "\
-#<enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
-#pipe_decode=no wait_key=no<enter>\
-#<pipe-message> viewhtmlmsg -b firefox<enter>\
-#<enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
-#&my_pipe_decode &my_wait_key<enter>\
-#" "muttils view HTML in browser"
-
-macro index,pager <F12> "\
-<enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
-pipe_decode=no wait_key=no<enter>\
-<pipe-message> viewhtmlmsg -b luakit -s<enter>\
-<enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
-&my_pipe_decode &my_wait_key<enter>\
-" "muttils view HTML (safe) in browser"
-
-macro index,pager,attach ,u "\
-<enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
-pipe_decode=no wait_key=no<enter>\
-<pipe-message> urlpager -b firefox<enter>\
-<enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
-&my_pipe_decode &my_wait_key<enter>\
-" "go to any url"
-
-macro index,pager,attach ,t "\
-<enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
-pipe_decode=no wait_key=no<enter>\
-<pipe-message> urlpager -b w3m -pweb<enter>\
-<enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
-&my_pipe_decode &my_wait_key<enter>\
-" "text browse web"
-
 #source ~/.scripts/muttils/contrib/example-muttrc
+macro index,pager <F7> "<pipe-message>~/.scripts/viewhtmlmail.py\n" "View HTML in browser"
 
-macro index,pager ,U "<pipe-message> urlview<Enter>" "call urlview to extract URLs out of a message"
-macro attach,compose ,U "<pipe-entry> urlview<Enter>" "call urlview to extract URLs out of a message"
+#macro index,pager ,U "<pipe-message> urlview<Enter>" "call urlview to extract URLs out of a message"
+#macro attach,compose ,U "<pipe-entry> urlview<Enter>" "call urlview to extract URLs out of a message"
+
+macro index,pager ,u "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+macro attach,compose ,u "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+
 #macro pager Q <search>\^Sub<enter><next-line>
 macro pager Q <search>\^\\s+\$<enter>
 macro compose ,A "<shell-escape>bash $HOME/.scripts/rangerpick.sh<enter><enter-command>source $HOME/.mutt/rangerpick<enter>" "Attach with Ranger"

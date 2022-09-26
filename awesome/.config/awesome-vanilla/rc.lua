@@ -1875,7 +1875,7 @@ awful.rules.rules = {
     { rule = { class = "Surf" },
       properties = { screen = 1, tag = "term", floating = false, switchtotag = true } },
     { rule = { class = "Pavucontrol" },
-      properties = { screen =screen:count(), tag = "media", floating = true,  geometry = { height=600, width=1100, y=200, x=200 },} },
+      properties = { screen =screen:count(), tag = "media", floating = false, switchtotag = true } },
     { rule = { class = "Spotify" },
       properties = { screen =screen:count(), tag = "media" } },
     { rule = { class = "Scribus" },
@@ -1994,6 +1994,7 @@ end)
 
 --{{{ Spin up the startup functions
 --awful.util.spawn_with_shell(setReminders())
+awful.spawn.with_shell("~/.scripts/nitrogen-restore.sh")
 --}}}
 screen.connect_signal("list", awesome.restart)
 -- }}}
