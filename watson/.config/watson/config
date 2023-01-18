@@ -1,7 +1,3 @@
-[backend]
-url = https://api.crick.io/watson
-token = WyXRnIMz8oA3RWwCc1aI9oUL8bjWAyj1OZsGKVjX_sxoRLi8RkM18g==
-
 [options]
 pager = False
 stop_on_start = True

@@ -203,7 +203,7 @@ source ~/.mutt/neomuttrc
 #source ~/.mutt/colors/raph.essai.muttrc
 
 source ~/.mutt/colors/zenburn.raph.wal.muttrc
-#source ~/.mutt/colors/raph.outside.muttrc
+##source ~/.mutt/colors/raph.outside.muttrc
 
 source ~/.mutt/bindings
 source ~/.mutt/gpg

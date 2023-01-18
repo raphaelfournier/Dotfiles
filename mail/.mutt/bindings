@@ -33,8 +33,8 @@ macro index ,v "<limit>~l<enter><current-middle>" "view only list messages"
 #macro index \Ce "<limit>!~s SLURM<enter><current-middle>"
 
 macro attach s <save-entry><kill-line>~/Mail/Attachments/ "save attachments in ~/Mail/Attachments" 
-macro attach S <save-entry><kill-line>~/downloads/ "save attachments in ~/downloads/" 
-macro compose ,a "<attach-file>`xsel -p | sed "s/ /$(printf \\026)&/g"`<enter>"
+#macro attach S <save-entry><kill-line>~/downloads/ "save attachments in ~/downloads/" 
+#macro compose ,a "<attach-file>`xsel -p | sed "s/ /$(printf \\026)&/g"`<enter>"
 macro index,pager,compose ,r <save-entry><kill-line>=CNAM/INBOX "save in CNAM/INBOX"
 macro index,pager,compose ,R <save-entry><kill-line>=CNAMnet/INBOX "save in CNAMnet/INBOX"
 bind index zt current-top
@@ -107,15 +107,19 @@ macro index,pager <F7> "<pipe-message>~/.scripts/viewhtmlmail.py\n" "View HTML i
 #macro index,pager ,U "<pipe-message> urlview<Enter>" "call urlview to extract URLs out of a message"
 #macro attach,compose ,U "<pipe-entry> urlview<Enter>" "call urlview to extract URLs out of a message"
 
-macro index,pager ,u "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
-macro attach,compose ,u "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+macro index,pager ,u "<pipe-message> urlscan -c<Enter>" "call urlscan to extract URLs out of a message"
+macro attach,compose ,u "<pipe-entry> urlscan -c<Enter>" "call urlscan to extract URLs out of a message"
 
 #macro pager Q <search>\^Sub<enter><next-line>
 macro pager Q <search>\^\\s+\$<enter>
 #macro compose ,A "<shell-escape>bash $HOME/.scripts/rangerpick.sh<enter><enter-command>source $HOME/.mutt/rangerpick<enter>" "Attach with Ranger"
-macro compose A "<shell-escape>bash $HOME/.mutt/neomutt-file-picker/filepicker<enter><enter-command>source $HOME/.mutt/tmpfile<enter><shell-escape>bash $HOME/.mutt/neomutt-file-picker/filepicker clean<enter>" "Attach with your file manager"
-macro index,pager X "<pipe-message>ripmime -i - --no-nameless -d "
+macro compose ,a "<shell-escape>bash $HOME/.mutt/neomutt-file-picker/filepicker<enter><enter-command>source $HOME/.mutt/tmpfile<enter><shell-escape>bash $HOME/.mutt/neomutt-file-picker/filepicker clean<enter>" "Attach with your file manager"
+macro index,pager X "<shell-escape>bash $HOME/.mutt/neomutt-file-picker/dirpicker rip<enter><enter-command>source $HOME/.mutt/tmpfile<enter>" "Attach in folder with ranger and ripmime"
+macro attach ,s "<shell-escape>bash $HOME/.mutt/neomutt-file-picker/dirpicker<enter><enter-command>source $HOME/.mutt/tmpfile<enter>o" "Choose folder with ranger"
+#macro attach S "<shell-escape>bash $HOME/.mutt/neomutt-file-picker/dirpicker<enter><enter-command>source $HOME/.mutt/tmpfile<enter><shell-escape>bash $HOME/.mutt/neomutt-file-picker/filepicker clean<enter>" "Choose folder with ranger"
+#macro index,pager X "<pipe-message>ripmime -i - --no-nameless -d "
 
 bind pager <up> previous-line #scroll inside the message rather than the index
 bind pager <down> next-line"
 macro compose V "<shell-escape>ranger --choosefile=/tmp/muttattach<enter><enter-command>source ~/.mutt/attach.macro<enter><enter-command>push W<enter>" "open ranger, redefine macro and attach"
+

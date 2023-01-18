@@ -27,7 +27,7 @@ source $HOME/.shell_path
 
 declare -x TEXINPUTS=.:$HOME/LIP6/These/Manuscript/preamble:
 export HISTSIZE=10000
-export EDITOR="vim"
+export EDITOR="nvim"
 export MANPAGER=most
 export XDG_CONFIG_HOME="/home/raph/.config"
 export XDG_DATA_HOME="/home/raph/.local/share"

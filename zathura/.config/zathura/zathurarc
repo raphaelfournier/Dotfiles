@@ -4,7 +4,7 @@
 "set statusbar-bg #00FF00
 "set statusbar-fg #FF0000
 
-set font "Inconsolata 18"
+set font "Inconsolata 14"
 
 set window-title-basename true
 map <PageUp> navigate previous

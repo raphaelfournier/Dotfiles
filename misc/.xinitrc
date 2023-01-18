@@ -6,13 +6,13 @@ xrdb -merge ~/.Xresources
 /home/raph/.scripts/locker.sh &
 #udisksvm --auto &
 udiskie -san &
-#
+touchegg &
 #eval $(gpg-agent --daemon) &
 #xcompmgr &
 #skype &
 #wicd-client &
 dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
-#blueman-applet &
+blueman-applet &
 /home/raph/.scripts/setDbusSessionBusAddress.sh &
 nm-applet --sm-disable &
 arandr-indicator &
@@ -30,8 +30,9 @@ greenclip daemon &
 #sudo netcfg-menu &
 #dropbox &
 #udiskie --tray &
-setxkbmap -option caps:escape
-[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
+[ ! -s ~/.config/mpd/pid ] && mpd &
+setxkbmap -option caps:escape &
+[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap &
 DEFAULT_SESSION=awesome
 #DEFAULT_SESSION=gnome-session
 #DEFAULT_SESSION=wmii
