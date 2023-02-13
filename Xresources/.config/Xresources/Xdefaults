@@ -82,9 +82,9 @@ urxvt.matcher.button: 1
 !urxvt.keysym.M-C-d: perl:clipboard:paste 
 urxvt.copyCommand: xclip -i -selection clipboard
 urxvt.pasteCommand: xclip -o -selection clipboard
-urxvt.keysym.C-M-a: perl:clipboard:copy
-urxvt.keysym.C-M-z: perl:clipboard:paste
-urxvt.keysym.C-M-e: perl:clipboard:paste_escaped
+urxvt.keysym.C-M-x: perl:clipboard:copy
+urxvt.keysym.C-M-v: perl:clipboard:paste
+urxvt.keysym.C-M-b: perl:clipboard:paste_escaped
 
 !urxvt*keysym.M-C-s: command:\033]50;xft:Inconsolata:style=Medium:antialias=true:size=12\007
 !urxvt*keysym.M-C-d: command:\033]50;xft:Inconsolata:style=Medium:antialias=true:size=18\007
