@@ -1,0 +1,34 @@
+!! Papercolor
+urxvt*background:  #eeeeee
+urxvt*foreground:  #1c1c1c
+urxvt*cursorColor: #1c1c1c
+! black + red
+urxvt*color0:      #eeeeee
+urxvt*color1:      #af0000
+! green + yellow
+urxvt*color2:      #008700
+urxvt*color3:      #5f8700
+! blue + purple
+urxvt*color4:      #0087af
+urxvt*color5:      #878787 
+! bizarre cette color5
+! cyan + white
+urxvt*color6:      #005f87
+urxvt*color7:      #444444
+! bright-black + bright-red
+urxvt*color8:      #bcbcbc
+urxvt*color9:      #d70000
+! bright-green + bright-yellow
+urxvt*color10:     #d70087
+urxvt*color11:     #8700af
+! bright-blue + bright-purple
+urxvt*color12:     #005f87
+urxvt*color13:     #ff5faf
+! bright-cyan + bright-white
+urxvt*color14:     #005faf
+urxvt*color15:     #005f87
+!
+!HLT Include, StatusLine, ErrorMsg
+URxvt*colorBD     : #d75f00
+URxvt*colorUL     : #d70000
+URxvt*colorIT     : #005faf

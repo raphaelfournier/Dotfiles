@@ -101,3 +101,5 @@ rootterm*color13:     #ec93d3
 rootterm*color14:     #93e0e3
 rootterm*color15:     #ffffff
 
+slave*background:  #3f3f3f
+slave*foreground:  #1E2320
