@@ -22,7 +22,7 @@ set query_command = "lbdbq '%s'"
 
 #set editor              = "/usr/bin/vim -u ~/.vimrc.mutt -c 'set spell spelllang=fr' -c startinsert"                   # use vim and skip to first blank line
 #set editor="vi +/^$ ++1"
-#set editor="vim -N -c 'set ft=mail spelllang=fr,en spell tw=0 wm=0' -c 'syntax on' -c 'setlocal fo-=tcq fo+=w' -c 'startinsert' "
+set editor="vim -N -c 'set ft=mail spelllang=fr,en spell tw=0 wm=0' -c 'syntax on' -c 'setlocal fo-=tcq fo+=w' -c 'startinsert' "
 #set smart_wrap="yes"            # Wrap between two words
 #set markers="yes"               # Display a '+' when a line is wrapped
 #set text_flowed=yes             # Display exerpt bar instead of '>'

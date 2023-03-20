@@ -50,7 +50,7 @@ Plugin 'vim-scripts/mutt-canned'
 Plugin 'universal-ctags/ctags'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"Plugin 'junegunn/fzf.vim'
+Plugin 'junegunn/fzf.vim'
 Plugin 'lervag/vimtex'
 "Plugin 'Konfekt/vim-notmuch-addrlookup'
 "Plugin 'felipec/notmuch-vim'
@@ -210,7 +210,7 @@ imap <C-c> <Plug>Tex_MathCal
 imap <C-l> <Plug>Tex_LeftRight
 " Map <Leader>ff to display all lines with keyword under cursor
 " and ask which one to jump to
-nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+nmap <Leader>Ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
 " Use gc to swap the current character with the next, without changing the cursor position.
 nnoremap <silent> gc xph
@@ -905,8 +905,22 @@ vnoremap // y/<C-R>"<CR>
 "au CursHoldI * stopinstert
 
 "let g:vimwiki_customwiki2html=$HOME.'/.vim/autoload/vimwiki/customwiki2html.sh'
-let g:vimwiki_list = [{'path': '~/Notes/vimwiki/', 'path_html': '~/public_html/vimwiki', 'ext': '.md', 'syntax': 'markdown'}]
+"let g:vimwiki_list = [{'path': '~/Notes/vimwiki/', 'path_html': '~/public_html/vimwiki', 'ext': '.md', 'syntax': 'markdown'}]
+"let g:vimwiki_list = [{'path': '~/.vimwiki/', 'ext': '.md', 'syntax': 'markdown'}]
+let wiki_1                          = {}
+let wiki_1.path                     = '~/.vimwiki/'
+let wiki_1.links_space_char         = '-'
+let wiki_1.ext                      = '.md'
+let wiki_1.path_html                = '~/public_html/vimwiki'
+let wiki_1.auto_export              = 1
+let wiki_1.syntax                   = 'markdown'
+let wiki_1.custom_wiki2html         = '~/.scripts/markdown_to_note'
+let wiki_1.custom_wiki2html_args    = ''
 let g:vimwiki_markdown_link_ext = 1
+let g:vimwiki_list                  = [wiki_1]
+
+nmap <Leader>wx :vs \| :VimwikiIndex<CR>
+"let g:vimwiki_markdown_link_ext = 1
 
 " a function to execute formd and return the cursor back
 " to it's original position within the buffer. 
@@ -1034,7 +1048,9 @@ let @o = 'oitemize' "beamer
 let @s = 'yyPvt{lc% <<< $r ' " latex modeline.
 let @d = 'kO% >>>€ýa'
 " FZF
-nnoremap <leader>o :Files<CR>
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fh :History<cr>
+nnoremap <leader>fb :BLines<cr>
 " >>>
 
 " todolist
