@@ -5,6 +5,7 @@ XDG_CONFIG_HOME="$HOME/.config"
 XDG="$XDG_DATA_DIRS:$XDG_DATA_HOME:$XDG_CACHE_HOME:$XDG_CONFIG_HOME"
 export PATH=/home/raph/.local/share/gem/ruby/3.0.0/bin:/home/raph/go/bin:/home/raph/Enseignement/NSY135/apache-tomcat-8.0.28/:/home/raph/tomcat:/home/raph/CNAM/Enseignements/NSY135/apache-tomcat-7.0.55:/usr/local/m68k-elf/bin:/usr/local/arm-elf/bin:/home/raph/Code/android-sdk-linux/platform-tools/:/home/raph/Code/android-sdk-linux/tools/:/home/raph/.scripts/texpander:/home/raph/.scripts/screenSessions:/home/raph/.scripts/pomo:/home/raph/.scripts:/home/raph/.gem/ruby/:/home/raph/.gem/ruby/2.1.0/bin:/home/raph/.gem/ruby/2.2.0/bin:/home/raph/Enseignement/NFE204/pigdir/bin:/usr/share/apache-spark/bin:/root/.gem/ruby/2.3.0/bin:/home/raph/.gem/ruby/2.3.0/bin:/home/raph/.gem/ruby/2.4.0/bin:/home/raph/.gem/ruby/2.5.0/bin:/home/raph/.local/bin:/home/raph/.scripts/rofi/rofi-notes/:/home/raph/.gem/ruby/2.6.0/bin:$XDG:$PATH
 export PATH="$JAVA_HOME/bin:$PATH"
+export PATH="$GEM_HOME/bin:$PATH"
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export LD_LIBRARY_PATH="/usr/lib/python2.7/site-packages/jep/"
 PATH="/home/raph/perl5/bin${PATH+:}${PATH}"; export PATH;

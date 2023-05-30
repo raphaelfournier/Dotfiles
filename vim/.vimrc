@@ -1,15 +1,17 @@
 "| vim : set fdm=marker:fmr=<<<,>>>:fdl=0:
 
+"let g:polyglot_disabled = ['latex']
+
 " <<< Vundle configuration 
 set shell=/bin/bash
 set nocompatible              " be iMproved, required
+set hidden
 filetype off                  " required
 set t_Co=256
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-let g:polyglot_disabled = ['latex']
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
@@ -36,9 +38,20 @@ Plugin 'ayu-theme/ayu-vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'NLKNguyen/papercolor-theme'
 
-Bundle 'Shougo/neocomplcache'
+"Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+Plugin 'ludovicchabant/vim-gutentags'
+
+"Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neosnippet'
 Bundle 'Shougo/neosnippet-snippets'
+if has('nvim')
+  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plugin 'Shougo/deoplete.nvim'
+  Plugin 'roxma/nvim-yarp'
+  Plugin 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -46,9 +59,15 @@ Plugin 'vim-scripts/VST'
 "Plugin 'codota/tabnine-vim'
 
 Plugin 'vim-scripts/mutt-canned'
+Plugin 'vim-scripts/swap'
+
+Plugin 'psf/black'
+
+Plugin 'ryicoh/deepl.vim'
+Plugin '0xStabby/chatgpt-vim'
 
 Plugin 'universal-ctags/ctags'
-Plugin 'sheerun/vim-polyglot'
+"Plugin 'sheerun/vim-polyglot'
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
 Plugin 'lervag/vimtex'
@@ -58,6 +77,8 @@ Plugin 'lervag/vimtex'
 
 Plugin 'Konfekt/FastFold'
 Plugin 'tmhedberg/SimpylFold'
+
+Plugin 'vim-ctrlspace/vim-ctrlspace'
 
 Bundle 'scrooloose/syntastic'
 Bundle 'mbbill/undotree'
@@ -95,11 +116,14 @@ au BufRead *tex nmap Q gqap
 "  au BufRead ~/.mutt/temp/mutt* map!  <F5>  <ESC>kgqji
 augroup END
 
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
+
 augroup WrapLineInTeXFile
   autocmd!
   autocmd FileType tex setlocal wrap linebreak nolist
-  autocmd FileType tex setlocal showbreak=+++
-  autocmd FileType tex setlocal formatoptions-=t
+  "autocmd FileType tex setlocal showbreak=+++
+  "autocmd FileType tex setlocal formatoptions-=t
 augroup END
 
 autocmd FileType python set sw=4
@@ -117,6 +141,9 @@ au BufRead ~/.mutt/temp/*mutt* nmap  <F7>  kgqj
 au BufRead ~/.mutt/temp/*mutt* map!  <F5>  <ESC>gqapi
 au BufRead ~/.mutt/temp/*mutt* map!  <F6>  <ESC>gqqji
 au BufRead ~/.mutt/temp/*mutt* map!  <F7>  <ESC>kgqji
+au BufRead ~/.mutt/temp/*mutt* setlocal wrap linebreak nolist
+"au BufRead ~/.mutt/temp/*mutt* setlocal showbreak=+++
+"au BufRead ~/.mutt/temp/*mutt* setlocal formatoptions-=t
 au BufRead ~/Dotfiles/mail/.mutt/temp/*mutt* nmap  ,x  <ESC>oScheduler: 8:05 AM tomorrow
 "au BufRead ~/.mutt/temp/*mutt* setlocal fo+=aw
 
@@ -146,10 +173,12 @@ endfunction
 au BufEnter *.md* setlocal foldexpr=MarkdownLevel()  
 au BufEnter *.md* setlocal foldmethod=expr     
 
+"autocmd VimEnter * if argc() > 1 && !exists("s:std_in") | execute "vsp " . argv() | wincmd p | argdelete" | endif
 " >>>
 
 " <<< Bindings 
 let mapleader = ","
+let maplocalleader = "<space>"
 
 "nnoremap <leader>v :vnew<CR>
 nnoremap <leader>cd :cd %:p:h<CR>
@@ -271,11 +300,12 @@ endif
 ">>>
 
 " <<< Editor Options 
-set textwidth=80
+set textwidth=80 
+set wrapmargin=0 " inutile si textwidth est >0
 set colorcolumn=80
 set linebreak " avoid cutting words
 set wrap
-set columns=86
+set columns=80
 "set numberwidth=6
 
 "autocmd VimResized * if (&columns > 80) | set columns=80 | endif
@@ -354,6 +384,32 @@ set wildmode=list:longest,full
 "
 " gitgutter. Reenable with :GitGutterToggle
 let g:gitgutter_enabled = 0
+
+let g:muttaliases_file = '/home/raph/.mutt/aliases'
+
+"https://github.com/vim-ctrlspace/vim-ctrlspace
+set showtabline=0
+
+let g:deepl#endpoint = "https://api-free.deepl.com/v2/translate"
+let g:deepl#auth_key = "8a004057-94dd-b96a-b8d8-6b8b6280bc00:fx"
+
+" replace a visual selection
+vmap ,<C-e> <Cmd>call deepl#v("EN")<CR>
+vmap ,<C-j> <Cmd>call deepl#v("FR")<CR>
+
+" translate a current line and display on a new line
+nmap ,<C-e> yypV<Cmd>call deepl#v("EN")<CR>
+nmap ,<C-j> yypV<Cmd>call deepl#v("FR")<CR>
+
+" specify the source language
+" translate from FR to EN
+nmap t<C-e> yypV<Cmd>call deepl#v("EN", "FR")<CR>
+
+"let g:swap_custom_ops = ['first_operator', 'second_operator', ...] 
+"vmap <leader>s         <plug>SwapSwapOperands
+"vmap <leader><leader>x <plug>SwapSwapOperandsPivot
+"nmap <leader>x         <plug>SwapSwapWithR_WORD
+"nmap <leader>X         <plug>SwapSwapWithL_WORD
 
 "let scl = "number"
 "
@@ -496,14 +552,14 @@ let g:nv_expect_keys = []
 nnoremap <silent> <c-s> :NV<space> 
 
 let g:tagbar_autofocus=1
-"let g:tagbar_ctags_bin='/usr/bin/ctags'
+let g:tagbar_ctags_bin='/usr/bin/ctags'
 let g:tagbar_compact = 1
 let g:tagbar_indent = 1
 "let g:tagbar_width = 30
 let g:tagbar_autoclose = 1
 let g:tagbar_show_linenumbers = 1
-let g:tagbar_type_tex = {
-			\ 'ctagstype' : 'tex',
+let g:tagbar_type_latex = {
+			\ 'ctagstype' : 'latex',
 			\ 'kinds'     : [
 				\ 's:sections',
 				\ 'g:graphics:0:0',
@@ -684,6 +740,24 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
     endif
 "}
 
+" https://castel.dev/post/lecture-notes-1/
+let g:tex_flavor='latex'
+"let g:vimtex_complete_enabled=1
+let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+" TOC settings
+let g:vimtex_toc_config = {
+			\ 'name' : 'TOC',
+			\ 'layers' : ['content', 'todo', 'include'],
+			\ 'resize' : 1,
+			\ 'todo_sorted' : 0,
+			\ 'show_help' : 1,
+			\ 'show_numbers' : 1,
+			\ 'mode' : 2,
+			\}
+
 call vimtex#imaps#add_map({
       \ 'lhs' : 'b',
       \ 'rhs' : '\bigskip ',
@@ -703,6 +777,8 @@ call vimtex#imaps#add_map({
       \ 'wrapper' : 'vimtex#imaps#wrap_trivial'
       \})
 
+let g:vimtex_toc_enabled=1
+
 ">>>
 
 " <<< Misc 
@@ -711,6 +787,8 @@ au BufNewFile,BufRead *.plt,*.gnuplot,*.plot setf gnuplot
 autocmd BufNewFile,BufRead todo.txt,*.task,*.tasks  setfiletype task
 autocmd BufNewFile,BufRead *.mdwn  setfiletype markdown
 autocmd BufNewFile,BufRead *.md  setfiletype markdown
+
+autocmd filetype tex highlight MatchParen ctermbg=0
 
 function! ShowColourSchemeName()
     try
@@ -722,10 +800,14 @@ endfunction
 
 "https://www.hillelwayne.com/post/intermediate-vim/
 command! Vimrc :vs $MYVIMRC
+command! MuttAliases :vs ~/.mutt/aliases
 "nnoremap <c-j> <c-w>j
 "nnoremap <c-k> <c-w>k
 "nnoremap <c-h> <c-w>h
 "nnoremap <c-l> <c-w>l
+"
+
+set suffixesadd='.tex'
 
 command! -nargs=* Hardcopy call DoMyPrint('<args>')
 function DoMyPrint(args)
@@ -852,13 +934,13 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 " }
 
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+"autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " Enable heavy omni completion.
 "if !exists('g:neocomplcache_omni_patterns')
@@ -976,10 +1058,10 @@ augroup end
 "https://superuser.com/questions/277325/create-a-file-under-the-cursor-in-vim
 map <silent> <leader>cf :call writefile([], expand("<cfile>"), "t")<cr>
 map <leader>Gf :e <cfile><cr>
+map <leader>gf :vs <cfile><cr>
 nmap <C-w>f :e <cfile><CR>
 nnoremap <C-W><C-F> <C-W>vgf 
 "C-WC-F - Edit existing file under cursor in vertically split window
-map <leader>gf :vs <cfile><cr>
 nnoremap <C-a> <C-w>
  
 " Use ctrl-[hjkl] to select the active split!
@@ -1029,6 +1111,48 @@ nmap <Leader>j :call GotoJump()<CR>
 " >>>
 
 " <<< Abréviations et raccourcis clavier 
+"
+" Append modeline after last line in buffer.
+" " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" " files.
+function! AppendModeline()
+  let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :",
+          \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+            let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+  call append(line("$"), l:modeline)
+  endfunction
+nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
+
+" :Hv to open vertically
+command -narg=1 -complete=help H vert help <args>
+
+map <silent> <leader>h <C-w>5<
+map <silent> <leader>l <C-w>5>
+
+"function! SmartWidth( width )
+    "let num_wins = 0
+    "windo let num_wins+=1
+    "sil exe "set columns=" . num_wins * a:width
+    "sil exe "normal! \<c-w>="
+"endfunction
+
+"autocmd VimEnter * call SmartWidth(85)
+"autocmd WinEnter * call SmartWidth(85)
+"
+" Auto resize current pane on enter
+autocmd BufEnter * call s:ResizeSplit()
+command ResizeSplit call s:ResizeSplit()
+function! s:ResizeSplit()
+  :vertical resize 85
+  "if (winheight(0) < 20)
+    ":res 20
+  "endif
+  "if (winwidth(0) < 70)
+    ":vertical resize 70
+  "endif
+endfunction
+
+
 ab ccom /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 ab fcom ! * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 ab lcom % * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -1041,12 +1165,15 @@ let @t = '^c2lCcddpkc2lTo'
 " help:
 " record macro, then paste content of register to get desired sequence
 let @r = 'o\Raphael{}l' "latex comments
+let @s = 'O\begin{synth}'
+let @d = 'o\end{synth}'
+let @l = 'o\plan{}li'
 let @i = 'o\setlength{\itemsep}{10pt}' "beamer
 let @p = 'o\bigskip' "beamer
-let @o = 'oitemize' "beamer
+"let @o = 'oitemize' "beamer
 "let @P = 'o\medskip' "beamer
-let @s = 'yyPvt{lc% <<< $r ' " latex modeline.
-let @d = 'kO% >>>€ýa'
+let @m = 'yyPvt{lc% <<< $r ' " latex modeline.
+"let @d = 'kO% >>>€ýa'
 " FZF
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fh :History<cr>

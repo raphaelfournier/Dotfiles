@@ -21,3 +21,4 @@ if [ -f /usr/local/etc/bash_completion ] && ! shopt -oq posix; then
     . /usr/local/etc/bash_completion
     complete -o nospace -F _fab_complete fab
 fi
+

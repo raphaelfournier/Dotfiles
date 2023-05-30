@@ -22,8 +22,8 @@ set query_command = "lbdbq '%s'"
 
 #set editor              = "/usr/bin/vim -u ~/.vimrc.mutt -c 'set spell spelllang=fr' -c startinsert"                   # use vim and skip to first blank line
 #set editor="vi +/^$ ++1"
-set editor="vim -N -c 'set ft=mail spelllang=fr,en spell tw=0 wm=0' -c 'syntax on' -c 'setlocal fo-=tcq fo+=w' -c 'startinsert' "
-#set smart_wrap="yes"            # Wrap between two words
+set editor="vim -N -c 'set spelllang=fr,en spell' -c 'syntax on'"
+set smart_wrap="yes"            # Wrap between two words
 #set markers="yes"               # Display a '+' when a line is wrapped
 #set text_flowed=yes             # Display exerpt bar instead of '>'
 #set reflow_text=yes             # Mutt will reformat text in format=flowed mails
@@ -153,7 +153,6 @@ folder-hook Rfnet/* source ~/.mutt/rfnet.muttrc
 #folder-hook GMX/* source ~/.mutt/gmx.muttrc
 #folder-hook Lip6/* source ~/.mutt/lip6.muttrc
 #folder-hook Lavabit/* source ~/.mutt/lavabit.muttrc
-#source ~/.mutt/colors/colors.xoria`echo $TERM | sed "s:.*-::"`M
 #source ~/.mutt/gpg.rc                                     # gpg configuration 
 #source ~/.mutt/sidebar.muttrc                                   # any muttng options are here
 #charset-hook ^us-ascii$ cp1252
@@ -203,7 +202,8 @@ source ~/.mutt/neomuttrc
 #source ~/.mutt/colors/raph.essai.muttrc
 
 source ~/.mutt/colors/zenburn.raph.wal.muttrc
-##source ~/.mutt/colors/raph.outside.muttrc
+#source ~/.mutt/colors/raph.outside.muttrc
+#source ~/.mutt/colors/raph.light.muttrc
 
 source ~/.mutt/bindings
 source ~/.mutt/gpg
@@ -213,8 +213,6 @@ source ~/.mutt/notmuch
 source ~/.mutt/sendhooks
 
 
-macro pager,index,generic ,f      "<vfolder-from-query>tag:flux<enter>"
-#
 #macro pager,index,generic ,G      "<vfolder-from-query>tag:inbox and tag:rfs<enter>"
 #macro pager,index,generic ,K      "<vfolder-from-query>tag:archive and tag:cnam<enter>"
 #macro pager,index,generic ,L      "<change-folder>+Rfnet/INBOX<enter>"

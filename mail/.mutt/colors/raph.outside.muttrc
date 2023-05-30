@@ -1,24 +1,25 @@
-folder-hook CNAM/* color status white green
-folder-hook RFS/* color status white red 
-folder-hook Rfnet/* color status white blue
+folder-hook CNAM/* color status black yellow
+folder-hook RFS/* color status black red 
+folder-hook Rfnet/* color status black blue
 folder-hook CNAMnet/* color status white magenta
 
 # black and white permutés ?
-color normal     black default
+color normal     white default
 color error      red default
-color message    white yellow
+color message    black yellow
 color markers    blue default
 color tilde      green default # ~'s after message body
 color signature  red default
-color attachment white cyan  #Add-ons to the message
-color status     white green
-color progress white red
+color attachment black cyan  #Add-ons to the message
+#color status     white red
+color progress black red
+color hdrdefault red black 
 
 # index stuff
-color index      white yellow ~N # new messages
+color index      black blue ~N # new messages
 color index      blue default ~l # messages from list
-color index      black cyan ~N~l # new messages from list
-color indicator  white green 
+color index      white cyan ~N~l # new messages from list
+color indicator  black green 
 color tree       magenta default
 
 #color index      color144 default "(~d >10d ! ~Q ! ~l ! ~N)" # unreplied messages
@@ -28,16 +29,16 @@ color tree       magenta default
 color index      green default ~P # from me
 color index      color244 default ~Q # replied messages
 color index      red default ~F # flagged
-color index      white black ~D # deleted
-color index      white blue ~T # tagged
+color index      black white ~D # deleted
+color index      black blue ~T # tagged
 
-color header	yellow  color255  '^from:'
-color header	yellow  color255  '^list-id:'
-color header	cyan    color255  '^(to|cc|bcc):'
-color header	red     color255  '^date:'
-color header	green   color255  '^subject:'
-color header  color31 color255  '^user-agent:'
-color header	color29 color255  '^reply-to:'
+color header	yellow  color251  '^from:'
+color header	yellow  color251  '^list-id:'
+color header	cyan    color251  '^(to|cc|bcc):'
+color header	red     color251  '^date:'
+color header	green   color251  '^subject:'
+color header  color31 color251  '^user-agent:'
+color header	color29 color251  '^reply-to:'
 
 color body    white red "\\*.*\\*"
 color body    white green "_.*_"

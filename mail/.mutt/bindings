@@ -80,6 +80,9 @@ macro pager,index,generic ,*      "<change-folder>+CNAM/TRIED<enter>"
 macro index ,e "<limit>~y " "Limit view to label"
 macro pager,index,generic ,I      '<vfolder-from-query>tag:flux<enter>'
 macro pager,index,generic ,i      '<change-folder>+RFS/Flux.<tab><tab>'
+#macro pager,index,generic ,f      "<vfolder-from-query>tag:flux<enter>"
+macro pager,index,generic ,f      "<change-folder>+feeds<enter>"
+
 
 set my_vi=$editor
 macro generic ,j "<enter-command>push <pipe-message>muttjump<enter><enter>" "jump to original message"

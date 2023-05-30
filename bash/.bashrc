@@ -20,6 +20,7 @@ source $HOME/scripts/fzf/completion.bash
 #bind '"\e[B":history-search-forward'
 bind Space:magic-space
 export JAVA_HOME="/usr/lib/jvm/java-13-openjdk/"
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 export QUOTING_STYLE=literal
 #export TERM=xterm-256color
 #export QT_QPA_PLATFORMTHEME="qt5ct"
@@ -146,3 +147,5 @@ PS1='\D{%d} \[${RED}\]\t \[$yellow\]$(__git_ps1 "[%s $(get_sha)] ")\[${green}\]\
 #PROMPT_COMMAND='DEFTITLE="${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}"; echo -ne "\033]0;${TITLE:-$DEFTITLE}\007"'
 source ~/.kb_alias
 source ptSh_set_aliases
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

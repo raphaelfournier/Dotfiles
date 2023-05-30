@@ -37,6 +37,7 @@ URxvt*pointerBlankDelay: 2
 URxvt*pointerColor: #dcdccc
 URxvt*pointerColor2: #3f3f3f
 URxvt*depth: 32
+URxvt*meta8: true
 
 !URxvt*transparent: true
 !URxvt*shading: 30

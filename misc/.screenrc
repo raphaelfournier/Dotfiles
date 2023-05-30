@@ -6,6 +6,7 @@ pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."
 
 #remove some stupid / dangerous key bindings
 bind k
+bind x
 bind ^k
 bind .
 bind ^\
@@ -50,12 +51,12 @@ defbce "on"
 
 # enable xterm title setting; may not be necessary on some platforms
 # http://aperiodic.net/phil/configs/screenrc
-#termcapinfo xterm*|rxvt* 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen\007'
+termcapinfo xterm*|rxvt* 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen\007'
 
 # dirty hack: put xterm title escapes in the hardstatus
 # this example will yield "user@host || screen Win#:(windowtitle)
-#defhstatus "$USER@^EH || screen ^E:(^Et)"
-defhstatus "screen:^E:^ES (^En ^Et)"
+defhstatus "^ES (screen)"
+#defhstatus "screen:^E:^ES (^En ^Et)"
 # now turn it off so it doesn't print in the hardstatus line
 hardstatus off
 

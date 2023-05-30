@@ -126,7 +126,7 @@ setopt INC_APPEND_HISTORY
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_DUPS
 
-export EDITOR="lvim"
+export EDITOR="vim"
 export MANPAGER=most
 export XDG_CONFIG_HOME="/home/raph/.config"
 export XDG_DATA_HOME="/home/raph/.local/share"
@@ -212,7 +212,7 @@ source ~/.passwordstore-variables
 
 # https://superuser.com/questions/117841/when-reading-a-file-with-less-or-more-how-can-i-get-the-content-in-colors
 export LESS='-R'
-export LESSOPEN='|~/.lessfilter %s'
+#export LESSOPEN='|~/.lessfilter %s'
 
 # Base16 Shell
 #BASE16_SHELL="$HOME/.base16-manager/chriskempson/base16-shell/"
@@ -220,3 +220,10 @@ export LESSOPEN='|~/.lessfilter %s'
 #RPROMPT="%{$fg[white]%}%D{%f %b} %{$fg[red]%}%T%{$reset_color%}"
 #RPROMPT="%{$fg[white]%}%T %D{%f %b}%{$reset_color%}"
 RPROMPT="%{$fg[white]%}%T %D{%y%m%d}%{$reset_color%}"
+
+# urxvt bug https://bbs.archlinux.org/viewtopic.php?id=282791
+if [[ `ps ho command $(ps ho ppid $$)` == 'urxvt' ]]; then
+  clear
+fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
