@@ -31,6 +31,8 @@ Plugin 'mattn/calendar-vim'
 "Plugin 'honza/vim-snippets'
 Plugin 'francoiscabrol/ranger.vim'
 
+Plugin 'godlygeek/tabular'
+
 Plugin 'dylanaraps/wal.vim'
 Plugin 'yasukotelin/shirotelin'
 Plugin 'xolox/vim-misc'
@@ -338,7 +340,7 @@ set smartcase                   " Case sensitive when uc present
 " highlight
 set hlsearch
 "set scrolloff=999
-set scrolloff=8
+set scrolloff=2
 " use tabs as spaces
 set expandtab
 set sw=2
@@ -1179,6 +1181,9 @@ nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fh :History<cr>
 nnoremap <leader>fb :BLines<cr>
 " >>>
+
+nmap <c-j> <c-w>w3<c-e><c-w>w
+nmap <c-k> <c-w>w3<c-y><c-w>w
 
 " todolist
 "map gg ^rx: <Esc>:r! date +" [\%H:\%M]"<ENTER>kJA<Esc>$

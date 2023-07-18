@@ -126,3 +126,34 @@ bind pager <up> previous-line #scroll inside the message rather than the index
 bind pager <down> next-line"
 macro compose V "<shell-escape>ranger --choosefile=/tmp/muttattach<enter><enter-command>source ~/.mutt/attach.macro<enter><enter-command>push W<enter>" "open ranger, redefine macro and attach"
 
+macro index,pager,attach ,U "\
+<enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
+pipe_decode=no wait_key=no<enter>\
+<pipe-message> urlpager<enter>\
+<enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
+&my_pipe_decode &my_wait_key<enter>\
+" "go to any url"
+#macro index,pager,attach ,T "\
+#<enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
+#pipe_decode=no wait_key=no<enter>\
+#<pipe-message> urlpager -b w3m -pweb<enter>\
+#<enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
+#&my_pipe_decode &my_wait_key<enter>\
+#" "text browse web"
+#
+# call viewhtmlmsg from macro
+macro index,pager <F7> "\
+<enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
+pipe_decode=no wait_key=no<enter>\
+<pipe-message> viewhtmlmsg -b firefox<enter>\
+<enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
+&my_pipe_decode &my_wait_key<enter>\
+" "view HTML in browser"
+macro index,pager <F8> "\
+<enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
+pipe_decode=no wait_key=no<enter>\
+<pipe-message> viewhtmlmsg -s -b firefox<enter>\
+<enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
+&my_pipe_decode &my_wait_key<enter>\
+" "view HTML (safe) in browser"
+

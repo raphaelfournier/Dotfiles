@@ -13,9 +13,11 @@
 #   of text against a Perl regular expression.  This is only for
 #   the --type-add option.
 
+--smart-case
 
 ### Directories to ignore
 
+--ignore-directory=is:auxiliary
 --ignore-directory=is:_Old
 --ignore-directory=is:Old
 

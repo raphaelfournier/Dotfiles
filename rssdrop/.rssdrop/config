@@ -1,0 +1,8 @@
+mailfolder = /home/raph/Mail
+ 
+[freebsd-sa]
+url = http://www.freebsd.org/security/advisories.rdf
+ 
+[craigslist-nyc-cheap-apts]
+fulltext = 1
+url = http://newyork.craigslist.org/search/aap?query=&minAsk=1000&maxAsk=2000&bedrooms=&format=rss

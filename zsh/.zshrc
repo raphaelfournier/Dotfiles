@@ -219,7 +219,8 @@ export LESS='-R'
 #[ -n "$PS1" ] && [ -s "$BASE16_SHELL/profile_helper.sh" ] && eval "$("$BASE16_SHELL/profile_helper.sh")"
 #RPROMPT="%{$fg[white]%}%D{%f %b} %{$fg[red]%}%T%{$reset_color%}"
 #RPROMPT="%{$fg[white]%}%T %D{%f %b}%{$reset_color%}"
-RPROMPT="%{$fg[white]%}%T %D{%y%m%d}%{$reset_color%}"
+RPROMPT="%{$fg[white]%}%T %D{%y%m%d}%{$reset_color%}" # rprompt-inside
+#RPROMPT="%{$fg[black]%}%T %D{%y%m%d}%{$reset_color%}" # rprompt-outside
 
 # urxvt bug https://bbs.archlinux.org/viewtopic.php?id=282791
 if [[ `ps ho command $(ps ho ppid $$)` == 'urxvt' ]]; then

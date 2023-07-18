@@ -145,6 +145,7 @@ folder-hook RFS/* source ~/.mutt/rfs.muttrc
 folder-hook CNAM/* source ~/.mutt/cnam.muttrc
 folder-hook CNAMnet/* source ~/.mutt/cnamnet.muttrc
 folder-hook Rfnet/* source ~/.mutt/rfnet.muttrc
+
 #folder-hook ~/.cache/notmuch/mutt/results source ~/.mutt/notmuch-search
 
 #folder-hook CNAMnet/* source ~/.mutt/cnamnet.muttrc
@@ -226,3 +227,4 @@ macro index,pager   +       "<modify-labels>+"                              "+Ad
 set reply_with_xorig = "yes"
 set read_inc=50			# show progress when reading a mailbox
 folder-hook flux "push <last-entry><current-middle>"
+folder-hook feeds "push <last-entry><current-middle>"
