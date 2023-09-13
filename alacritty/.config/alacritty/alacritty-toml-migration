@@ -1,0 +1,115 @@
+[[color_schemes.catppuccin.indexed_colors]]
+color = "#F2CECF"
+index = 16
+
+[[color_schemes.catppuccin.indexed_colors]]
+color = "#3E4058"
+index = 17
+
+[color_schemes.catppuccin.bright]
+black = "#6E6C7E"
+blue = "#A4B9EF"
+cyan = "#E5B4E2"
+green = "#B1E3AD"
+magenta = "#C6AAE8"
+red = "#E38C8F"
+white = "#DADAE8"
+yellow = "#EBDDAA"
+
+[color_schemes.catppuccin.cursor]
+cursor = "#B1E3AD"
+text = "#1E1E28"
+
+[color_schemes.catppuccin.normal]
+black = "#6E6C7E"
+blue = "#A4B9EF"
+cyan = "#E5B4E2"
+green = "#B1E3AD"
+magenta = "#C6AAE8"
+red = "#E38C8F"
+white = "#DADAE8"
+yellow = "#EBDDAA"
+
+[color_schemes.catppuccin.primary]
+background = "#1E1E28"
+foreground = "#DADAE8"
+
+[color_schemes.light.bright]
+black = "#a0a1a7"
+blue = "#4078f2"
+cyan = "#0184bc"
+green = "#50a14f"
+magenta = "#a626a4"
+red = "#ca1243"
+white = "#090a0b"
+yellow = "#c18401"
+
+[color_schemes.light.cursor]
+cursor = "#383a42"
+
+[color_schemes.light.normal]
+black = "#383a42"
+blue = "#4078f2"
+cyan = "#0184bc"
+green = "#50a14f"
+magenta = "#a626a4"
+red = "#ca1243"
+white = "#fafafa"
+yellow = "#c18401"
+
+[color_schemes.light.primary]
+background = "#fafafa"
+foreground = "#383a42"
+
+[color_schemes.qualia.bright]
+black = "0x454545"
+blue = "0xccaced"
+cyan = "0x74c3e4"
+green = "0x5accaf"
+magenta = "0xf2a1c2"
+red = "0xe0af85"
+white = "0xc0c0c0"
+yellow = "0xc8c874"
+
+[color_schemes.qualia.normal]
+black = "0x101010"
+blue = "0xa3b8ef"
+cyan = "0x50cacd"
+green = "0x80c990"
+magenta = "0xe6a3dc"
+red = "0xefa6a2"
+white = "0x808080"
+yellow = "0xa69460"
+
+[color_schemes.qualia.primary]
+background = "0x101010"
+foreground = "0xc0c0c0"
+
+[color_schemes.zenburn.bright]
+black = "#709080"
+blue = "#94bff3"
+cyan = "#93e0e3"
+green = "#c3bf9f"
+magenta = "#ec93d3"
+red = "#dca3a3"
+white = "#ffffff"
+yellow = "#f0dfaf"
+
+[color_schemes.zenburn.cursor]
+cursor = "#dcdccc"
+
+[color_schemes.zenburn.normal]
+black = "#1E2320"
+blue = "#8787d7"
+cyan = "#8cd0d3"
+green = "#7f9f7f"
+magenta = "#dc8cc3"
+red = "#D78787"
+white = "#dcdccc"
+yellow = "#dfaf8f"
+
+[color_schemes.zenburn.primary]
+background = "#3f3f3f"
+foreground = "#dcdccc"
+
+

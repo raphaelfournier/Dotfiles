@@ -1,0 +1,109 @@
+[colors.bright]
+black = "#709080"
+blue = "#94bff3"
+cyan = "#93e0e3"
+green = "#c3bf9f"
+magenta = "#ec93d3"
+red = "#dca3a3"
+white = "#ffffff"
+yellow = "#f0dfaf"
+
+[colors.cursor]
+cursor = "#dcdccc"
+
+[colors.normal]
+black = "#1E2320"
+blue = "#8787d7"
+cyan = "#8cd0d3"
+green = "#7f9f7f"
+magenta = "#dc8cc3"
+red = "#D78787"
+white = "#dcdccc"
+yellow = "#dfaf8f"
+
+[colors.primary]
+background = "#3f3f3f"
+foreground = "#dcdccc"
+
+[font]
+size = 18
+
+[font.normal]
+family = "Inconsolata"
+
+[[hints.enabled]]
+command = "xdg-open"
+post_processing = true
+regex = "(magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
+
+[hints.enabled.mouse]
+enabled = true
+
+[[hints.enabled]]
+action = "Copy"
+post_processing = false
+regex = "(magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
+
+[hints.enabled.binding]
+key = "U"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "Z"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "I"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "O"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ToggleFullscreen"
+key = "F"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ScrollPageUp"
+key = "PageUp"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ScrollPageDown"
+key = "PageDown"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ScrollToTop"
+key = "Home"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ScrollToBottom"
+key = "End"
+mods = "Control|Shift"
+
+[[mouse.bindings]]
+action = "IncreaseFontSize"
+mods = "Shift"
+mouse = "Middle"
+
+[shell]
+program = "/bin/zsh"
+
+[window]
+dynamic_title = true
+
+[window.padding]
+x = 6
+y = 6
