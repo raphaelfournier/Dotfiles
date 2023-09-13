@@ -18,6 +18,8 @@
 ### Directories to ignore
 
 --ignore-directory=is:auxiliary
+--ignore-directory=is:myvenv
+--ignore-directory=is:venv
 --ignore-directory=is:_Old
 --ignore-directory=is:Old
 

@@ -384,6 +384,14 @@ set wildmode=list:longest,full
 
 " <<< Plugins Options 
 "
+" calendar-vim
+let g:calendar_mark = 'right'
+let g:calendar_monday = 1
+let g:calendar_wruler = 'Di Lu Ma Me Je Ve Sa'
+let g:calendar_mruler = 'Jan,Fev,Mars,Avr,Mai,Juin,Juil,Aout,Sept,Oct,Nov,Dec'
+let g:calendar_datetime = 'statusline'
+
+
 " gitgutter. Reenable with :GitGutterToggle
 let g:gitgutter_enabled = 0
 

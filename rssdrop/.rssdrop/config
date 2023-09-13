@@ -1,8 +1,105 @@
-mailfolder = /home/raph/Mail
+mailfolder = /home/raph/Mail/feeds
  
-[freebsd-sa]
-url = http://www.freebsd.org/security/advisories.rdf
- 
-[craigslist-nyc-cheap-apts]
+[Amrhaps]
 fulltext = 1
-url = http://newyork.craigslist.org/search/aap?query=&minAsk=1000&maxAsk=2000&bedrooms=&format=rss
+url = http://amrhaps.net/feed/atom
+
+[Beulogue]
+fulltext = 1
+url = http://www.beulogue.fr/feed
+
+[ArtisanNumérique]
+fulltext = 1
+url = http://artisan.karma-lab.net/rss.xml
+
+[GirlsAndGeeks]
+fulltext = 1
+url = http://www.girlsandgeeks.com/feed/
+
+[Anthony Masure]
+fulltext = 1
+url = https://www.anthonymasure.com/feed
+
+[ArchlinuxNews]
+fulltext = 1
+url = http://www.archlinux.org/feeds/news/
+
+[Authueil]
+fulltext = 1
+url = http://authueil.fr/feed/rss2
+
+[Bloerg]
+fulltext = 1
+url = http://bloerg.net/atom.xml
+
+[Bortzmeyer]
+fulltext = 1
+url = http://www.bortzmeyer.org/feed-full.atom
+
+[CodingHorror]
+fulltext = 1
+url = http://feeds.feedburner.com/codinghorror/ 
+
+[HackerStations]
+fulltext = 1
+url = https://hackerstations.com/index.xml
+
+[LaboCedric]
+fulltext = 1
+url = http://cedric.cnam.fr/rss/cedric.xml
+
+[Pingoo]
+fulltext = 1
+url = http://www.pingoo.com/feed/
+
+[Ploum]
+fulltext = 1
+url = http://ploum.net/feed
+
+[RFS]
+fulltext = 1
+url = http://raphael.fournier-sniehotta.fr/feed/rss.xml
+
+[SIF]
+fulltext = 1
+url = http://www.societe-informatique-de-france.fr/feed/
+
+[Stamatiou]
+fulltext = 1
+url = http://paulstamatiou.com/posts.xml
+
+[Standblog]
+fulltext = 1
+url = http://standblog.org/blog/feed/rss2
+
+[SudCnam]
+fulltext = 1
+url = https://sudcnam.blogs.com/sud_cnam/rss.xml
+
+[Tayebot]
+fulltext = 1
+url = http://tayebot.tumblr.com/rss
+
+[TicktickBlog]
+fulltext = 1
+url = http://blog.ticktick.com/rss
+
+[UsesThis]
+fulltext = 1
+url = http://usesthis.com/feed.atom
+
+[crepegeorgette]
+fulltext = 1
+url = http://feeds.feedburner.com/crepegeorgette
+
+[lemire]
+fulltext = 1
+url = http://lemire.me/blog/feed/atom/
+
+[sebmusset]
+fulltext = 1
+url = http://feeds.feedburner.com/sebmusset
+
+[xkcd]
+fulltext = 1
+url = http://xkcd.com/rss.xml

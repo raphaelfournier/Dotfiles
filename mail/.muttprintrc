@@ -15,7 +15,7 @@
 # contient $CUPS_OPTIONS qui sera alors remplacée par les
 # options utilisées pour CUPS
 #PRINT_COMMAND="lpr"
-PRINT_COMMAND="zathura -"
+#PRINT_COMMAND="zathura -"
 
 #
 # Indiquez ici le chemin vers l'image du pingouin
@@ -112,7 +112,7 @@ FONTSIZE="11pt"
 
 #
 # Ligne la plus longue
-WRAPMARGIN="100"
+WRAPMARGIN="80"
 
 #
 # Table de caractères

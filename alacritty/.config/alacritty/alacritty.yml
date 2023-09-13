@@ -37,8 +37,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 4
-  #  y: 0
+    x: 6
+    y: 6
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -139,7 +139,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 20.0
+  size: 18
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -238,7 +238,7 @@ color_schemes:
       - { index: 16, color: '#F2CECF' }
       - { index: 17, color: '#3E4058' }
 
-  dark: &dark
+  zenburn: &zenburn
     primary:
       background: '#3f3f3f'
       foreground: '#dcdccc'
@@ -272,7 +272,7 @@ color_schemes:
       cyan:    '#93e0e3'
       white:   '#ffffff'
 
-light: &light
+  light: &light
     primary:
       background: '#fafafa'
       foreground: '#383a42'
@@ -306,8 +306,9 @@ light: &light
       cyan:    '#0184bc'
       white:   '#090a0b'
 
-colors: *dark
-##colors: *light
+#colors: *light
+colors: *zenburn
+###colors: *light
 
 # Visual Bell
 #

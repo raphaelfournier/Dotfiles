@@ -11,9 +11,9 @@ set mailcap_path        = /home/raph/.mutt/mailcap                       # entry
 set signature           = ~/.mutt/signature                           # my signature file
 set tmpdir              = ~/.mutt/temp                          # where to keep temp files
 set ispell              = "/usr/bin/aspell -e -c"               # use aspell as ispell
-#set print_command       ="muttprint"
-#set print_command="/home/raph/scripts/pymuttprint/pymuttprint.py && zathura /tmp/texput.pdf"
-set print_command='set -e; f="/tmp/mail.pdf"; muttprint -P A4 -p TO_FILE:"$f" --verbatimnormal fontfamily=helvetica; sleep 1; zathura $f;'
+#set print_command       ="muttprint -p - | ps2pdf - /home/raph/muttprint.pdf && zathura /home/raph/muttprint.pdf"
+set print_command="/home/raph/.scripts/pymuttprint/pymuttprint.py ; zathura /tmp/texput.pdf"
+#set print_command='set -e; f="/tmp/mail.pdf"; muttprint -P A4 -p TO_FILE:"$f" --verbatimnormal fontfamily=helvetica; sleep 1; zathura $f;'
 #set print_command="$HOME/scripts/print_preview-wrapper.sh"
 #set print_decode="no"
 #set print_split="no"
