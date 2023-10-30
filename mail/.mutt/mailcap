@@ -4,6 +4,7 @@ application/x-java-jnlp-file;/opt/java/jre/bin/javaws %s
 #text/calendar; vcal -start -end -summary -organizer %s | grep -v ^$; copiousoutput; description=iCalendar text; priority=2
 text/calendar; vcal -all %s | grep -v ^$; copiousoutput; description=iCalendar text; priority=2
 #text/html; /usr/bin/firefox %s; print=/usr/bin/chromium %s
+text/plain; firefox -new-tab %s & sleep 5; test=test -n "$DISPLAY"; nametemplate=%s.html; print=/usr/bin/chromium %s
 text/html; firefox -new-tab %s & sleep 5; test=test -n "$DISPLAY"; nametemplate=%s.html; print=/usr/bin/chromium %s
 text/html; lynx -dump -assume_charset=%{charset} -display_charset=utf-8 %s; copiousoutput; nametemplate=%s.html
 text/calendar; /usr/bin/less %s;

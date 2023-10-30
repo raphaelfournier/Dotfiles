@@ -1,4 +1,5 @@
 VIMEXEC='lvim'
+MULTIPLEX='screen'
 # typo
 alias gti='git'
 alias sl='ls'
@@ -12,8 +13,6 @@ alias a='alsamixer -D hw:0'
 alias b='bc -lq'
 alias birthdays="$VIMEXEC ~/.remind/birthdays.rem"
 alias c='chromium'
-alias cat='bat'
-alias catp='bat -pp'
 alias clock='tzclock  -s1000 -q -m31'
 alias ttyclock='tty-clock -c -C6'
 alias cdd='cd && ls -tr'
@@ -35,6 +34,7 @@ alias twitter="/home/raph/.scripts/makeImageForTwitter.sh"
 alias f='firefox'
 alias fz='feh -FZ'
 alias g='git'
+alias prets='cd /home/raph/Code/langagePython/mediathequeVillejuif-prets; source venv/bin/activate; python mediatheque-villejuif.py'
 alias gp='git pull'
 alias hosts="echo sudo vim /etc/hosts && sudo vim /etc/hosts"
 alias hostsAvecPub="sudo mv /etc/hosts.d/20-adaway-20180305.local /etc/hosts.d/adaway-20180305.local && sudo hosts-gen"
@@ -85,7 +85,7 @@ alias rr='ranger ~/downloads .'
 alias rapport='cp -rv ~/Templates/RapportCA/* .'
 alias restartNginx='sudo systemctl restart nginx.service'
 alias recupAttachments='ranger ~/Mail/Attachments/ ~'
-alias s='screen'
+alias s='tmux'
 alias sf='screen -list | grep "^\s" | sed -E "s/^\s*//" | fzf --reverse | sed -E "s/\s*\(.*$//" | xargs -o screen  -D -R'
 alias stow='stow -v'
 alias snippets='nvim ~/.vim/mysnippets/_.snippets +'
@@ -118,17 +118,22 @@ alias ys='paru -Syu'
 alias z='zathura'
 alias si='sioyek'
 alias mencal='mencal -3 -m --config s=20120726'
-alias e='screen -c /home/raph/.screen/tex.screenrc'
 alias activateAnaconda='source /opt/anaconda/bin/activate root'
 
 # screen
-alias s.tex='screen -c /home/raph/.screen/tex.screenrc'
-alias s.django='screen -c /home/raph/.screen/django.screenrc'
-alias s.jekyll='screen -c /home/raph/.screen/jekyll.screenrc'
 alias sls='screen -ls'
+alias sli='screen -list'
+alias s.tex='mux tex'
+alias s.django='mux django'
+alias s.jekyll='mux jekyll'
+#alias s.tex='screen -c /home/raph/.screen/tex.screenrc'
+#alias s.django='screen -c /home/raph/.screen/django.screenrc'
+#alias s.jekyll='screen -c /home/raph/.screen/jekyll.screenrc'
 alias screen.tex='screen -c /home/raph/.screen/tex.screenrc'
 alias screen.django='screen -c /home/raph/.screen/django.screenrc'
 alias screen.jekyll='screen -c /home/raph/.screen/jekyll.screenrc'
+
+alias mysql="mariadb"
 
 # watson
 alias wt='watson'
@@ -145,7 +150,6 @@ alias pptview='wine ~/.wine/drive_c/Program\ Files/Microsoft\ Office/Office12/PP
 alias killnewsbeuter='kill -9 `pgrep newsb`'
 #alias cgrep="grep --color=always"
 alias alsamixer='alsamixer -D hw:0'
-alias sli='screen -list'
 alias synchroBT='sudo /etc/rc.d/bluetooth restart && sync-ui'
 alias skype='LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so skype'
 alias awc='vim ~/.config/awesome/rc.lua'
@@ -220,6 +224,8 @@ alias ssh='( ssh-add -l > /dev/null || ssh-add ) && ssh'
 #alias git-fetch='( ssh-add -l > /dev/null || ssh-add ) && git fetch'
 alias vimrc='vim ~/.vimrc'
 alias screenrc='vim ~/.screenrc'
+alias tmuxrc='vim ~/.tmux.conf'
+alias tmuxconf='vim ~/.tmux.conf'
 alias rangerconf='vim ~/.config/ranger/rc.conf'
 alias rifleconf='vim ~/.config/ranger/rifle.conf'
 alias zihapconf='vim .config/zihap/*toml -O'
@@ -283,3 +289,5 @@ alias garminStats='garmindb_cli.py --all --download --import --latest --analyze 
 
 alias doc2pdf='lowriter --headless --convert-to pdf'
 alias oldLaptop='cd /data/daria-2022-10-09/'
+alias mux='tmuxinator'
+alias muxconf='cd ~/.config/tmuxinator/'

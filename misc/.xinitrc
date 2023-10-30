@@ -29,6 +29,7 @@ greenclip daemon &
 #pidgin &
 #sudo netcfg-menu &
 #dropbox &
+#/usr/bin/dropbox &
 #udiskie --tray &
 [ ! -s ~/.config/mpd/pid ] && mpd &
 setxkbmap -option caps:escape &

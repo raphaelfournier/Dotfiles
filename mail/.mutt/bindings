@@ -105,7 +105,7 @@ macro index ,d \
 macro compose v "<edit-from>^Uidentity.<tab>" "Select from" 
 
 #source ~/.scripts/muttils/contrib/example-muttrc
-macro index,pager <F7> "<pipe-message>~/.scripts/viewhtmlmail.py\n" "View HTML in browser"
+macro index,pager \Co "<pipe-message>~/.scripts/viewhtmlmail.py\n" "View HTML in browser"
 
 #macro index,pager ,U "<pipe-message> urlview<Enter>" "call urlview to extract URLs out of a message"
 #macro attach,compose ,U "<pipe-entry> urlview<Enter>" "call urlview to extract URLs out of a message"
@@ -142,18 +142,26 @@ pipe_decode=no wait_key=no<enter>\
 #" "text browse web"
 #
 # call viewhtmlmsg from macro
-macro index,pager <F7> "\
-<enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
-pipe_decode=no wait_key=no<enter>\
-<pipe-message> viewhtmlmsg -b firefox<enter>\
-<enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
-&my_pipe_decode &my_wait_key<enter>\
-" "view HTML in browser"
-macro index,pager <F8> "\
-<enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
-pipe_decode=no wait_key=no<enter>\
-<pipe-message> viewhtmlmsg -s -b firefox<enter>\
-<enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
-&my_pipe_decode &my_wait_key<enter>\
-" "view HTML (safe) in browser"
+#macro index,pager <F7> "\
+#<enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
+#pipe_decode=no wait_key=no<enter>\
+#<pipe-message> viewhtmlmsg -b firefox<enter>\
+#<enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
+#&my_pipe_decode &my_wait_key<enter>\
+#" "view HTML in browser"
+#macro index,pager <F8> "\
+#<enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
+#pipe_decode=no wait_key=no<enter>\
+#<pipe-message> viewhtmlmsg -s -b firefox<enter>\
+#<enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
+#&my_pipe_decode &my_wait_key<enter>\
+#" "view HTML (safe) in browser"
+
+macro attach O \
+"\
+<enter-command>unset wait_key<enter>\
+<shell-escape>rm -f /tmp/mutt-attach<enter>\
+<save-entry><kill-line>/tmp/mutt-attach<enter>\
+<shell-escape> /tmp/mutt-attach &^A\
+"
 

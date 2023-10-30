@@ -77,6 +77,7 @@ source /home/raph/.zsh_aliases
 
 # https://github.com/urbainvaes/fzf-marks
 source /usr/share/fzf-marks/fzf-marks.zsh
+# color couleur pour les commandes et arguments
 source /home/raph/.scripts/zsh-syntax-highlighting-filetypes/zsh-syntax-highlighting-filetypes.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 #source /usr/share/cdargs/cdargs-bash.sh
@@ -112,7 +113,6 @@ export DISABLE_AUTO_TITLE=true
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export JAVA_HOME="/usr/lib/jvm/java-8-openjdk/"
 export QUOTING_STYLE=literal
 export QT_QPA_PLATFORMTHEME="qt5ct"
 source $HOME/.shell_path

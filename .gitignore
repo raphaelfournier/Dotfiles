@@ -43,3 +43,6 @@ watson/.config/watson/frames
 watson/.config/watson/frames.bak
 watson/.config/watson/state.bak
 *pyc
+rssdrop/
+tmux/.tmux/plugins/
+tags

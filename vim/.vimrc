@@ -32,6 +32,7 @@ Plugin 'mattn/calendar-vim'
 Plugin 'francoiscabrol/ranger.vim'
 
 Plugin 'godlygeek/tabular'
+Plugin 'simplenote-vim/simplenote.vim'
 
 Plugin 'dylanaraps/wal.vim'
 Plugin 'yasukotelin/shirotelin'
@@ -210,7 +211,6 @@ cmap w!! w !sudo tee % >/dev/null
 " permet de ne pas retaper les longs chemins
 map ,ed :e <C-R>=expand("%:p:h") . "/" <CR>
 "
-inoremap kj <Esc>
 "makes K split lines (the opposite of J)
 nnoremap K i<cr><esc>k$ 
 nnoremap Q gqip
@@ -425,6 +425,8 @@ nmap t<C-e> yypV<Cmd>call deepl#v("EN", "FR")<CR>
 "
 nnoremap <leader>gG :call FoldColumnToggle()<cr>
 
+nnoremap <leader>S :SimplenoteList<cr>
+
 function! FoldColumnToggle()
     if &foldcolumn
         setlocal foldcolumn=0
@@ -617,6 +619,8 @@ let g:tagbar_type_markdown = {
 "nmap T O<ESC>j
 " source /home/raph/.config/bepo/vimrc.bepo
 " Check code every save
+" simplenote
+source ~/.simplenote-vim.rc
 
 " lazy scrolling
 "noremap <BS> <PageUp>
@@ -1149,19 +1153,6 @@ map <silent> <leader>l <C-w>5>
 "autocmd VimEnter * call SmartWidth(85)
 "autocmd WinEnter * call SmartWidth(85)
 "
-" Auto resize current pane on enter
-autocmd BufEnter * call s:ResizeSplit()
-command ResizeSplit call s:ResizeSplit()
-function! s:ResizeSplit()
-  :vertical resize 85
-  "if (winheight(0) < 20)
-    ":res 20
-  "endif
-  "if (winwidth(0) < 70)
-    ":vertical resize 70
-  "endif
-endfunction
-
 
 ab ccom /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 ab fcom ! * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -1192,6 +1183,8 @@ nnoremap <leader>fb :BLines<cr>
 
 nmap <c-j> <c-w>w3<c-e><c-w>w
 nmap <c-k> <c-w>w3<c-y><c-w>w
+
+nnoremap <expr> g<c-v> '`[' . getregtype()[0] . '`]'
 
 " todolist
 "map gg ^rx: <Esc>:r! date +" [\%H:\%M]"<ENTER>kJA<Esc>$

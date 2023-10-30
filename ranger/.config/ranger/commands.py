@@ -62,6 +62,22 @@ class my_edit(Command):
         # content of the current directory.
         return self._tab_directory_content()
 
+class my_oldpwd(Command):
+    # The so-called doc-string of the class will be visible in the built-in
+    # help that is accessible by typing "?c" inside ranger.
+    """:my_edit <filename>
+
+    A sample command for demonstration purposes that opens a file in an editor.
+    """
+
+    # The execute method is called when you run this command in ranger.
+    def execute(self):
+        with open("/tmp/lastrangerpwd") as f:
+            content = f.readline().strip()
+        self.fm.notify("Let's go " + content + "!")
+        self.fm.cd(content)
+
+
 class mkcd(Command):
     """
     :mkcd <dirname>

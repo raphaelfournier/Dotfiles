@@ -1,3 +1,5 @@
+export GEM_HOME="$(gem env user_gemhome)"
+export JAVA_HOME="/usr/lib/jvm/java-21-openjdk/"
 XDG_DATA_DIRS="/usr/local/share:/usr/share"
 XDG_DATA_HOME="$HOME/.local/share"
 XDG_CACHE_HOME="$HOME/.cache"
