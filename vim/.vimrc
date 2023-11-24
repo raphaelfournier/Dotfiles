@@ -33,6 +33,7 @@ Plugin 'francoiscabrol/ranger.vim'
 
 Plugin 'godlygeek/tabular'
 Plugin 'simplenote-vim/simplenote.vim'
+Plugin 'benmills/vimux'
 
 Plugin 'dylanaraps/wal.vim'
 Plugin 'yasukotelin/shirotelin'
@@ -40,6 +41,8 @@ Plugin 'xolox/vim-misc'
 Plugin 'ayu-theme/ayu-vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'NLKNguyen/papercolor-theme'
+
+Plugin 'chrisbra/unicode.vim'
 
 "Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'ludovicchabant/vim-gutentags'
@@ -390,6 +393,12 @@ let g:calendar_monday = 1
 let g:calendar_wruler = 'Di Lu Ma Me Je Ve Sa'
 let g:calendar_mruler = 'Jan,Fev,Mars,Avr,Mai,Juin,Juil,Aout,Sept,Oct,Nov,Dec'
 let g:calendar_datetime = 'statusline'
+
+" Vimux
+" Prompt for a command to run
+map <Leader>vp :VimuxPromptCommand<CR>
+" Run last command executed by VimuxRunCommand
+map <Leader>vl :VimuxRunLastCommand<CR>
 
 
 " gitgutter. Reenable with :GitGutterToggle

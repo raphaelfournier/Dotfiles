@@ -18,6 +18,7 @@ nm-applet --sm-disable &
 arandr-indicator &
 #vgrive &
 greenclip daemon &
+tmux new -d &
 #stretchly &
 #ticktick &
 #wal -R & 

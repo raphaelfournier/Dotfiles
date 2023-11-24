@@ -7,6 +7,7 @@ local dpi       = require("beautiful.xresources").apply_dpi
 -- Import widgets
 --local weather  = require("modules.sidebar.weather")
 local calendar = require("sidebar.calendar")
+--local time = require("sidebar.time")
 --local ramswap  = require("modules.sidebar.ramswap")
 --local cpu      = require("modules.sidebar.cpu")
 --local sensors  = require("modules.sidebar.sensors")
@@ -61,6 +62,7 @@ popup:setup{
         --layout = wibox.layout.fixed.vertical,
     --},
     {
+        --time.widget,
         separator,
 
         helpers.decorator(calendar.widget, nil, dpi(35)),
@@ -93,9 +95,9 @@ function sidebar.toggle()
         local fscreen = awful.screen.focused()
         local geo = fscreen.geometry
         popup.screen = fscreen
-        popup.height = geo.height - dpi(36)
-        popup.y = geo.y + dpi(32)
-        popup.x = geo.x + geo.width - dpi(300)
+        popup.height = geo.height
+        popup.y = 0
+        popup.x = 0
         popup.visible = true
         timer:start()
     else

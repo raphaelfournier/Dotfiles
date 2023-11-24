@@ -139,7 +139,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 18
+  size: 14
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -575,6 +575,7 @@ key_bindings:
   #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
   - {key: Z, mods: Control|Shift, action: ResetFontSize}
   - {key: I, mods: Control|Shift, action: IncreaseFontSize}
+  - {key: +, mods: Control|Shift, action: IncreaseFontSize}
   - {key: O, mods: Control|Shift, action: DecreaseFontSize}
   - {key: Return, mods: Control|Shift, action: SpawnNewInstance}
   - {key: F, mods: Control|Shift, action: ToggleFullscreen}

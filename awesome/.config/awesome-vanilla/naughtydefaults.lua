@@ -26,11 +26,11 @@ naughty.config.presets.normal.bg     = beautiful.wibar_bg --beautiful.fg_focus o
 naughty.config.presets.normal.fg     = beautiful.bg_normal
 naughty.config.presets.normal.opacity     = 0.7
 
-naughty.config.presets.low.bg                  = beautiful.bg_normal
-naughty.config.presets.low.fg                  = '#f0dfaf'
-naughty.config.presets.low.border_color        = '#f0dfaf'
-naughty.config.presets.low.border_width     = 6
-naughty.config.presets.low.icon_size        = 90
+naughty.config.presets.low.bg                  = '#3F3F3F'
+naughty.config.presets.low.fg                  = '#dcdccc'
+naughty.config.presets.low.border_color        = "#dcdccc"
+naughty.config.presets.low.border_width     = 4
+--naughty.config.presets.low.icon_size        = 90
 --naughty.config.presets.low.height           = 100
 --naughty.config.presets.low.width           = 300
 naughty.config.presets.low.timeout          = 20

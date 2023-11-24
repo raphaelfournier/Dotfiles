@@ -12,7 +12,7 @@ theme.wallpaperlandscape = "/home/raph/.config/landscape.jpg"
 theme.wallpaperportrait = "/home/raph/.config/portrait.jpg"
 -- }}}
 
-theme.font      = "Inconsolata Medium 16"
+theme.font      = "Inconsolata Medium 14"
 
 -- {{{ Colors
 theme.fg_normal  = "#DCDCCC"
@@ -22,12 +22,11 @@ theme.bg_normal  = "#3F3F3F"
 theme.bg_focus   = "#1E2320"
 theme.bg_urgent  = "#3F3F3F"
 theme.default_focus  = "#7f9f7f" -- vert
---theme.bg_systray = "#FF000000" -- theme.bg_normal
-theme.bg_systray = theme.bg_normal 
+--theme.bg_systray = theme.bg_normal 
 -- }}}
 
 -- {{{ Borders
-theme.useless_gap   = 4
+theme.useless_gap   = 2
 theme.border_width  = 2
 theme.border_normal = "#1E2320"
 theme.border_normal = "#3F3F3F"
@@ -112,12 +111,16 @@ theme.taglist_fg_occupied = theme.fg_normal
 theme.taglist_bg_occupied = theme.bg_focus .. "80"
 theme.taglist_bg_focus = theme.default_focus
 theme.taglist_bg_urgent = theme.fg_urgent
+
+theme.taglist_bg_normal = ""
 --
 --theme.taglist_fg_focus = theme.bg_focus
 -- }}}
 
+theme.bg_systray = theme.default_focus
+
 -- {{{ Misc
-theme.awesome_icon           = "/usr/share/awesome/themes/zenburn/awesome-icon.png"
+theme.awesome_icon           = "/usr/share/awesome/themes/zenburn/awesome-icon-white.png"
 theme.coffee                 = "/home/raph/.config/awesome/themes/myzenburn/coffee-zenburn.png"
 theme.demomode_icon               = "/home/raph/.config/awesome/themes/myzenburn/demomode.png"
 theme.menu_submenu_icon      = "/usr/share/awesome/themes/default/submenu.png"
@@ -192,11 +195,11 @@ theme.tasklist_shape = shape.rounded_bar
 --theme.tasklist_shape_border_color_focus = "#F0DFAF"
 
 theme.tasklist_fg_focus = theme.bg_focus
-theme.tasklist_bg_focus = theme.fg_focus .."90"
+theme.tasklist_bg_focus = theme.default_focus
 theme.tasklist_fg_normal = theme.fg_normal
-theme.tasklist_bg_normal = theme.bg_focus .. "80"
+theme.tasklist_bg_normal = theme.fg_normal
 theme.tasklist_fg_minimize = "#DCDCCC"
-theme.tasklist_bg_minimize = "#4F4F4F" .. "90"
+theme.tasklist_bg_minimize = "#CC9393" .. "00"
 
 --theme.fg_normal  = "#DCDCCC"
 -- icons
@@ -244,12 +247,12 @@ theme.collision_resize_width=30 -- 	The size of the resize handles
 --theme.collision_screen_bg_focus 	
 --theme.collision_screen_fg_focus 	
 
-theme.wibar_bg = theme.bg_normal .. "00"
+theme.wibar_bg = theme.bg_normal .. "80"
 theme.wibar_fg = theme.fg_normal
 
-theme.arcwidgets_thickness = 4
+theme.arcwidgets_thickness = 2
 theme.arcwidgets_font = "Inconsolata Medium "
-theme.arcwidgets_fontsize = "10"
+theme.arcwidgets_fontsize = "9"
 
 theme.prompt_bg = theme.wibar_bg
 

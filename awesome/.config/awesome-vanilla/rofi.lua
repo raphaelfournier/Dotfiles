@@ -8,11 +8,12 @@
         awful.key({ modkey }, "f", function (c) rofi.client_flags(c) end)
 --]]
 
+local client      = require("awful.client")
 local spawn      = require("awful.spawn")
 local naughty       = require("naughty")
 
 rofi = {
-    width =200,
+    width = 150,
     height = 100
 }
 
@@ -21,7 +22,11 @@ function rofi.client_flags(c)
               .. (c.floating   and "✓" or " ") .. " floating\n"
               .. (c.fullscreen and "✓" or " ") .. " fullscreen\n"
               .. (c.sticky     and "✓" or " ") .. " sticky\n"
+              .. (c.above     and "✓" or " ") .. " above\n"
+              .. (c.below     and "✓" or " ") .. " below\n"
               .. (c.ontop      and "✓" or " ") .. " ontop\n"
+              .. (c.slave      and "✓" or " ") .. " slave\n"
+              .. " kill\n"
               .. "  minimize\n"
 
     local w = math.min(rofi.width, c.width)
@@ -46,6 +51,10 @@ function rofi.client_flags(c)
             elseif k == "maximize" then
                 c.maximized = not c.maximized
                 c:raise()
+            elseif k == "kill" then
+                client:kill()
+            elseif k == "slave" then
+                client.setslave(c)
             elseif k == "fullscreen" then
                 c.fullscreen = not c.fullscreen
                 c:raise()
