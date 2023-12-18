@@ -232,13 +232,17 @@ alias rangerconf="$VIMEXEC ~/.config/ranger/rc.conf"
 alias rifleconf="$VIMEXEC ~/.config/ranger/rifle.conf"
 alias zihapconf="$VIMEXEC .config/zihap/*toml -O"
 alias muttrc="$VIMEXEC ~/.mutt/muttrc"
-alias alacrittyconf="$VIMEXEC ~/.config/alacritty/alacritty.yml"
+alias alacrittyconf="$VIMEXEC ~/.config/alacritty/alacritty.toml"
 alias xdefaults="$VIMEXEC /home/raph/.config/Xresources/Xdefaults"
 alias cfp="$VIMEXEC .remind/cfp.rem"
 alias magi='ssh cluster-magi'
 alias soffice='soffice --norestore'
 alias phone-connect="mtpfs -o allow_other /media/WinPhone8"
 alias phone-disconnect="fusermount -u /media/WinPhone8"
+
+alias tried-next-meetingnotes='vim ~/Notes/pro/tried/prochaine-reunion.mdwn'
+#alias tmusic='tmux new-session -s $$ "tmux source-file ~/.ncmpcpp/tsession"'
+#_trap_exit() { tmux kill-session -t $$; }
 
 # git protipz - from https://github.com/notwaldorf/.not-quite-dotfiles/blob/master/aliases
 alias gst="git status -sb"
@@ -287,7 +291,7 @@ alias muttaliases='vim ~/.mutt/aliases'
 alias aliases='vim ~/.bash_aliases'
 alias marks-check='for line in `cut -d":" -f2 /home/raph/.fzf-marks`; do [[ ! -d $line ]] && echo "pas de : $line"; done'
 alias meteoVillejuif='links http://wttr.in/villejuif'
-alias garminStats='garmindb_cli.py --all --download --import --latest --analyze && python /home/raph/Code/langagePython/GarminPerso/lastStats.py'
+alias garminStats='garmindb_cli.py --download --import --latest --analyze && python /home/raph/Code/langagePython/GarminPerso/lastStats.py'
 
 alias doc2pdf='lowriter --headless --convert-to pdf'
 alias oldLaptop='cd /data/daria-2022-10-09/'

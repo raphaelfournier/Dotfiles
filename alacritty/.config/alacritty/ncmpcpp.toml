@@ -1,0 +1,70 @@
+#import = ["~/.config/alacritty/colors-material.yml"]
+live_config_reload = true
+
+[class]
+general = "Alacritty"
+instance = "Alacritty"
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[cursor]
+style = "Block"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 14
+
+[font.bold]
+family = "Iosevka Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "Iosevka NF"
+style = "Bold Italic"
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.italic]
+family = "Iosevka NF"
+style = "Italic"
+
+[font.normal]
+family = "Iosevka Nerd Font Mono"
+style = "Regular"
+
+[mouse]
+hide_when_typing = true
+
+[mouse.double_click]
+threshold = 300
+
+[mouse.triple_click]
+threshold = 300
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+
+[shell]
+program = "/usr/bin/zsh"
+
+[visual_bell]
+animation = "EaseOutExpo"
+color = "#e4c9af"
+duration = 0.5
+
+[window]
+opacity = 1
+
+[window.padding]
+x = 50
+y = 40

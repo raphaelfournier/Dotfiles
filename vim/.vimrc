@@ -1,7 +1,3 @@
-"| vim : set fdm=marker:fmr=<<<,>>>:fdl=0:
-
-"let g:polyglot_disabled = ['latex']
-
 " <<< Vundle configuration 
 set shell=/bin/bash
 set nocompatible              " be iMproved, required
@@ -197,6 +193,9 @@ map ,ns :set nospell<CR>
 map ,fr :setlocal spell spelllang=fr<CR>
 map ,en :setlocal spell spelllang=en<CR>
 map ,fe :setlocal spell spelllang=en,fr<CR>
+" comment 
+map ,zc :set fdm=expr<CR> :set fde=getline(v:lnum)=~'^\\s#'?1:getline(prevnonblank(v:lnum))=~'^\\s#'?1:getline(nextnonblank(v:lnum))=~'^\\s*#'?1:0<CR>zM
+
 " Find merge conflict markers
 map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 " decompte de mots latex
@@ -339,6 +338,7 @@ set pastetoggle=<F11>
 set incsearch                   " Find as you type search
 set hlsearch                    " Highlight search terms
 set ignorecase                  " Case insensitive search
+set wildignorecase                  " Case insensitive search
 set smartcase                   " Case sensitive when uc present
 " highlight
 set hlsearch
@@ -381,7 +381,8 @@ set wildmode=list:longest,full
   "set t_ts=k
   "set t_fs=\
 "endif
-"set title
+
+set title
 
 " >>>
 
@@ -657,12 +658,12 @@ endfunction
 
 autocmd! User GoyoEnter call <SID>goyo_enter()
 autocmd! User GoyoLeave call <SID>goyo_leave()
+let g:goyo_width = 90
+let g:goyo_height = 90
 
 " limelight
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
-
-let g:goyo_width=82
 
 " Color name (:help cterm-colors) or ANSI code
 let g:limelight_conceal_ctermfg = 'gray'
@@ -673,10 +674,10 @@ let g:limelight_conceal_guifg = 'DarkGray'
 let g:limelight_conceal_guifg = '#777777'
 
 " Default: 0.5
-let g:limelight_default_coefficient = 0.7
+let g:limelight_default_coefficient = 0.8
 
 " Number of preceding/following paragraphs to include (default: 0)
-let g:limelight_paragraph_span = 1
+let g:limelight_paragraph_span = 3
 
 " Beginning/end of paragraph
 "   When there's no empty line between the paragraphs
@@ -1016,15 +1017,19 @@ let wiki_1                          = {}
 let wiki_1.path                     = '~/.vimwiki/'
 let wiki_1.links_space_char         = '-'
 let wiki_1.ext                      = '.md'
-let wiki_1.path_html                = '~/public_html/vimwiki'
+let wiki_1.path_html                = '~/Notes/vimwiki-notes'
 let wiki_1.auto_export              = 1
 let wiki_1.syntax                   = 'markdown'
 let wiki_1.custom_wiki2html         = '~/.scripts/markdown_to_note'
 let wiki_1.custom_wiki2html_args    = ''
+let g:vimwiki_global_ext = 0
 let g:vimwiki_markdown_link_ext = 1
 let g:vimwiki_list                  = [wiki_1]
 
 nmap <Leader>wx :vs \| :VimwikiIndex<CR>
+
+autocmd BufWritePost *.md call vimwiki#vars#set_wikilocal('custom_wiki2html_args', '', 0) | execute ':silent Vimwiki2HTML' | call vimwiki#vars#set_wikilocal('custom_wiki2html_args', '', 0) | execute ':redraw!'
+
 "let g:vimwiki_markdown_link_ext = 1
 
 " a function to execute formd and return the cursor back
@@ -1194,6 +1199,9 @@ nmap <c-j> <c-w>w3<c-e><c-w>w
 nmap <c-k> <c-w>w3<c-y><c-w>w
 
 nnoremap <expr> g<c-v> '`[' . getregtype()[0] . '`]'
+
+"au BufNewFile ~/.vimwiki/*.md :silent 0r !~/.vim/bin/generate-vimwiki-diary-template '%'
+"au BufNewFile ~/.vimwiki/*.md :silent 0r ~/Templates/template-vimwikipage.mdwn
 
 " todolist
 "map gg ^rx: <Esc>:r! date +" [\%H:\%M]"<ENTER>kJA<Esc>$

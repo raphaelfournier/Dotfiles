@@ -26,7 +26,7 @@ background = "#3f3f3f"
 foreground = "#dcdccc"
 
 [font]
-size = 18
+size = 15
 
 [font.normal]
 family = "Inconsolata"
@@ -105,5 +105,5 @@ program = "/bin/zsh"
 dynamic_title = true
 
 [window.padding]
-x = 6
-y = 6
+x = 4
+y = 0

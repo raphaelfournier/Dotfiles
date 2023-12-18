@@ -11,14 +11,15 @@ touchegg &
 #xcompmgr &
 #skype &
 #wicd-client &
-dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+#dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 blueman-applet &
-/home/raph/.scripts/setDbusSessionBusAddress.sh &
+#/home/raph/.scripts/setDbusSessionBusAddress.sh &
 nm-applet --sm-disable &
 arandr-indicator &
 #vgrive &
 greenclip daemon &
 tmux new -d &
+#mpDris2 &
 #stretchly &
 #ticktick &
 #wal -R & 
@@ -33,6 +34,7 @@ tmux new -d &
 #/usr/bin/dropbox &
 #udiskie --tray &
 [ ! -s ~/.config/mpd/pid ] && mpd &
+musnify-mpd &
 setxkbmap -option caps:escape &
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap &
 DEFAULT_SESSION=awesome

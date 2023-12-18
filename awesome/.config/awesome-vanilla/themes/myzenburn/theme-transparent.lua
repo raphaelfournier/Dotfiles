@@ -22,6 +22,7 @@ theme.bg_normal  = "#3F3F3F"
 theme.bg_focus   = "#1E2320"
 theme.bg_urgent  = "#3F3F3F"
 theme.default_focus  = "#7f9f7f" -- vert
+--theme.default_focus  = "#035670" -- bleu pétrole
 --theme.bg_systray = theme.bg_normal 
 -- }}}
 
@@ -107,23 +108,25 @@ theme.taglist_squares_sel   = "/usr/share/awesome/themes/zenburn/taglist/squaref
 theme.taglist_squares_unsel = "/usr/share/awesome/themes/zenburn/taglist/squarez.png"
 --theme.taglist_squares_resize = "false"
 
+--theme.taglist_fg_occupied = theme.fg_normal
 theme.taglist_fg_occupied = theme.fg_normal
-theme.taglist_bg_occupied = theme.bg_focus .. "80"
+theme.taglist_bg_occupied = theme.bg_focus .. "00"
 theme.taglist_bg_focus = theme.default_focus
 theme.taglist_bg_urgent = theme.fg_urgent
-
-theme.taglist_bg_normal = ""
+theme.taglist_bg_normal = "00ff00"
 --
 --theme.taglist_fg_focus = theme.bg_focus
 -- }}}
 
-theme.bg_systray = theme.default_focus
+--theme.bg_systray = theme.default_focus
+theme.bg_systray = theme.bg_normal
 
 -- {{{ Misc
 theme.awesome_icon           = "/usr/share/awesome/themes/zenburn/awesome-icon-white.png"
 theme.coffee                 = "/home/raph/.config/awesome/themes/myzenburn/coffee-zenburn.png"
 theme.demomode_icon               = "/home/raph/.config/awesome/themes/myzenburn/demomode.png"
 theme.menu_submenu_icon      = "/usr/share/awesome/themes/default/submenu.png"
+theme.launcher_icon = "/home/raph/Images/Icons/magnifying-glass.png"
 -- }}}
 
 -- {{{ Layout
@@ -247,21 +250,27 @@ theme.collision_resize_width=30 -- 	The size of the resize handles
 --theme.collision_screen_bg_focus 	
 --theme.collision_screen_fg_focus 	
 
-theme.wibar_bg = theme.bg_normal .. "80"
+theme.wibar_bg = theme.bg_normal .. "00"
 theme.wibar_fg = theme.fg_normal
 
-theme.arcwidgets_thickness = 2
+theme.arcwidgets_thickness = 1
 theme.arcwidgets_font = "Inconsolata Medium "
 theme.arcwidgets_fontsize = "9"
 
 theme.prompt_bg = theme.wibar_bg
 
-theme.tooltip_border_width = 2
-theme.tooltip_border_color = theme.bg_focus
-theme.tooltip_bg = theme.fg_focus
-theme.tooltip_fg = theme.bg_focus
+theme.tooltip_border_width = theme.border_width
+theme.tooltip_border_color = theme.border_focus
+theme.tooltip_bg = theme.bg_normal
+theme.tooltip_fg = theme.fg_normal
 theme.tooltip_opacity = 0.8
 theme.tooltip_shape = shape.rounded_bar
+--theme.tooltip_border_width = 2
+--theme.tooltip_border_color = theme.bg_focus
+--theme.tooltip_bg = theme.fg_focus
+--theme.tooltip_fg = theme.bg_focus
+--theme.tooltip_opacity = 0.8
+--theme.tooltip_shape = shape.rounded_bar
 
 -- For tabbed only
 theme.tabbed_spawn_in_tab = false           -- whether a new client should spawn into the focused tabbing container
@@ -298,6 +307,34 @@ theme.tabbar_color_min   = "#fbdf90"        -- chnges the color of the minimize 
 theme.tabbar_color_float = "#ccaced"        -- chnges the color of the float button
 
 
+local icon_dir = os.getenv("HOME") .. "/.config/awesome/icons/"
+theme.ic_icons = {
+        --["Opera"] = icon_dir .. "firefox.svg",
+        --["firefox"] = icon_dir .. "firefox.svg",
+        -- WM_CLASS(STRING) = "urxvt", "URxvt"
+	["URxvt"] = icon_dir .. "terminal.svg",
+	["okular"] = icon_dir .. "okular.svg",
+	["Slack"] = icon_dir .. "slack.svg",
+	["Morgen"] = icon_dir .. "morgen.png",
+	["ZapZap"] = icon_dir .. "zapzap.svg",
+	["Arandr"] = icon_dir .. "grandr.svg",
+	["Simplenote"] = icon_dir .. "simplenote2.png",
+}
+
+theme.ic_dynamic_classes = { "Alacritty", "kitty", "URxvt" }
+theme.ic_dynamic_icons = {
+	["^ranger"] = icon_dir .. "file-manager.svg",
+	["^mutt"] = icon_dir .. "mutt.png",
+        ["- termdown$"] = icon_dir .. "clock.svg",
+	["- NVIM$"] = icon_dir .. "vim.png",
+        ["- VIM$"] = icon_dir .. "vim.svg",
+        ["tmux:"] = icon_dir .. "tmux.png",
+	--["^spt$"] = icon_dir .. "spotify.png",
+	--["^googler$"] = icon_dir .. "google.png",
+	--["- rtv"] = icon_dir .. "reddit.png"
+}
+
+theme.ic_fallback_icon = icon_dir .. "default_icon.png"
 
 
 return theme
