@@ -8,9 +8,9 @@
  */
 
 configuration {
-    show-icons:                     false;
+  show-icons:                     false;
 	font:                      		"Comfortaa 14";
-    disable-history:                false;
+  disable-history:                false;
 	sidebar-mode: 					false;
 }
 
@@ -25,7 +25,7 @@ window {
     transparency:                   "real";
     border-radius:                  20px;
     location:                       center;
-    width:                       	500px;
+    width:                       	800px;
     x-offset:                       0px;
     y-offset:                       0px;
 }
@@ -64,7 +64,7 @@ inputbar {
 }
 
 listview {
-    columns:						3;
+    columns:						6;
     lines:							1;
     spacing:                        15px;
     cycle:                          true;

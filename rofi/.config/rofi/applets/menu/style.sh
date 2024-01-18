@@ -5,7 +5,9 @@
 #
 # square     circle     rounded
 
-style="square"
+#style="square"
+#style="rounded"
+style="circle"
 
 # uncomment these lines to enable random style
 #styles=('square' 'circle' 'rounded')

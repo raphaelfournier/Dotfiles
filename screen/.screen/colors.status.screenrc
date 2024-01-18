@@ -1,6 +1,6 @@
 caption always "%{= kw} %-w%{= gk} %n %t %{= kw}%+W%{= km}%-= %{= kg} %S %H %c " # inside
 #caption always "%{= g} %{= w}%-Lw%{=r}%n%F* %t%{-}%+LW"
-#caption always "%{= Kk} %S%{= Kr} %{= Kk}%-w%{= bw} %n %t %{= Kw}%+w %{+b Km}%-= %H %c " # outside
+#caption always "%{= Kw} %S%{= Kr} %{= Kw}%-w%{= bk} %n %t %{= Kw}%+w %{+b Km}%-= %H %c " # outside
 
 # vim: set ft=screenrc
 

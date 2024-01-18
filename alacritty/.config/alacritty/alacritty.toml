@@ -1,35 +1,13 @@
-[colors.bright]
-black = "#709080"
-blue = "#94bff3"
-cyan = "#93e0e3"
-green = "#c3bf9f"
-magenta = "#ec93d3"
-red = "#dca3a3"
-white = "#ffffff"
-yellow = "#f0dfaf"
-
-[colors.cursor]
-cursor = "#dcdccc"
-
-[colors.normal]
-black = "#1E2320"
-blue = "#8787d7"
-cyan = "#8cd0d3"
-green = "#7f9f7f"
-magenta = "#dc8cc3"
-red = "#D78787"
-white = "#dcdccc"
-yellow = "#dfaf8f"
-
-[colors.primary]
-background = "#3f3f3f"
-foreground = "#dcdccc"
+import = [
+"~/.config/alacritty/themes/zenburn.toml" 
+#"~/.config/alacritty/themes/ayu_light.toml"
+]
 
 [font]
-size = 15
+size = 16
 
 [font.normal]
-family = "Inconsolata"
+family = "Inconsolata Nerd Font"
 
 [[hints.enabled]]
 command = "xdg-open"

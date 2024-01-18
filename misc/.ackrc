@@ -44,6 +44,8 @@
 # When submodules are used, .git is a file.
 --ignore-file=is:.git
 
+--ignore-file=is:tags
+
 # Jekyll
 --ignore-directory=match:/.jekyll-cache/
 --ignore-directory=is:vendor

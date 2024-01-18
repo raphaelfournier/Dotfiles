@@ -19,13 +19,21 @@ msg() {
 screen=""
 area=""
 window=""
+flameshot="🔥"
 screendelay="5"
 
 # Variable passed to rofi
-options="$screen\n$area\n$window\n$screendelay"
+options="$screen\n$area\n$flameshot\n$window\n$screendelay"
 
 chosen="$(echo -e "$options" | $rofi_command -p 'App : scrot' -dmenu -selected-row 1)"
 case $chosen in
+    $flameshot)
+		if [[ -f /usr/bin/flameshot ]]; then
+			flameshot gui;
+		else
+			msg
+		fi
+        ;;
     $screen)
 		if [[ -f /usr/bin/scrot ]]; then
 			sleep 1; scrot 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES)/Screenshots/ ; alacritty -e ranger $$(xdg-user-dir PICTURES)/Screenshots/'

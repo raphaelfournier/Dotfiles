@@ -1,7 +1,7 @@
-folder-hook CNAM/* color status white yellow
-folder-hook RFS/* color status white red 
-folder-hook Rfnet/* color status white blue
-folder-hook CNAMnet/* color status white magenta
+folder-hook CNAM/* color status black yellow
+folder-hook RFS/* color status black red 
+folder-hook Rfnet/* color status black blue
+folder-hook CNAMnet/* color status black magenta
 
 # black and white permutés ?
 color normal     black default
@@ -17,10 +17,10 @@ color progress black red
 color hdrdefault red black 
 
 # index stuff
-color index      white yellow ~N # new messages
+color index      black yellow ~N # new messages
 color index      cyan default ~l # messages from list
-color index      white cyan ~N~l # new messages from list
-color indicator  white green 
+color index      black cyan ~N~l # new messages from list
+color indicator  black green 
 color tree       magenta default
 
 color index      cyan default "%f personal-lists"

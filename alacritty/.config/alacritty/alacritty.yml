@@ -306,9 +306,9 @@ color_schemes:
       cyan:    '#0184bc'
       white:   '#090a0b'
 
-#colors: *light
-colors: *zenburn
-###colors: *light
+colors: *light
+#colors: *zenburn
+##colors: *light
 
 # Visual Bell
 #

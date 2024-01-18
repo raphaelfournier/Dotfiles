@@ -9,7 +9,7 @@ alias ks='ls --color=auto'
 alias kls='ls --color=auto'
 
 alias vmore="$VIMEXEC -u ~/.vimrc.more -"
-alias a='alsamixer -D hw:0'
+#alias a='alsamixer -D hw:0'
 alias b='bc -lq'
 alias birthdays="$VIMEXEC ~/.remind/birthdays.rem"
 alias c='chromium'

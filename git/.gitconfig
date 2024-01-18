@@ -24,11 +24,14 @@
   # Standard diff is two sets of final changes. This introduces the original text before each side's changes.
   # https://git-scm.com/docs/git-config#git-config-mergeconflictStyle
 [diff]
-  tool = icdiff
+  #tool = icdiff
+  tool = vimdiff
 [difftool]
 	prompt = false
 [difftool "icdiff"]
   cmd = /usr/bin/icdiff --line-numbers $LOCAL $REMOTE
+[difftool "vimdiff"]
+  cmd = /usr/bin/vimdiff "$2" "$5"
 [pager]
   difftool = true
   diff = diff-so-fancy | less --tabs=1,5 -RFX

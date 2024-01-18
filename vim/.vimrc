@@ -98,7 +98,7 @@ Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'tacahiroy/ctrlp-funky'
 
 "Plugin 'davidhalter/jedi-vim'
-"Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 "Plugin 'airblade/vim-gitgutter'
 
 
@@ -458,7 +458,7 @@ function! ToggleSignColumn()
 endfunction
 
 " taglist
-let tlist_tex_settings = 'latex;l:labels;s:sections;t:subsections;u:subsubsections'
+let tlist_tex_settings = 'latex;l:labels;s:sections;t:subsections;u:subsubsections;x:todo'
 let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_Use_Right_Window = 1
 set iskeyword=@,48-57,_,-,:,192-255
@@ -658,7 +658,7 @@ endfunction
 
 autocmd! User GoyoEnter call <SID>goyo_enter()
 autocmd! User GoyoLeave call <SID>goyo_leave()
-let g:goyo_width = 90
+let g:goyo_width = 100
 let g:goyo_height = 90
 
 " limelight
@@ -708,9 +708,12 @@ let g:calendar_google_calendar = 1
     endif
 " }
 
+set undofile
+set undodir=~/.vim/undo/
+
 nnoremap <Leader>u :UndotreeToggle<CR>
-" If undotree is opened, it is likely one wants to interact with it.
-let g:undotree_SetFocusWhenToggle=1
+"" If undotree is opened, it is likely one wants to interact with it.
+"let g:undotree_SetFocusWhenToggle=1
 
 " indent_guides {
     if isdirectory(expand("~/.vim/bundle/vim-indent-guides/"))
@@ -824,6 +827,8 @@ endfunction
 
 "https://www.hillelwayne.com/post/intermediate-vim/
 command! Vimrc :vs $MYVIMRC
+command! ZenburnColors :vs /home/raph/.config/Xresources/Xdefaults.colors.zenburn
+command! AwesomeWMTheme :vs /home/raph/.config/awesome/themes/myzenburn/theme.lua
 command! MuttAliases :vs ~/.mutt/aliases
 "nnoremap <c-j> <c-w>j
 "nnoremap <c-k> <c-w>k

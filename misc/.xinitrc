@@ -12,13 +12,16 @@ touchegg &
 #skype &
 #wicd-client &
 #dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
-blueman-applet &
+#blueman-applet &
+blueberry &
 #/home/raph/.scripts/setDbusSessionBusAddress.sh &
 nm-applet --sm-disable &
 arandr-indicator &
 #vgrive &
 greenclip daemon &
 tmux new -d &
+redshift &
+#picom &
 #mpDris2 &
 #stretchly &
 #ticktick &
