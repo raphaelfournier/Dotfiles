@@ -1,7 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 #export MAILPATH="$HOME/Mail/CNAM/INBOX/new"
-
+ZSH_THEME="m3-round"
 # Path to your oh-my-zsh installation.
 export ZSH="/home/raph/.oh-my-zsh"
 
@@ -76,6 +76,7 @@ source /home/raph/.fzf_functions
 source /home/raph/.zsh_aliases
 
 # https://github.com/urbainvaes/fzf-marks
+# ligne 111 de ce fichier pour l'ordre
 source /usr/share/fzf-marks/fzf-marks.zsh
 # color couleur pour les commandes et arguments
 source /home/raph/.scripts/zsh-syntax-highlighting-filetypes/zsh-syntax-highlighting-filetypes.zsh
@@ -189,10 +190,13 @@ bindkey -s '\ej' "jobs\n"
 bindkey -s '\ev' "^A\edvim "
 bindkey -s '\el' "^E | less "
 bindkey -s '\ec' "^A\edcat "
+bindkey -s '\ed' "$(date +%F)"
 bindkey -s '\es' "^Asudo "
 bindkey -s '\em' "^Aman \ef^K" 
 ## Pratique lorsqu'on écrit "mv nom_de\ -\ fichier_\[\ complexe\] nom_de\ -\ fichier_\[\ complexe\].txt"
 bindkey -s '\er' "^A\ef^k^y ^y" 
+bindkey -e
+bindkey \^U backward-kill-line
 
 source ~/.zsh-zle
 
@@ -214,17 +218,28 @@ source ~/.passwordstore-variables
 export LESS='-R'
 #export LESSOPEN='|~/.lessfilter %s'
 
+# pour tmux
+precmd() {
+  SESSION=`tmux display-message -p '#S'`
+	echo -ne "\033_tmux:${SESSION} ${PWD/#$HOME/~}"; echo -ne "\033\\"
+}
 # Base16 Shell
 #BASE16_SHELL="$HOME/.base16-manager/chriskempson/base16-shell/"
 #[ -n "$PS1" ] && [ -s "$BASE16_SHELL/profile_helper.sh" ] && eval "$("$BASE16_SHELL/profile_helper.sh")"
 #RPROMPT="%{$fg[white]%}%D{%f %b} %{$fg[red]%}%T%{$reset_color%}"
 #RPROMPT="%{$fg[white]%}%T %D{%f %b}%{$reset_color%}"
-RPROMPT="%{$fg[white]%}%T %D{%y%m%d}%{$reset_color%}" # rprompt-inside
+if (( $RANGER_LEVEL )); then 
+  RPROMPT="%B%K{red}%{$fg[black]%}Ⓡ $RANGER_LEVEL%k%b %{$fg[white]%}%T %D{%d.%m.%y}%{$reset_color%}" # rprompt-inside
+else 
+  RPROMPT="%{$fg[white]%}%T %D{%y%m%d}%{$reset_color%}" # rprompt-inside
+fi
 #RPROMPT="%{$fg[black]%}%T %D{%y%m%d}%{$reset_color%}" # rprompt-outside
 
 # urxvt bug https://bbs.archlinux.org/viewtopic.php?id=282791
 if [[ `ps ho command $(ps ho ppid $$)` == 'urxvt' ]]; then
   clear
 fi
+
+eval "$(rbenv init - zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

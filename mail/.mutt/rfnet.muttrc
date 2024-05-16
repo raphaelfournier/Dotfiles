@@ -5,12 +5,16 @@
 set status_format = "[ Folder: %f, Msgs: %m%?n? New: %n?%?d? Del: %d?%?t? Tag: %t?%?l? %l? ]%?p?---- .: %p waiting to send :. ?--%>-- rfnet --(%s/%S)-- (%P) %?V?(%V: %M/%m)?----"
 
 set from      = "raphael@raphaelfournier.net"
-set sendmail  = "/usr/bin/msmtp -a google"
+set sendmail  = "/usr/bin/msmtp -a google --read-envelope-from"
 set mbox      = "+Rfnet/Archives"
 set record    = "+Rfnet/Archives"
 set postponed = "+Rfnet/Drafts"
 set signature = "~/.mutt/rfnet.signature"                           # my signature file
 
+source ~/.mutt/rfs-lists
+
 save-hook "~C @*.fournier.net" =Rfnet/Archives/
 save-hook "~f sniehottamarie" =Rfnet/Perso/
+save-hook . =Rfnet/	
+
 macro index za   "<shell-escape>/usr/bin/offlineimap -a Rfnet -q -o<enter>" "sync IMAP" # quick-sync ~/Mail immediately with offlineimap

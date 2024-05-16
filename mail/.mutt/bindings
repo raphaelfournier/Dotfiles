@@ -78,9 +78,9 @@ macro pager,index,generic ,m     "<change-folder>+Rfnet/Archives<enter>"
 macro pager,index,generic ,ù      "<change-folder>+Archives/MailingLists<enter>"
 macro pager,index,generic ,*      "<change-folder>+CNAM/TRIED<enter>"
 macro index ,e "<limit>~y " "Limit view to label"
-macro pager,index,generic ,I      '<vfolder-from-query>tag:flux<enter>'
-macro pager,index,generic ,i      '<change-folder>+RFS/Flux.<tab><tab>'
-macro pager,index,generic ,f      "<vfolder-from-query>tag:flux<enter>"
+macro pager,index,generic ,f      '<vfolder-from-query>tag:flux<enter>'
+#macro pager,index,generic ,i      '<change-folder>+RFS/Flux.<tab><tab>'
+macro pager,index,generic ,F      "<change-folder>+RFS/Feeds<enter>"
 #macro pager,index,generic ,f      "<change-folder>+feeds<enter>"
 
 
@@ -110,8 +110,8 @@ macro index,pager \Co "<pipe-message>~/.scripts/viewhtmlmail.py\n" "View HTML in
 #macro index,pager ,U "<pipe-message> urlview<Enter>" "call urlview to extract URLs out of a message"
 #macro attach,compose ,U "<pipe-entry> urlview<Enter>" "call urlview to extract URLs out of a message"
 
-macro index,pager ,u "<pipe-message> urlscan -c<Enter>" "call urlscan to extract URLs out of a message"
-macro attach,compose ,u "<pipe-entry> urlscan -c<Enter>" "call urlscan to extract URLs out of a message"
+macro index,pager ,u "<pipe-message> urlscan -c -s --run-safe '/home/raph/.scripts/urlscan-feedsremover.sh {}'<Enter>" "call urlscan to extract URLs out of a message"
+macro attach,compose ,u "<pipe-entry> urlscan -c -s --run-safe '/home/raph/.scripts/urlscan-feedsremover.sh {}'<Enter>" "call urlscan to extract URLs out of a message"
 
 #macro pager Q <search>\^Sub<enter><next-line>
 macro pager Q <search>\^\\s+\$<enter>

@@ -3,7 +3,7 @@ set shell=/bin/bash
 set nocompatible              " be iMproved, required
 set hidden
 filetype off                  " required
-set t_Co=256
+"set t_Co=256
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -26,6 +26,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'mattn/calendar-vim'
 "Plugin 'honza/vim-snippets'
 Plugin 'francoiscabrol/ranger.vim'
+Plugin 'jnurmine/Zenburn.git'
 
 Plugin 'godlygeek/tabular'
 Plugin 'simplenote-vim/simplenote.vim'
@@ -39,6 +40,8 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'NLKNguyen/papercolor-theme'
 
 Plugin 'chrisbra/unicode.vim'
+Plugin 'ferdinandyb/bibtexcite.vim'
+Plugin 'hauleth/vim-backscratch'
 
 "Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'ludovicchabant/vim-gutentags'
@@ -184,6 +187,8 @@ let maplocalleader = "<space>"
 
 "nnoremap <leader>v :vnew<CR>
 nnoremap <leader>cd :cd %:p:h<CR>
+nnoremap <leader>ch :hi! link Comment Ignore<CR>
+nnoremap <leader>cs :hi! link Comment Comment<CR>
 map ,nu :set invnumber<CR>
 map ,nr :set invrelativenumber<CR>
 map ,no :set nonumber<CR>
@@ -260,10 +265,9 @@ nnoremap g{ {dap}p{
 " <<< Colors 
 nnoremap <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 "let g:zenburn_force_dark_Background = 1
-"
 "let g:zenburn_high_Contrast = 1
-"
-"let g:zenburn_old_Visual = 1
+let g:zenburn_old_Visual = 1
+"let g:zenburn_alternate_Visual = 1
 
 " background transparent
 "hi Normal guibg=NONE ctermbg=NONE
@@ -272,6 +276,7 @@ let inout = system("cat ~/.insideOutside | tr -d '\n'")
 " si on est dedans, on active thème sombre
 if inout == "in" 
   colors zenburn
+  "colors base16-zenburn
   let g:airline_theme='angr'
 " sinon, le thème light
 else
@@ -1033,7 +1038,7 @@ let g:vimwiki_list                  = [wiki_1]
 
 nmap <Leader>wx :vs \| :VimwikiIndex<CR>
 
-autocmd BufWritePost *.md call vimwiki#vars#set_wikilocal('custom_wiki2html_args', '', 0) | execute ':silent Vimwiki2HTML' | call vimwiki#vars#set_wikilocal('custom_wiki2html_args', '', 0) | execute ':redraw!'
+"autocmd BufWritePost *.md call vimwiki#vars#set_wikilocal('custom_wiki2html_args', '', 0) | execute ':silent Vimwiki2HTML' | call vimwiki#vars#set_wikilocal('custom_wiki2html_args', '', 0) | execute ':redraw!'
 
 "let g:vimwiki_markdown_link_ext = 1
 

@@ -43,10 +43,9 @@ GtkProgressBar * {
         font-size: 5em;
     }
  */
-.bottomText {
-    font-size: 3em;
-}
-
+    .bottomText {
+        font-size: 5em;
+    }
 .pretalk {
     color: green;
 }

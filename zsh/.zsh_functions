@@ -1,3 +1,19 @@
 newwindowtitle(){
   echo echo -e "\033]0;$*\a"
 }
+
+function hosts-block {
+    sudo ln -iv /etc/hosts-blocking /etc/hosts
+    # Flush DNS cache
+    sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder
+}
+
+function hosts-unblock {
+    sudo ln -iv /etc/hosts-nonblocking /etc/hosts
+    # Flush DNS cache
+    sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder
+}
+
+fr () { 
+  find ./ -iname "*"$@"*" -printf "%T@ %Td-%Tb-%TY %Tk:%TM %p\n" | sort -n | cut -d " " -f 2- | grep -i "$@" ; 
+}

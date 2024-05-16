@@ -80,7 +80,8 @@ auto_view text/calendar
 alternative_order text/plain text/enriched text/html            # save html for last
 
 set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
-set quote_regexp        = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+#set reply_regex  = "^((re)(\\[[0-9]+\\])*:[ \t]*)*"
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 
 # formats
 set date_format         = "%d/%m/%y %R"

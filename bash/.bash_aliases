@@ -67,6 +67,7 @@ alias ltr='ls -tr --color=auto'
 alias ls='ls --g --color=auto'
 alias lspp='ls++'
 alias lastmeeting='vim `find  Notes/meetings/_posts -type f -printf "%T@ %p\n" | sort -n | cut -d " " -f2 | tail -n1`'
+alias meetings='ranger Notes/meetings/_posts/`date +%y`/'
 alias m='neomutt -F ~/.muttrc'
 alias mkz='mutt -F ~/.mutt/muttrc.kz'
 alias marksedit="$VIMEXEC ~/.fzf-marks +"
@@ -87,7 +88,7 @@ alias rapport='cp -rv ~/Templates/RapportCA/* .'
 alias restartNginx='sudo systemctl restart nginx.service'
 alias recupAttachments='ranger ~/Mail/Attachments/ ~'
 alias s='tmux'
-#alias sf='screen -list | grep "^\s" | sed -E "s/^\s*//" | fzf --reverse | sed -E "s/\s*\(.*$//" | xargs -o screen  -D -R'
+alias sfs='screen -list | grep "^\s" | sed -E "s/^\s*//" | fzf --reverse | sed -E "s/\s*\(.*$//" | xargs -o screen  -D -R'
 alias sf='tmux a -t $(tmux ls | grep -oP "^.*?:" | tr -d ":" | fzf --reverse | xargs)'
 alias stow='stow -v'
 alias snippets="$VIMEXEC ~/.vim/mysnippets/_.snippets +"
@@ -99,6 +100,7 @@ alias t='tig'
 alias ur='unrar'
 alias u='unzip'
 alias v='vim -O'
+alias zds="find ~/downloads -type f -printf '%C@ %p\0' | sort -rz | sed -Ezn '1s/[^ ]* //p' | xargs -0 zathura "
 alias lv='lvim'
 alias vw='vim -c VimwikiIndex'
 alias vifmrc='vim .config/vifm/vimfmrc'
@@ -215,6 +217,7 @@ alias tag9='echo -e "local awful = require(\"awful\");awful.tag.viewonly(tags[1]
 alias changescreen='echo -e "local awful = require(\"awful\");awful.screen.focus_relative( 1)" | awesome-client'
 alias tagsNotes='for file in `find ~/Notes/meetings/_posts/ -name "*mdwn"`; do grep categories -A4 $file | tail -n+2 | grep "^- " | grep . | sed "s:- ::"; done | sort -u'
 alias internetExplorer7='/usr/share/playonlinux/playonlinux --run "Internet Explorer 7"'
+
 
 alias rib='zathura /home/raph/Finances/HSBC/rib_hsbc_fournier.pdf'
 #

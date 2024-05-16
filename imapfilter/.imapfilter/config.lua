@@ -30,7 +30,7 @@ for _, f in ipairs(folders) do print(f) end
 -- Get the status of a mailbox
 --cnam.INBOX:check_status()
 --cnam.News:check_status()
-bullei3 = cnam["INBOX"]:is_unseen() * cnam["INBOX"]:contain_subject("bulle-i3")
+--bullei3 = cnam["INBOX"]:is_unseen() * cnam["INBOX"]:contain_subject("bulle-i3")
 --bullei3:move_messages(cnam["News"])
 
 filtreNewSujet = function(pattern)

@@ -15,8 +15,11 @@ map b focus_inputbar ":blist "
 map + zoom in
 map <C-=> zoom in
 map - zoom out
-map <C-Button4> zoom in
-map <C-Button5> zoom out
+"map <C-Button4> zoom in
+"map <C-Button5> zoom out
+map <C-Button5> zoom in
+map <C-Button4> zoom out
+
 map <C-w> quit
 map <C-Space> navigate previous
 map <BackSpace> navigate previous
@@ -62,9 +65,9 @@ set notification-error-bg "#dca3a3" #08
 set notification-error-fg "#1E2320" #00
 set notification-warning-bg "#dca3a3" #08
 set notification-warning-fg "#1E2320" #00
-set highlight-color "#dc8cc3" #0A
 #set highlight-active-color "#F0DFAF" #0D
-set highlight-active-color "#FF0000" #0D
+set highlight-active-color "rgba(215, 135, 135, 0.5)"
+set highlight-color "rgba(240,223,175, 0.5)"
 set completion-highlight-fg "#303030" #02
 set completion-highlight-bg "#8cd0d3" #0C
 set completion-bg "#303030" #02
@@ -91,18 +94,18 @@ set recolor-reverse-video true
 set scroll-step 200
 
 map u exec "urxvt"
+set database "sqlite"
 
 set synctex true
 set synctex-editor-command "gvim +%{line} %{input}"
-set first-page-column 1:3
+
+"https://unix.stackexchange.com/questions/234744/can-zathuras-dual-page-mode-use-a-page-offset
+set first-page-column 1:1:3
 
 " https://wiki.archlinux.org/index.php/zathura#Useful_tips
 " set statusbar-basename true
 set statusbar-home-tilde true
 set window-title-basename true
-
-map <C-Button5> zoom in
-map <C-Button4> zoom out
 
 set selection-clipboard clipboard
 set selection-notification true
