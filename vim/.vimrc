@@ -42,6 +42,7 @@ Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'chrisbra/unicode.vim'
 Plugin 'ferdinandyb/bibtexcite.vim'
 Plugin 'hauleth/vim-backscratch'
+Plugin 'christoomey/vim-system-copy'
 
 "Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'ludovicchabant/vim-gutentags'
@@ -372,6 +373,7 @@ nmap <leader>f8 :set foldlevel=8<CR>
 nmap <leader>f9 :set foldlevel=9<CR>
 """""
 "set mouse=a
+set mouse=v
 "set ttymouse=urxvt
 set foldmethod=indent
 set foldlevelstart=99

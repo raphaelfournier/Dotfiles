@@ -22,3 +22,4 @@ if [ -f /usr/local/etc/bash_completion ] && ! shopt -oq posix; then
     complete -o nospace -F _fab_complete fab
 fi
 
+source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh

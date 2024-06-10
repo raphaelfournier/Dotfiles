@@ -9,7 +9,7 @@ text/html; firefox -new-tab %s & sleep 5; test=test -n "$DISPLAY"; nametemplate=
 text/html; lynx -dump -assume_charset=%{charset} -display_charset=utf-8 %s; copiousoutput; nametemplate=%s.html
 text/calendar; /usr/bin/less %s;
 (null)/pdf; /usr/bin/zathura %s; /usr/bin/zathura %s; test=test "$DISPLAY" != "";
-application/pdf; /usr/bin/zathura %s &; test=test "$DISPLAY" != ""; description=Portable Document Format; nametemplate=%s.pdf; print=/usr/bin/evince %s
+application/pdf; /usr/bin/zathura %s &; test=test "$DISPLAY" != ""; description=Portable Document Format; nametemplate=%s.pdf; print=/usr/bin/xournalpp %s
 application/download; /usr/bin/zathura %s; test=test "$DISPLAY" != ""; description=Portable Document Format; nametemplate=%s.pdf; print=/usr/bin/acroread %s
 */pdf; /usr/bin/zathura %s; /usr/bin/zathura %s; test=test "$DISPLAY" != "";
 image/pdf; /usr/bin/zathura %s; test=test "$DISPLAY" != ""; description=Portable Document Format; nametemplate=%s.pdf; print=/usr/bin/acroread %s
@@ -28,6 +28,7 @@ application/vnd.oasis.opendocument.spreadsheet; soffice --norestore %s; test=tes
 application/vnd.ms-powerpoint; soffice --norestore %s; test=test "$DISPLAY" != ""; description=PPT; nametemplate=%s.ppt
 application/x-mspowerpoint; soffice --norestore %s; test=test "$DISPLAY" != ""; description=PPT; nametemplate=%s.ppt
 application/ppt; soffice --norestore %s; test=test "$DISPLAY" != ""; description=PPT; nametemplate=%s.ppt
+application/vnd.openxmlformats-officedocument.presentationml.presentation; ~/.scripts/pptx-to-pdf.sh %s;
 # excel
 application/vnd.ms-excel; soffice --norestore %s; test=test "$DISPLAY" != ""; description=XLS; nametemplate=%s.xls
 application/x-msexcel; soffice --norestore %s; test=test "$DISPLAY" != ""; description=XLS; nametemplate=%s.xls

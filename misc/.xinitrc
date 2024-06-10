@@ -22,7 +22,8 @@ greenclip daemon &
 tmux new -d &
 redshift &
 #picom &
-#mpDris2 &
+mpDris2 &
+pasystray &
 #stretchly &
 #ticktick &
 #wal -R & 

@@ -97,6 +97,7 @@ alias tasks='sh /home/raph/scripts/task-evolution.sh'
 alias t='tig'
 #alias t='tree -L 1'
 #alias t='todo.sh'
+alias tail-cours-log="tail ~/Enseignement/Logs/cours-`date +%Y`.log.md"
 alias ur='unrar'
 alias u='unzip'
 alias v='vim -O'
@@ -123,6 +124,7 @@ alias z='zathura'
 alias si='sioyek'
 alias mencal='mencal -3 -m --config s=20120726'
 alias activateAnaconda='source /opt/anaconda/bin/activate root'
+alias zlibrary='tor-browser http://bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion'
 
 # screen
 alias sls='screen -ls'
