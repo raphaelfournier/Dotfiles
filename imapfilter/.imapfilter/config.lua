@@ -56,6 +56,7 @@ results = filtreNewSujet("bulle-i3") +
           filtreNewSujet("Publish Your Research Works") + 
           filtreNewSujet("sif-annonces") +
           filtreNewFrom("mailrobot@mail.xing.com") + 
+          filtreNewFrom("productupdate@elastic.co") + 
           filtreNewFrom("springer@newsletter.springer.com") + 
           filtreNewFrom("Thomson Reuters") + 
           filtreNewTo("annonces@madics.fr") +
