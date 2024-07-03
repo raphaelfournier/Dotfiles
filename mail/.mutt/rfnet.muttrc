@@ -13,8 +13,9 @@ set signature = "~/.mutt/rfnet.signature"                           # my signatu
 
 source ~/.mutt/rfs-lists
 
-save-hook "~C @*.fournier.net" =Rfnet/Archives/
-save-hook "~f sniehottamarie" =Rfnet/Perso/
-save-hook . =Rfnet/	
+#
+#save-hook . =Rfnet/	
+folder-hook Rfnet unhook save-hook
+folder-hook Rfnet save-hook . "=Rfnet/"
 
 macro index za   "<shell-escape>/usr/bin/offlineimap -a Rfnet -q -o<enter>" "sync IMAP" # quick-sync ~/Mail immediately with offlineimap

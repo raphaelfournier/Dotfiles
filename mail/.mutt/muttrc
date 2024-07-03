@@ -141,12 +141,6 @@ mailboxes `find ~/Mail/CNAM/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur\|Spam
 #mailboxes `find ~/Mail/Lip6/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur\|201.\/" |xargs`
 #mailboxes `find ~/Mail/Lavabit/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur" |xargs`
 
-## account specific sources
-folder-hook RFS/* source ~/.mutt/rfs.muttrc
-folder-hook CNAM/* source ~/.mutt/cnam.muttrc
-folder-hook CNAMnet/* source ~/.mutt/cnamnet.muttrc
-folder-hook Rfnet/* source ~/.mutt/rfnet.muttrc
-
 #folder-hook ~/.cache/notmuch/mutt/results source ~/.mutt/notmuch-search
 
 #folder-hook CNAMnet/* source ~/.mutt/cnamnet.muttrc
@@ -207,12 +201,21 @@ source ~/.mutt/colors/zenburn.raph.wal.muttrc
 #source ~/.mutt/colors/raph.outside.muttrc
 #source ~/.mutt/colors/raph.light.muttrc
 
+folder-hook flux "push <last-entry><current-middle>"
+folder-hook feeds "push <last-entry><current-middle>"
+
 source ~/.mutt/bindings
 source ~/.mutt/gpg
 source ~/.mutt/savehooks
 #source ~/.mutt/sidebar
 source ~/.mutt/notmuch
 source ~/.mutt/sendhooks
+
+## account specific sources
+folder-hook CNAM/* source ~/.mutt/cnam.muttrc
+folder-hook CNAMnet/* source ~/.mutt/cnamnet.muttrc
+folder-hook Rfnet/* source ~/.mutt/rfnet.muttrc
+folder-hook RFS/* source ~/.mutt/rfs.muttrc
 
 
 #macro pager,index,generic ,G      "<vfolder-from-query>tag:inbox and tag:rfs<enter>"
@@ -223,9 +226,7 @@ source ~/.mutt/sendhooks
 #macro pager,index,generic ,µ      "<change-folder>+Archives/MailingLists<enter>"
 #bind index,pager    ,s       vfolder-from-query #looks up for notmuch query
 #bind index,pager    \\      entire-thread #Reconstruct the entire thread with notmuch
-macro index,pager   +       "<modify-labels>+"                              "+Add or -Remove notmuch tags"
+#macro index,pager   +       "<modify-labels>+"                              "+Add or -Remove notmuch tags"
 
 set reply_with_xorig = "yes"
 set read_inc=50			# show progress when reading a mailbox
-folder-hook flux "push <last-entry><current-middle>"
-folder-hook feeds "push <last-entry><current-middle>"

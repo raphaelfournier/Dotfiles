@@ -10,10 +10,13 @@ folder-hook . "push <last-entry><current-middle>"
 
 set from      = "raphael.fourniersniehotta@lecnam.net"
 set sendmail  = "/usr/bin/msmtp -a cnam"
-save-hook . "+CNAMnet/Archives/"
 macro index S   "<save-message><enter>"
 folder-hook CNAMnet/ "push <last-entry><current-middle>"
 set mbox      = "+CNAMnet/Archives"
 set record    = "+CNAMnet/Archives"
 set postponed = "+CNAMnet/Drafts"
 set signature = "~/.mutt/cnam.signature"                           # my signature file
+
+#save-hook . "+CNAMnet/Archives/"
+folder-hook CNAMnet unhook save-hook
+folder-hook CNAMnet save-hook . "=CNAMnet/Archives"

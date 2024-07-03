@@ -12,7 +12,6 @@ set record    = "+RFS/Archives"
 set postponed = "+RFS/Drafts"
 set signature = "~/.mutt/rfs.signature"                           # my signature file
 
-save-hook . "+RFS/Archives/"
 source ~/.mutt/cnam-lists
 source ~/.mutt/rfs-lists
 
@@ -21,3 +20,7 @@ macro index za   "<shell-escape>/usr/bin/offlineimap -a RFS -q -o<enter>" "sync 
 folder-hook RFS/INBOX "push <limit>!~P!~l!%Lpersonal-lists<enter><last-entry><current-middle>"
 folder-hook RFS/ "push <last-entry><current-middle>"
 macro index <esc>z "<limit>~P | ~l | %L personal-lists<enter><last-entry><current-middle>"
+
+#save-hook . "=RFS/Archives/"
+folder-hook RFS unhook save-hook
+folder-hook RFS save-hook . "=RFS/Archives"
