@@ -93,7 +93,7 @@ set recolor-reverse-video true
 
 set scroll-step 200
 
-map u exec "urxvt"
+map u exec "alacritty"
 set database "sqlite"
 
 set synctex true

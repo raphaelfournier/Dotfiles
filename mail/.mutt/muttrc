@@ -132,6 +132,7 @@ mailboxes `find ~/Mail/Rfnet/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur\|Gma
 mailboxes `find ~/Mail/RFS/* -maxdepth 0 -type d | grep -iv "tmp\|new\|MLtemp\|Flux\|cur\|Corbeille" | xargs`
 mailboxes `find ~/Mail/CNAMnet/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur\|Spam\|Conversation" |xargs`
 mailboxes `find ~/Mail/CNAM/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur\|Spam\|News\|Junk" |xargs`
+mailboxes `find ~/Mail/LIP6/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur\|Spam\|News\|Junk" |xargs`
 
 #mailboxes "/var/spool/mail/raph"
 #mailboxes "~/Mail/Templates"
@@ -216,6 +217,7 @@ folder-hook CNAM/* source ~/.mutt/cnam.muttrc
 folder-hook CNAMnet/* source ~/.mutt/cnamnet.muttrc
 folder-hook Rfnet/* source ~/.mutt/rfnet.muttrc
 folder-hook RFS/* source ~/.mutt/rfs.muttrc
+folder-hook LIP6/* source ~/.mutt/lip6.muttrc
 
 
 #macro pager,index,generic ,G      "<vfolder-from-query>tag:inbox and tag:rfs<enter>"

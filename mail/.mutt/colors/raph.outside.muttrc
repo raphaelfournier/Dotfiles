@@ -17,10 +17,12 @@ color progress black red
 color hdrdefault red black 
 
 # index stuff
-color index      black yellow ~N # new messages
+#color index      black yellow ~N # new messages
+color index      black color220 ~N # new messages
 color index      cyan default ~l # messages from list
 color index      black cyan ~N~l # new messages from list
-color indicator  black green 
+#color indicator  black green 
+color indicator  color231 color34
 color tree       magenta default
 
 color index      cyan default "%f personal-lists"

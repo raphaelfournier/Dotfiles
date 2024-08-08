@@ -1,0 +1,24 @@
+###
+# LIP6 specific options
+###
+
+set status_format = "[ Folder: %f, Msgs: %m%?n? New: %n?%?d? Del: %d?%?t? Tag: %t?%?l? %l? (%P) %?V?(%V: %M/%m)?]%?p?---- .: %p waiting to send :. ?--%>-- LIP6 --(%s/%S)------"
+
+set from      = "raphael.fournier@lip6.fr"
+#set sendmail  = "/usr/bin/msmtp -a paris13"
+set sendmail  = "/usr/bin/msmtp -a lip6"
+set mbox      = "+LIP6/Archives"
+set record    = "+LIP6/Archives/"
+set postponed = "+LIP6/Drafts/"
+set signature = "~/.mutt/lip6.signature"                           # my signature file
+
+macro index za   "<shell-escape>/usr/bin/offlineimap -a LIP6 -q -o<enter>" "sync IMAP" # quick-sync ~/Mail immediately with offlineimap
+folder-hook . "push <last-entry><current-middle>"
+
+# https://dev.mutt.org/doc/manual.html#mailbox-hook
+#folder-hook LIP6/INBOX "push <limit>!~P!~l<enter><last-entry><current-middle>"
+#
+#save-hook . "=LIP6/Archives/"
+folder-hook LIP6 unhook save-hook
+folder-hook LIP6 save-hook . "=LIP6/Archives/"
+
