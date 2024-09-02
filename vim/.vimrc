@@ -144,6 +144,7 @@ au BufRead ~/.mutt/temp/*mutt* set nonu
 au BufRead ~/.mutt/temp/*mutt* nmap  <F5>  gqap
 au BufRead ~/.mutt/temp/*mutt* nmap  <F6>  gqqj
 au BufRead ~/.mutt/temp/*mutt* nmap  <F7>  kgqj
+au BufRead ~/.mutt/temp/*mutt* nmap  <F7>  vipJ
 au BufRead ~/.mutt/temp/*mutt* map!  <F5>  <ESC>gqapi
 au BufRead ~/.mutt/temp/*mutt* map!  <F6>  <ESC>gqqji
 au BufRead ~/.mutt/temp/*mutt* map!  <F7>  <ESC>kgqji

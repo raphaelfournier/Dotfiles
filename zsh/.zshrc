@@ -175,6 +175,7 @@ eval `dircolors ~/.ls_colors`
 #export MARKER_KEY_MARK='\C-b' # https://github.com/pindexis/marker/blob/master/README.md
 #[[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
 
+zstyle ':completion:*:*:make:*' tag-order 'targets'
 autoload -Uz compinit
 compinit
 # Completion for kitty

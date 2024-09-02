@@ -24,6 +24,7 @@ redshift &
 #picom &
 mpDris2 &
 pasystray &
+nextcloud & 
 #stretchly &
 #ticktick &
 #wal -R & 
