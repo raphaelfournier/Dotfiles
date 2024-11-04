@@ -24,6 +24,8 @@ macro index \Cb "<limit>~(~U)<enter>" "view only threads with new messages"
 macro index \Cw "<limit>!~F<enter><current-middle>" "hide flagged messages"
 macro index \Ce "<limit>!~P !~l<enter><current-middle><last-entry>" "hide messages from me and lists"
 
+macro index ,Z "<tag-pattern>~N<enter><tag-prefix>Wn<tag-prefix>t" "mark all new as read"
+
 macro index ,o "<limit>~P | ~l<enter><current-middle>" "messages masqués par Ctrl+A"
 macro pager,index,generic A "<tag-pattern>~A<enter>" "all messages"
 macro index ,v "<limit>~l<enter><current-middle>" "view only list messages"
@@ -35,8 +37,6 @@ macro index ,v "<limit>~l<enter><current-middle>" "view only list messages"
 macro attach s <save-entry><kill-line>~/Mail/Attachments/ "save attachments in ~/Mail/Attachments" 
 #macro attach S <save-entry><kill-line>~/downloads/ "save attachments in ~/downloads/" 
 #macro compose ,a "<attach-file>`xsel -p | sed "s/ /$(printf \\026)&/g"`<enter>"
-macro index,pager,compose ,r <save-entry><kill-line>=CNAM/INBOX "save in CNAM/INBOX"
-macro index,pager,compose ,R <save-entry><kill-line>=CNAMnet/INBOX "save in CNAMnet/INBOX"
 bind index zt current-top
 bind index zz current-middle
 bind index zb current-bottom
@@ -57,27 +57,29 @@ macro pager,index,generic \Ck "<half-up>"
 macro pager,index,generic ,t        ":set sendmail=\"/usr/sbin/sendmail raph\""
 macro pager,index,generic ,n      "<limit>~N<enter><current-middle>"
 macro pager,index,generic <f1>      "!links /usr/share/doc/mutt/manual.html" "Show Mutt documentation"
-macro index,compose ,c      ":set sendmail=\"/usr/bin/msmtp -a cnam\""
+macro index,compose ,c      ":set sendmail=\"/usr/bin/msmtp -a lip6\""
+macro compose ,j      ":set sendmail=\"/usr/bin/msmtp -a cnamnet\""
 macro compose ,l      ":set sendmail=\"/usr/bin/msmtp -a lip6-ext\""
 macro compose ,x      ":set sendmail=\"/home/raph/.scripts/msmtp-queue-scheduler/msmtpq -a cnam\""
 macro compose ,g      ":set sendmail=\"/usr/bin/msmtp -a google\""
 
-macro compose ,f      "<edit-fcc>=CNAM/INBOX"
+macro compose ,f      "<edit-fcc>=LIP6/INBOX"
 macro compose ,F      "<edit-fcc>=CNAM/TRIED/"
 
 macro pager,index,generic ,a      "<change-folder>+Archives/`date +%y`<enter>"
 macro pager,index,generic ,A      "<change-folder>+Archives/`eval 'date +%y-1 | bc'`<enter>"
 macro pager,index,generic ,g      "<change-folder>+RFS/INBOX<enter>"
 macro pager,index,generic ,h     "<change-folder>+RFS/Archives<enter>"
-macro pager,index,generic ,j      "<change-folder>+CNAM/INBOX<enter>"
+macro pager,index,generic ,L      "<change-folder>+CNAM/INBOX<enter>"
+macro pager,index,generic ,M     "<change-folder>+CNAM/Archives<enter>"
 macro pager,index,generic ,J      "<change-folder>+CNAMnet/INBOX<enter>"
-macro pager,index,generic ,k     "<change-folder>+CNAM/Archives<enter>"
 macro pager,index,generic ,K     "<change-folder>+CNAMnet/Archives<enter>"
 macro pager,index,generic ,l      "<change-folder>+Rfnet/INBOX<enter>"
 macro pager,index,generic ,m     "<change-folder>+Rfnet/Archives<enter>"
-macro pager,index,generic ,L      "<change-folder>+LIP6/INBOX<enter>"
-macro pager,index,generic ,M      "<change-folder>+LIP6/Archives<enter>"
+macro pager,index,generic ,j      "<change-folder>+LIP6/INBOX<enter>"
+macro pager,index,generic ,k      "<change-folder>+LIP6/Archives<enter>"
 macro pager,index,generic ,ù      "<change-folder>+Archives/MailingLists<enter>"
+macro pager,index,generic ,y      "<change-folder>+Local<enter>"
 macro pager,index,generic ,*      "<change-folder>+CNAM/TRIED<enter>"
 macro index ,e "<limit>~y " "Limit view to label"
 macro pager,index,generic ,f      '<vfolder-from-query>tag:flux<enter>'
@@ -117,6 +119,7 @@ macro attach,compose ,u "<pipe-entry> urlscan -c -s --run-safe '/home/raph/.scri
 
 #macro pager Q <search>\^Sub<enter><next-line>
 macro pager Q <search>\^\\s+\$<enter>
+macro pager A <search>\^Description<enter>
 #macro compose ,A "<shell-escape>bash $HOME/.scripts/rangerpick.sh<enter><enter-command>source $HOME/.mutt/rangerpick<enter>" "Attach with Ranger"
 macro compose ,a "<shell-escape>bash $HOME/.mutt/neomutt-file-picker/filepicker<enter><enter-command>source $HOME/.mutt/tmpfile<enter><shell-escape>bash $HOME/.mutt/neomutt-file-picker/filepicker clean<enter>" "Attach with your file manager"
 macro index,pager X "<shell-escape>bash $HOME/.mutt/neomutt-file-picker/dirpicker rip<enter><enter-command>source $HOME/.mutt/tmpfile<enter>" "Attach in folder with ranger and ripmime"

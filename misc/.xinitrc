@@ -12,8 +12,8 @@ touchegg &
 #skype &
 #wicd-client &
 #dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
-#blueman-applet &
-blueberry &
+blueman-applet &
+# blueberry-tray &
 #/home/raph/.scripts/setDbusSessionBusAddress.sh &
 nm-applet --sm-disable &
 arandr-indicator &

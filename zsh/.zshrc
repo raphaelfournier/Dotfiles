@@ -188,7 +188,7 @@ bindkey " " magic-space # do history expansion on space
 bindkey '^P' history-search-backward
 bindkey '^N' history-search-forward
 bindkey -s '\ej' "jobs\n"
-bindkey -s '\ev' "^A\edvim "
+bindkey -s '\ev' "^Avim "
 bindkey -s '\el' "^E | less "
 bindkey -s '\ec' "^A\edcat "
 bindkey -s '\ed' "$(date +%F)"

@@ -21,6 +21,7 @@ map <C-Button5> zoom in
 map <C-Button4> zoom out
 
 map <C-w> quit
+map <A-Space> navigate previous
 map <C-Space> navigate previous
 map <BackSpace> navigate previous
 map <Return> navigate next

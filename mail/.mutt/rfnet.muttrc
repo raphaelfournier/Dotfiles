@@ -11,11 +11,15 @@ set record    = "+Rfnet/Archives"
 set postponed = "+Rfnet/Drafts"
 set signature = "~/.mutt/rfnet.signature"                           # my signature file
 
-source ~/.mutt/rfs-lists
+macro index za   "<shell-escape>/usr/bin/offlineimap -a Rfnet -q -o<enter>" "sync IMAP" # quick-sync ~/Mail immediately with offlineimap
 
+macro index,pager,compose ,r <save-entry><kill-line>=Rfnet/INBOX/ "save in Rfnet/INBOX"
+
+source ~/.mutt/rfs-lists
 #
 #save-hook . =Rfnet/	
 folder-hook Rfnet unhook save-hook
-folder-hook Rfnet save-hook . "=Rfnet/"
+#folder-hook Rfnet save-hook natsguitar@gmail.com =LIP6/News/
 
-macro index za   "<shell-escape>/usr/bin/offlineimap -a Rfnet -q -o<enter>" "sync IMAP" # quick-sync ~/Mail immediately with offlineimap
+
+folder-hook Rfnet save-hook . "=Rfnet/"

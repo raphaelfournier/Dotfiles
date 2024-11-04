@@ -15,6 +15,14 @@ set signature = "~/.mutt/lip6.signature"                           # my signatur
 macro index za   "<shell-escape>/usr/bin/offlineimap -a LIP6 -q -o<enter>" "sync IMAP" # quick-sync ~/Mail immediately with offlineimap
 folder-hook . "push <last-entry><current-middle>"
 
+macro compose ,f      "<edit-fcc>=LIP6/INBOX/"
+
+source ~/.mutt/cnam-lists
+
+macro index ,c   "<save-message><kill-line>=Archives/MailingLists"
+
+macro index,pager,compose ,r <save-entry><kill-line>=LIP6/INBOX/ "save in CNAM/INBOX"
+
 # https://dev.mutt.org/doc/manual.html#mailbox-hook
 #folder-hook LIP6/INBOX "push <limit>!~P!~l<enter><last-entry><current-middle>"
 #
@@ -22,3 +30,5 @@ folder-hook . "push <last-entry><current-middle>"
 folder-hook LIP6 unhook save-hook
 folder-hook LIP6 save-hook . "=LIP6/Archives/"
 
+folder-hook LIP6/INBOX "push <limit>!~P!~l<enter><last-entry><current-middle>"
+folder-hook LIP6/ "push <last-entry><current-middle>"

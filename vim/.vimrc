@@ -1213,6 +1213,12 @@ nmap <c-k> <c-w>w3<c-y><c-w>w
 
 nnoremap <expr> g<c-v> '`[' . getregtype()[0] . '`]'
 
+if argc() == 2
+  execute "edit " . argv(0)
+  execute "vsplit " . argv(1)
+  wincmd =
+endif
+
 "au BufNewFile ~/.vimwiki/*.md :silent 0r !~/.vim/bin/generate-vimwiki-diary-template '%'
 "au BufNewFile ~/.vimwiki/*.md :silent 0r ~/Templates/template-vimwikipage.mdwn
 

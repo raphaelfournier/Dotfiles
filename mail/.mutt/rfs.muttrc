@@ -12,15 +12,18 @@ set record    = "+RFS/Archives"
 set postponed = "+RFS/Drafts"
 set signature = "~/.mutt/rfs.signature"                           # my signature file
 
-source ~/.mutt/cnam-lists
-source ~/.mutt/rfs-lists
-
 macro index za   "<shell-escape>/usr/bin/offlineimap -a RFS -q -o<enter>" "sync IMAP" # quick-sync ~/Mail immediately with offlineimap
+
+macro compose ,f      "<edit-fcc>=RFS/INBOX/"
+macro index,pager,compose ,r <save-entry><kill-line>=RFS/INBOX/ "save in CNAM/INBOX"
 
 folder-hook RFS/INBOX "push <limit>!~P!~l!%Lpersonal-lists<enter><last-entry><current-middle>"
 folder-hook RFS/ "push <last-entry><current-middle>"
 macro index <esc>z "<limit>~P | ~l | %L personal-lists<enter><last-entry><current-middle>"
 
+source ~/.mutt/rfs-lists
 #save-hook . "=RFS/Archives/"
 folder-hook RFS unhook save-hook
+folder-hook RFS save-hook redaction@rennes.lessentiel.fr =Archives/MailingLists/
+folder-hook RFS save-hook "%L personal-lists" "=Archives/MailingLists"
 folder-hook RFS save-hook . "=RFS/Archives/"

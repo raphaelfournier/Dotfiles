@@ -21,6 +21,8 @@ folder-hook CNAM save-hook . "=CNAM/Archives/"
 macro index ,c   "<save-message><kill-line>=CNAM/TRIED/"
 macro index ,C   "<save-message><kill-line>=CNAM/Candidatures/"
 
+macro index,pager,compose ,r <save-entry><kill-line>=CNAM/INBOX/ "save in CNAM/INBOX"
+
 source ~/.mutt/cnam-lists
 
 macro index za   "<shell-escape>/usr/bin/offlineimap -a CNAM -q -o<enter>" "sync IMAP" # quick-sync ~/Mail immediately with offlineimap

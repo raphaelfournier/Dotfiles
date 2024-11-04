@@ -21,6 +21,7 @@ area=""
 window=""
 flameshot="🔥"
 screendelay="5"
+name=""
 
 # Variable passed to rofi
 options="$screen\n$area\n$flameshot\n$window\n$screendelay"
@@ -36,28 +37,28 @@ case $chosen in
         ;;
     $screen)
 		if [[ -f /usr/bin/scrot ]]; then
-			sleep 1; scrot 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES)/Screenshots/ ; alacritty -e ranger $$(xdg-user-dir PICTURES)/Screenshots/'
+			sleep 1; scrot '%Y-%m-%d-%H%M%S.png' -e 'mv $f $$(xdg-user-dir PICTURES)/Screenshots/ ; alacritty -e ranger $$(xdg-user-dir PICTURES)/Screenshots/'
 		else
 			msg
 		fi
         ;;
     $screendelay)
 		if [[ -f /usr/bin/scrot ]]; then
-			sleep 1; scrot -d 5 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES)/Screenshots/ ; alacritty -e ranger $$(xdg-user-dir PICTURES)/Screenshots/'
+			sleep 1; scrot -d 5 '%Y-%m-%d-%H%M%S.png' -e 'mv $f $$(xdg-user-dir PICTURES)/Screenshots/ ; alacritty -e ranger $$(xdg-user-dir PICTURES)/Screenshots/'
 		else
 			msg
 		fi
         ;;
     $area)
 		if [[ -f /usr/bin/scrot ]]; then
-			scrot -s -lwidth=6,color="#10e0d6" 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES)/Screenshots/ ; alacritty -e ranger $$(xdg-user-dir PICTURES)/Screenshots/'
+			scrot -s -lwidth=6,color="#10e0d6" '%Y-%m-%d-%H%M%S.png' -e 'mv $f $$(xdg-user-dir PICTURES)/Screenshots/ ; alacritty -e ranger $$(xdg-user-dir PICTURES)/Screenshots/'
 		else
 			msg
 		fi
         ;;
     $window)
 		if [[ -f /usr/bin/scrot ]]; then
-			sleep 1; scrot -u 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES)/Screenshots/ ; alacritty -e ranger $$(xdg-user-dir PICTURES)/Screenshots/'
+			sleep 1; scrot -u '%Y-%m-%d-%H%M%S.png' -e 'mv $f $$(xdg-user-dir PICTURES)/Screenshots/ ; alacritty -e ranger $$(xdg-user-dir PICTURES)/Screenshots/'
 		else
 			msg
 		fi

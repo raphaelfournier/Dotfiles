@@ -3,6 +3,7 @@
 	email = raphael@fournier-sniehotta.fr
 [core]
 	excludesfile = /home/raph/.gitignore
+  pager = delta
 [color]
 	ui = auto
 [alias]
@@ -30,12 +31,27 @@
 	prompt = false
 [difftool "icdiff"]
   cmd = /usr/bin/icdiff --line-numbers $LOCAL $REMOTE
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true    # use n and N to move between diff sections
+
+  # delta detects terminal colors automatically; set one of these to disable auto-detection
+  # dark = true
+  # light = true
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
 [difftool "vimdiff"]
   cmd = /usr/bin/vimdiff "$2" "$5"
-[pager]
-  difftool = true
-  diff = diff-so-fancy | less --tabs=1,5 -RFX
-  show = diff-so-fancy | less --tabs=1,5 -RFX
+#[pager]
+#  difftool = true
+#  diff = diff-so-fancy | less --tabs=1,5 -RFX
+#  show = diff-so-fancy | less --tabs=1,5 -RFX
 [push]
 	default = simple
   followTags = true
