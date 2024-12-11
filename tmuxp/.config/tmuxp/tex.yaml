@@ -1,0 +1,12 @@
+session_name: 'tex'
+windows:
+- window_name: edit
+  focus: 'true'
+  panes:
+    - pane
+- window_name: compile
+  panes:
+    - pane
+- window_name: zathura
+  panes:
+    - pane

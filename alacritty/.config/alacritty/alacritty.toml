@@ -1,8 +1,3 @@
-import = [
-"~/.config/alacritty/themes/themes/zenburn.toml" 
-#"~/.config/alacritty/themes/themes/ayu_light.toml"
-# git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
-]
 
 [font]
 size = 16
@@ -77,7 +72,7 @@ action = "IncreaseFontSize"
 mods = "Shift"
 mouse = "Middle"
 
-[shell]
+[terminal.shell]
 program = "/bin/zsh"
 
 [window]
@@ -86,3 +81,12 @@ dynamic_title = true
 [window.padding]
 x = 4
 y = 0
+
+[general]
+import = [
+"~/.config/alacritty/themes/themes/zenburn.toml" 
+#"~/.config/alacritty/themes/themes/ayu_light.toml"
+# git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
+]
+
+[terminal]

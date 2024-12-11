@@ -1,0 +1,11 @@
+session_name: mutt
+windows:
+  - window_name: mutt
+    panes:
+      - shell_command:
+          - neomutt -F ~/.muttrc
+  #- window_name: aliases
+    #panes:
+      #- shell_command:
+          #- vim ~/.mutt/aliases
+

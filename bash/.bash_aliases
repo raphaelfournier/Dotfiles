@@ -125,15 +125,18 @@ alias wifimaison='nmcli connection up Livebox-E5C0'
                   #cat {}) 2> /dev/null | head -500')"
 #}
 alias vt='vim ~/Dropbox/todo/todo.txt'
-#alias y='yay'
 alias y='paru'
-alias ys='paru -Syu'
+alias yt='yt-dlp'
+#alias ys='paru -Syu'
 #alias y='yay --nodiffmenu'
 alias z='zathura'
 alias si='sioyek'
 alias mencal='mencal -3 -m --config s=20120726'
 alias activateAnaconda='source /opt/anaconda/bin/activate root'
 alias zlibrary='tor-browser http://bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion'
+
+alias todo-devmessage="vim /home/raph/Code/langagePython/devmessage/templates/todo.html"
+alias todo-geekversary="vim /home/raph/Code/langagePython/Geekversary/geekversary-django/templates/todo.html"
 
 # screen
 alias sls='screen -ls'

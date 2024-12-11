@@ -346,6 +346,63 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibar
 
+local countdown = {
+    widget   = wibox.widget.textbox(),
+    checkbox = wibox.widget {
+        checked      = false,
+        check_color  = beautiful.fg_focus,  -- customize
+        border_color = beautiful.fg_normal, -- customize
+        border_width = 2,                   -- customize
+        shape        = gears.shape.circle,
+        widget       = wibox.widget.checkbox
+    }
+}
+
+function countdown.set()
+    awful.prompt.run {
+        prompt       = "Countdown minutes: ", -- floats accepted
+        textbox      = awful.screen.focused().mypromptbox.widget,
+        exe_callback = function(timeout)
+            countdown.seconds = tonumber(timeout)
+            if not countdown.seconds then return end
+            countdown.checkbox.checked = false
+            countdown.minute_t = countdown.seconds > 1 and "minutes" or "minute"
+            countdown.seconds = countdown.seconds * 60
+            countdown.timer = gears.timer({ timeout = 1 })
+            countdown.timer:connect_signal("timeout", function()
+                if countdown.seconds > 0 then
+                    local minutes = math.floor(countdown.seconds / 60)
+                    local seconds = math.fmod(countdown.seconds, 60)
+                    countdown.widget:set_markup(string.format("%d:%02d", minutes, seconds))
+                    countdown.seconds = countdown.seconds - 1
+                else
+                    naughty.notify({
+                        title = "Countdown",
+                        text  = string.format("%s %s timeout", timeout, countdown.minute_t)
+                    })
+                    countdown.widget:set_markup("")
+                    countdown.checkbox.checked = true
+                    countdown.timer:stop()
+                end
+            end)
+            countdown.timer:start()
+        end
+    }
+end
+
+countdown.checkbox:buttons(awful.util.table.join(
+    awful.button({}, 1, function() countdown.set() end), -- left click
+    awful.button({}, 3, function() -- right click
+        if countdown.timer and countdown.timer.started then
+            countdown.widget:set_markup("")
+            countdown.checkbox.checked = false
+            countdown.timer:stop()
+            naughty.notify({ title = "Countdown", text  = "Timer stopped" })
+        end
+    end)
+))
+
+
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
@@ -1631,6 +1688,7 @@ local muttcommand = terminal .. " -e zsh -c \'echo -en \"\\e]1;mutt\\a\";echo -e
 --local muttcommand = terminal .. " -e zsh -c \'echo -en \"\\e]1;mutt\\a\";echo -en \"\\e]2;mutt\\a\";echo -en \"\\e]0;mutt\\a\";sleep 0.05s; screen -c ~/.screen/mutt.screenrc"
 --local muttcommand = "urxvt -e zsh -c \'echo -en \"\\e]1;mutt\\a\";echo -en \"\\e]2;mutt\\a\";echo -en \"\\e]0;mutt\\a\";sleep 0.05s; screen -S mutt mutt -F .muttrc\'"
 --local muttcommand = "zenity --error --text=crontab-webmail"
+local muttcommand = terminal .. " -e tmux new mutt -F ~/.muttrc"
 
 globalkeys = awful.util.table.join(
 awful.key({ modkey, "Control"   }, "s",      hotkeys_popup.show_help, {description="show help", group="awesome"}),
@@ -1947,6 +2005,7 @@ awful.key({ modkey,           }, "space", function () awesome.emit_signal("summo
 --awful.key({ modkey,           }, "b", function () awful.util.spawn("rofi -modi \"file:./scripts/rofi/rofi-file-browser.sh\" -show file")       end,{description = "run", group = "launcher"}), 
 
 awful.key({ modkey, "Shift" }, "b", function () awesome.emit_signal("show::mytray") end, {description = "toggle tray", group = "awesome"}),
+-- sidebar
 awful.key({ modkey, "Shift" }, "s", function () awesome.emit_signal("summon::notif_center") end, {description = "notif", group = "awesome"}),
 awful.key({ modkey }, "b", function ()
   for s in screen do
@@ -2160,14 +2219,17 @@ awful.rules.rules = {
       "scratch",  -- Includes session name in class.
     },
     class = {
+			"Arandr", 
+			"Blueman-manager",
+      "Audacious",
       "Gpick",
       "Kruler",
       "MessageWin",  -- kalarm.
       "Sxiv",
-      "Audacious",
       "Wpa_gui",
       "pinentry",
-      "veromix",
+			--"pwvucontrol",
+			"veromix",
       "xtightvncviewer"},
 
       name = {
@@ -2180,10 +2242,10 @@ awful.rules.rules = {
     }, properties = { floating = true }},
 
     -- Zoom
-    { rule_any = { class = { "zoom"},
-    except = { name = "Zoom Meeting"}, }, 
-    properties = {screen = screen:count(), tag = "im",  above = false, floating = true, focus = false}
-  },
+    --{ rule_any = { class = { "zoom"},
+    --except = { name = "Zoom Meeting"}, }, 
+    --properties = {screen = screen:count(), tag = "im",  above = false, floating = true, focus = false}
+  --},
   { rule = { name = "Zoom Meeting" }, properties = { screen = screen:count(), tag = "im", floating = false} },
   --{ rule = { class = "ranger" }, properties = { } },
 
@@ -2266,8 +2328,23 @@ awful.rules.rules = {
   { rule = { class = "kmag" },
   properties = { floating = true, geometry = { height=360, width=600 }, placement = awful.placement.next_to_mouse }},
   { rule = { class = "Xsane", name = "Information" },
-  properties = { floating = true, geometry = { height=200, width=300 } }},
-  { rule = { class = "Zathura", name = "Imprimer" },
+	properties = { floating = true, geometry = { height=200, width=300 } }},
+	{ rule = { class = "Nextcloud" },
+	properties = { floating = true, geometry = { height=500, width=800 }, placement = awful.placement.bottom_right }},
+	--{ rule = { class = "pwvucontrol" }, properties = { floating = true, geometry = { height=800, width=1400 }, placement = awful.placement.bottom_right }},
+	{ rule = { class = "dsnote" }, properties = { floating = true, geometry = { height=750, width=1200 }, placement = awful.placement.centered }},
+	{
+		rule = { class = "pwvucontrol" },
+		properties = {
+			floating = true,
+			geometry = { height = 800, width = 1400 },
+			placement = function(c)
+				awful.placement.bottom_right(c)
+				awful.placement.no_offscreen(c)
+			end
+		}
+	},
+	{ rule = { class = "Zathura", name = "Imprimer" },
   properties = { floating = false }},
   { rule = { class = "QtPass" }, properties = { 
     floating = true, screen = 1, tag = "web", geometry = { height=600, width=800 },
@@ -2297,6 +2374,8 @@ awful.rules.rules = {
   properties = { screen = screen:count(), tag = "todo"} },
   { rule = { class = "ticktick-" },
   properties = { screen = screen:count(), tag = "todo"} },
+  { rule = { class = "Mattermost" },
+  properties = { screen = screen:count(), tag = "im"} },
   { rule = { class = "Slack" },
   properties = { screen = screen:count(), tag = "im"} },
   { rule = { class = "whatsdesk" },
@@ -2311,6 +2390,8 @@ awful.rules.rules = {
   properties = { screen = screen:count(), tag = "im"} },
   { rule = { class = "Chromium" },
   properties = { screen = 1, tag = "web", switchtotag = true} },
+  { rule = { instance = "Meet" },
+  properties = { tag = "root", switchtotag = true } },
   { rule = { class = "Surf" },
   properties = { screen = 1, tag = "term", floating = false, switchtotag = true } },
   { rule = { class = "Pavucontrol" },

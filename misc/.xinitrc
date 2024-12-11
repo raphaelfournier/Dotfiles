@@ -21,6 +21,7 @@ arandr-indicator &
 greenclip daemon &
 tmux new -d &
 redshift &
+x-on-resize -a &
 #picom &
 mpDris2 &
 pasystray &
