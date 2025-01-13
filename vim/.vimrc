@@ -354,7 +354,7 @@ set smartcase                   " Case sensitive when uc present
 " highlight
 set hlsearch
 "set scrolloff=999
-set scrolloff=2
+set scrolloff=5
 " use tabs as spaces
 set expandtab
 set sw=2

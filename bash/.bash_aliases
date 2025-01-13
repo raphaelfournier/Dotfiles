@@ -89,6 +89,7 @@ alias ping='prettyping --nolegend'
 alias tt='tig status'
 alias wdcopy="pwd | tr -d '\n' | xclip"
 alias pwdc="pwd | tr -d '\n' | xclip"
+alias clip="xclip -selection clipboard"
 alias wdcd='cd `xclip -o`'
 #alias preview="fzf --preview 'bat --color \"always\" {}'"
 alias r='ranger'
