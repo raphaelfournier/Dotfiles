@@ -207,6 +207,7 @@ folder-hook flux "push <last-entry><current-middle>"
 folder-hook feeds "push <last-entry><current-middle>"
 #source ~/.mutt/sidebar
 
+
 source ~/.mutt/bindings
 source ~/.mutt/gpg
 #source ~/.mutt/savehooks

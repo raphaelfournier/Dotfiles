@@ -21,5 +21,7 @@ source ~/.mutt/rfs-lists
 folder-hook Rfnet unhook save-hook
 #folder-hook Rfnet save-hook natsguitar@gmail.com =LIP6/News/
 
+#set auto_subscribe = yes
 
+folder-hook Rfnet save-hook ~l "=LIP6/News/"
 folder-hook Rfnet save-hook . "=Rfnet/"
