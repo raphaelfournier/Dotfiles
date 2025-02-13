@@ -338,7 +338,8 @@ filetype plugin on
 " colorise les nbsp
 " nbsp affiches par 'Â·'
 "set list
-"set listchars=tab:>Â·,trail:Â·,extends:#,nbsp:Â·
+"set listchars=tab:>·,trail:·,nbsp:·
+"set listchars=tab:>·,trail:·extends:#,nbsp:·
 highlight NbSp ctermbg=lightred guibg=lightred
 match NbSp /\%xa0/
 "set rnu " number
@@ -1345,9 +1346,10 @@ let g:mkdp_combine_preview_auto_refresh = 1
 
 
 " example
-nmap <C-s> <Plug>MarkdownPreview
-nmap <M-s> <Plug>MarkdownPreviewStop
-nmap <C-p> <Plug>MarkdownPreviewToggle
+"nmap <C-s> <Plug>MarkdownPreview
+"nmap <M-s> <Plug>MarkdownPreviewStop
+"nmap <C-p> <Plug>MarkdownPreviewToggle
+nmap <leader>mp :MarkdownPreviewToggle<CR>
 
 let g:gutentags_cache_dir="~/.vimtags"
 

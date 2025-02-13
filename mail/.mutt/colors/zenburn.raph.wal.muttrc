@@ -57,7 +57,7 @@ color index      white color24 "(~N ~f @twitter.com ~t foobarbaz@fournier-snieho
 color index      color30 default  "(~f @twitter.com ~t scstwit@raphaelfournier.net)"
 color index      default color30  "(~N ~f @twitter.com ~t scstwit@raphaelfournier.net)"
 color index      color61 default "(~f @facebookmail.com ~t raphael@fournier-sniehotta.fr)"
-color index      default color61 "(~N ~f @facebookmail.com ~t raphael@fournier-sniehotta.fr)"
+color index      white color61 "(~N ~f @facebookmail.com ~t raphael@fournier-sniehotta.fr)"
 color index      white default "(~t @getlovepulse.com)"
 color index      white color22 "(~N ~t @getlovepulse.com)"
 color index      color144 default "(~d >10d ! ~Q ! ~l ! ~N)" # unreplied messages

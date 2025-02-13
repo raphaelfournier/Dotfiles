@@ -1,5 +1,7 @@
 option timer-pace-color false
 option toolbox true
+option toolbox-minimized true
+option current-height 50
 option next-height 90
 #option windowed-mode presenter
 #option time-of-day true

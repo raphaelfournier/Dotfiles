@@ -20,6 +20,7 @@ arandr-indicator &
 #vgrive &
 greenclip daemon &
 tmux new -d &
+indicator-sound-switcher &
 redshift &
 x-on-resize -a &
 #picom &
