@@ -1,9 +1,11 @@
+*pyc
 Old
 awesome/*
 base16-mutt/
 colors/
 latexmk/
 mail/.canned/
+mail/.mbsyncrc
 mail/.msmtprc
 mail/.mutt/aliases
 mail/.mutt/ca.crt
@@ -14,9 +16,13 @@ mail/.mutt/colors/zenburn.raph.bak
 mail/.mutt/gpg
 mail/.mutt/muttprintlogo.eps
 mail/.mutt/muttprintlogo.png
+mail/.mutt/neomutt-file-picker-old/
+mail/.mutt/notmuch-old
 mail/.mutt/public-key.asc
 mail/.mutt/savehooks
 mail/.mutt/temp/
+mail/.mutt/tmpfile
+mailctl/
 mpd/.config/mpd/database
 mpd/.config/mpd/log
 mpd/.config/mpd/pid
@@ -28,7 +34,10 @@ ranger/.config/ranger/plugins/
 rofi/.config/rofi/bin/
 rofi/.config/rofi/config.bac
 rofi/.config/rofi/rofi/
+rssdrop/
 sonata/.config/sonata/art_cache
+tags
+tmux/.tmux/plugins/
 vim/.vim/bundle/
 vim/.vim/colors/solarized.vim
 vim/.vim/ftdetect/
@@ -42,7 +51,3 @@ vimb/.config/vimb/history
 watson/.config/watson/frames
 watson/.config/watson/frames.bak
 watson/.config/watson/state.bak
-*pyc
-rssdrop/
-tmux/.tmux/plugins/
-tags

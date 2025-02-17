@@ -1219,6 +1219,12 @@ let @m = 'yyPvt{lc% <<< $r ' " latex modeline.
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fh :History<cr>
 nnoremap <leader>fb :BLines<cr>
+
+let g:fzf_action = {
+  \ 'ctrl-t': 'edit',
+  \ 'ctrl-h': 'split',
+  \ 'ctrl-v': 'vsplit',
+  \ 'enter': 'vsplit' }
 " >>>
 
 nmap <c-j> <c-w>w3<c-e><c-w>w
@@ -1349,7 +1355,7 @@ let g:mkdp_combine_preview_auto_refresh = 1
 "nmap <C-s> <Plug>MarkdownPreview
 "nmap <M-s> <Plug>MarkdownPreviewStop
 "nmap <C-p> <Plug>MarkdownPreviewToggle
-nmap <leader>mp :MarkdownPreviewToggle<CR>
+nmap <leader>mp :set ft=markdown<CR> <bar> :MarkdownPreviewToggle<CR>
 
 let g:gutentags_cache_dir="~/.vimtags"
 

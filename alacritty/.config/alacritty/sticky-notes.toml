@@ -1,0 +1,35 @@
+[colors.cursor]
+cursor = "#ffff88"
+text = "#ffff88"
+
+[colors.primary]
+background = "#ffff88"
+foreground = "#222222"
+
+[colors.selection]
+background = "#ffff88"
+text = "#ffff88"
+
+[env]
+STICKY_NOTE = "yes"
+
+[font]
+size = 26
+
+[scrolling]
+history = 0
+
+[shell]
+program = "/bin/zsh"
+
+[window.class]
+general = "sticky-note"
+instance = "sticky-note"
+
+[window.dimensions]
+columns = 15
+lines = 5
+
+[window.padding]
+x = 20
+y = 20

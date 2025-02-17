@@ -7,7 +7,13 @@ _rofi () {
 }
 
 # keyboard layout (set this to your actual layout. E.g. keyboard="de us"
-#keyboard=us
+#keyboard="fr"
+
+fix_layout=true
+
+layout_cmd () {
+  setxkbmap "fr oss"
+}
 
 # fields to be used
 URL_field='url'
@@ -45,20 +51,32 @@ default_user=raphael@fournier-sniehotta.fr
 default_user2=fournier@cnam.fr
 password_length=16
 
+#backend=xdotool
+
 # Custom Keybindings
-autotype="Alt+1"
-type_user="Alt+2"
-type_pass="Alt+3"
-open_url="Alt+4"
-copy_name="Alt+u"
-copy_url="Alt+l"
-copy_pass="Alt+p"
-show="Alt+o"
-copy_entry="Alt+2"
-type_entry="Alt+1"
-copy_menu="Alt+c"
-action_menu="Alt+a"
-type_menu="Alt+t"
-help="Alt+h"
-switch="Alt+x"
-insert_pass="Alt+n"
+#autotype="Alt+1"
+#type_user="Alt+2"
+#type_pass="Alt+3"
+#open_url="Alt+4"
+#copy_name="Alt+u"
+#copy_url="Alt+l"
+#copy_pass="Alt+p"
+#show="Alt+o"
+#copy_entry="Alt+2"
+#type_entry="Alt+1"
+#copy_menu="Alt+c"
+#action_menu="Alt+a" 
+#type_menu="Alt+t"
+#help="Alt+h"
+#switch="Alt+x"
+#insert_pass="Alt+n"
+
+autotype="Ctrl+1"
+type_user="Ctrl+2"
+type_pass="Ctrl+3"
+#open_url="Ctrl+4"
+#show="Ctrl+o"
+#type_menu="Ctrl+t"
+#action_menu="Ctrl+t"
+#switch="Ctrl+t"
+#help="Ctrl+t"
