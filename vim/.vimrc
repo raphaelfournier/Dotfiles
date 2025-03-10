@@ -6,117 +6,135 @@ filetype off                  " required
 "set t_Co=256
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+"set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#begin()
+call plug#begin('~/.vim/plugged') " vimplug
+
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+"Plug 'VundleVim/Vundle.vim'
 
 " indispensables
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'vim-scripts/loremipsum'
-Plugin 'gu-fan/colorv.vim' 
-Plugin 'junegunn/goyo.vim'
-Plugin 'junegunn/limelight.vim'
-Plugin 'preservim/tagbar'
-Plugin 'mileszs/ack.vim'
-Plugin 'mattn/calendar-vim'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'vim-scripts/loremipsum'
+Plug 'gu-fan/colorv.vim' 
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'preservim/tagbar'
+Plug 'mileszs/ack.vim'
+Plug 'mattn/calendar-vim'
 "Plugin 'honza/vim-snippets'
-Plugin 'francoiscabrol/ranger.vim'
-Plugin 'jnurmine/Zenburn.git'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'jnurmine/Zenburn.git'
 
-Plugin 'godlygeek/tabular'
-Plugin 'simplenote-vim/simplenote.vim'
-Plugin 'benmills/vimux'
+Plug 'godlygeek/tabular'
+Plug 'simplenote-vim/simplenote.vim'
+Plug 'benmills/vimux'
 
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
-Plugin 'conornewton/vim-pandoc-markdown-preview'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'conornewton/vim-pandoc-markdown-preview'
 
-Plugin 'dylanaraps/wal.vim'
-Plugin 'yasukotelin/shirotelin'
-Plugin 'xolox/vim-misc'
-Plugin 'ayu-theme/ayu-vim'
-Plugin 'chriskempson/base16-vim'
-Plugin 'NLKNguyen/papercolor-theme'
+Plug 'dylanaraps/wal.vim'
+Plug 'yasukotelin/shirotelin'
+Plug 'xolox/vim-misc'
+Plug 'ayu-theme/ayu-vim'
+Plug 'chriskempson/base16-vim'
+Plug 'NLKNguyen/papercolor-theme'
 
-Plugin 'chrisbra/unicode.vim'
-Plugin 'ferdinandyb/bibtexcite.vim'
-Plugin 'hauleth/vim-backscratch'
-Plugin 'christoomey/vim-system-copy'
+Plug 'chrisbra/unicode.vim'
+Plug 'ferdinandyb/bibtexcite.vim'
+Plug 'hauleth/vim-backscratch'
+Plug 'christoomey/vim-system-copy'
+
+Plug 'davidbeckingsale/writegood.vim'
 
 "Plugin 'neoclide/coc.nvim', {'branch': 'release'}
-Plugin 'ludovicchabant/vim-gutentags'
+Plug 'ludovicchabant/vim-gutentags'
 
 "Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neosnippet'
-Bundle 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
 if has('nvim')
-  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-  Plugin 'Shougo/deoplete.nvim'
-  Plugin 'roxma/nvim-yarp'
-  Plugin 'roxma/vim-hug-neovim-rpc'
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
 let g:deoplete#enable_at_startup = 1
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'vim-scripts/VST'
+Plug 'ryanoasis/vim-devicons'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/VST'
 "Plugin 'codota/tabnine-vim'
 
-Plugin 'vim-scripts/mutt-canned'
-Plugin 'vim-scripts/swap'
+Plug 'vim-scripts/mutt-canned'
+Plug 'vim-scripts/swap'
 
-Plugin 'psf/black'
+Plug 'psf/black'
 
-Plugin 'ryicoh/deepl.vim'
-Plugin '0xStabby/chatgpt-vim'
+Plug 'ryicoh/deepl.vim'
+Plug '0xStabby/chatgpt-vim'
 
-Plugin 'universal-ctags/ctags'
-"Plugin 'sheerun/vim-polyglot'
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plugin 'junegunn/fzf.vim'
-Plugin 'lervag/vimtex'
+Plug 'universal-ctags/ctags'
+"Plug 'sheerun/vim-polyglot'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'lervag/vimtex'
 "Plugin 'Konfekt/vim-notmuch-addrlookup'
 "Plugin 'felipec/notmuch-vim'
 "Plugin 'alok/notational-fzf-vim'
 
-Plugin 'Konfekt/FastFold'
-Plugin 'tmhedberg/SimpylFold'
+Plug 'Konfekt/FastFold'
+Plug 'tmhedberg/SimpylFold'
 
-Plugin 'vim-ctrlspace/vim-ctrlspace'
+Plug 'vim-ctrlspace/vim-ctrlspace'
 
-Bundle 'scrooloose/syntastic'
-Bundle 'mbbill/undotree'
-Bundle 'nathanaelkane/vim-indent-guides'
+Plug 'scrooloose/syntastic'
+Plug 'mbbill/undotree'
+Plug 'nathanaelkane/vim-indent-guides'
 "Plugin 'mhinz/vim-signify'
-Plugin 'osyo-manga/vim-over'
+Plug 'osyo-manga/vim-over'
 
-Plugin 'chmp/mdnav'
-Plugin 'mzlogin/vim-markdown-toc'
-Plugin 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-Plugin 'jdonaldson/vim-markdown-link-convert'
-Plugin 'vimwiki/vimwiki'
+Plug 'chmp/mdnav'
+Plug 'mzlogin/vim-markdown-toc'
+let g:vmt_dont_insert_fence = 1 " not comment around TOC
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'jdonaldson/vim-markdown-link-convert'
+Plug 'vimwiki/vimwiki'
 
-Bundle 'ctrlpvim/ctrlp.vim'
-Bundle 'tacahiroy/ctrlp-funky'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tacahiroy/ctrlp-funky'
 
 "Plugin 'davidhalter/jedi-vim'
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 "Plugin 'airblade/vim-gitgutter'
 
+" vim 4 writing
+"Plugin 'tpope/vim-markdown' " not needed ?
+" https://github.com/preservim/vim-pencil
+Plug 'preservim/vim-pencil'
+Plug 'preservim/vim-pencil-colors'
+Plug 'Raimondi/vim-lengthy'
+Plug 'embear/vim-localvimrc'
+Plug 'preservim/vim-wordy'
 
+" id�es pas essay�es
+"Plug 'dpelle/vim-LanguageTool'
+"Plug 'Ron89/thesaurus_query.vim'
+"Plug 'thaerkh/vim-workspace'
 
 let g:ip_boundary='-\?\s*$'
 let g:tex_flavor = 'latex'
 
+call plug#end() " vimplug
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+"call vundle#end()            " required
+"filetype plugin indent on    " required
 
 " >>>
 
@@ -141,6 +159,17 @@ autocmd FileType python set ts=4
 autocmd FileType python set sts=4
 
 set spelllang=fr
+
+"augroup pencil
+  "autocmd!
+  "autocmd FileType markdown,mkd call pencil#init()
+                            ""\ | call lexical#init()
+                            ""\ | call litecorrect#init()
+                            ""\ | call textobj#quote#init()
+                            ""\ | call textobj#sentence#init()
+"augroup END
+
+
 
 augroup MUTT
 au BufRead ~/.mutt/temp/*mutt* set spell " <-- vim 7 required
@@ -256,20 +285,33 @@ imap <C-l> <Plug>Tex_LeftRight
 " and ask which one to jump to
 nmap <Leader>Ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
-" Use gc to swap the current character with the next, without changing the cursor position.
-nnoremap <silent> gc xph
-" Use gw to swap the current word with the next, without changing cursor position.
-nnoremap <silent> gw "_yiw:s/\(\%#[0-9A-Za-zÀ-ÖØ-öø-ÿ_\-]\+\)\(\_[^0-9A-Za-zÀ-ÖØ-öø-ÿ_\-]\+\)\([0-9A-Za-zÀ-ÖØ-öø-ÿ_\-]\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<return>
-" Use Alt + ← to swap the current word with the previous, keeping cursor on current word. This feels like "pushing" the word to the left.
-nnoremap <silent> <A-Left> "_yiw?[0-9A-Za-zÀ-ÖØ-öø-ÿ_\-]\+\_[^0-9A-Za-zÀ-ÖØ-öø-ÿ_\-]\+\%#<CR>:s/\(\%#[0-9A-Za-zÀ-ÖØ-öø-ÿ_\-]\+\)\(\_[^0-9A-Za-zÀ-ÖØ-öø-ÿ_\-]\+\)\([0-9A-Za-zÀ-ÖØ-öø-ÿ_\-]\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<return>
-" Use Alt + → to swap the current word with the next, keeping cursor on current word. This feels like "pushing" the word to the right.
-nnoremap <silent> <A-Right> "_yiw:s/\(\%#[0-9A-Za-zÀ-ÖØ-öø-ÿ_\-]\+\)\(\_[^0-9A-Za-zÀ-ÖØ-öø-ÿ_\-]\+\)\([0-9A-Za-zÀ-ÖØ-öø-ÿ_\-]\+\)/\3\2\1/<CR><c-o>/[0-9A-Za-zÀ-ÖØ-öø-ÿ_\-]\+\_[^0-9A-Za-zÀ-ÖØ-öø-ÿ_\-]\+<CR><c-l>:nohlsearch<return>
-" Use g{ to swap the current paragraph with the next.
-nnoremap g{ {dap}p{
 ">>>
 
 " <<< Colors 
-nnoremap <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+
+" pairs of colorschemes I like to use:
+" light is the first one, dark is the second.
+let g:duo_themes = [ {'name': 'PaperColor', 'bg': 'light', 'airlinetheme': 'light'}, {'name': 'zenburn', 'bg': 'dark', 'airlinetheme': 'angr'} ]
+
+func! s:set_colorscheme(color)
+	if has_key(a:color, 'bg')
+		let &bg = a:color['bg']
+    let g:airline_theme=a:color['airlinetheme']
+	endif
+	if has_key(a:color, 'name')
+		exe "colorscheme ".a:color['name']
+	endif
+endfunc
+
+func! ToggleColorscheme()
+	if !exists('g:colors_name')
+		let g:colors_name = 'default'
+	endif
+	let color = filter(copy(g:duo_themes), {k, v -> v['name'] != g:colors_name})[0]
+	call s:set_colorscheme(color)
+endfunc
+nnoremap <Leader>bg :call ToggleColorscheme()<CR>
+
 "let g:zenburn_force_dark_Background = 1
 "let g:zenburn_high_Contrast = 1
 let g:zenburn_old_Visual = 1
@@ -480,6 +522,11 @@ nnoremap <silent> <F8> :TagbarToggle<CR>
 nnoremap <silent> <F9> :NERDTreeToggle<CR>
 
 let g:airline#extensions#tagbar#enabled = 0
+
+"let g:pencil#wrapModeDefault = 'soft'
+"let g:airline_section_x = '%{PencilMode()}'
+"let g:pencil#mode_indicators = {'hard': 'H', 'auto': 'A', 'soft': 'S', 'off': '',}
+
 let g:muttaliases_file = '~/.mutt/aliases'
 
 let g:minimap_show='<leader>ms'
@@ -1133,6 +1180,8 @@ autocmd BufNewFile,BufRead *.md   setfiletype=markdown
 
 vmap ,j !python -m json.tool
 com! FormatJSON %!python -m json.tool
+
+command! YTDLP s/[?=]/\\&/g 
 
 "function! MyFormatExpr(start, end)
     "silent execute a:start.','.a:end.'s/[.!?]\zs /\r/g'

@@ -2,6 +2,7 @@ VIMEXEC='vim'
 MULTIPLEX='screen'
 # typo
 alias gti='git'
+alias gv='g ci -m"vim"'
 alias sl='ls'
 alias mls='ls'
 alias ms='ls --color=auto'
@@ -251,6 +252,7 @@ alias rangerconf="$VIMEXEC ~/.config/ranger/rc.conf"
 alias rifleconf="$VIMEXEC ~/.config/ranger/rifle.conf"
 alias zihapconf="$VIMEXEC .config/zihap/*toml -O"
 alias muttrc="$VIMEXEC ~/.mutt/muttrc"
+alias muttBackup="mutt -f /data/backupMails/LIP6/INBOX -F ~/.muttrc"
 alias alacrittyconf="$VIMEXEC ~/.config/alacritty/alacritty.toml"
 alias xdefaults="$VIMEXEC /home/raph/.config/Xresources/Xdefaults"
 alias cfp="$VIMEXEC .remind/cfp.rem"

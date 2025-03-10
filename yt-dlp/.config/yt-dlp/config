@@ -1,3 +1,3 @@
--o ~/TrajetsTrain/%(id)s-%(title)s.%(ext)s
+-o ~/TrajetsTrain/%(id)s-%(title)s_%(channel)s_%(duration_string)s.%(ext)s
 -f "bv[height<=1080]*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b"
 --write-auto-subs

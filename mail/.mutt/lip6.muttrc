@@ -28,6 +28,7 @@ macro index,pager,compose ,r <save-entry><kill-line>=LIP6/INBOX/ "save in CNAM/I
 #
 #save-hook . "=LIP6/Archives/"
 folder-hook LIP6 unhook save-hook
+folder-hook LIP6 save-hook ~l "=Archives/MailingLists"
 folder-hook LIP6 save-hook . "=LIP6/Archives/"
 
 folder-hook LIP6/INBOX "push <limit>!~P!~l<enter><last-entry><current-middle>"

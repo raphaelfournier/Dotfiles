@@ -26,7 +26,7 @@ x-on-resize -a &
 #picom &
 mpDris2 &
 pasystray &
-nextcloud & 
+#nextcloud & 
 #stretchly &
 #ticktick &
 #wal -R & 
