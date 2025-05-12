@@ -77,6 +77,7 @@ program = "/bin/zsh"
 
 [window]
 dynamic_title = true
+dimensions = { columns = 86, lines = 20 }
 
 [window.padding]
 x = 4

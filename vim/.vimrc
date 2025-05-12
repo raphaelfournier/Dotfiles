@@ -24,26 +24,36 @@ Plug 'gu-fan/colorv.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'preservim/tagbar'
+Plug 'lvht/tagbar-markdown'
 Plug 'mileszs/ack.vim'
 Plug 'mattn/calendar-vim'
 "Plugin 'honza/vim-snippets'
 Plug 'francoiscabrol/ranger.vim'
-Plug 'jnurmine/Zenburn.git'
+Plug 'jnurmine/Zenburn'
 
 Plug 'godlygeek/tabular'
 Plug 'simplenote-vim/simplenote.vim'
 Plug 'benmills/vimux'
 
+Plug 'embear/vim-localvimrc'
+
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'conornewton/vim-pandoc-markdown-preview'
+
+Plug 'ron-rs/ron.vim'
 
 Plug 'dylanaraps/wal.vim'
 Plug 'yasukotelin/shirotelin'
 Plug 'xolox/vim-misc'
 Plug 'ayu-theme/ayu-vim'
 Plug 'chriskempson/base16-vim'
+
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'endel/vim-github-colorscheme'
+Plug 'rakr/vim-one'
+Plug 'joshdick/onedark.vim'
+
 
 Plug 'chrisbra/unicode.vim'
 Plug 'ferdinandyb/bibtexcite.vim'
@@ -218,7 +228,7 @@ au BufEnter *.md* setlocal foldmethod=expr
 
 " <<< Bindings 
 let mapleader = ","
-let maplocalleader = "<space>"
+"let maplocalleader = "<space>"
 
 "nnoremap <leader>v :vnew<CR>
 nnoremap <leader>cd :cd %:p:h<CR>
@@ -229,7 +239,7 @@ map ,nr :set invrelativenumber<CR>
 map ,no :set nonumber<CR>
 " instead of :nohlsearch<CR> :
 map ,nh :set invhlsearch<CR> 
-map ,ns :set nospell<CR>
+map ,ns :set invspell<CR>
 map ,fr :setlocal spell spelllang=fr<CR>
 map ,en :setlocal spell spelllang=en<CR>
 map ,fe :setlocal spell spelllang=en,fr<CR>
@@ -351,7 +361,8 @@ else
         \ }
 endif
 
-"colors zenburn
+colors zenburn
+"colors onedark
 "colorscheme shirotelin
 "colorscheme wal
 ">>>
@@ -390,12 +401,11 @@ set ruler
 " paste mode
 set pastetoggle=<F11>
 set incsearch                   " Find as you type search
-set hlsearch                    " Highlight search terms
+set nohlsearch                    " Disable HLsearch on startup
 set ignorecase                  " Case insensitive search
 set wildignorecase                  " Case insensitive search
 set smartcase                   " Case sensitive when uc present
 " highlight
-set hlsearch
 "set scrolloff=999
 set scrolloff=5
 " use tabs as spaces
@@ -668,12 +678,20 @@ let g:tagbar_type_rst = {
     \ 'sort': 0,
 \ }
 let g:tagbar_type_markdown = {
-      \ 'ctagstype' : 'markdown',
-      \ 'kinds' : [
-          \ 'h:headings'
-      \ ],
-  \ 'sort' : 0,
-  \ }
+    \ 'ctagstype': 'markdown',
+    \ 'ctagsbin' : '/home/raph/.scripts/markdown2ctags/markdown2ctags.py',
+    "\ 'ctagsargs' : '-f - --sort=yes --sro=»',
+    \ 'ctagsargs' : '-f - --sort=yes',
+    \ 'kinds' : [
+        \ 's:sections',
+        \ 'i:images'
+    \ ],
+    "\ 'sro' : '»',
+    \ 'kind2scope' : {
+        \ 's' : 'section',
+    \ },
+    \ 'sort': 0,
+\ }
 "let g:tagbar_type_tex = {
             "\ 'ctagstype' : 'latex',
             "\ 'kinds' : [
@@ -832,8 +850,27 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 " https://castel.dev/post/lecture-notes-1/
 let g:tex_flavor='latex'
 "let g:vimtex_complete_enabled=1
+"
 let g:vimtex_view_method='zathura'
+let g:vimtex_main_file_auto = 0
+" Viewer options: One may configure the viewer either by specifying a built-in
+" viewer method:
+" Or with a generic interface:
+"let g:vimtex_view_general_viewer = 'okular'
+"let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+" VimTeX uses latexmk as the default compiler backend. If you use it, which is
+" strongly recommended, you probably don't need to configure anything. If you
+" want another compiler backend, you can change it as follows. The list of
+" supported backends and further explanation is provided in the documentation,
+" see ":help vimtex-compiler".
+"let g:vimtex_compiler_method = 'latexrun'
+let g:vimtex_compiler_method = 'latexmk'
+
+" Most VimTeX mappings rely on localleader and this can be changed with the
+" following line. The default is usually fine and is the symbol "\".
+"let g:vimtex_maplocalleader = ","
 let g:vimtex_quickfix_mode=0
+
 set conceallevel=1
 let g:tex_conceal='abdmg'
 " TOC settings
@@ -1407,6 +1444,9 @@ let g:mkdp_combine_preview_auto_refresh = 1
 nmap <leader>mp :set ft=markdown<CR> <bar> :MarkdownPreviewToggle<CR>
 
 let g:gutentags_cache_dir="~/.vimtags"
+
+autocmd FileType html setlocal foldmethod=indent
+autocmd FileType html setlocal fdl=3
 
 "au BufNewFile ~/.vimwiki/*.md :silent 0r !~/.vim/bin/generate-vimwiki-diary-template '%'
 "au BufNewFile ~/.vimwiki/*.md :silent 0r ~/Templates/template-vimwikipage.mdwn
