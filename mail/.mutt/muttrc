@@ -18,7 +18,10 @@ set print_command="/home/raph/.scripts/pymuttprint/pymuttprint.py ; zathura /tmp
 #set print_decode="no"
 #set print_split="no"
 #set print_command       ="lpr -PKonica-PHARE-COMNET-BW"
-set query_command = "lbdbq '%s'"
+#set query_command = "lbdbq '%s'"
+#set query_command = "ldapsearch -x -H ldap://127.0.0.1:10389 -b 'ou=People,ou=Accounts,dc=lip6,dc=fr' -s sub '(cn=*%s*)' mail cn | awk '/^cn: /{name=$2 \" \" $3} /^mail: /{print name \" <\" $2 \">\"}'"
+#set query_command = "ldapsearch -x -H ldap://127.0.0.1:10389 -b 'ou=People,ou=Accounts,dc=lip6,dc=fr' -s sub '(cn=\*%s\*)' mail cn | awk '/^cn: /{name=$2 \" \" $3} /^mail: /{print name \" <\" $2 \">\"}'"
+set query_command = "/home/raph/.scripts/ldap-query.sh %s"
 
 #set editor              = "/usr/bin/vim -u ~/.vimrc.mutt -c 'set spell spelllang=fr' -c startinsert"                   # use vim and skip to first blank line
 #set editor="vi +/^$ ++1"
@@ -121,7 +124,7 @@ set reverse_name                          # reply as whomever it was to
 set include                               # include message in replies
 set forward_quote                         # include message in forwards
 set reverse_name = yes
-alternates raphael.fournier@complexnetworks.lip6.fr|raphael@raphaelfournier.net|fournier@lavabit.com|raphael.*@fournier-sniehotta.fr|raphael.fournier@lip6.fr|fournier@cnam.fr|raphael.fournier@univ-paris13.fr|raphael.fournier_s_niehotta@cnam.fr|raphael@getlovepulse.com|raphael.fourniersniehotta@lecnam.net
+alternates raphael.fournier@complexnetworks.lip6.fr|raphael@raphaelfournier.net|fournier@lavabit.com|raphael.*@fournier-sniehotta.fr|raphael.fournier@lip6.fr|fournier@cnam.fr|raphael.fournier@univ-paris13.fr|raphael.fournier_s_niehotta@cnam.fr|raphael@getlovepulse.com|raphael.fourniersniehotta@lecnam.net|raphael.fournier@newmail.lip6.fr
 
 # headers to show
 ignore *                                                        # ignore all headers
@@ -193,15 +196,8 @@ set allow_ansi = yes
 source $alias_file                                              # required for functionality
 source ~/.mutt/neomuttrc 
 
-#source ~/.mutt/colors/zenburn`echo $TERM | sed "s:.*-::"`
-#source ~/.mutt/colors/solarized/mutt-colors-solarized-light-256.muttrc
-#source ~/.mutt/colors/base16-mutt/base16.muttrc
-#source ~/.mutt/colors/zenburn.raph.inside.muttrc
-#source ~/.mutt/colors/raph.essai.muttrc
-
-source ~/.mutt/colors/zenburn.raph.wal.muttrc
-#source ~/.mutt/colors/raph.outside.muttrc
-#source ~/.mutt/colors/raph.light.muttrc
+source ~/.mutt/colors/zenburn.inside.muttrc
+#source ~/.mutt/colors/zenburn.outside.muttrc
 
 folder-hook flux "push <last-entry><current-middle>"
 folder-hook feeds "push <last-entry><current-middle>"

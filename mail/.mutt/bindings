@@ -118,7 +118,7 @@ macro index,pager ,u "<pipe-message> urlscan -c -s --run-safe '/home/raph/.scrip
 macro attach,compose ,u "<pipe-entry> urlscan -c -s --run-safe '/home/raph/.scripts/urlscan-feedsremover.sh {}'<Enter>" "call urlscan to extract URLs out of a message"
 
 #macro pager Q <search>\^Sub<enter><next-line>
-macro pager Q <search>\^\\s+\$<enter>
+#macro pager Q <search>\^\\s+\$<enter>
 macro pager A <search>\^Description<enter>
 #macro compose ,A "<shell-escape>bash $HOME/.scripts/rangerpick.sh<enter><enter-command>source $HOME/.mutt/rangerpick<enter>" "Attach with Ranger"
 macro compose ,a "<shell-escape>bash $HOME/.mutt/neomutt-file-picker/filepicker<enter><enter-command>source $HOME/.mutt/tmpfile<enter><shell-escape>bash $HOME/.mutt/neomutt-file-picker/filepicker clean<enter>" "Attach with your file manager"

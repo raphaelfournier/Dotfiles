@@ -178,6 +178,14 @@ eval `dircolors ~/.ls_colors`
 zstyle ':completion:*:*:make:*' tag-order 'targets'
 autoload -Uz compinit
 compinit
+
+setopt AUTO_MENU
+zstyle ':completion:*' menu select=1
+ZLS_COLORS="selected=31;40" # Set menu selection colors (selected item foreground red, background black)
+
+export LESS='-R'
+export LESSOPEN='|~/.lessfilter %s'
+
 # Completion for kitty
 #kitty + complete setup zsh | source /dev/stdin
 

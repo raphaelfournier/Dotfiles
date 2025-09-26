@@ -40,6 +40,7 @@ pasystray &
 #dropbox &
 #/usr/bin/dropbox &
 #udiskie --tray &
+umonitor --listen --quiet # monitor screen changes
 [ ! -s ~/.config/mpd/pid ] && mpd &
 musnify-mpd &
 setxkbmap -option caps:escape &

@@ -463,3 +463,4 @@
 # YAML
 # https://yaml.org/
 --type-add=yaml:ext:yaml,yml
+--type-add=qmd:ext:qmd

@@ -5,9 +5,9 @@
 # commands when upgrading ranger.
 
 # You always need to import ranger.api.commands here to get the Command class:
-from ranger.api.commands import *
-
+from ranger.api.commands import Command
 from ranger.core.loader import CommandLoader
+from pathlib import Path
 
 # A simple command for demonstration purposes follows.
 # -----------------------------------------------------------------------------
@@ -62,20 +62,68 @@ class my_edit(Command):
         # content of the current directory.
         return self._tab_directory_content()
 
-class my_oldpwd(Command):
-    # The so-called doc-string of the class will be visible in the built-in
-    # help that is accessible by typing "?c" inside ranger.
-    """:my_edit <filename>
-
-    A sample command for demonstration purposes that opens a file in an editor.
+class lastdirmutt(Command):
+    """:lastdir
+    Jump to the last saved directory or the parent of the last saved file.
     """
-
-    # The execute method is called when you run this command in ranger.
     def execute(self):
-        with open("/tmp/lastrangerpwd") as f:
-            content = f.readline().strip()
-        self.fm.notify("Let's go " + content + "!")
-        self.fm.cd(content)
+        pathfile = os.path.expanduser("/tmp/ranger-mutt-lastwd")
+
+        if not os.path.exists(pathfile):
+            self.fm.notify("No lastdir file found!", bad=True)
+            return
+
+        with open(pathfile) as f:
+            path = f.read().strip()
+
+        if not path:
+            self.fm.notify("lastdir file is empty!", bad=True)
+            return
+
+        if os.path.isdir(path):
+            # Path is a directory → jump directly
+            self.fm.cd(path)
+        elif os.path.isfile(path):
+            # Path is a file → jump to containing folder
+            self.fm.cd(os.path.dirname(path))
+        else:
+            self.fm.notify("Saved path is invalid!", bad=True)
+
+class lastdir(Command):
+    """:lastdir
+    Jump to the last saved directory, or the one in mutt.
+    """
+    def execute(self):
+        # pathfile = os.path.expanduser("/tmp/ranger-lastwd")
+        # if os.path.exists(pathfile):
+        path1 = Path("/tmp/ranger-lastwd")
+        path2 = Path("/tmp/ranger-mutt-lastwd")
+        # pathfile = next((p for p in (path1, path2) if p.exists()), None)
+
+        pathfile = None
+        chosen_source = None  # will hold "path1" or "path2"
+
+        for label, p in (("regular", path1), ("mutt", path2)):
+            if p.exists():
+                pathfile = p
+                chosen_source = label
+                break
+        # self.fm.notify(chosen_source, bad=True)
+        # self.fm.notify(pathfile, bad=True)
+
+        if pathfile:
+            with open(pathfile) as f:
+                path = f.read().strip()
+            self.fm.open_console(f"Going to {chosen_source} folder")
+            if os.path.isdir(path):
+                self.fm.cd(path)
+            elif os.path.isfile(path):
+                self.fm.cd(os.path.dirname(path))
+            else:
+                self.fm.notify("Saved path is not a directory!", bad=True)
+        else:
+            self.fm.notify("No lastdir file found!", bad=True)
+
 
 
 class mkcd(Command):
@@ -139,3 +187,28 @@ class compress(Command):
 
         extension = ['.zip', '.tar.gz', '.rar', '.7z']
         return ['compress ' + os.path.basename(self.fm.thisdir.path) + ext for ext in extension]
+
+class mdnotes(Command):
+    """
+    :mdnotes
+
+    Create an empty .md file for each selected file in the current directory,
+    using the same base name.
+    """
+
+    def execute(self):
+        for fobj in self.fm.thistab.get_selection():
+            # base, _ = os.path.splitext(fobj.relative_path)
+            # md_file = f"{base}.md"
+            # full_path = os.path.join(self.fm.thisdir.path, md_file)
+            # open(full_path, 'a').close()
+            base_name = os.path.splitext(os.path.basename(fobj.relative_path))[0]
+            md_filename = f"{base_name}.md"
+            full_path = os.path.join(self.fm.thisdir.path, md_filename)
+
+            if not os.path.exists(full_path):
+                with open(full_path, 'w') as f:
+                    f.write(f"# {base_name}\n")
+
+        self.fm.ui.browser.marked_items.clear()  # Clear marked items from UI
+        self.fm.notify("Created .md files for selected items.")

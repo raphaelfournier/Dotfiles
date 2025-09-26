@@ -57,16 +57,19 @@ alias la='ls -lha --color=auto'
 alias lds='ls -trd ~/downloads/* | tail'
 alias ldsc='ls -trd ~/downloads/* | tail -n1 | xclip -r && echo "In clipboard: `ls -trd ~/downloads/* | tail -n1`"'
 alias lg='lazygit'
+alias lr='ls -R'
 alias lh='ls --color=auto -altrh'
 #alias ll='ls -lh --color=auto'
 alias lla='ls -lha --color=auto'
 alias lltr='ls -ltrh --color=auto'
 alias lm='latexmk'
+alias lms='ls'
 alias lmc='latexmk -c'
 #alias ls='ls --g --color=auto'
 alias lsc='ls --color=never'
 alias lspp='ls++'
 alias ltr='ls -tr --color=auto'
+alias lrt='ls -tr --color=auto'
 alias lu='lualatex -shell-escape'
 
 #alias ls='eza'
@@ -110,15 +113,23 @@ alias t='tig'
 #alias t='tree -L 1'
 #alias t='todo.sh'
 alias tail-cours-log="tail ~/Enseignement/Logs/cours-`date +%Y`.log.md"
+alias tue='kill -9 '
 alias ur='unrar'
 alias u='unzip'
 alias v='vim -O'
 alias zds="find ~/downloads -type f -printf '%C@ %p\0' | sort -rz | sed -Ezn '1s/[^ ]* //p' | xargs -0 zathura "
 alias lv='lvim'
 alias vw='vim -c VimwikiIndex'
+alias vom='vim'
+alias vimMD='F=$(fd "(.md*)$" | fzf ) && vim $F'
+alias audio-restart-server="systemctl --user restart pipewire pipewire-pulse wireplumber"
+alias zatPDF='F=$(fd "(epub|pdf)$" ~/Pdf /home/raph/Cloud/NextcloudFS/A-INBOX | sort | rofi -dmenu -i -fullscreen -p "PDF :") && zathura $'
 alias vifmrc='vim .config/vifm/vimfmrc'
 alias vpncnam='nmcli con up id "VPN CNAM"'
+alias chmox='chmod +x'
 alias wifimaison='nmcli connection up Livebox-E5C0'
+
+alias ppdf='pandoc --defaults=simpledoc.yaml'
 #v() {
   #vim "$(fzf --preview '[[ $(file --mime {}) =~ binary ]] &&
                  #echo {} is a binary file ||
@@ -307,7 +318,8 @@ alias awesomeRFSWorpan="cd ~/.config/; rm awesome -f; ln -s awesomeConfigs/rfsWo
 
 export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(vim {})+abort'"
 
-alias youtube-mp3='youtube-dl -x --audio-format mp3'
+#alias youtube-mp3='youtube-dl -x --audio-format mp3'
+alias yt-mp3='yt-dlp -x --audio-format mp3 -o "/home/raph/Musique/Youtube/%(title)s_%(id)s.%(ext)s" '
 alias tailleCorbeille='du -sh ~/.local/share/Trash/'
 alias muttaliases='vim ~/.mutt/aliases +'
 alias aliases='vim ~/.bash_aliases'
