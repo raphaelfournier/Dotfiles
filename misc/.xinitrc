@@ -24,7 +24,6 @@ indicator-sound-switcher &
 redshift &
 x-on-resize -a &
 #picom &
-mpDris2 &
 pasystray &
 #nextcloud & 
 #stretchly &
@@ -40,9 +39,9 @@ pasystray &
 #dropbox &
 #/usr/bin/dropbox &
 #udiskie --tray &
-umonitor --listen --quiet # monitor screen changes
 [ ! -s ~/.config/mpd/pid ] && mpd &
 musnify-mpd &
+mpDris2 &
 setxkbmap -option caps:escape &
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap &
 DEFAULT_SESSION=awesome
