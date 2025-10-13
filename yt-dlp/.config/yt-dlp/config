@@ -1,3 +1,6 @@
--o ~/Vidéos/TrajetsTrain/%(id)s-%(title)s_%(channel)s_%(duration_string)s.%(ext)s
+-o %(id)s-%(title)s_%(channel)s_%(duration_string)s.%(ext)s
 -f "bv[height<=1080]*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b"
-#--write-auto-subs
+--write-auto-subs
+--sub-langs "en,en-orig"
+--paths "~/Vidéos/TrajetsTrain/"
+--paths "sub:sub"

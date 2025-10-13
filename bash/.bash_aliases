@@ -129,7 +129,8 @@ alias vpncnam='nmcli con up id "VPN CNAM"'
 alias chmox='chmod +x'
 alias wifimaison='nmcli connection up Livebox-E5C0'
 
-alias ppdf='pandoc --defaults=simpledoc.yaml'
+alias pandoc.1column='pandoc --defaults=simpledoc.yaml '
+alias pandoc.2columns='pandoc --defaults simpledoc-doublecolumn.yaml '
 #v() {
   #vim "$(fzf --preview '[[ $(file --mime {}) =~ binary ]] &&
                  #echo {} is a binary file ||

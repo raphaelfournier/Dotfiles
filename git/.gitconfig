@@ -7,6 +7,9 @@
 [color]
 	ui = auto
 [alias]
+ p = pull
+ pp = push
+ psuh = push # gros doigts
  co = checkout
  cl = clone
  st = status
@@ -14,7 +17,6 @@
  ts = status # gros doigts
  ci = commit
  dt = difftool
- psuh = push # gros doigts
  ll = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
  lgo = log --oneline
  lg= log --graph --date=short --pretty=format:'%Cgreen%h %Cblue%cd (%cr) %Cred%an%C(yellow)%d%Creset: %s'

@@ -62,6 +62,7 @@ Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'gilgigilgil/anderson.vim'
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 
+"Plug 'kana/vim-textobj-user'
 
 Plug 'jceb/vim-orgmode'
 Plug 'tpope/vim-speeddating'
@@ -203,7 +204,11 @@ augroup END
 ""\ | call textobj#sentence#init()
 "augroup END
 
+" Select the whole frame including \begin and \end
+nnoremap <leader>af ?^\\begin{frame}<CR>V/^\\end{frame}<CR>
 
+" Select just the inside of the frame (exclude \begin and \end lines)
+nnoremap <leader>if ?^\\begin{frame}<CR>jV/^\\end{frame}<CR>k
 
 augroup MUTT
   au BufRead ~/.mutt/temp/*mutt* set spell " <-- vim 7 required
@@ -718,6 +723,8 @@ let g:nv_ignore_pattern = ['summarize-*', 'misc*']
 let g:nv_expect_keys = []
 
 nnoremap <silent> <c-s> :NV<space> 
+
+set tags=.tags;
 
 let g:tagbar_autofocus=1
 let g:tagbar_ctags_bin='/usr/bin/ctags'
@@ -1545,5 +1552,29 @@ nmap <leader>mp :MarkdownPreviewToggle<CR>
   "map gg ^rx: <Esc>:r! date +" [\%H:\%M]"<ENTER>kJA<Esc>$
   "" create a new todo item
   "map gt o  _
+  "
+function! TLDR() range
+	 " Get the selected lines
+  let lines = getline(a:firstline, a:lastline)
+  " Find max length (consider TL;DR: as well)
+  let maxlen = max([max(map(copy(lines), 'len(v:val)')), len('TL;DR:')])
+  " Build top/bottom border
+  let border = '+' . repeat('-', maxlen + 2) . '+'
+  " Start boxed lines
+  let boxed = [border]
+  " Add TL;DR: line
+  call add(boxed, '| TL;DR:' . repeat(' ', maxlen - len('TL;DR:')) . ' |')
+  " Add content lines
+  for l in lines
+    call add(boxed, '| ' . l . repeat(' ', maxlen - len(l)) . ' |')
+  endfor
+  call add(boxed, border)
+  " Replace selection
+  call setline(a:firstline, boxed)
+  if a:lastline > a:firstline
+    call deletebufline('', a:firstline+len(boxed), a:lastline+len(boxed)-1)
+	endif
+endfunction
+xnoremap <leader>b :<C-u>call TLDR()<CR>
 
 " vim: set fdm=marker fmr=<<<,>>> fdl=0:fdc=2

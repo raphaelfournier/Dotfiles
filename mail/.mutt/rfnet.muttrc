@@ -24,4 +24,4 @@ folder-hook Rfnet unhook save-hook
 #set auto_subscribe = yes
 
 folder-hook Rfnet save-hook ~l "=LIP6/News/"
-folder-hook Rfnet save-hook . "=Rfnet/"
+folder-hook Rfnet save-hook . "=Rfnet/Archives/"
