@@ -36,3 +36,9 @@ function infos {
 cgrep(){
     grep -a "$1" "/home/raph/COMMANDES"
 }
+
+only() {
+  keep="$1"
+  xrandr --output "$keep" --auto \
+    $(xrandr | awk '/ connected/{print $1}' | grep -v "^$keep$" | xargs -I{} echo --output {} --off)
+}

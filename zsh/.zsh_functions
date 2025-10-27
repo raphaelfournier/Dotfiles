@@ -17,3 +17,28 @@ function hosts-unblock {
 fr () { 
   find ./ -iname "*"$@"*" -printf "%T@ %Td-%Tb-%TY %Tk:%TM %p\n" | sort -n | cut -d " " -f 2- | grep -i "$@" ; 
 }
+
+bkp() {
+  if [[ $# -ne 1 ]]; then
+    echo "Usage: bkp <filename>"
+    return 1
+  fi
+
+  local file="$1"
+  
+  if [[ ! -f "$file" ]]; then
+    echo "Error: file '$file' does not exist."
+    return 1
+  fi
+
+  local base="${file%.*}"
+  local ext="${file##*.}"
+
+  # Handle files without extension
+  if [[ "$base" == "$file" ]]; then
+    cp -v "$file" "${file}-bkp"
+  else
+    cp -v "$file" "${base}-bkp.${ext}"
+  fi
+}
+

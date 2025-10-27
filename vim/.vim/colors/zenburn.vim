@@ -303,11 +303,14 @@ hi VisualNOS       guifg=#333333 guibg=#f18c96 gui=bold,underline ctermfg=236 ct
 hi WarningMsg      guifg=#ffffff guibg=#333333 gui=bold       ctermfg=231 ctermbg=236 cterm=bold
 hi WildMenu        guifg=#cbecd0 guibg=#2c302d gui=underline  ctermfg=194 ctermbg=236 cterm=underline
 
-" spellchecking, always "bright" term background
-hi SpellBad   guisp=#bc6c4c guifg=#dc8c6c  ctermfg=209 ctermbg=237
-hi SpellCap   guisp=#6c6c9c guifg=#8c8cbc  ctermfg=103 ctermbg=237
-hi SpellRare  guisp=#bc6c9c guifg=#bc8cbc  ctermfg=139 ctermbg=237
-hi SpellLocal guisp=#7cac7c guifg=#9ccc9c  ctermfg=151 ctermbg=237
+" connaître le syntax group dans Vim
+" :echo synIDattr(synID(line('.'), col('.'), 1), 'name')
+highlight SpellBad   gui=undercurl guisp=#cc9393 cterm=underline ctermfg=Red ctermbg=237
+highlight mailURL gui=underline guifg=#93e0e3 cterm=underline ctermfg=Blue ctermbg=237
+highlight mailSignature ctermfg=Blue ctermfg=247 " gris sombre
+"highlight SpellCap   gui=undercurl guisp=#8cd0d3 cterm=underline ctermfg=Cyan
+"highlight SpellLocal gui=undercurl guisp=#7f9f7f cterm=underline ctermfg=Green
+"highlight SpellRare  gui=undercurl guisp=#dc8cc3 cterm=underline ctermfg=Magenta
 
 if exists("g:zenburn_high_Contrast") && g:zenburn_high_Contrast
     " use new darker background

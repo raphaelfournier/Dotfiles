@@ -80,11 +80,11 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
+	Plug 'Shougo/deoplete.nvim'
+	Plug 'roxma/nvim-yarp'
+	Plug 'roxma/vim-hug-neovim-rpc'
 endif
 let g:deoplete#enable_at_startup = 1
 Plug 'ryanoasis/vim-devicons'
@@ -163,18 +163,18 @@ call plug#end() " vimplug
 
 " <<< Automatic rules for filetypes 
 augroup LATEX
-  au BufRead *tex nmap Q gqap
-  "  au BufRead ~/.mutt/temp/mutt* map!  <F5>  <ESC>kgqji
+	au BufRead *tex nmap Q gqap
+	"  au BufRead ~/.mutt/temp/mutt* map!  <F5>  <ESC>kgqji
 augroup END
 
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
 
 augroup WrapLineInTeXFile
-  autocmd!
-  autocmd FileType tex setlocal wrap linebreak nolist
-  "autocmd FileType tex setlocal showbreak=+++
-  "autocmd FileType tex setlocal formatoptions-=t
+	autocmd!
+	autocmd FileType tex setlocal wrap linebreak nolist
+	"autocmd FileType tex setlocal showbreak=+++
+	"autocmd FileType tex setlocal formatoptions-=t
 augroup END
 
 autocmd FileType python set sw=4
@@ -184,13 +184,13 @@ autocmd FileType python set sts=4
 set spelllang=fr
 
 augroup MARKDOWN
-  au BufNewFile,BufRead *.md set syntax=liquid
-  au BufEnter *.md* setlocal foldexpr=MarkdownLevel()  
-  au BufEnter *.md* setlocal foldmethod=expr     
-  autocmd BufNewFile,BufRead *.mdwn  setfiletype markdown
-  autocmd BufNewFile,BufRead *.md   setfiletype=markdown
-  au BufEnter *.md* colorscheme onehalfdark
-  "let g:airline_theme='onehalfdark'
+	au BufNewFile,BufRead *.md set syntax=liquid
+	au BufEnter *.md* setlocal foldexpr=MarkdownLevel()  
+	au BufEnter *.md* setlocal foldmethod=expr     
+	autocmd BufNewFile,BufRead *.mdwn  setfiletype markdown
+	autocmd BufNewFile,BufRead *.md   setfiletype=markdown
+	au BufEnter *.md* colorscheme onehalfdark
+	"let g:airline_theme='onehalfdark'
 augroup END
 
 " Disable folding specifically for vimrc files
@@ -211,25 +211,25 @@ nnoremap <leader>af ?^\\begin{frame}<CR>V/^\\end{frame}<CR>
 nnoremap <leader>if ?^\\begin{frame}<CR>jV/^\\end{frame}<CR>k
 
 augroup MUTT
-  au BufRead ~/.mutt/temp/*mutt* set spell " <-- vim 7 required
-  au BufRead ~/.mutt/temp/*mutt* set nonu
-  au BufRead ~/.mutt/temp/*mutt* nmap  <F5>  gqap
-  au BufRead ~/.mutt/temp/*mutt* nmap  <F6>  gqqj
-  au BufRead ~/.mutt/temp/*mutt* nmap  <F7>  kgqj
-  au BufRead ~/.mutt/temp/*mutt* nmap  <F7>  vipJ
-  au BufRead ~/.mutt/temp/*mutt* map!  <F5>  <ESC>gqapi
-  au BufRead ~/.mutt/temp/*mutt* map!  <F6>  <ESC>gqqji
-  au BufRead ~/.mutt/temp/*mutt* map!  <F7>  <ESC>kgqji
-  au BufRead ~/.mutt/temp/*mutt* setlocal wrap linebreak nolist
-  "au BufRead ~/.mutt/temp/*mutt* colorscheme onehalfdark
-  "au BufRead ~/.mutt/temp/*mutt* colorscheme one
-  "au BufRead ~/.mutt/temp/*mutt* setlocal showbreak=+++
-  "au BufRead ~/.mutt/temp/*mutt* setlocal formatoptions-=t
-  au BufRead ~/Dotfiles/mail/.mutt/temp/*mutt* nmap  ,x  <ESC>oScheduler: 8:05 AM tomorrow
-  "au BufRead ~/.mutt/temp/*mutt* setlocal fo+=aw
+	au BufRead ~/.mutt/temp/*mutt* set spell " <-- vim 7 required
+	au BufRead ~/.mutt/temp/*mutt* set nonu
+	au BufRead ~/.mutt/temp/*mutt* nmap  <F5>  gqap
+	au BufRead ~/.mutt/temp/*mutt* nmap  <F6>  gqqj
+	au BufRead ~/.mutt/temp/*mutt* nmap  <F7>  kgqj
+	au BufRead ~/.mutt/temp/*mutt* nmap  <F7>  vipJ
+	au BufRead ~/.mutt/temp/*mutt* map!  <F5>  <ESC>gqapi
+	au BufRead ~/.mutt/temp/*mutt* map!  <F6>  <ESC>gqqji
+	au BufRead ~/.mutt/temp/*mutt* map!  <F7>  <ESC>kgqji
+	au BufRead ~/.mutt/temp/*mutt* setlocal wrap linebreak nolist
+	"au BufRead ~/.mutt/temp/*mutt* colorscheme onehalfdark
+	"au BufRead ~/.mutt/temp/*mutt* colorscheme one
+	"au BufRead ~/.mutt/temp/*mutt* setlocal showbreak=+++
+	"au BufRead ~/.mutt/temp/*mutt* setlocal formatoptions-=t
+	au BufRead ~/Dotfiles/mail/.mutt/temp/*mutt* nmap  ,x  <ESC>oScheduler: 8:05 AM tomorrow
+	"au BufRead ~/.mutt/temp/*mutt* setlocal fo+=aw
 
-  au BufRead ~/.mutt/temp/mutt* source ~/.vim/bundle/mutt-canned/plugin/mutt-canned.vim
-  "au BufRead ./example.file source ./mutt-canned.vim
+	au BufRead ~/.mutt/temp/mutt* source ~/.vim/bundle/mutt-canned/plugin/mutt-canned.vim
+	"au BufRead ./example.file source ./mutt-canned.vim
 augroup END
 
 au BufNewFile,BufRead Snakefile set syntax=snakemake
@@ -237,19 +237,19 @@ au BufNewFile,BufRead *.snake set syntax=snakemake
 
 
 function! MarkdownLevel()
-  "if getline(v:lnum) =~ '^---$'
-  "return ">1"
-  "endif
-  if getline(v:lnum) =~ '^# .*$'
-    return ">1"
-  endif
-  "if getline(v:lnum) =~ '^### .*$'
-  "return ">3"
-  "endif
-  "if getline(v:lnum) =~ '^#### .*$'
-  "return ">4"
-  "endif
-  return "=" 
+	"if getline(v:lnum) =~ '^---$'
+	"return ">1"
+	"endif
+	if getline(v:lnum) =~ '^# .*$'
+		return ">1"
+	endif
+	"if getline(v:lnum) =~ '^### .*$'
+	"return ">3"
+	"endif
+	"if getline(v:lnum) =~ '^#### .*$'
+	"return ">4"
+	"endif
+	return "=" 
 endfunction
 
 "autocmd VimEnter * if argc() > 1 && !exists("s:std_in") | execute "vsp " . argv() | wincmd p | argdelete" | endif
@@ -333,21 +333,21 @@ nmap <Leader>Ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<C
 let g:duo_themes = [ {'name': 'PaperColor', 'bg': 'light', 'airlinetheme': 'light'}, {'name': 'zenburn', 'bg': 'dark', 'airlinetheme': 'angr'} ]
 
 func! s:set_colorscheme(color)
-  if has_key(a:color, 'bg')
-    let &bg = a:color['bg']
-    let g:airline_theme=a:color['airlinetheme']
-  endif
-  if has_key(a:color, 'name')
-    exe "colorscheme ".a:color['name']
-  endif
+	if has_key(a:color, 'bg')
+		let &bg = a:color['bg']
+		let g:airline_theme=a:color['airlinetheme']
+	endif
+	if has_key(a:color, 'name')
+		exe "colorscheme ".a:color['name']
+	endif
 endfunc
 
 func! ToggleColorscheme()
-  if !exists('g:colors_name')
-    let g:colors_name = 'default'
-  endif
-  let color = filter(copy(g:duo_themes), {k, v -> v['name'] != g:colors_name})[0]
-  call s:set_colorscheme(color)
+	if !exists('g:colors_name')
+		let g:colors_name = 'default'
+	endif
+	let color = filter(copy(g:duo_themes), {k, v -> v['name'] != g:colors_name})[0]
+	call s:set_colorscheme(color)
 endfunc
 nnoremap <Leader>bg :call ToggleColorscheme()<CR>
 
@@ -362,33 +362,34 @@ let g:zenburn_old_Visual = 1
 let inout = system("cat ~/.insideOutside | tr -d '\n'")
 " si on est dedans, on active thÃ¨me sombre
 if inout == "in" 
-  colors zenburn
-  "colors base16-zenburn
-  let g:airline_theme='angr'
+	colors zenburn
+	"colors base16-zenburn
+	let g:airline_theme='angr'
 " sinon, le thÃ¨me light
 else
-  "colorscheme shirotelin
-  "set background=light
-  "" This is only necessary if you use "set termguicolors".
-  "let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  "let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  "set termguicolors " required for kitty
-  "set t_Co=256
-  "let base16colorspace=256
-  "colorscheme base16-one-light
+	"colorscheme shirotelin
+	"set background=light
+	"" This is only necessary if you use "set termguicolors".
+	"let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+	"let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+	"set termguicolors " required for kitty
+	"set t_Co=256
+	"let base16colorspace=256
+	"colorscheme base16-one-light
 
-  let g:airline_theme='light'
+	let g:airline_theme='light'
 
-  set background=light
-  colorscheme PaperColor
-  let g:PaperColor_Theme_Options = {
-        \   'theme': {
-        \     'default': {
-        \       'transparent_background': 0
-        \     }
-        \   }
-        \ }
+	set background=light
+	colorscheme PaperColor
+	let g:PaperColor_Theme_Options = {
+				\   'theme': {
+				\     'default': {
+				\       'transparent_background': 0
+				\     }
+				\   }
+				\ }
 endif
+
 
 "colorscheme lucid
 
@@ -403,6 +404,9 @@ endif
 
 
 colors zenburn
+"highlight SpellBad gui=undercurl guisp=#ff6c6b cterm=underline ctermfg=Red
+" --- Spellcheck colors tuned for Zenburn ---
+
 "colors onehalfdark
 
 "colo seoul256
@@ -514,21 +518,21 @@ autocmd VimEnter * nnoremap <leader>cal :CalendarH<CR>
 autocmd VimEnter * nnoremap <leader>caL :CalendarV<CR>
 
 function! MyCalAction(day, month, year, week, dir)
-  " Month names
-  let l:months = [
-        \ 'janvier', 'février', 'mars', 'avril', 'mai', 'juin',
-        \ 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'
-        \ ]
+	" Month names
+	let l:months = [
+				\ 'janvier', 'février', 'mars', 'avril', 'mai', 'juin',
+				\ 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'
+				\ ]
 
-  " Build date string "day month"
-  let l:date = printf('%d %s prochain', a:day, l:months[a:month - 1])
+	" Build date string "day month"
+	let l:date = printf('%d %s prochain', a:day, l:months[a:month - 1])
 
-  " Copy to registers
-  let @+ = l:date  " System clipboard
-  let @* = l:date  " PRIMARY selection (X11)
-  let @" = l:date  " Default unnamed register
+	" Copy to registers
+	let @+ = l:date  " System clipboard
+	let @* = l:date  " PRIMARY selection (X11)
+	let @" = l:date  " Default unnamed register
 
-  echo 'Copied: ' . l:date
+	echo 'Copied: ' . l:date
 endfunction
 
 let calendar_action = 'MyCalAction'
@@ -582,23 +586,23 @@ nnoremap <leader>gG :call FoldColumnToggle()<cr>
 nnoremap <leader>S :SimplenoteList<cr>
 
 function! FoldColumnToggle()
-  if &foldcolumn
-    setlocal foldcolumn=0
-  else
-    setlocal foldcolumn=3
-  endif
+	if &foldcolumn
+		setlocal foldcolumn=0
+	else
+		setlocal foldcolumn=3
+	endif
 endfunction
 
 nnoremap <Leader>gg :call ToggleSignColumn()<CR>
 " Toggle signcolumn. Works on vim>=8.1 or NeoVim
 function! ToggleSignColumn()
-  if !exists("b:signcolumn_on") || b:signcolumn_on
-    set signcolumn=no
-    let b:signcolumn_on=0
-  else
-    set signcolumn=number
-    let b:signcolumn_on=1
-  endif
+	if !exists("b:signcolumn_on") || b:signcolumn_on
+		set signcolumn=no
+		let b:signcolumn_on=0
+	else
+		set signcolumn=number
+		let b:signcolumn_on=1
+	endif
 endfunction
 
 " taglist
@@ -666,10 +670,10 @@ let g:nv_default_extension = '.md'
 " Dictionary with string keys and values. Must be in the form 'ctrl-KEY':
 " 'command' or 'alt-KEY' : 'command'. See examples below.
 let g:nv_keymap = {
-      \ 'ctrl-s': 'split ',
-      \ 'ctrl-v': 'vertical split ',
-      \ 'ctrl-t': 'tabedit ',
-      \ }
+			\ 'ctrl-s': 'split ',
+			\ 'ctrl-v': 'vertical split ',
+			\ 'ctrl-t': 'tabedit ',
+			\ }
 
 " String. Must be in the form 'ctrl-KEY' or 'alt-KEY'
 let g:nv_create_note_key = 'ctrl-x'
@@ -734,45 +738,45 @@ let g:tagbar_indent = 1
 let g:tagbar_autoclose = 1
 let g:tagbar_show_linenumbers = 1
 let g:tagbar_type_latex = {
-      \ 'ctagstype' : 'latex',
-      \ 'kinds'     : [
-      \ 's:sections',
-      \ 'g:graphics:0:0',
-      \ 'l:labels',
-      \ 'r:refs:1:0',
-      \ 'p:pagerefs:1:0'
-      \ ],
-      \ 'sort'    : 0,
-      \ }
+			\ 'ctagstype' : 'latex',
+			\ 'kinds'     : [
+			\ 's:sections',
+			\ 'g:graphics:0:0',
+			\ 'l:labels',
+			\ 'r:refs:1:0',
+			\ 'p:pagerefs:1:0'
+			\ ],
+			\ 'sort'    : 0,
+			\ }
 let g:tagbar_type_rst = {
-      \ 'ctagstype': 'rst',
-      \ 'ctagsbin' : '/home/raph/.scripts/rst2ctags/rst2ctags.py',
-      \ 'ctagsargs' : '-f - --sort=yes',
-      \ 'kinds' : [
-      \ 's:sections',
-      \ 'i:images'
-      \ ],
-      \ 'sro' : '|',
-      \ 'kind2scope' : {
-      \ 's' : 'section',
-      \ },
-      \ 'sort': 0,
-      \ }
+			\ 'ctagstype': 'rst',
+			\ 'ctagsbin' : '/home/raph/.scripts/rst2ctags/rst2ctags.py',
+			\ 'ctagsargs' : '-f - --sort=yes',
+			\ 'kinds' : [
+			\ 's:sections',
+			\ 'i:images'
+			\ ],
+			\ 'sro' : '|',
+			\ 'kind2scope' : {
+			\ 's' : 'section',
+			\ },
+			\ 'sort': 0,
+			\ }
 let g:tagbar_type_markdown = {
-      \ 'ctagstype': 'markdown',
-      \ 'ctagsbin' : '/home/raph/.scripts/markdown2ctags/markdown2ctags.py',
-      "\ 'ctagsargs' : '-f - --sort=yes --sro=»',
-      \ 'ctagsargs' : '-f - --sort=yes',
-      \ 'kinds' : [
-      \ 's:sections',
-      \ 'i:images'
-      \ ],
-      "\ 'sro' : '»',
-      \ 'kind2scope' : {
-      \ 's' : 'section',
-      \ },
-      \ 'sort': 0,
-      \ }
+			\ 'ctagstype': 'markdown',
+			\ 'ctagsbin' : '/home/raph/.scripts/markdown2ctags/markdown2ctags.py',
+			"\ 'ctagsargs' : '-f - --sort=yes --sro=»',
+			\ 'ctagsargs' : '-f - --sort=yes',
+			\ 'kinds' : [
+			\ 's:sections',
+			\ 'i:images'
+			\ ],
+			"\ 'sro' : '»',
+			\ 'kind2scope' : {
+			\ 's' : 'section',
+			\ },
+			\ 'sort': 0,
+			\ }
 "let g:tagbar_type_tex = {
 "\ 'ctagstype' : 'latex',
 "\ 'kinds' : [
@@ -800,21 +804,21 @@ filetype detect
 set viminfo='1000,f1
 
 function! s:goyo_enter()
-  let b:quitting = 0
-  let b:quitting_bang = 0
-  autocmd QuitPre <buffer> let b:quitting = 1
-  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+	let b:quitting = 0
+	let b:quitting_bang = 0
+	autocmd QuitPre <buffer> let b:quitting = 1
+	cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
 endfunction
 
 function! s:goyo_leave()
-  " Quit Vim if this is the only remaining buffer
-  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-    if b:quitting_bang
-      qa!
-    else
-      qa
-    endif
-  endif
+	" Quit Vim if this is the only remaining buffer
+	if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+		if b:quitting_bang
+			qa!
+		else
+			qa
+		endif
+	endif
 endfunction
 
 autocmd! User GoyoEnter call <SID>goyo_enter()
@@ -857,15 +861,15 @@ let g:calendar_google_calendar = 1
 " PyMode {
 " Disable if python support not present
 if !has('python') && !has('python3')
-  let g:pymode = 0
+	let g:pymode = 0
 endif
 
 if isdirectory(expand("~/.vim/bundle/python-mode"))
-  let g:pymode_lint_checkers = ['pyflakes']
-  let g:pymode_trim_whitespaces = 0
-  let g:pymode_options = 0
-  let g:pymode_rope = 0
-  let g:pymode_lint_write = 0
+	let g:pymode_lint_checkers = ['pyflakes']
+	let g:pymode_trim_whitespaces = 0
+	let g:pymode_options = 0
+	let g:pymode_rope = 0
+	let g:pymode_lint_write = 0
 endif
 " }
 
@@ -878,9 +882,9 @@ nnoremap <Leader>u :UndotreeToggle<CR>
 
 " indent_guides {
 if isdirectory(expand("~/.vim/bundle/vim-indent-guides/"))
-  let g:indent_guides_start_level = 2
-  let g:indent_guides_guide_size = 1
-  let g:indent_guides_enable_on_vim_startup = 1
+	let g:indent_guides_start_level = 2
+	let g:indent_guides_guide_size = 1
+	let g:indent_guides_enable_on_vim_startup = 1
 endif
 " }
 
@@ -888,43 +892,43 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
 " ctrlp {
 if isdirectory(expand("~/.vim/bundle/ctrlp.vim/"))
-  let g:ctrlp_working_path_mode = 'wa' " better than ra ?
-  nnoremap <leader>p :CtrlP<CR>
-  "nnoremap <leader>o :CtrlPMRU<CR>
-  let g:ctrlp_custom_ignore = {
-        \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-        \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+	let g:ctrlp_working_path_mode = 'wa' " better than ra ?
+	nnoremap <leader>p :CtrlP<CR>
+	"nnoremap <leader>o :CtrlPMRU<CR>
+	let g:ctrlp_custom_ignore = {
+				\ 'dir':  '\.git$\|\.hg$\|\.svn$',
+				\ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 
-  if executable('ag')
-    let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
-  elseif executable('ack-grep')
-    let s:ctrlp_fallback = 'ack-grep %s --nocolor -f'
-  elseif executable('ack')
-    let s:ctrlp_fallback = 'ack %s --nocolor -f'
-  " On Windows use "dir" as fallback command.
-  elseif WINDOWS()
-    let s:ctrlp_fallback = 'dir %s /-n /b /s /a-d'
-  else
-    let s:ctrlp_fallback = 'find %s -type f'
-  endif
-  if exists("g:ctrlp_user_command")
-    unlet g:ctrlp_user_command
-  endif
-  let g:ctrlp_user_command = {
-        \ 'types': {
-        \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
-        \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-        \ },
-        \ 'fallback': s:ctrlp_fallback
-        \ }
+	if executable('ag')
+		let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
+	elseif executable('ack-grep')
+		let s:ctrlp_fallback = 'ack-grep %s --nocolor -f'
+	elseif executable('ack')
+		let s:ctrlp_fallback = 'ack %s --nocolor -f'
+	" On Windows use "dir" as fallback command.
+	elseif WINDOWS()
+		let s:ctrlp_fallback = 'dir %s /-n /b /s /a-d'
+	else
+		let s:ctrlp_fallback = 'find %s -type f'
+	endif
+	if exists("g:ctrlp_user_command")
+		unlet g:ctrlp_user_command
+	endif
+	let g:ctrlp_user_command = {
+				\ 'types': {
+				\ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
+				\ 2: ['.hg', 'hg --cwd %s locate -I .'],
+				\ },
+				\ 'fallback': s:ctrlp_fallback
+				\ }
 
-  if isdirectory(expand("~/.vim/bundle/ctrlp-funky/"))
-    " CtrlP extensions
-    let g:ctrlp_extensions = ['funky']
+	if isdirectory(expand("~/.vim/bundle/ctrlp-funky/"))
+		" CtrlP extensions
+		let g:ctrlp_extensions = ['funky']
 
-    "funky
-    nnoremap <Leader>fu :CtrlPFunky<Cr>
-  endif
+		"funky
+		nnoremap <Leader>fu :CtrlPFunky<Cr>
+	endif
 endif
 "}
 
@@ -956,39 +960,39 @@ set conceallevel=1
 let g:tex_conceal='abdmg'
 " TOC settings
 let g:vimtex_toc_config = {
-      \ 'name' : 'TOC',
-      \ 'layers' : ['content', 'todo', 'include'],
-      \ 'resize' : 1,
-      \ 'todo_sorted' : 0,
-      \ 'show_help' : 1,
-      \ 'show_numbers' : 1,
-      \ 'mode' : 2,
-      \}
+			\ 'name' : 'TOC',
+			\ 'layers' : ['content', 'todo', 'include'],
+			\ 'resize' : 1,
+			\ 'todo_sorted' : 0,
+			\ 'show_help' : 1,
+			\ 'show_numbers' : 1,
+			\ 'mode' : 2,
+			\}
 
 call vimtex#imaps#add_map({
-      \ 'lhs' : 'b',
-      \ 'rhs' : '\bigskip ',
-      \ 'leader' : ',',
-      \ 'wrapper' : 'vimtex#imaps#wrap_trivial'
-      \})
+			\ 'lhs' : 'b',
+			\ 'rhs' : '\bigskip ',
+			\ 'leader' : ',',
+			\ 'wrapper' : 'vimtex#imaps#wrap_trivial'
+			\})
 call vimtex#imaps#add_map({
-      \ 'lhs' : 'p',
-      \ 'rhs' : '\part ',
-      \ 'leader' : ',',
-      \ 'wrapper' : 'vimtex#imaps#wrap_trivial'
-      \})
+			\ 'lhs' : 'p',
+			\ 'rhs' : '\part ',
+			\ 'leader' : ',',
+			\ 'wrapper' : 'vimtex#imaps#wrap_trivial'
+			\})
 call vimtex#imaps#add_map({
-      \ 'lhs' : 'i',
-      \ 'rhs' : '\item ',
-      \ 'leader' : ',',
-      \ 'wrapper' : 'vimtex#imaps#wrap_trivial'
-      \})
+			\ 'lhs' : 'i',
+			\ 'rhs' : '\item ',
+			\ 'leader' : ',',
+			\ 'wrapper' : 'vimtex#imaps#wrap_trivial'
+			\})
 call vimtex#imaps#add_map({
-      \ 'lhs' : 'o',
-      \ 'rhs' : 'itemize',
-      \ 'leader' : ',',
-      \ 'wrapper' : 'vimtex#imaps#wrap_trivial'
-      \})
+			\ 'lhs' : 'o',
+			\ 'rhs' : 'itemize',
+			\ 'leader' : ',',
+			\ 'wrapper' : 'vimtex#imaps#wrap_trivial'
+			\})
 
 let g:vimtex_toc_enabled=1
 
@@ -1002,11 +1006,11 @@ autocmd BufNewFile,BufRead todo.txt,*.task,*.tasks  setfiletype task
 autocmd filetype tex highlight MatchParen ctermbg=0
 
 function! ShowColourSchemeName()
-  try
-    echo g:colors_name
-  catch /^Vim:E121/
-    echo "default
-  endtry
+	try
+		echo g:colors_name
+	catch /^Vim:E121/
+		echo "default
+	endtry
 endfunction
 
 "https://www.hillelwayne.com/post/intermediate-vim/
@@ -1024,17 +1028,17 @@ set suffixesadd='.tex'
 
 command! -nargs=* Hardcopy call DoMyPrint('<args>')
 function DoMyPrint(args)
-  let colorsave=g:colors_name
-  color print
-  exec 'hardcopy '.a:args
-  exec 'color '.colorsave
+	let colorsave=g:colors_name
+	color print
+	exec 'hardcopy '.a:args
+	exec 'color '.colorsave
 endfunction
 
 :map ,s :if exists("g:syntax_on") <Bar>                                    
-      \   syntax off <Bar>                                                    
-      \ else <Bar>                                                            
-      \   syntax enable <Bar>                                                 
-      \ endif <CR> 
+			\   syntax off <Bar>                                                    
+			\ else <Bar>                                                            
+			\   syntax enable <Bar>                                                 
+			\ endif <CR> 
 
 set switchbuf=useopen,split,usetab,newtab
 
@@ -1073,14 +1077,14 @@ let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 " Define dictionary.
 let g:neocomplcache_dictionary_filetype_lists = {
-      \ 'default' : '',
-      \ 'vimshell' : $HOME.'/.vimshell_hist',
-      \ 'scheme' : $HOME.'/.gosh_completions'
-      \ }
+			\ 'default' : '',
+			\ 'vimshell' : $HOME.'/.vimshell_hist',
+			\ 'scheme' : $HOME.'/.gosh_completions'
+			\ }
 
 " Define keyword.
 if !exists('g:neocomplcache_keyword_patterns')
-  let g:neocomplcache_keyword_patterns = {}
+	let g:neocomplcache_keyword_patterns = {}
 endif
 let g:neocomplcache_keyword_patterns._ = '\h\w*'
 
@@ -1226,16 +1230,16 @@ nmap <Leader>wx :vs \| :VimwikiIndex<CR>
 " dr bunsen
 
 function! Formd(option)
-  :let save_view = winsaveview()
-  :let flag = a:option
-  :if flag == "-r"
-  :%! /usr/bin/formd -r
-  :elseif flag == "-i"
-  :%! /usr/bin/formd -i
-  :else
-  :%! /usr/bin/formd -f
-  :endif
-  :call winrestview(save_view)
+	:let save_view = winsaveview()
+	:let flag = a:option
+	:if flag == "-r"
+	:%! /usr/bin/formd -r
+	:elseif flag == "-i"
+	:%! /usr/bin/formd -i
+	:else
+	:%! /usr/bin/formd -f
+	:endif
+	:call winrestview(save_view)
 endfunction
 
 " formd mappings
@@ -1243,32 +1247,32 @@ nmap <leader>Fr :call Formd("-r")<CR>
 nmap <leader>Fi :call Formd("-i")<CR>
 
 function! ToggleCalendar()
-  execute ":Calendar"
-  if exists("g:calendar_open")
-    if g:calendar_open == 1
-      execute "q"
-      unlet g:calendar_open
-    else
-      g:calendar_open = 1
-    end
-  else
-    let g:calendar_open = 1
-  end
+	execute ":Calendar"
+	if exists("g:calendar_open")
+		if g:calendar_open == 1
+			execute "q"
+			unlet g:calendar_open
+		else
+			g:calendar_open = 1
+		end
+	else
+		let g:calendar_open = 1
+	end
 endfunction
 
 au FileType vimwiki map <leader>wc :call ToggleCalendar() <cr>
 
 augroup vimwikigroup
-  autocmd!
-  " automatically update links on read diary
-  autocmd BufRead,BufNewFile ~/Notes/vimwiki/diary/diary.md VimwikiDiaryGenerateLinks
-  au BufNewFile ~/Notes/vimwiki/diary/*.md :silent 0r !~/.scripts/vim/generate-vimwiki-diary-template '%'
-  autocmd BufRead Notes/vimwiki/diary/????-??-??.md :silent $
-  autocmd BufRead Notes/vimwiki/diary/????-??-??.md exe "normal!O"
-  autocmd BufRead Notes/vimwiki/diary/????-??-??.md :put =strftime('%H:%M')
-  autocmd BufRead Notes/vimwiki/diary/????-??-??.md exe "normal!I- "
-  autocmd BufRead Notes/vimwiki/diary/????-??-??.md exe "normal!A:  "
-  autocmd BufRead Notes/vimwiki/diary/????-??-??.md :star!
+	autocmd!
+	" automatically update links on read diary
+	autocmd BufRead,BufNewFile ~/Notes/vimwiki/diary/diary.md VimwikiDiaryGenerateLinks
+	au BufNewFile ~/Notes/vimwiki/diary/*.md :silent 0r !~/.scripts/vim/generate-vimwiki-diary-template '%'
+	autocmd BufRead Notes/vimwiki/diary/????-??-??.md :silent $
+	autocmd BufRead Notes/vimwiki/diary/????-??-??.md exe "normal!O"
+	autocmd BufRead Notes/vimwiki/diary/????-??-??.md :put =strftime('%H:%M')
+	autocmd BufRead Notes/vimwiki/diary/????-??-??.md exe "normal!I- "
+	autocmd BufRead Notes/vimwiki/diary/????-??-??.md exe "normal!A:  "
+	autocmd BufRead Notes/vimwiki/diary/????-??-??.md :star!
 augroup end
 
 "
@@ -1304,22 +1308,22 @@ command! YTDLP s/[?=]/\\&/g
 "set formatexpr=MyFormatExpr(v:lnum,v:lnum+v:count-1)
 
 function! GotoJump()
-  jumps
-  let j = input("Please select your jump: ")
-  if j != ''
-    let pattern = '\v\c^\+'
-    if j =~ pattern
-      let j = substitute(j, pattern, '', 'g')
-      execute "normal " . j . "\<c-i>"
-    else
-      execute "normal " . j . "\<c-o>"
-    endif
-  endif
+	jumps
+	let j = input("Please select your jump: ")
+	if j != ''
+		let pattern = '\v\c^\+'
+		if j =~ pattern
+			let j = substitute(j, pattern, '', 'g')
+			execute "normal " . j . "\<c-i>"
+		else
+			execute "normal " . j . "\<c-o>"
+		endif
+	endif
 endfunction
 
 function! Synctex()
-  " remove 'silent' for debugging
-  execute "silent !zathura --synctex-forward " . line('.') . ":" . col('.') . ":" . bufname('%') . " " . g:syncpdf
+	" remove 'silent' for debugging
+	execute "silent !zathura --synctex-forward " . line('.') . ":" . col('.') . ":" . bufname('%') . " " . g:syncpdf
 endfunction
 map <C-enter> :call Synctex()<cr>
 
@@ -1334,10 +1338,10 @@ nmap <Leader>j :call GotoJump()<CR>
 " " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
 " " files.
 function! AppendModeline()
-  let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :",
-        \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
-  let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
-  call append(line("$"), l:modeline)
+	let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :",
+				\ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+	let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+	call append(line("$"), l:modeline)
 endfunction
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
@@ -1360,10 +1364,10 @@ map <silent> <leader>l <C-w>5>
 
 ab ccom /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 ab fcom ! * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-  ab lcom % * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-  ab pcom # * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	ab lcom % * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	ab pcom # * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-  "let &t_ut=''
+	"let &t_ut=''
 "
 let @t = '^c2lCcddpkc2lTo'
 
@@ -1385,10 +1389,10 @@ nnoremap <leader>fh :History<cr>
 nnoremap <leader>fb :BLines<cr>
 
 let g:fzf_action = {
-      \ 'ctrl-t': 'edit',
-      \ 'ctrl-h': 'split',
-      \ 'ctrl-v': 'vsplit',
-      \ 'enter': 'vsplit' }
+			\ 'ctrl-t': 'edit',
+			\ 'ctrl-h': 'split',
+			\ 'ctrl-v': 'vsplit',
+			\ 'enter': 'vsplit' }
 " >>>
 
 nmap <c-j> <c-w>w3<c-e><c-w>w
@@ -1397,184 +1401,203 @@ nmap <c-k> <c-w>w3<c-y><c-w>w
 nnoremap <expr> g<c-v> '`[' . getregtype()[0] . '`]'
 
 if argc() == 2
-  execute "edit " . argv(0)
-  execute "vsplit " . argv(1)
-  wincmd =
+	execute "edit " . argv(0)
+	execute "vsplit " . argv(1)
+	wincmd =
+		endif
+
+	" set to 1, nvim will open the preview window after entering the Markdown buffer
+	" default: 0
+	let g:mkdp_auto_start = 0
+
+	" set to 1, the nvim will auto close current preview window when changing
+	" from Markdown buffer to another buffer
+	" default: 1
+	let g:mkdp_auto_close = 1
+
+	" set to 1, Vim will refresh Markdown when saving the buffer or
+	" when leaving insert mode. Default 0 is auto-refresh Markdown as you edit or
+	" move the cursor
+	" default: 0
+	let g:mkdp_refresh_slow = 0
+
+	" set to 1, the MarkdownPreview command can be used for all files,
+	" by default it can be use in Markdown files only
+	" default: 0
+	let g:mkdp_command_for_global = 0
+
+	" set to 1, the preview server is available to others in your network.
+	" By default, the server listens on localhost (127.0.0.1)
+	" default: 0
+	let g:mkdp_open_to_the_world = 0
+
+	" use custom IP to open preview page.
+	" Useful when you work in remote Vim and preview on local browser.
+	" For more details see: https://github.com/iamcco/markdown-preview.nvim/pull/9
+	" default empty
+	let g:mkdp_open_ip = ''
+
+	" specify browser to open preview page
+	" for path with space
+	" valid: `/path/with\ space/xxx`
+	" invalid: `/path/with\\ space/xxx`
+	" default: ''
+	let g:mkdp_browser = ''
+
+	" set to 1, echo preview page URL in command line when opening preview page
+	" default is 0
+	let g:mkdp_echo_preview_url = 0
+
+	" a custom Vim function name to open preview page
+	" this function will receive URL as param
+	" default is empty
+	let g:mkdp_browserfunc = ''
+
+	" options for Markdown rendering
+	" mkit: markdown-it options for rendering
+	" katex: KaTeX options for math
+	" uml: markdown-it-plantuml options
+	" maid: mermaid options
+	" disable_sync_scroll: whether to disable sync scroll, default 0
+	" sync_scroll_type: 'middle', 'top' or 'relative', default value is 'middle'
+	"   middle: means the cursor position is always at the middle of the preview page
+	"   top: means the Vim top viewport always shows up at the top of the preview page
+	"   relative: means the cursor position is always at relative positon of the preview page
+	" hide_yaml_meta: whether to hide YAML metadata, default is 1
+	" sequence_diagrams: js-sequence-diagrams options
+	" content_editable: if enable content editable for preview page, default: v:false
+	" disable_filename: if disable filename header for preview page, default: 0
+	let g:mkdp_preview_options = {
+				\ 'mkit': {},
+				\ 'katex': {},
+				\ 'uml': {},
+				\ 'maid': {},
+				\ 'disable_sync_scroll': 0,
+				\ 'sync_scroll_type': 'middle',
+				\ 'hide_yaml_meta': 1,
+				\ 'sequence_diagrams': {},
+				\ 'flowchart_diagrams': {},
+				\ 'content_editable': v:false,
+				\ 'disable_filename': 0,
+				\ 'toc': {}
+				\ }
+
+	" use a custom Markdown style. Must be an absolute path
+	" like '/Users/username/markdown.css' or expand('~/markdown.css')
+	"let g:mkdp_markdown_css = '/home/raph/Notes/style.css'
+	"let g:mkdp_markdown_css = '/home/raph/Code/markdown-css-themes/markdown3.css'
+
+	" use a custom highlight style. Must be an absolute path
+	" like '/Users/username/highlight.css' or expand('~/highlight.css')
+	let g:mkdp_highlight_css = ''
+
+	" use a custom port to start server or empty for random
+	let g:mkdp_port = ''
+
+	" preview page title
+	" ${name} will be replace with the file name
+	let g:mkdp_page_title = '¿${name}¿'
+
+	" use a custom location for images
+	let g:mkdp_images_path = '/home/raph/.markdown_images'
+
+	" recognized filetypes
+	" these filetypes will have MarkdownPreview... commands
+	let g:mkdp_filetypes = ['markdown']
+
+	" set default theme (dark or light)
+	" By default the theme is defined according to the preferences of the system
+	let g:mkdp_theme = 'light'
+
+	" combine preview window
+	" default: 0
+	" if enable it will reuse previous opened preview window when you preview markdown file.
+	" ensure to set let g:mkdp_auto_close = 0 if you have enable this option
+	let g:mkdp_combine_preview = 0
+
+	" auto refetch combine preview contents when change markdown buffer
+	" only when g:mkdp_combine_preview is 1
+	let g:mkdp_combine_preview_auto_refresh = 1
+
+
+	" example
+	"nmap <C-s> <Plug>MarkdownPreview
+	"nmap <M-s> <Plug>MarkdownPreviewStop
+	"nmap <C-p> <Plug>MarkdownPreviewToggle
+	nmap <leader>mp :MarkdownPreviewToggle<CR>
+	"nmap <leader>mp :set ft=markdown<CR> <bar> :MarkdownPreviewToggle<CR>
+
+	let g:gutentags_cache_dir="~/.vimtags"
+
+	autocmd FileType html setlocal foldmethod=indent
+	autocmd FileType html setlocal fdl=3
+
+	let g:colors = getcompletion('', 'color')
+	func! NextColors()
+		let idx = index(g:colors, g:colors_name)
+		return (idx + 1 >= len(g:colors) ? g:colors[0] : g:colors[idx + 1])
+	endfunc
+	func! PrevColors()
+		let idx = index(g:colors, g:colors_name)
+		return (idx - 1 < 0 ? g:colors[-1] : g:colors[idx - 1])
+	endfunc
+	nnoremap <C-n> :exe "colo " .. NextColors()<CR>
+	nnoremap <C-p> :exe "colo " .. PrevColors()<CR>
+
+	augroup no_folding_vimrc
+		autocmd!
+		autocmd BufRead,BufNewFile ~/.vimrc setlocal foldmethod=manual foldenable
+	augroup END
+
+	"au BufNewFile ~/.vimwiki/*.md :silent 0r !~/.vim/bin/generate-vimwiki-diary-template '%'
+	"au BufNewFile ~/.vimwiki/*.md :silent 0r ~/Templates/template-vimwikipage.mdwn
+
+	" todolist
+	"map gg ^rx: <Esc>:r! date +" [\%H:\%M]"<ENTER>kJA<Esc>$
+	"" create a new todo item
+	"map gt o  _
+	"
+	function! TLDR() range
+		" Get the selected lines
+		let lines = getline(a:firstline, a:lastline)
+		" Find max length (consider TL;DR: as well)
+		let maxlen = max([max(map(copy(lines), 'len(v:val)')), len('TL;DR:')])
+		" Build top/bottom border
+		let border = '+' . repeat('-', maxlen + 2) . '+'
+		" Start boxed lines
+		let boxed = [border]
+		" Add TL;DR: line
+		call add(boxed, '| TL;DR:' . repeat(' ', maxlen - len('TL;DR:')) . ' |')
+		" Add content lines
+		for l in lines
+			call add(boxed, '| ' . l . repeat(' ', maxlen - len(l)) . ' |')
+		endfor
+		call add(boxed, border)
+		" Replace selection
+		call setline(a:firstline, boxed)
+		if a:lastline > a:firstline
+			call deletebufline('', a:firstline+len(boxed), a:lastline+len(boxed)-1)
+		endif
+	endfunction
+	xnoremap <leader>b :<C-u>call TLDR()<CR>
+
+" Show all 256 terminal colors
+function! ShowCTermColors()
+  let row=0
+  for i in range(0, 255)
+    let group="Color".i
+    execute "highlight ".group." ctermfg=".i
+    let col=i%16
+    if col==0
+      echo ""
+      let row+=1
     endif
-
-  " set to 1, nvim will open the preview window after entering the Markdown buffer
-  " default: 0
-  let g:mkdp_auto_start = 0
-
-  " set to 1, the nvim will auto close current preview window when changing
-  " from Markdown buffer to another buffer
-  " default: 1
-  let g:mkdp_auto_close = 1
-
-  " set to 1, Vim will refresh Markdown when saving the buffer or
-  " when leaving insert mode. Default 0 is auto-refresh Markdown as you edit or
-  " move the cursor
-  " default: 0
-  let g:mkdp_refresh_slow = 0
-
-  " set to 1, the MarkdownPreview command can be used for all files,
-  " by default it can be use in Markdown files only
-  " default: 0
-  let g:mkdp_command_for_global = 0
-
-  " set to 1, the preview server is available to others in your network.
-  " By default, the server listens on localhost (127.0.0.1)
-  " default: 0
-  let g:mkdp_open_to_the_world = 0
-
-  " use custom IP to open preview page.
-  " Useful when you work in remote Vim and preview on local browser.
-  " For more details see: https://github.com/iamcco/markdown-preview.nvim/pull/9
-  " default empty
-  let g:mkdp_open_ip = ''
-
-  " specify browser to open preview page
-  " for path with space
-  " valid: `/path/with\ space/xxx`
-  " invalid: `/path/with\\ space/xxx`
-  " default: ''
-  let g:mkdp_browser = ''
-
-  " set to 1, echo preview page URL in command line when opening preview page
-  " default is 0
-  let g:mkdp_echo_preview_url = 0
-
-  " a custom Vim function name to open preview page
-  " this function will receive URL as param
-  " default is empty
-  let g:mkdp_browserfunc = ''
-
-  " options for Markdown rendering
-  " mkit: markdown-it options for rendering
-  " katex: KaTeX options for math
-  " uml: markdown-it-plantuml options
-  " maid: mermaid options
-  " disable_sync_scroll: whether to disable sync scroll, default 0
-  " sync_scroll_type: 'middle', 'top' or 'relative', default value is 'middle'
-  "   middle: means the cursor position is always at the middle of the preview page
-  "   top: means the Vim top viewport always shows up at the top of the preview page
-  "   relative: means the cursor position is always at relative positon of the preview page
-  " hide_yaml_meta: whether to hide YAML metadata, default is 1
-  " sequence_diagrams: js-sequence-diagrams options
-  " content_editable: if enable content editable for preview page, default: v:false
-  " disable_filename: if disable filename header for preview page, default: 0
-  let g:mkdp_preview_options = {
-        \ 'mkit': {},
-        \ 'katex': {},
-        \ 'uml': {},
-        \ 'maid': {},
-        \ 'disable_sync_scroll': 0,
-        \ 'sync_scroll_type': 'middle',
-        \ 'hide_yaml_meta': 1,
-        \ 'sequence_diagrams': {},
-        \ 'flowchart_diagrams': {},
-        \ 'content_editable': v:false,
-        \ 'disable_filename': 0,
-        \ 'toc': {}
-        \ }
-
-  " use a custom Markdown style. Must be an absolute path
-  " like '/Users/username/markdown.css' or expand('~/markdown.css')
-  "let g:mkdp_markdown_css = '/home/raph/Notes/style.css'
-  "let g:mkdp_markdown_css = '/home/raph/Code/markdown-css-themes/markdown3.css'
-
-  " use a custom highlight style. Must be an absolute path
-  " like '/Users/username/highlight.css' or expand('~/highlight.css')
-  let g:mkdp_highlight_css = ''
-
-  " use a custom port to start server or empty for random
-  let g:mkdp_port = ''
-
-  " preview page title
-  " ${name} will be replace with the file name
-  let g:mkdp_page_title = '¿${name}¿'
-
-  " use a custom location for images
-  let g:mkdp_images_path = '/home/raph/.markdown_images'
-
-  " recognized filetypes
-  " these filetypes will have MarkdownPreview... commands
-  let g:mkdp_filetypes = ['markdown']
-
-  " set default theme (dark or light)
-  " By default the theme is defined according to the preferences of the system
-  let g:mkdp_theme = 'light'
-
-  " combine preview window
-  " default: 0
-  " if enable it will reuse previous opened preview window when you preview markdown file.
-  " ensure to set let g:mkdp_auto_close = 0 if you have enable this option
-  let g:mkdp_combine_preview = 0
-
-  " auto refetch combine preview contents when change markdown buffer
-  " only when g:mkdp_combine_preview is 1
-  let g:mkdp_combine_preview_auto_refresh = 1
-
-
-  " example
-  "nmap <C-s> <Plug>MarkdownPreview
-  "nmap <M-s> <Plug>MarkdownPreviewStop
-  "nmap <C-p> <Plug>MarkdownPreviewToggle
-nmap <leader>mp :MarkdownPreviewToggle<CR>
-  "nmap <leader>mp :set ft=markdown<CR> <bar> :MarkdownPreviewToggle<CR>
-
-  let g:gutentags_cache_dir="~/.vimtags"
-
-  autocmd FileType html setlocal foldmethod=indent
-  autocmd FileType html setlocal fdl=3
-
-  let g:colors = getcompletion('', 'color')
-  func! NextColors()
-    let idx = index(g:colors, g:colors_name)
-    return (idx + 1 >= len(g:colors) ? g:colors[0] : g:colors[idx + 1])
-  endfunc
-  func! PrevColors()
-    let idx = index(g:colors, g:colors_name)
-    return (idx - 1 < 0 ? g:colors[-1] : g:colors[idx - 1])
-  endfunc
-  nnoremap <C-n> :exe "colo " .. NextColors()<CR>
-  nnoremap <C-p> :exe "colo " .. PrevColors()<CR>
-
-  augroup no_folding_vimrc
-    autocmd!
-    autocmd BufRead,BufNewFile ~/.vimrc setlocal foldmethod=manual foldenable
-  augroup END
-
-  "au BufNewFile ~/.vimwiki/*.md :silent 0r !~/.vim/bin/generate-vimwiki-diary-template '%'
-  "au BufNewFile ~/.vimwiki/*.md :silent 0r ~/Templates/template-vimwikipage.mdwn
-
-  " todolist
-  "map gg ^rx: <Esc>:r! date +" [\%H:\%M]"<ENTER>kJA<Esc>$
-  "" create a new todo item
-  "map gt o  _
-  "
-function! TLDR() range
-	 " Get the selected lines
-  let lines = getline(a:firstline, a:lastline)
-  " Find max length (consider TL;DR: as well)
-  let maxlen = max([max(map(copy(lines), 'len(v:val)')), len('TL;DR:')])
-  " Build top/bottom border
-  let border = '+' . repeat('-', maxlen + 2) . '+'
-  " Start boxed lines
-  let boxed = [border]
-  " Add TL;DR: line
-  call add(boxed, '| TL;DR:' . repeat(' ', maxlen - len('TL;DR:')) . ' |')
-  " Add content lines
-  for l in lines
-    call add(boxed, '| ' . l . repeat(' ', maxlen - len(l)) . ' |')
+    echohl Color".i
+    echon printf("%3d ", i)
+    echohl None
   endfor
-  call add(boxed, border)
-  " Replace selection
-  call setline(a:firstline, boxed)
-  if a:lastline > a:firstline
-    call deletebufline('', a:firstline+len(boxed), a:lastline+len(boxed)-1)
-	endif
+  echo ""
 endfunction
-xnoremap <leader>b :<C-u>call TLDR()<CR>
+
 
 " vim: set fdm=marker fmr=<<<,>>> fdl=0:fdc=2

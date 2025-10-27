@@ -248,6 +248,8 @@ alias changescreen='echo -e "local awful = require(\"awful\");awful.screen.focus
 alias tagsNotes='for file in `find ~/Notes/meetings/_posts/ -name "*mdwn"`; do grep categories -A4 $file | tail -n+2 | grep "^- " | grep . | sed "s:- ::"; done | sort -u'
 alias internetExplorer7='/usr/share/playonlinux/playonlinux --run "Internet Explorer 7"'
 
+alias ecrans="xrandr | grep ' connected'"
+
 
 alias rib='zathura /home/raph/Finances/HSBC/rib_hsbc_fournier.pdf'
 #
