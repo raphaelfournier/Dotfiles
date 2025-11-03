@@ -308,7 +308,7 @@ hi WildMenu        guifg=#cbecd0 guibg=#2c302d gui=underline  ctermfg=194 ctermb
 highlight SpellBad   gui=undercurl guisp=#cc9393 cterm=underline ctermfg=Red ctermbg=237
 highlight mailURL gui=underline guifg=#93e0e3 cterm=underline ctermfg=Blue ctermbg=237
 highlight mailSignature ctermfg=Blue ctermfg=247 " gris sombre
-"highlight SpellCap   gui=undercurl guisp=#8cd0d3 cterm=underline ctermfg=Cyan
+highlight SpellCap   gui=undercurl guisp=#8cd0d3 cterm=underline ctermfg=Cyan ctermbg=237
 "highlight SpellLocal gui=undercurl guisp=#7f9f7f cterm=underline ctermfg=Green
 "highlight SpellRare  gui=undercurl guisp=#dc8cc3 cterm=underline ctermfg=Magenta
 

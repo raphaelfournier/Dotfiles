@@ -49,6 +49,8 @@ Plug 'xolox/vim-misc'
 Plug 'ayu-theme/ayu-vim'
 "Plug 'chriskempson/base16-vim'
 Plug 'quarto-dev/quarto-vim'
+Plug 'jpalardy/vim-slime'
+
 
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'endel/vim-github-colorscheme'
@@ -1406,6 +1408,7 @@ if argc() == 2
 	wincmd =
 		endif
 
+"iamcco/markdown-preview.nvim
 	" set to 1, nvim will open the preview window after entering the Markdown buffer
 	" default: 0
 	let g:mkdp_auto_start = 0
@@ -1599,5 +1602,13 @@ function! ShowCTermColors()
   echo ""
 endfunction
 
+let g:slime_target = "tmux"
+
+"nnoremap <Leader>* :let @/=expand("<cword>")<Bar>split<Bar>normal n<CR>
+" search for word in the other split
+nnoremap <Leader>* :let @/=expand("<cword>")<Bar>wincmd w<Bar>normal n<CR>
+
+" meme chose en visuel
+xnoremap <Leader>* "vy:let @/ = escape(@v, '/\')<Bar>wincmd w<Bar>normal n<CR>
 
 " vim: set fdm=marker fmr=<<<,>>> fdl=0:fdc=2
