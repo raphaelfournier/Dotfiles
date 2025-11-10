@@ -76,10 +76,6 @@ set completion-fg "#8cd0d3" #0C
 set notification-bg "#709080" #0B
 set notification-fg "#1E2320" #00
 
-set index-fg "#DDDDDD"
-set index-bg "#232323"
-set index-active-fg "#232323"
-set index-active-bg "#7f9f7f"
 "set index-fg "#DDDDDD"
 "set index-bg "#232323"
 "set index-active-fg "#232323"

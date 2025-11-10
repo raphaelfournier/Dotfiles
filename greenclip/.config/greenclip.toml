@@ -1,4 +1,3 @@
-
 [greenclip]
   blacklisted_applications = []
   enable_image_support = true
@@ -7,7 +6,7 @@
   max_history_length = 50
   max_selection_size_bytes = 0
   trim_space_from_selection = true
-  use_primary_selection_as_input = false
+  use_primary_selection_as_input = true
   static_history = [
 "Raphaël Fournier-S'niehotta"
 ]

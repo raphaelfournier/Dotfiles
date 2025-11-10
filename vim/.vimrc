@@ -43,6 +43,8 @@ Plug 'conornewton/vim-pandoc-markdown-preview'
 
 Plug 'ron-rs/ron.vim'
 
+Plug 'vimoutliner/vimoutliner'
+
 Plug 'dylanaraps/wal.vim'
 Plug 'yasukotelin/shirotelin'
 Plug 'xolox/vim-misc'
@@ -184,6 +186,10 @@ autocmd FileType python set ts=4
 autocmd FileType python set sts=4
 
 set spelllang=fr
+
+" vimOutliner
+au BufEnter *.otl setlocal tabstop = 2
+au BufEnter *.otl setlocal shiftwidth=2
 
 augroup MARKDOWN
 	au BufNewFile,BufRead *.md set syntax=liquid
@@ -1282,6 +1288,7 @@ augroup end
 map <silent> <leader>cf :call writefile([], expand("<cfile>"), "t")<cr>
 map <leader>Gf :e <cfile><cr>
 map <leader>gf :vs <cfile><cr>
+map <leader>gF :sp <cfile><cr>
 nmap <C-w>f :e <cfile><CR>
 nnoremap <C-W><C-F> <C-W>vgf 
 "C-WC-F - Edit existing file under cursor in vertically split window
@@ -1610,5 +1617,9 @@ nnoremap <Leader>* :let @/=expand("<cword>")<Bar>wincmd w<Bar>normal n<CR>
 
 " meme chose en visuel
 xnoremap <Leader>* "vy:let @/ = escape(@v, '/\')<Bar>wincmd w<Bar>normal n<CR>
+
+nnoremap <Leader>hW :s/width/height/g
+nnoremap <Leader>hw :s/height/width/g
+
 
 " vim: set fdm=marker fmr=<<<,>>> fdl=0:fdc=2
