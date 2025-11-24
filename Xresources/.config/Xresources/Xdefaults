@@ -61,11 +61,11 @@ URxvt.keysym.Control-Left: \033[1;5D
 !
 URxvt*perl-lib:         /usr/lib/urxvt/perl/
 !URxvt*perl-ext-common:  urxvt-colors,default,matcher,keysym-list,url-select,resize-font,keyboard-select,clipboard,background,option-popup
-URxvt*perl-ext-common:  default,matcher,keysym-list,resize-font,keyboard-select,background,option-popup
+URxvt*perl-ext-common:  default,matcher,keysym-list,resize-font,keyboard-select,background,option-popup,clipboard
 URxvt.copyCommand: xclip -i -selection clipboard
 URxvt.pasteCommand: xclip -o -selection clipboard
-URxvt.keysym.M-c: perl:clipboard:copy
-URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.keysym.C-S-c: perl:clipboard:copy
+URxvt.keysym.C-S-v: perl:clipboard:paste
 URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search

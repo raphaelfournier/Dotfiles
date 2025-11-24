@@ -43,6 +43,8 @@ Plug 'conornewton/vim-pandoc-markdown-preview'
 
 Plug 'ron-rs/ron.vim'
 
+Plug 'JakeRoggenbuck/draft.vim'
+
 Plug 'vimoutliner/vimoutliner'
 
 Plug 'dylanaraps/wal.vim'
@@ -1620,6 +1622,15 @@ xnoremap <Leader>* "vy:let @/ = escape(@v, '/\')<Bar>wincmd w<Bar>normal n<CR>
 
 nnoremap <Leader>hW :s/width/height/g
 nnoremap <Leader>hw :s/height/width/g
+
+let g:drafts_directory = "/home/raph/Drafts/"
+" NewDraft Keybind
+nnoremap <Leader>nd :call NewDraft()<CR>
+" ListDrafts Keybind
+nnoremap <Leader>ld :call ListDrafts()<CR>
+" OpenDrafts Keybind
+nnoremap <Leader>z :call OpenDrafts()<CR>
+
 
 
 " vim: set fdm=marker fmr=<<<,>>> fdl=0:fdc=2

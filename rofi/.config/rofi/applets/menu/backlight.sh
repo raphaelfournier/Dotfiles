@@ -48,13 +48,33 @@ fi
 ICON_UP=""
 ICON_DOWN=""
 ICON_OPT=""
+ICON_85="85"
+ICON_25="25"
 
 notify="notify-send -u low -t 1500"
-options="$ICON_UP\n$ICON_OPT\n$ICON_DOWN"
+options="$ICON_85\n$ICON_25\n$ICON_UP\n$ICON_OPT\n$ICON_DOWN"
 
 ## Main
 chosen="$(echo -e "$options" | $rofi_command -p "$BLIGHT%  :  $MSG" -dmenu -selected-row 1)"
 case $chosen in
+    "$ICON_85")
+		if [[ -f /bin/brightnessctl ]]; then
+			brightnessctl -q set 85% && $notify "Brightness at $ICON_85"
+		elif [[ -f /usr/bin/blight ]]; then
+			blight -d "$DEVICE" set +10% && $notify "Bnssss Up $ICON_UP"
+		elif [[ -f /usr/bin/xbacklight ]]; then
+			xbacklight 85 && $notify "Brightness at $ICON_85"
+		fi
+        ;;
+    "$ICON_25")
+		if [[ -f /bin/brightnessctl ]]; then
+			brightnessctl -q set 25% && $notify "Brightness at $ICON_25"
+		elif [[ -f /usr/bin/blight ]]; then
+			blight -d "$DEVICE" set +10% && $notify "Brightness Up $ICON_UP"
+		elif [[ -f /usr/bin/xbacklight ]]; then
+			xbacklight -inc 10 && $notify "Brightness Up $ICON_UP"
+		fi
+        ;;
     "$ICON_UP")
 		if [[ -f /bin/brightnessctl ]]; then
 			brightnessctl -q set +10% && $notify "Brightness Up $ICON_UP"

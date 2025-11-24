@@ -24,6 +24,6 @@ macro index <esc>z "<limit>~P | ~l | %L personal-lists<enter><last-entry><curren
 source ~/.mutt/rfs-lists
 #save-hook . "=RFS/Archives/"
 folder-hook RFS unhook save-hook
-folder-hook RFS save-hook redaction@rennes.lessentiel.fr =Archives/MailingLists/
-folder-hook RFS save-hook "%L personal-lists" "=Archives/MailingLists"
+#folder-hook RFS save-hook zef@ghost.io =Archives/MailingLists/
 folder-hook RFS save-hook . "=RFS/Archives/"
+folder-hook RFS save-hook "%L personal-lists" "=RFS/Feeds/"

@@ -27,7 +27,7 @@ macro index \Ce "<limit>!~P !~l<enter><current-middle><last-entry>" "hide messag
 macro index ,Z "<tag-pattern>~N<enter><tag-prefix>Wn<tag-prefix>t" "mark all new as read"
 
 macro index ,o "<limit>~P | ~l<enter><current-middle>" "messages masqués par Ctrl+A"
-macro pager,index,generic A "<tag-pattern>~A<enter>" "all messages"
+#macro pager,index,generic A "<tag-pattern>~A<enter>" "all messages"
 macro index ,v "<limit>~l<enter><current-middle>" "view only list messages"
 #macro index S ":set confirmappend=no delete=yes\n<tag-prefix-cond><clear-flag>n<tag-prefix-cond><save-message>\n<sync-mailbox>"
 
