@@ -15,7 +15,7 @@ nm-applet --sm-disable &
 arandr-indicator &
 #vgrive &
 greenclip daemon &
-tmux new -d &
+#tmux new -d &
 indicator-sound-switcher &
 redshift &
 x-on-resize -a &

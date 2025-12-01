@@ -228,10 +228,11 @@ export LESS='-R'
 #export LESSOPEN='|~/.lessfilter %s'
 
 # pour tmux
-precmd() {
-  SESSION=`tmux display-message -p '#S'`
-	echo -ne "\033_tmux:${SESSION} ${PWD/#$HOME/~}"; echo -ne "\033\\"
-}
+#precmd() {
+  #SESSION=`tmux display-message -p '#S'`
+	#echo -ne "\033_tmux:${SESSION} ${PWD/#$HOME/~}"; echo -ne "\033\\"
+#}
+
 # Base16 Shell
 #BASE16_SHELL="$HOME/.base16-manager/chriskempson/base16-shell/"
 #[ -n "$PS1" ] && [ -s "$BASE16_SHELL/profile_helper.sh" ] && eval "$("$BASE16_SHELL/profile_helper.sh")"
@@ -250,5 +251,7 @@ if [[ `ps ho command $(ps ho ppid $$)` == 'urxvt' ]]; then
 fi
 
 eval "$(rbenv init - zsh)"
+
+tmux has -s0 2>/dev/null || tmux start
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

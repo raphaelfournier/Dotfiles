@@ -62,8 +62,8 @@ URxvt.keysym.Control-Left: \033[1;5D
 URxvt*perl-lib:         /usr/lib/urxvt/perl/
 !URxvt*perl-ext-common:  urxvt-colors,default,matcher,keysym-list,url-select,resize-font,keyboard-select,clipboard,background,option-popup
 URxvt*perl-ext-common:  default,matcher,keysym-list,resize-font,keyboard-select,background,option-popup,clipboard
-URxvt.copyCommand: xclip -i -selection clipboard
-URxvt.pasteCommand: xclip -o -selection clipboard
+!URxvt.copyCommand: xclip -i -selection clipboard
+!URxvt.pasteCommand: xclip -o -selection clipboard
 URxvt.keysym.C-S-c: perl:clipboard:copy
 URxvt.keysym.C-S-v: perl:clipboard:paste
 URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
@@ -74,6 +74,8 @@ URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.keysym.M-Up:     perl:resize-font:increase
 URxvt.keysym.M-Down:   perl:resize-font:decrease
 URxvt.keysym.M-0:      perl:resize-font:reset
+
+URxvt.keysym.S-Button2: perl:clipboard:paste
 
 URxvt.urlLauncher: firefox
 URxvt.underlineURLs: true

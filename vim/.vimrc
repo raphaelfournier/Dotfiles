@@ -39,7 +39,7 @@ Plug 'embear/vim-localvimrc'
 
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'conornewton/vim-pandoc-markdown-preview'
+"Plug 'conornewton/vim-pandoc-markdown-preview'
 
 Plug 'ron-rs/ron.vim'
 
@@ -146,6 +146,7 @@ Plug 'tpope/vim-fugitive'
 " https://github.com/preservim/vim-pencil
 Plug 'preservim/vim-pencil'
 Plug 'preservim/vim-pencil-colors'
+Plug 'preservim/vim-markdown'
 Plug 'Raimondi/vim-lengthy'
 Plug 'embear/vim-localvimrc'
 Plug 'preservim/vim-wordy'
@@ -195,13 +196,40 @@ au BufEnter *.otl setlocal shiftwidth=2
 
 augroup MARKDOWN
 	au BufNewFile,BufRead *.md set syntax=liquid
-	au BufEnter *.md* setlocal foldexpr=MarkdownLevel()  
-	au BufEnter *.md* setlocal foldmethod=expr     
+  au BufEnter *.md* setlocal foldcolumn=0
+  "au BufEnter *.md* setlocal foldlevel=99
+	"au BufEnter *.md* setlocal foldexpr=MarkdownLevel()  
+
+  au BufEnter *.md* setlocal foldmethod=syntax
+	"au BufEnter *.md* setlocal foldexpr=MarkdownFold(v:lnum)
 	autocmd BufNewFile,BufRead *.mdwn  setfiletype markdown
 	autocmd BufNewFile,BufRead *.md   setfiletype=markdown
 	au BufEnter *.md* colorscheme onehalfdark
 	"let g:airline_theme='onehalfdark'
 augroup END
+
+"" fold region for headings
+"syn region mkdHeaderFold
+    "\ start="^\s*\z(#\+\)"
+    "\ skip="^\s*\z1#\+"
+    "\ end="^\(\s*#\)\@="
+    "\ fold contains=TOP
+
+"" fold region for lists
+"syn region mkdListFold
+    "\ start="^\z(\s*\)\*\z(\s*\)"
+    "\ skip="^\z1 \z2\s*[^#]"
+    "\ end="^\(.\)\@="
+    "\ fold contains=TOP
+
+au FileType markdown syn region myMkdHeaderFold
+        \ start="\v^\s*\z(\#{1,6})"
+        \ skip="\v(\n\s*\z1\#)\@="
+        \ end="\v\n(\s*\#)\@="ms=s-1,me=s-1
+        \ fold contains=myMkdHeaderFold
+
+syn sync fromstart
+
 
 " Disable folding specifically for vimrc files
 
@@ -244,6 +272,18 @@ augroup END
 
 au BufNewFile,BufRead Snakefile set syntax=snakemake
 au BufNewFile,BufRead *.snake set syntax=snakemake
+
+function! MarkdownFold(lnum)
+  let line = getline(a:lnum)
+
+  " If line starts with #, fold based on number of #'s
+  if line =~ '^#\+ '
+    return match(line, '#\+') + 1
+  endif
+
+  " Otherwise: keep the same fold level as previous line
+  return '='
+endfunction
 
 
 function! MarkdownLevel()
@@ -1631,6 +1671,11 @@ nnoremap <Leader>ld :call ListDrafts()<CR>
 " OpenDrafts Keybind
 nnoremap <Leader>z :call OpenDrafts()<CR>
 
+command! EmailCopy let @" = matchstr(getline('.'), '<\zs[^>]\+')
+
+"let g:markdown_folding = 1
+let g:vim_markdown_folding_level = 2
+"set foldtext=getline(v:foldstart).'////...'
 
 
 " vim: set fdm=marker fmr=<<<,>>> fdl=0:fdc=2

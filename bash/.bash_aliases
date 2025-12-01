@@ -90,6 +90,7 @@ alias metro='feh -FZ ~/Images/plan-de-metro-bonne-definition.gif'
 alias mp='mplayer'
 alias mvd="find ~/downloads -type f -printf '%C@ %p\0' | sort -rz | sed -Ezn '1s/[^ ]* //p' | xargs -0 mv -i -v -t ."
 alias n='ncmpcpp'
+alias n2='ncmpcpp -c ~/.config/ncmpcpp/config-macmini'
 alias ping='prettyping --nolegend'
 alias tt='tig status'
 alias wdcopy="pwd | tr -d '\n' | xclip"
