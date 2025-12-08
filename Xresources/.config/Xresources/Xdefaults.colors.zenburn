@@ -1,5 +1,6 @@
 !! Zenburn
 URxvt*background:  [90]#3f3f3f
+urxvt-slave*background: [90]#223355
 URxvt*foreground:  #dcdccc
 URxvt*cursorColor: #94bff3
 ! black + red
@@ -35,6 +36,7 @@ URxvt*color15:     #ffffff
 URxvt*colorBD     : #f0dfaf
 URxvt*colorUL     : #dc8cc3
 URxvt*colorIT     : #60b48a
+
 
 !
 !

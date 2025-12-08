@@ -1669,7 +1669,7 @@ nnoremap <Leader>nd :call NewDraft()<CR>
 " ListDrafts Keybind
 nnoremap <Leader>ld :call ListDrafts()<CR>
 " OpenDrafts Keybind
-nnoremap <Leader>z :call OpenDrafts()<CR>
+nnoremap <Leader>nz :call OpenDrafts()<CR>
 
 command! EmailCopy let @" = matchstr(getline('.'), '<\zs[^>]\+')
 
@@ -1677,5 +1677,41 @@ command! EmailCopy let @" = matchstr(getline('.'), '<\zs[^>]\+')
 let g:vim_markdown_folding_level = 2
 "set foldtext=getline(v:foldstart).'////...'
 
+" Move last screenshot from ~/Images/Screenshots to ./figures using visual selection
+function! MoveLastScreenshot() range
+  " Get filename from visual selection
+  "let l:newname = join(getline("'<","'>"), "")
+  "let l:newname = trim(l:newname)
+  let l:newname = trim(getreg('"'))
 
-" vim: set fdm=marker fmr=<<<,>>> fdl=0:fdc=2
+  " Hardcoded paths
+  let l:src = expand('~/Images/Screenshots')
+  let l:dst = getcwd() . '/figures'
+
+  " Most recent file in screenshot folder
+  let l:lastfile = systemlist('ls -t ' . shellescape(l:src) . ' | head -n1')[0]
+
+  if empty(l:lastfile)
+    echo "No screenshots found in " . l:src
+    return
+  endif
+
+  " Full paths
+  let l:srcpath = l:src . '/' . l:lastfile
+  let l:dstpath = l:dst . '/' . l:newname
+
+  " Check if destination file already exists
+  if filereadable(l:dstpath)
+    echohl ErrorMsg
+    echo "Destination file already exists: " . l:dstpath
+    echohl None
+    return
+	endif
+
+  " Move & rename
+  call system('mv ' . shellescape(l:srcpath) . ' ' . shellescape(l:dstpath))
+
+  echo "Moved " . l:srcpath . " -> " . l:dstpath
+endfunction
+
+command! -range MoveLastScreenshot <line1>,<line2>call MoveLastScreenshot()

@@ -118,6 +118,7 @@ set sendmail  = "/usr/bin/msmtp -a cnam"
 set record    = "+CNAM/Archives/"
 set from      = "fournier@cnam.fr"
 
+
 set attribution         = "\n\nLe %d, %n a écrit:"          # set the attribution
 set reply_to                              # reply to Reply to: field
 set reverse_name                          # reply as whomever it was to
