@@ -1,0 +1,3 @@
+sudo /etc/rc.d/dbus restart && sudo /etc/rc.d/bluetooth restart && sudo bluez-simple-agent
+
+cat Calendar/lip6.ics | sed -e '/DTSTART;/s/DTSTART;.*:/DTSTART:/1' | sed -e '/DTEND;/s/DTEND;.*:/DTEND:/1' > Home.ics && gammu --restore Home.ics -yes

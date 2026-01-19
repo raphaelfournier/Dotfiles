@@ -1,0 +1,86 @@
+#!/bin/bash
+
+if [ "$#" = "0" -o "$1" = "-h" -o "$1" = "--help" ]; then
+	echo "Usage : $(basename $0) (-m2) filevideo"
+	echo "Used to convert a video for Cowon D2 mini PMP."
+	echo " "
+	echo "The following parameters are optional: "
+	echo "  -m    Convert video using mencoder."
+	echo "        Default is ffmpeg but it fails with some videos."
+	echo " "
+	echo "  -2    Two-pass encoding."
+	echo " "
+	echo "The two options can be used together :"
+	echo "\$ $(basename $0) -m2 \"The Dark Knight.avi\""
+	exit 1
+fi
+
+
+mencoder=0
+nbpass=1
+video="$1"
+
+while getopts m2 option
+do
+	case $option in
+		m)
+			mencoder=1
+			video="$2"
+			;;
+		2)
+			nbpass=2
+			video="$2"
+			;;
+	esac
+done
+
+xori=$(mplayer -frames 0 -really-quiet -identify "$video" | grep ID_VIDEO_WIDTH | awk -F"=" '{print $2}')
+yori=$(mplayer -frames 0 -really-quiet -identify "$video" | grep ID_VIDEO_HEIGHT | awk -F"=" '{print $2}')
+
+xnew=320
+ynew=$(( xnew * yori / xori ))
+if [ $ynew -gt 240 ]; then
+	ynew=240
+fi
+resnew=${xnew}x$ynew
+
+echo "+++ Resizing : ${xori}x$yori --> $resnew"
+
+nameori=$(basename "$video")
+namenew=${nameori%.*}-D2.avi
+
+case $mencoder in
+	0)
+		case $nbpass in
+			1)
+				echo "+++ Using ffmpeg - one pass... just wait."
+				ffmpeg -i "$video" -threads 2 -s $resnew -vcodec mpeg4 -vtag XVID -b 500kb -mbd 2 -flags +4mv+trell+aic -cmp 2 -subcmp 2 -g 300 -acodec mp3 -ab 128 -ac 2 -async 1 "$namenew" > /dev/null 2>&1
+				;;
+			2)
+				echo "+++ Using ffmpeg - two pass."
+				echo "+ First pass... be patient."
+				ffmpeg -i "$video" -pass 1 -passlogfile /tmp/ffmpeg2pass -threads 2 -s $resnew -vcodec mpeg4 -vtag XVID -b 500kb -mbd 2 -flags +4mv+trell+aic -cmp 2 -subcmp 2 -g 300 -an /tmp/null.avi > /dev/null 2>&1
+				echo "+ Second pass... be more patient."
+				ffmpeg -i "$video" -pass 2 -passlogfile /tmp/ffmpeg2pass -threads 2 -s $resnew -vcodec mpeg4 -vtag XVID -b 500kb -mbd 2 -flags +4mv+trell+aic -cmp 2 -subcmp 2 -g 300 -acodec mp3 -ab 128 -ac 2 -async 1 "$namenew" > /dev/null 2>&1
+				rm /tmp/null.avi
+				rm /tmp/ffmpeg2pass-0.log
+				;;
+		esac
+		;;
+	1)
+		case $nbpass in
+			1)
+				echo "+++ Using mencoder - one pass... just wait."
+				mencoder "$video" -ni -ovc lavc -ffourcc XVID -lavcopts threads=2:vcodec=mpeg4:vbitrate=500:vmax_b_frames=0:vhq -sws 9 -vf scale=$xnew:$ynew -oac mp3lame -lameopts cbr:br=128:mode=0 -o "$namenew" > /dev/null 2>&1
+				;;
+			2)
+				echo "+++ Using mencoder - two pass."
+				echo "+ First pass... be patient."
+				mencoder "$video" -ni -ovc lavc -ffourcc XVID -lavcopts threads=2:vcodec=mpeg4:vbitrate=500:vmax_b_frames=0:vhq:vpass=1 -passlogfile /tmp/divx2pass.log -sws 9 -vf scale=$xnew:$ynew -nosound -o /dev/null > /dev/null 2>&1
+				echo "+ Second pass... be more patient."
+				mencoder "$video" -ni -ovc lavc -ffourcc XVID -lavcopts threads=2:vcodec=mpeg4:vbitrate=500:vmax_b_frames=0:vhq:vpass=2 -passlogfile /tmp/divx2pass.log -sws 9 -vf scale=$xnew:$ynew -oac mp3lame -lameopts cbr:br=128:mode=0 -o "$namenew" > /dev/null 2>&1
+				rm /tmp/divx2pass.log
+				;;
+		esac
+		;;
+esac

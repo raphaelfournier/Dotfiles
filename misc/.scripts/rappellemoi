@@ -1,0 +1,23 @@
+#!/bin/bash
+# rappellemoi 50m Change laundry
+# rappellemoi @17:30 Wake mom up for dinner.
+
+title="Rappel"
+message="${@:2}"
+
+if [ $# -ne 2 ]
+then
+  echo "ERROR: Wrong number of arguments"
+  echo "  Usage: rappellemoi 50m Change laundry"
+  echo "         rappellemoi @17:30 Wake mom up for dinner"
+  exit 1
+fi
+
+if [[ "${1:0:1}" == "@" ]]
+then
+echo "notify-send -u critical \"$title\" \"$message\"" | at ${1:1}
+else
+sleep $1 && notify-send -u critical "$title" "$message" &
+fi
+
+

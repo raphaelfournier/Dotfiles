@@ -76,6 +76,7 @@ set menu_scroll                                                 # scroll in menu
 set markers=no
 set wrap=80
 set smart_wrap                                                  # don't split words
+set pipe_split=yes
 
 set tilde                                                       # show tildes like in vim
 auto_view text/html                                             # view html automatically
@@ -198,7 +199,7 @@ source $alias_file                                              # required for f
 source ~/.mutt/neomuttrc 
 
 source ~/.mutt/colors/zenburn.inside.muttrc
-#source ~/.mutt/colors/zenburn.outside.muttrc
+#source ~/.mutt/colors/zenburn.outside2.muttrc
 
 folder-hook flux "push <last-entry><current-middle>"
 folder-hook feeds "push <last-entry><current-middle>"

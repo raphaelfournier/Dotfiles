@@ -1,5 +1,5 @@
--o %(id)s-%(title)s_%(channel)s_%(duration_string)s.%(ext)s
--f "bv[height<=1080]*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b"
---write-auto-subs
---sub-langs "en,en-orig"
---paths "~/Vidéos/TrajetsTrain/"
+#-o %(id)s-%(title)s_%(channel)s_%(duration_string)s.%(ext)s
+#-f "bv[height<=1080]*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b"
+#--write-auto-subs
+#--sub-langs "en,en-orig"
+#--paths "~/Vidéos/TrajetsTrain/"

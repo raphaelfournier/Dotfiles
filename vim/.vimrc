@@ -1663,7 +1663,7 @@ xnoremap <Leader>* "vy:let @/ = escape(@v, '/\')<Bar>wincmd w<Bar>normal n<CR>
 nnoremap <Leader>hW :s/width/height/g
 nnoremap <Leader>hw :s/height/width/g
 
-let g:drafts_directory = "/home/raph/Drafts/"
+let g:drafts_directory = "/home/raph/.drafts/"
 " NewDraft Keybind
 nnoremap <Leader>nd :call NewDraft()<CR>
 " ListDrafts Keybind
@@ -1715,3 +1715,5 @@ function! MoveLastScreenshot() range
 endfunction
 
 command! -range MoveLastScreenshot <line1>,<line2>call MoveLastScreenshot()
+
+" vim: set fdm=marker fmr=<<<,>>> fdl=0:fdc=2

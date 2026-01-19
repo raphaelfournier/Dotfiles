@@ -1,0 +1,4 @@
+#!/bin/bash
+sudo ifconfig wlan0 up
+sudo iwconfig wlan0 essid "iscguest"
+sudo dhcpcd wlan0

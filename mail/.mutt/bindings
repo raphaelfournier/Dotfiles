@@ -24,6 +24,9 @@ macro index \Cb "<limit>~(~U)<enter>" "view only threads with new messages"
 macro index \Cw "<limit>!~F<enter><current-middle>" "hide flagged messages"
 macro index \Ce "<limit>!~P !~l<enter><current-middle><last-entry>" "hide messages from me and lists"
 
+#ticktask
+macro index,pager S "<pipe-message>~/.scripts/mutt2ticktask.sh <enter>" 
+
 macro index ,Z "<tag-pattern>~N<enter><tag-prefix>Wn<tag-prefix>t" "mark all new as read"
 
 macro index ,o "<limit>~P | ~l<enter><current-middle>" "messages masqués par Ctrl+A"
@@ -35,6 +38,21 @@ macro index ,v "<limit>~l<enter><current-middle>" "view only list messages"
 #macro index \Ce "<limit>!~s SLURM<enter><current-middle>"
 
 macro attach s <save-entry><kill-line>~/Mail/Attachments/ "save attachments in ~/Mail/Attachments" 
+#macro index ,i "<tag-prefix><pipe-message>ripmime -i - -d /home/raph/Recherche/Stages/Candidatures/" "Save all attachments"
+#macro index ,i "<pipe-message>sh -c 'D=/home/raph/Recherche/Stages/Candidatures/$(date +%s_%N); mkdir -p $D; ripmime -i - -d $D'"
+#SENDER=$(grep -i '^From:' /tmp/mutt_tmp_msg | head -1 | sed 's/^From: //i' | sed 's/.*<\(.*\)>/\1/' | tr -d '\"' | tr -cd '[:alnum:]@.-'); \
+#SENDER=$(grep -i '^From:' /tmp/mutt_tmp_msg | head -1 | sed 's/^From: //i' | sed 's/<.*$//' | sed 's/ $//' | sed 's/ /_/g'); \
+#echo $SENDER > ~/foo; \
+
+macro index ,i \
+"<tag-prefix><pipe-message>cat > /tmp/mutt_tmp_msg; \
+SENDER=$(grep -i '\^From:' /tmp/mutt_tmp_msg | head -1| sed 's/^^From: //' | sed 's/ <.*$//'| sed 's/ /_/g'); \
+TARGET=/home/raph/Recherche/Stages/Candidatures/$SENDER; \
+mkdir -p \"$TARGET\"; \
+ripmime -i /tmp/mutt_tmp_msg -d \"$TARGET\"; \
+<enter>" \
+"Save attachments to folder named by Sender"
+
 #macro attach S <save-entry><kill-line>~/downloads/ "save attachments in ~/downloads/" 
 #macro compose ,a "<attach-file>`xsel -p | sed "s/ /$(printf \\026)&/g"`<enter>"
 bind index zt current-top

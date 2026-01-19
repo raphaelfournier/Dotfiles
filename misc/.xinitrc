@@ -37,4 +37,4 @@ setxkbmap -option caps:escape &
 DEFAULT_SESSION=awesome
 #DEFAULT_SESSION=gnome-session
 #DEFAULT_SESSION=i3
-exec $DEFAULT_SESSION
+exec $DEFAULT_SESSION >> ~/.cache/awesome/log-stdout 2>> ~/.cache/awesome/log-stderr

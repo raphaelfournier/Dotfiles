@@ -1,0 +1,3 @@
+#! /bin/bash
+sudo iwconfig wlan0 essid "LIP6-guest" key "s:guest"
+sudo dhcpcd wlan0

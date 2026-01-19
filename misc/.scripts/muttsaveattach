@@ -1,0 +1,4 @@
+#!/bin/sh
+
+alacritty -e ranger --choosefile=/tmp/muttattach
+cat > $"`/tmp/muttattach`"

@@ -51,3 +51,10 @@ vimb/.config/vimb/history
 watson/.config/watson/frames
 watson/.config/watson/frames.bak
 watson/.config/watson/state.bak
+misc/.scripts/*/
+mail/.mutt/neomutt-file-picker/
+misc/.scripts/gnome-u2ps-0.0.4.tar.gz
+misc/.scripts/labelnation-1.218.tar.gz
+misc/.scripts/markdown_to_note.orig
+misc/.scripts/repos.paconky
+misc/.scripts/tasks.ics

@@ -1,0 +1,31 @@
+#!/bin/bash
+
+title="Ouvrir l'URL avec"
+options=("firefox" "chromium" "luakit" "opera" "mutt" "dialogue")
+u=$1
+
+echo $u | grep -q "vine\.co"
+choice=$?
+#notify-send "choice" $choice
+
+if [ $choice -ne 0 ]; then
+  opt=$(zenity --title="$title" --text="" --width=300 --height=280 --list --column="Navigateur" "${options[@]}")
+  if [ ! -z $opt ]; then
+    notify-send "opening in ${opt}" $u
+  fi
+else # on ouvre les vine dans chromium
+  opt="chromium"
+  notify-send "opening in $opt" $u
+fi
+
+if [ $opt = "mutt" ]; then
+  /home/raph/scripts/mailto-mutt.sh $u
+fi
+
+if [ $opt = "dialogue" ]; then
+   text=`/home/raph/scripts/decodeHtml.py $u`
+   zenity --info --no-markup --text="$text"
+   exit 0
+fi
+
+nohup $opt $u &

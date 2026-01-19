@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+import sys
+from pathlib import Path
+from PIL import Image
+
+def resize_image(input_path, max_size=1024, out_format="JPEG", quality=85):
+    input_path = Path(input_path)
+    img = Image.open(input_path)
+
+    # keep aspect ratio
+    img.thumbnail((max_size, max_size), Image.Resampling.LANCZOS)
+
+    # output file
+    # out_path = input_path.with_suffix(f".{out_format.lower()}")
+    out_path = input_path.with_stem(f"{input_path.stem}_1024").with_suffix(".jpeg")
+    img.save(out_path, out_format, quality=quality)
+    # print(f"Saved resized image -> {out_path}")
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: imgresize <image> [max_size]")
+        sys.exit(1)
+
+    path = sys.argv[1]
+    size = int(sys.argv[2]) if len(sys.argv) > 2 else 1024
+    resize_image(path, max_size=size)
