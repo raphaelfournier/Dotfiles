@@ -1476,7 +1476,7 @@ if argc() == 2
 	" set to 1, the MarkdownPreview command can be used for all files,
 	" by default it can be use in Markdown files only
 	" default: 0
-	let g:mkdp_command_for_global = 0
+	let g:mkdp_command_for_global = 1
 
 	" set to 1, the preview server is available to others in your network.
 	" By default, the server listens on localhost (127.0.0.1)
@@ -1715,5 +1715,11 @@ function! MoveLastScreenshot() range
 endfunction
 
 command! -range MoveLastScreenshot <line1>,<line2>call MoveLastScreenshot()
+
+" beamer itemize
+" prend des lignes visuellement surlignées et transforme en liste beamer
+vnoremap ,bi :s/^\s*\(.*\)/  \\item \1/<CR>gv<Esc>'<O\begin{itemize}<Esc>'>o\end{itemize}<Esc>
+" même chose pour une ligne transformée en titre de frame
+vnoremap ,bt :s/^\s*\(.*\)/  \\begin{frame}{ \1/<CR>A}<Esc>O\end{frame}<Esc>
 
 " vim: set fdm=marker fmr=<<<,>>> fdl=0:fdc=2
