@@ -127,7 +127,7 @@ setopt INC_APPEND_HISTORY
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_DUPS
 
-export EDITOR="vim"
+export EDITOR="nvim"
 export MANPAGER=most
 export XDG_CONFIG_HOME="/home/raph/.config"
 export XDG_DATA_HOME="/home/raph/.local/share"

@@ -82,7 +82,7 @@ macro compose ,x      ":set sendmail=\"/home/raph/.scripts/msmtp-queue-scheduler
 macro compose ,g      ":set sendmail=\"/usr/bin/msmtp -a google\""
 
 macro compose ,f      "<edit-fcc>=LIP6/INBOX"
-macro compose ,F      "<edit-fcc>=CNAM/TRIED/"
+macro compose ,F      "<edit-fcc>=LIP6/Archives/"
 
 macro pager,index,generic ,a      "<change-folder>+Archives/`date +%y`<enter>"
 macro pager,index,generic ,A      "<change-folder>+Archives/`eval 'date +%y-1 | bc'`<enter>"

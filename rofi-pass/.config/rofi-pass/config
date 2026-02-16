@@ -51,7 +51,7 @@ default_user=raphael@fournier-sniehotta.fr
 default_user2=fournier@cnam.fr
 password_length=16
 
-#backend=xdotool
+backend=xdotool
 
 # Custom Keybindings
 #autotype="Alt+1"

@@ -180,6 +180,7 @@ autocmd BufWinEnter *.* silent loadview
 augroup WrapLineInTeXFile
 	autocmd!
 	autocmd FileType tex setlocal wrap linebreak nolist
+  autocmd FileType tex setlocal fdm=marker " rien à voir avec wraping
 	"autocmd FileType tex setlocal showbreak=+++
 	"autocmd FileType tex setlocal formatoptions-=t
 augroup END
@@ -369,7 +370,6 @@ nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 imap <C-b> <Plug>Tex_MathBF
 imap <C-c> <Plug>Tex_MathCal
-imap <C-l> <Plug>Tex_LeftRight
 " Map <Leader>ff to display all lines with keyword under cursor
 " and ask which one to jump to
 nmap <Leader>Ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
@@ -1148,6 +1148,7 @@ let g:neosnippet#snippets_directory='~/.vim/mysnippets'
 " These two lines conflict with the default digraph mapping of <C-K>
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
+
 "if exists('g:spf13_noninvasive_completion')
 "inoremap <CR> <CR>
 "" <ESC> takes you out of insert mode
@@ -1721,5 +1722,11 @@ command! -range MoveLastScreenshot <line1>,<line2>call MoveLastScreenshot()
 vnoremap ,bi :s/^\s*\(.*\)/  \\item \1/<CR>gv<Esc>'<O\begin{itemize}<Esc>'>o\end{itemize}<Esc>
 " même chose pour une ligne transformée en titre de frame
 vnoremap ,bt :s/^\s*\(.*\)/  \\begin{frame}{ \1/<CR>A}<Esc>O\end{frame}<Esc>
+
+" Highlight the markers in bright colors
+match ErrorMsg /^\(<\{7\}\|=\{7\}\|>\{7\}\).*/
+
+" Correct typos in insert mode.  Copied from <https://castel.dev/post/lecture-notes-1/>.
+inoremap <C-L> <C-G>u<Esc>[s1z=`]a<C-G>u
 
 " vim: set fdm=marker fmr=<<<,>>> fdl=0:fdc=2

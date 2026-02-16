@@ -1,5 +1,7 @@
 #include "/home/raph/.config/Xresources/Xdefaults"
 #include "/home/raph/.config/Xresources/Xdefaults.colors.zenburn"
+!#include "/home/raph/.config/Xresources/frappe.Xresources"
+!#include "/home/raph/.config/Xresources/macchiato.Xresources"
 !#include "/home/raph/.config/Xresources/Xdefaults.colors.papercolor"
 !#include "/home/raph/Code/Configs/Xresources-themes/iterm-Piatto_Light.Xresources"
 !#include "/home/raph/Code/Configs/Xresources-themes/iterm-Solarized_Light.Xresources"
