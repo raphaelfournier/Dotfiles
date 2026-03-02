@@ -221,6 +221,8 @@ alias temperature='cat /proc/acpi/thermal_zone/THRM/temperature'
 alias tmpdir='bar=$((1 + $RANDOM % 10)); mkdir /tmp/foobar-${bar} && cd /tmp/foobar-${bar}'
 alias tmuxconf="$VIMEXEC ~/.tmux.conf"
 alias tmuxrc="$VIMEXEC ~/.tmux.conf"
+alias tumx="tmux"
+alias tmxu="tmux"
 alias today='echo "watson log --day" && watson log --day'
 alias todayheures='echo "watson log --day" && unbuffer watson log --day | cut -d " " -f -7 '
 alias todo-devmessage="vim /home/raph/Code/langagePython/devmessage/templates/todo.html"

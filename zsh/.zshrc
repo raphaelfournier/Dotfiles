@@ -254,4 +254,9 @@ eval "$(rbenv init - zsh)"
 
 tmux has -s0 2>/dev/null || tmux start
 
+self-insert() {
+  [[ $KEYS == $'\u00A0' ]] && LBUFFER+=" " || zle .self-insert
+}
+zle -N self-insert
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

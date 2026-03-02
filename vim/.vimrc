@@ -1064,6 +1064,7 @@ function! ShowColourSchemeName()
 endfunction
 
 "https://www.hillelwayne.com/post/intermediate-vim/
+command! Ytdlp g/^[^h]/d \| g/^\s*$/d
 command! Vimrc :vs $MYVIMRC
 command! ZenburnColors :vs /home/raph/.config/Xresources/Xdefaults.colors.zenburn
 command! AwesomeWMTheme :vs /home/raph/.config/awesome/themes/myzenburn/theme.lua
