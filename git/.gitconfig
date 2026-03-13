@@ -7,21 +7,22 @@
 [color]
 	ui = auto
 [alias]
- p = pull
- pp = push
- psuh = push # gros doigts
- co = checkout
- cl = clone
- st = status
- modfiles = show --pretty="" --name-only 
- ts = status # gros doigts
- ci = commit
- dt = difftool
+added    = difftool --cached
+ci       = commit
+cl       = clone
+co       = checkout
+dt       = difftool
+last     = log -1 HEAD
+lgo      = log --oneline
+p        = pull
+pp       = push
+psuh     = push # gros doigts
+showtool = "!f() { git difftool $1^ $1; }; f"
+st       = status
+ts       = status # gros doigts
  ll = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
- lgo = log --oneline
  lg= log --graph --date=short --pretty=format:'%Cgreen%h %Cblue%cd (%cr) %Cred%an%C(yellow)%d%Creset: %s'
- showtool = "!f() { git difftool $1^ $1; }; f"
- added = difftool --cached
+ modfiles = show --pretty="" --name-only 
 [merge]
   conflictstyle = diff3
   # Standard diff is two sets of final changes. This introduces the original text before each side's changes.
