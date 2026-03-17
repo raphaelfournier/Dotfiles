@@ -1,5 +1,5 @@
-#-o %(id)s-%(title)s_%(channel)s_%(duration_string)s.%(ext)s
+-o [%(channel.:10)s]_%(title)+.100U_[%(id)s][%(duration>%H-%M-%S)s]
 #-f "bv[height<=1080]*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b"
 #--write-auto-subs
 #--sub-langs "en,en-orig"
-#--paths "~/Vidéos/TrajetsTrain/"
+--paths "~/Vidéos/ytdlp-inbox/"

@@ -494,6 +494,8 @@ filetype plugin on
 "set listchars=tab:>·,trail:·extends:#,nbsp:·
 highlight NbSp ctermbg=lightred guibg=lightred
 match NbSp /\%xa0/
+highlight Tab ctermbg=lightblue guibg=lightblue
+match Tab /\t/
 "set rnu " number
 "set nu " number
 set ruler
