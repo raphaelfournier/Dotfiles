@@ -17,8 +17,8 @@ arandr-indicator &
 greenclip daemon &
 #tmux new -d &
 indicator-sound-switcher &
-redshift &
-x-on-resize -a &
+#redshift &
+#x-on-resize -s -a & # laissé tomber pour autorandr
 #picom &
 pasystray &
 #nextcloud & 
@@ -35,6 +35,5 @@ mpDris2 &
 setxkbmap -option caps:escape &
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap &
 DEFAULT_SESSION=awesome
-#DEFAULT_SESSION=gnome-session
-#DEFAULT_SESSION=i3
+#DEFAULT_SESSION=openbox
 exec $DEFAULT_SESSION >> ~/.cache/awesome/log-stdout 2>> ~/.cache/awesome/log-stderr
