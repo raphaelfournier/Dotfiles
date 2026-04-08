@@ -199,6 +199,8 @@ source $alias_file                                              # required for f
 source ~/.mutt/neomuttrc 
 
 source ~/.mutt/colors/zenburn.inside.muttrc
+# besoin de TERM=xterm-direct neomutt -F .muttrc dans alacritty 08/04/2026
+#source "/home/raph/.mutt/colors/iTerm2-Color-Schemes/neomutt/3024 Day.rc"
 # source ~/.mutt/colors/catppuccin.neomuttrc
 #source ~/.mutt/colors/zenburn.outside2.muttrc
 

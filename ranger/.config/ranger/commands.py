@@ -212,3 +212,17 @@ class mdnotes(Command):
 
         self.fm.ui.browser.marked_items.clear()  # Clear marked items from UI
         self.fm.notify("Created .md files for selected items.")
+
+import os
+from ranger.api.commands import Command
+
+class zoxide_fzm(Command):
+    """
+    :zoxide_fzm
+    Opens zoxide's interactive menu and jumps to the selection.
+    """
+    def execute(self):
+        # Trigger zoxide interactive query
+        selected = os.popen('zoxide query -i').read().strip()
+        if selected:
+            self.fm.cd(selected)

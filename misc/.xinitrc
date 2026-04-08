@@ -34,6 +34,8 @@ musnify-mpd &
 mpDris2 &
 setxkbmap -option caps:escape &
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap &
+# /usr/lib/xdg-desktop-portal-gtk &
+#
 DEFAULT_SESSION=awesome
 #DEFAULT_SESSION=openbox
 exec $DEFAULT_SESSION >> ~/.cache/awesome/log-stdout 2>> ~/.cache/awesome/log-stderr

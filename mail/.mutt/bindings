@@ -34,10 +34,13 @@ macro index ,o "<limit>~P | ~l<enter><current-middle>" "messages masqués par Ct
 macro index ,v "<limit>~l<enter><current-middle>" "view only list messages"
 #macro index S ":set confirmappend=no delete=yes\n<tag-prefix-cond><clear-flag>n<tag-prefix-cond><save-message>\n<sync-mailbox>"
 
+macro attach s "<save-entry><kill-line>~/Mail/Attachments/" "save attachments in ~/Mail/Attachments" 
+#macro attach S "<save-entry><kill-line>~/Mail/Attachments/<enter>t" "Save all tagged to default folder"
+macro attach S "<pipe-entry>~/.scripts/fzf-mutt-dir-select.sh > /tmp/mutt-cmd<enter>:source /tmp/mutt-cmd<enter>" "Save to fzf-selected directory"
+
 # paris 13 specifique
 #macro index \Ce "<limit>!~s SLURM<enter><current-middle>"
 
-macro attach s <save-entry><kill-line>~/Mail/Attachments/ "save attachments in ~/Mail/Attachments" 
 #macro index ,i "<tag-prefix><pipe-message>ripmime -i - -d /home/raph/Recherche/Stages/Candidatures/" "Save all attachments"
 #macro index ,i "<pipe-message>sh -c 'D=/home/raph/Recherche/Stages/Candidatures/$(date +%s_%N); mkdir -p $D; ripmime -i - -d $D'"
 #SENDER=$(grep -i '^From:' /tmp/mutt_tmp_msg | head -1 | sed 's/^From: //i' | sed 's/.*<\(.*\)>/\1/' | tr -d '\"' | tr -cd '[:alnum:]@.-'); \

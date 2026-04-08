@@ -141,6 +141,7 @@ alias muttrc="$VIMEXEC ~/.mutt/muttrc"
 alias mux='tmuxinator'
 alias muxconf='cd ~/.config/tmuxinator/'
 alias mvd="find ~/downloads -type f -printf '%C@ %p\0' | sort -rz | sed -Ezn '1s/[^ ]* //p' | xargs -0 mv -i -v -t ."
+alias zd="find ~/downloads -type f -printf '%C@ %p\0' | sort -rz | sed -Ezn '1s/[^ ]* //p' | xargs -0 zathura"
 alias mysql="mariadb"
 alias n2='ncmpcpp -c ~/.config/ncmpcpp/config-macmini'
 alias n='ncmpcpp'
@@ -269,7 +270,7 @@ alias xrlab='xrandr --output VGA1 --auto --left-of LVDS1'
 alias y='paru'
 alias yt-mp3='yt-dlp -x --audio-format mp3 -o "/home/raph/Musique/Youtube/%(title)s_%(id)s.%(ext)s" '
 alias yt='yt-dlp'
-alias z='devour zathura'
+#alias z='devour zathura'
 alias zatPDF='F=$(fd "(epub|pdf)$" ~/Pdf /home/raph/Cloud/NextcloudFS/A-INBOX | sort | rofi -dmenu -i -fullscreen -p "PDF :") && zathura $'
 alias zds="find ~/downloads -type f -printf '%C@ %p\0' | sort -rz | sed -Ezn '1s/[^ ]* //p' | xargs -0 zathura "
 alias zhome='sudo netcfg home'

@@ -1,0 +1,21 @@
+{
+  "db": "/home/raph/.f2mdb",
+    "maildir": "~/Mail/feeds",
+    "feeds": {
+      "ArchlinuxNews" : "http://www.archlinux.org/feeds/news/",
+      "Authueil" : "http://authueil.fr/feed/rss2",
+      "xkcd": "http://xkcd.com/rss.xml",
+      "CodingHorror" : "http://feeds.feedburner.com/codinghorror/ ",
+      "HackerStations" : "https://hackerstations.com/index.xml",
+      "SIF" : "http://www.societe-informatique-de-france.fr/feed",
+      "Stamatiou" : "http://paulstamatiou.com/posts.xml",
+      "Standblog" : "http://standblog.org/blog/feed/rss2",
+      "crepegeorgette" : "http://feeds.feedburner.com/crepegeorgette",
+      "sebmusset" : "http://feeds.feedburner.com/sebmusset",
+      "lemire" : "http://lemire.me/blog/feed/atom/",
+      "Tayebot" : "http://tayebot.tumblr.com/rss",
+      "RFS" : "http://raphael.fournier-sniehotta.fr/feed/rss.xml",
+      "Bortzmeyer" : "http://www.bortzmeyer.org/feed-full.atom",
+      "Workspaces" : "https://www.workspaces.xyz/p/rss.xml"
+    }
+}
