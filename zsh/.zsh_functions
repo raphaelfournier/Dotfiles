@@ -42,3 +42,28 @@ bkp() {
   fi
 }
 
+toggle-ads() {
+    local LINK="/etc/hosts.d"
+    local STRICT="/etc/hosts.profiles/adsBlocked"
+    local NONE="/etc/hosts.profiles/adsAllowed"
+
+    if [[ "$(readlink -f "$LINK")" == "$STRICT" ]]; then
+        echo "🔓 Allowing ads..."
+        sudo rm "$LINK"
+        sudo ln -s "$NONE" "$LINK"
+        echo "🔓 Ads ALLOWED (Profile: /etc/hosts.profiles/adsAllowed)"
+    else
+        echo "🛡️ Disabling ads..."
+        sudo rm "$LINK"
+        sudo ln -s "$STRICT" "$LINK"
+        echo "🛡️  Ads BLOCKED (Profile: /etc/hosts.profiles/adsBlocked)"
+    fi
+
+    # Rebuild the hosts file
+    sudo hosts-gen
+
+    # Optional: Flush DNS cache if you use systemd-resolved
+    if command -v resolvectl >/dev/null; then
+        sudo resolvectl flush-caches
+    fi
+}

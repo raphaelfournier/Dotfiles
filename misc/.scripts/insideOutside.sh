@@ -15,7 +15,7 @@ then
     sed -i --follow-symlinks "/ayu_light/ s:^#::" ~/.config/alacritty/alacritty.toml # toggle in alacritty
     sed -i --follow-symlinks "/zenburn/ s:^:#:" ~/.config/alacritty/alacritty.toml # toggle in alacritty
     sed -i --follow-symlinks "/zenburn.in/ s:^:#:" ~/.muttrc # toggle in muttrc
-    sed -i --follow-symlinks "/zenburn.out/ s:^#::" ~/.muttrc # toggle in muttrc
+    sed -i --follow-symlinks "/raph.out/ s:^#::" ~/.muttrc # toggle in muttrc
     sed -i --follow-symlinks "/raph.outside/ s:^#::" ~/.muttrc
     sed -i --follow-symlinks "/colors.zenburn/ s:^:!:" ~/.Xresources
     sed -i --follow-symlinks "/colors.papercolor/ s:^!::" ~/.Xresources
@@ -38,8 +38,7 @@ then
     #sed -i --follow-symlinks "185,187 s:^:#:" ~/.zshrc
     sed -i --follow-symlinks "/ayu_light/ s:^:#:" ~/.config/alacritty/alacritty.toml # toggle in alacritty
     sed -i --follow-symlinks "/zenburn/ s:^#::" ~/.config/alacritty/alacritty.toml # toggle in alacritty
-    sed -i --follow-symlinks "/raph.wal/ s:^#::" ~/.muttrc
-    sed -i --follow-symlinks "/zenburn.out/ s:^:#:" ~/.muttrc # toggle in muttrc
+    sed -i --follow-symlinks "/raph.out/ s:^:#:" ~/.muttrc # toggle in muttrc
     sed -i --follow-symlinks "/zenburn.in/ s:^#::" ~/.muttrc # toggle in muttrc
     sed -i --follow-symlinks "/raph.outside/ s:^:#:" ~/.muttrc
     sed -i --follow-symlinks "/colors.zenburn/ s:^!::" ~/.Xresources

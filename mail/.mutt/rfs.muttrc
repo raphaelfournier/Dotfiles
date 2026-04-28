@@ -22,8 +22,7 @@ folder-hook RFS/ "push <last-entry><current-middle>"
 macro index <esc>z "<limit>~P | ~l | %L personal-lists<enter><last-entry><current-middle>"
 
 source ~/.mutt/rfs-lists
-#save-hook . "=RFS/Archives/"
-folder-hook RFS unhook save-hook
-#folder-hook RFS save-hook zef@ghost.io =Archives/MailingLists/
-folder-hook RFS save-hook . "=RFS/Archives/"
-folder-hook RFS save-hook "%L personal-lists" "=RFS/Feeds/"
+unhook save-hook
+# bizarre, le catchall devrait être avant
+save-hook "%C personal-lists" "=RFS/Feeds/"
+save-hook . "=RFS/Archives/"

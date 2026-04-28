@@ -23,9 +23,10 @@ for file in "$TARGET_DIR"/*.{mp4,webm}; do
     if [ -n "$seconds" ]; then
         # Display individual file duration in human-readable format
         readable=$(exiftool -s3 -Duration "$file")
-        echo "File: $(basename "$file")"
-        echo "Duration: $readable"
-        echo "------------------------------------------------"
+        echo "$readable | $(basename "$file")" 
+        #echo "File: $(basename "$file")"
+        #echo "Duration: $readable"
+        #echo "------------------------------------------------"
 
         # Add to total (using bc for decimal handling if necessary)
         total_seconds=$(echo "$total_seconds + $seconds" | bc)
@@ -35,12 +36,13 @@ done
 # Convert total seconds back to HH:MM:SS
 if (( $(echo "$total_seconds > 0" | bc -l) )); then
     # Round to nearest integer for display
-    rounded_total=$(LC_NUMERIC=C printf "%.0f" "$total_seconds")
+    #rounded_total=$(LC_NUMERIC=C printf "%.0f" "$total_seconds")
+    rounded_total=$(awk "BEGIN {print int($total_seconds + 0.5)}")
     
     final_time=$(printf '%02d:%02d:%02d\n' $((rounded_total/3600)) $((rounded_total%3600/60)) $((rounded_total%60)))
     
-    echo "TOTAL DURATION: $final_time"
     echo "------------------------------------------------"
+    echo "TOTAL DURATION: $final_time"
 else
     echo "No supported video files found."
 fi

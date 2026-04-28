@@ -5,6 +5,7 @@
 # commands when upgrading ranger.
 
 # You always need to import ranger.api.commands here to get the Command class:
+import os
 from ranger.api.commands import Command
 from ranger.core.loader import CommandLoader
 from pathlib import Path
@@ -213,8 +214,46 @@ class mdnotes(Command):
         self.fm.ui.browser.marked_items.clear()  # Clear marked items from UI
         self.fm.notify("Created .md files for selected items.")
 
-import os
-from ranger.api.commands import Command
+class video_vue(Command):
+    """
+    :video_vue
+    Creates an empty marker file in 'Vues/' and deletes the original video.
+    """
+    def execute(self):
+        # Get the list of selected files
+        files = self.fm.thistab.get_selection()
+
+        if not files:
+            return
+
+        # Path to the "Vues" subfolder
+        vues_dir = os.path.join(self.fm.thisdir.path, 'Vues')
+
+        # Create the directory if it doesn't exist
+        if not os.path.exists(vues_dir):
+            try:
+                os.makedirs(vues_dir)
+            except OSError as e:
+                self.fm.notify(f"Error creating directory: {e}", bad=True)
+                return
+
+        for f in files:
+            # Construct the new filename (same name, empty content)
+            # You can keep the extension or strip it; keeping it is safer for tracking
+            marker_name = f.basename + ".empty"
+            marker_path = os.path.join(vues_dir, marker_name)
+
+            try:
+                # 1. Create the empty file
+                open(marker_path, 'a').close()
+
+                # 2. Delete the original file permanently
+                os.remove(f.path)
+            except Exception as e:
+                self.fm.notify(f"Failed to process {f.basename}: {e}", bad=True)
+
+        self.fm.notify("Videos processed and moved to Vues.")
+        self.fm.ui.redraw_main_column()
 
 class zoxide_fzm(Command):
     """

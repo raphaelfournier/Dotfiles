@@ -136,4 +136,8 @@ set abort_noattach = ask-yes
 # Français:
 set attach_keyword = "\\<(attached|attachments?|attach|attaché|attachés|attache|attachons|enclosed|PJ|joint|jointe|joints|jointes|joins|joignons)\\>"
 
+set compose_preview_above_attachments = no
+set compose_preview_min_rows = 5
+set compose_show_preview = yes
+
 # vim: syntax=muttrc

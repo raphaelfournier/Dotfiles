@@ -170,8 +170,10 @@ call plug#end() " vimplug
 
 " <<< Automatic rules for filetypes 
 augroup LATEX
+  autocmd!
+  autocmd FileType tex setlocal foldmethod=marker
+  autocmd FileType tex setlocal foldmarker=<<<,>>>
 	au BufRead *tex nmap Q gqap
-	"  au BufRead ~/.mutt/temp/mutt* map!  <F5>  <ESC>kgqji
 augroup END
 
 autocmd BufWinLeave *.* mkview
@@ -180,7 +182,6 @@ autocmd BufWinEnter *.* silent loadview
 augroup WrapLineInTeXFile
 	autocmd!
 	autocmd FileType tex setlocal wrap linebreak nolist
-  autocmd FileType tex setlocal fdm=marker " rien à voir avec wraping
 	"autocmd FileType tex setlocal showbreak=+++
 	"autocmd FileType tex setlocal formatoptions-=t
 augroup END
@@ -1731,5 +1732,8 @@ match ErrorMsg /^\(<\{7\}\|=\{7\}\|>\{7\}\).*/
 
 " Correct typos in insert mode.  Copied from <https://castel.dev/post/lecture-notes-1/>.
 inoremap <C-L> <C-G>u<Esc>[s1z=`]a<C-G>u
+
+" for yt-dlp
+nnoremap ,yt :v/^http/d<cr>
 
 " vim: set fdm=marker fmr=<<<,>>> fdl=0:fdc=2
