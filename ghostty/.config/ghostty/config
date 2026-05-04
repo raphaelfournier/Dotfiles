@@ -1,0 +1,20 @@
+# The syntax is "key = value". The whitespace around the
+# equals doesn't matter.
+#background = ff0000
+#foreground = ffffff
+theme = Nord
+
+# Comments start with a `#` and are only valid on their own line.
+# Blank lines are ignored!
+
+keybind = ctrl+z=close_surface
+keybind = ctrl+d=new_split:right
+
+# Empty values reset the configuration to the default value
+# font-family =
+
+gtk-wide-tabs = false
+gtk-titlebar-style = tabs
+#gtk-titlebar = false
+#window-decoration = none
+#window-show-tab-bar = never

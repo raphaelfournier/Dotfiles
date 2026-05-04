@@ -16,6 +16,7 @@
       "Tayebot" : "http://tayebot.tumblr.com/rss",
       "RFS" : "http://raphael.fournier-sniehotta.fr/feed/rss.xml",
       "Bortzmeyer" : "http://www.bortzmeyer.org/feed-full.atom",
-      "Workspaces" : "https://www.workspaces.xyz/p/rss.xml"
+      "Workspaces" : "https://www.workspaces.xyz/p/rss.xml",
+      "UsesThis" : "https://usesthis.com/feed.atom"
     }
 }

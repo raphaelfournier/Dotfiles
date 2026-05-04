@@ -22,6 +22,6 @@ toc="--toc "
 
 #echo -N --template=$textemp --variable mainfont=$mainfont --variable sansfont=$sansfont --variable monofont=$monofont --variable fontsize=$fontsize --variable lang=french --variable geometry="margin=1in" $1 --latex-engine=xelatex $toc -o ${filename}.pdf
 
-pandoc -N --template=$textemp --variable mainfont=$mainfont --variable sansfont=$sansfont --variable monofont=$monofont --variable fontsize=$fontsize --variable lang=french --variable geometry="margin=1in" $1 --latex-engine=xelatex $toc -o ${filename}.pdf
+pandoc -N --template=$textemp --variable mainfont=$mainfont --variable sansfont=$sansfont --variable monofont=$monofont --variable fontsize=$fontsize --variable lang=french --variable geometry="margin=1in" $1 --pdf-engine=xelatex $toc -o ${filename}.pdf
 
 # vim: set fdm=marker fmr=<<<,>>> fdl=0:fdc=2
