@@ -39,13 +39,18 @@ if tmp == "List":
     # titles = check_output(["mpc", "playlist"])
     # titles = run(["mpc", "playlist"], capture_output=True, text=True).stdout
     # titles = getstatusoutput("mpc playlist")
-    # titles = Popen("mpc playlist", stdout=PIPE, stderr=STDOUT, shell=True)
-    file_path = '/home/raph/.mpcplaylist'
-    with open(file_path, 'r') as file:
-        titles = file.read()
+    #titles = Popen("mpc playlist", stdout=PIPE, stderr=STDOUT, shell=True)
     track = 0
     tlist = ""
-    for line in titles.splitlines():
+
+    # file_path = '/home/raph/.mpcplaylist'
+    # with open(file_path, 'r') as file:
+        # titles = file.read()
+    # for line in titles.splitlines():
+
+    output = check_output(["mpc", "-f", "%title% - %artist%", "playlist"], text=True)
+    titles = output.splitlines()
+    for line in titles:
         track += 1
         tlist = tlist + "[" + str(track) + "] " + line + "\n"
     if track > 1:
