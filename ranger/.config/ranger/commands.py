@@ -6,6 +6,7 @@
 
 # You always need to import ranger.api.commands here to get the Command class:
 import os
+import shutil
 from ranger.api.commands import Command
 from ranger.core.loader import CommandLoader
 from pathlib import Path
@@ -253,6 +254,31 @@ class video_vue(Command):
                 self.fm.notify(f"Failed to process {f.basename}: {e}", bad=True)
 
         self.fm.notify("Videos processed and moved to Vues.")
+        self.fm.ui.redraw_main_column()
+
+class done(Command):
+    """
+    :done
+    Move selected files to the 'Done' folder in the current directory.
+    """
+    def execute(self):
+        files = self.fm.thistab.get_selection()
+
+        if not files:
+            self.fm.notify("No files selected!", bad=True)
+            return
+
+        # Define and create the target directory
+        done_dir = os.path.join(self.fm.thisdir.path, 'Done')
+
+        if not os.path.exists(done_dir):
+            os.makedirs(done_dir)
+
+        for f in files:
+            # f.path gives the full string path of the ranger file object
+            shutil.move(f.path, done_dir)
+
+        self.fm.notify(f"Moved {len(files)} files to Done.")
         self.fm.ui.redraw_main_column()
 
 class zoxide_fzm(Command):

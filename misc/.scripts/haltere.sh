@@ -1,3 +1,3 @@
 #! /bin/bash 
 
-mpv --script-opts=osc-visibility=always /home/raph/Sport/Musculation/[TiboInSha]_15minMusculationHautCorpsHaltere_[i5VA9_lnHy0][00-15-58].webm
+mpv --script-opts=osc-visibility=always --start=+44 /home/raph/Sport/Musculation/\[Oliver\ Sjo\]_20\ Min\ TOTAL\ UPPER\ BODY\ Workout\ With\ Dumbbells\ \(Build\ Muscle\ \&\ Strength\)_\[nixaLRF0Jd8\]\[00-24-31\].webm
