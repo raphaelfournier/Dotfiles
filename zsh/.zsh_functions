@@ -67,3 +67,4 @@ toggle-ads() {
         sudo resolvectl flush-caches
     fi
 }
+

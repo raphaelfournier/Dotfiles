@@ -125,6 +125,7 @@ alias m='neomutt -F ~/.muttrc'
 alias magi='ssh cluster-magi'
 alias marks-check='for line in `cut -d":" -f2 /home/raph/.fzf-marks`; do [[ ! -d $line ]] && echo "pas de : $line"; done'
 alias marksedit="$VIMEXEC ~/.fzf-marks +"
+alias mdprint='pandoc --metadata-file=/home/raph/Templates/PandocMdToPDF/print-md-template.yaml --template=/home/raph/Templates/PandocMdToPDF/template.latex --pdf-engine=xelatex'
 alias meetings='ranger Notes/meetings/_posts/`date +%y`/'
 alias mencal='mencal -3 -m --config s=20120726'
 alias meteoVillejuif='links http://wttr.in/villejuif'

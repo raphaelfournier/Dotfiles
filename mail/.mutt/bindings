@@ -15,11 +15,11 @@ bind index ! noop
 macro index B   "<limit>~b "                "search message bodies"
 #macro pager,attach B "<enter-command>set pipe_decode=no<enter><pipe-message>cat > /tmp/mutt.html; firefox /tmp/mutt.html<enter>"
 
-macro index \Cf "<limit>~F<enter><current-middle>" "limit to flagged messages"
+macro index \Cf "<limit>~F<enter><current-middle><last-entry>" "limit to flagged messages"
 macro index <esc>a "<limit>all<enter>oi<current-middle>" "view all messages, sorted by discussion"
 macro index <esc>z "<limit>~P | ~l<enter><current-middle>" "view messages excluded from default view"
 macro index <esc>d "<tag-pattern>~=<enter><tag-prefix>d" "tag and delete duplicate messages"
-macro index \Cv "<limit>~N<enter>od<current-middle>" "view only new messages"
+macro index \Cv "<limit>~N<enter>od<current-middle><last-entry>" "view only new messages"
 macro index \Cb "<limit>~(~U)<enter>" "view only threads with new messages"
 macro index \Cw "<limit>!~F<enter><current-middle>" "hide flagged messages"
 macro index \Ce "<limit>!~P !~l<enter><current-middle><last-entry>" "hide messages from me and lists"
@@ -59,7 +59,7 @@ ripmime -i /tmp/mutt_tmp_msg -d \"$TARGET\"; \
 #macro attach S <save-entry><kill-line>~/downloads/ "save attachments in ~/downloads/" 
 #macro compose ,a "<attach-file>`xsel -p | sed "s/ /$(printf \\026)&/g"`<enter>"
 bind index zt current-top
-bind index zz current-middle
+macro index zz "<next-entry><previous-entry><current-middle>"
 bind index zb current-bottom
 macro index Z   "<shell-escape>/usr/bin/offlineimap -q -o<enter>" "sync IMAP" # quick-sync ~/Mail immediately with offlineimap
 bind pager \c? previous-line # FIX for Rxvt-unicode backspace binding
