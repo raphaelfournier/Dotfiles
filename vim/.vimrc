@@ -990,7 +990,12 @@ let g:tex_flavor='latex'
 "let g:vimtex_complete_enabled=1
 "
 let g:vimtex_view_method='zathura'
-let g:vimtex_main_file_auto = 0
+let g:vimtex_main_file_auto = 1
+"let g:vimtex_view_use_main_file_default = 1
+"let g:vimtex_compiler_search_path = '.'
+" Force Vimtex to look for main.tex specifically before guessing
+"let g:vimtex_compiler_main_names = ['main', 'main.tex']
+"
 " Viewer options: One may configure the viewer either by specifying a built-in
 " viewer method:
 " Or with a generic interface:
