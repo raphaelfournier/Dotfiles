@@ -1,6 +1,7 @@
 VIMEXEC='vim'
 MULTIPLEX='screen'
 
+alias ack='rg'
 alias activateAnaconda='source /opt/anaconda/bin/activate root'
 alias alacrittyconf="$VIMEXEC ~/.config/alacritty/alacritty.toml"
 alias alert='tput bel'
@@ -46,6 +47,7 @@ alias dsd='cd ~/downloads && ls -d */ -tr'
 alias dsr='docker stop '
 alias ecrans="xrandr | grep ' connected'"
 alias f='firefox'
+alias fpf='fpf -a'
 alias fz='feh -FZ'
 alias g='git'
 alias ga="git add"
@@ -269,6 +271,7 @@ alias wtweek='/usr/bin/watson log --week'
 alias xdefaults="$VIMEXEC /home/raph/.config/Xresources/Xdefaults"
 alias xrlab='xrandr --output VGA1 --auto --left-of LVDS1'
 alias y='paru'
+alias ys='fpf'
 alias yt-mp3='yt-dlp -x --audio-format mp3 -o "/home/raph/Musique/Youtube/%(title)s_%(id)s.%(ext)s" '
 alias yt='yt-dlp'
 #alias z='devour zathura'

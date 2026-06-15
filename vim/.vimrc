@@ -176,6 +176,11 @@ augroup LATEX
 	au BufRead *tex nmap Q gqap
 augroup END
 
+augroup VimTeX
+    autocmd!
+    autocmd User VimtexEventInitPre let b:vimtex_main = 'main.tex'
+augroup END
+
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
 
@@ -989,8 +994,13 @@ endif
 let g:tex_flavor='latex'
 "let g:vimtex_complete_enabled=1
 "
-let g:vimtex_view_method='zathura'
-let g:vimtex_main_file_auto = 1
+let g:vimtex_compiler_enabled = 0
+let g:vimtex_complete_enabled = 0
+let g:vimtex_view_enabled = 0
+let g:vimtex_subfile_start_local = 1
+"let g:vimtex_compiler_method = 'latexmk'
+"let g:vimtex_view_method='zathura'
+"let g:vimtex_main_file_auto = 0
 "let g:vimtex_view_use_main_file_default = 1
 "let g:vimtex_compiler_search_path = '.'
 " Force Vimtex to look for main.tex specifically before guessing
@@ -1007,12 +1017,11 @@ let g:vimtex_main_file_auto = 1
 " supported backends and further explanation is provided in the documentation,
 " see ":help vimtex-compiler".
 "let g:vimtex_compiler_method = 'latexrun'
-let g:vimtex_compiler_method = 'latexmk'
 
 " Most VimTeX mappings rely on localleader and this can be changed with the
 " following line. The default is usually fine and is the symbol "\".
 "let g:vimtex_maplocalleader = ","
-let g:vimtex_quickfix_mode=0
+"let g:vimtex_quickfix_mode=0
 
 set conceallevel=1
 let g:tex_conceal='abdmg'
