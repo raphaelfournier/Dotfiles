@@ -282,6 +282,4 @@ alias zihapconf="$VIMEXEC .config/zihap/*toml -O"
 alias zlibrary='tor-browser http://bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion'
 export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(vim {})+abort'"
 function dsr() { docker stop $@ && docker rm $@; }
-function hier() { 
-}
 alias copyMyBiblioHere="cp /home/raph/Publications/Blogging/sbadmin2/bibliography/mybiblio.bib ."

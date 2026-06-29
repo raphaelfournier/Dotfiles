@@ -176,11 +176,6 @@ augroup LATEX
 	au BufRead *tex nmap Q gqap
 augroup END
 
-augroup VimTeX
-    autocmd!
-    autocmd User VimtexEventInitPre let b:vimtex_main = 'main.tex'
-augroup END
-
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
 
@@ -993,11 +988,12 @@ endif
 " https://castel.dev/post/lecture-notes-1/
 let g:tex_flavor='latex'
 "let g:vimtex_complete_enabled=1
+let g:vimtex_main_choose_first="v:true"
 "
 let g:vimtex_compiler_enabled = 0
 let g:vimtex_complete_enabled = 0
 let g:vimtex_view_enabled = 0
-let g:vimtex_subfile_start_local = 1
+"let g:vimtex_subfile_start_local = 1
 "let g:vimtex_compiler_method = 'latexmk'
 "let g:vimtex_view_method='zathura'
 "let g:vimtex_main_file_auto = 0
@@ -1740,7 +1736,7 @@ command! -range MoveLastScreenshot <line1>,<line2>call MoveLastScreenshot()
 " prend des lignes visuellement surlignées et transforme en liste beamer
 vnoremap ,bi :s/^\s*\(.*\)/  \\item \1/<CR>gv<Esc>'<O\begin{itemize}<Esc>'>o\end{itemize}<Esc>
 " même chose pour une ligne transformée en titre de frame
-vnoremap ,bt :s/^\s*\(.*\)/  \\begin{frame}{ \1/<CR>A}<Esc>O\end{frame}<Esc>
+vnoremap ,bt :s/^\s*\(.*\)/  \\begin{frame}{\1/<CR>A}<Esc>o\end{frame}<Esc>
 
 " Highlight the markers in bright colors
 match ErrorMsg /^\(<\{7\}\|=\{7\}\|>\{7\}\).*/
