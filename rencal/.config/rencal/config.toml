@@ -1,0 +1,18 @@
+theme = "user:zenburn"
+notifications_enabled = true
+auto_sync_enabled = true
+
+[groups]
+Restreint = [
+    "travail",
+    "seminaire-codes-sources",
+    "admin",
+    "https-www-lip6-fr-calendrier-consscient",
+    "marie",
+    "ticktick",
+    "personnel",
+    "lip6",
+    "conferences",
+    "sport",
+    "jours-feries-et-autres-fetes-en-france",
+]

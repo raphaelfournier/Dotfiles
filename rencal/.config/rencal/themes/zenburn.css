@@ -1,0 +1,18 @@
+/* @name zenburn */
+/* https://github.com/t4t5/rencal/tree/main/src/themes */
+--muted: #dcdccc;
+--foreground: #dcdccc;
+
+/*--background: #3f3f3f;*/
+--background: #1E2320; 
+
+--highlight: #7f9f7f;
+
+/*--hover-tint: #f0dfaf;*/
+--hover-tint: #3f3f3f;
+--hover-mix: 10%;
+
+--today: #D78787;
+--radius-base: 10px;
+--radius-circle: 10;
+

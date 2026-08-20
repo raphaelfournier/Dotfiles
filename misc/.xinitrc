@@ -5,7 +5,7 @@ xrdb -merge ~/.Xresources
 #xscreensaver -no-splash &
 /home/raph/.scripts/locker.sh &
 udiskie -san &
-touchegg &
+#touchegg &
 #eval $(gpg-agent --daemon) &
 #dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 blueman-applet &
@@ -17,7 +17,7 @@ arandr-indicator &
 greenclip daemon &
 #tmux new -d &
 indicator-sound-switcher &
-#redshift &
+redshift &
 #x-on-resize -s -a & # laissé tomber pour autorandr
 #picom &
 pasystray &

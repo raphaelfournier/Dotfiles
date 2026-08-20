@@ -5,7 +5,7 @@ LC_ALL = "fr_FR.UTF-8"
 
 [font]
 size   = 14
-offset = { x = 0, y = -5} # pour réduire l'écart vertical avec LGC
+#offset = { x = 0, y = -5} # pour réduire l'écart vertical avec LGC
 
 [font.normal]
 #family = "Inconsolata Nerd Font" # ne gère pas bien les accents 2026-02-18
