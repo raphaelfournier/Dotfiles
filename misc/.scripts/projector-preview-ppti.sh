@@ -8,8 +8,8 @@ GEOMETRY="50%:50%"
 CLASS_NAME="ProjectorPreview"
 PIPE="/tmp/projector_preview_pipe"
 
-HEIGHT=1080
-WIDTH=1920
+WIDTH=1200
+HEIGHT=800
 X_OFFSET=0
 Y_OFFSET=0
 

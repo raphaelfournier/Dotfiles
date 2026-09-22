@@ -153,7 +153,7 @@ Plug 'preservim/vim-wordy'
 
 Plug 'junegunn/seoul256.vim'
 
-" id�es pas essay�es
+" idées pas essayées
 "Plug 'dpelle/vim-LanguageTool'
 "Plug 'Ron89/thesaurus_query.vim'
 "Plug 'thaerkh/vim-workspace'
@@ -352,16 +352,16 @@ nnoremap <silent> gw "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>
 let g:lasttab = 1
 nmap <Leader>lt :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
-" « v,d » et « v,s » lancent firefox et une recherche (définition ou synonyme) dans le tlfi sur le mot courant
+" Â« v,d Â» et Â« v,s Â» lancent firefox et une recherche (dÃ©finition ou synonyme) dans le tlfi sur le mot courant
 vmap ,d :<C-U>!luakit "http://www.cnrtl.fr/lexicographie/<cword>" >& /dev/null<CR><CR>
 vmap ,s :<C-U>!luakit "http://www.cnrtl.fr/synonymie/<cword>" >& /dev/null<CR><CR>
-" « v,g » comme ci-dessus mais pour google
+" Â« v,g Â» comme ci-dessus mais pour google
 vmap ,g :<C-U>!luakit "http://www.google.fr/search?hl=fr&q=<cword>&btnG=Recherche+Google&meta=" >& /dev/null<CR><CR>
-"« v,w » comme ci-dessus mais pour wikipedia
+"Â« v,w Â» comme ci-dessus mais pour wikipedia
 vmap ,w :<C-U>!luakit "http://fr.wikipedia.org/wiki/<cword>" >& /dev/null<CR><CR>
-" « v,c » comme ci-dessus mais pour le conjugueur
+" Â« v,c Â» comme ci-dessus mais pour le conjugueur
 vmap ,cv :<C-U>!luakit "http://www.leconjugueur.com/php5/index.php?v=<cword>" >& /dev/null<CR><CR>
-" « v,o » ouvre l’url sur laquelle on se trouve dans firefox
+" Â« v,o Â» ouvre lâurl sur laquelle on se trouve dans firefox
 vmap ,o :<C-U>!firefox "<cfile>" >& /dev/null<CR><CR>
 "vimbits
 " search word in center of screen
@@ -411,12 +411,12 @@ let g:zenburn_old_Visual = 1
 "hi Normal guibg=NONE ctermbg=NONE
 
 let inout = system("cat ~/.insideOutside | tr -d '\n'")
-" si on est dedans, on active thème sombre
+" si on est dedans, on active thÃ¨me sombre
 if inout == "in" 
 	colors zenburn
 	"colors base16-zenburn
 	let g:airline_theme='angr'
-" sinon, le thème light
+" sinon, le thÃ¨me light
 else
 	"colorscheme shirotelin
 	"set background=light
@@ -489,10 +489,10 @@ set showmatch
 filetype plugin on
 " Show special characters in the file.
 " colorise les nbsp
-" nbsp affiches par '·'
+" nbsp affiches par 'Â·'
 "set list
-"set listchars=tab:>�,trail:�,nbsp:�
-"set listchars=tab:>�,trail:�extends:#,nbsp:�
+"set listchars=tab:>·,trail:·,nbsp:·
+"set listchars=tab:>·,trail:·extends:#,nbsp:·
 highlight NbSp ctermbg=lightred guibg=lightred
 match NbSp /\%xa0/
 highlight Tab ctermbg=lightblue guibg=lightblue
@@ -573,8 +573,8 @@ autocmd VimEnter * nnoremap <leader>caL :CalendarV<CR>
 function! MyCalAction(day, month, year, week, dir)
 	" Month names
 	let l:months = [
-				\ 'janvier', 'f�vrier', 'mars', 'avril', 'mai', 'juin',
-				\ 'juillet', 'ao�t', 'septembre', 'octobre', 'novembre', 'd�cembre'
+				\ 'janvier', 'février', 'mars', 'avril', 'mai', 'juin',
+				\ 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'
 				\ ]
 
 	" Build date string "day month"
@@ -818,13 +818,13 @@ let g:tagbar_type_rst = {
 let g:tagbar_type_markdown = {
 			\ 'ctagstype': 'markdown',
 			\ 'ctagsbin' : '/home/raph/.scripts/markdown2ctags/markdown2ctags.py',
-			"\ 'ctagsargs' : '-f - --sort=yes --sro=�',
+			"\ 'ctagsargs' : '-f - --sort=yes --sro=»',
 			\ 'ctagsargs' : '-f - --sort=yes',
 			\ 'kinds' : [
 			\ 's:sections',
 			\ 'i:images'
 			\ ],
-			"\ 'sro' : '�',
+			"\ 'sro' : '»',
 			\ 'kind2scope' : {
 			\ 's' : 'section',
 			\ },
@@ -1399,7 +1399,7 @@ nmap <Leader>j :call GotoJump()<CR>
 "let g:AutoCentern
 " >>>
 
-" <<< Abr�viations et raccourcis clavier 
+" <<< Abréviations et raccourcis clavier 
 "
 " Append modeline after last line in buffer.
 " " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
@@ -1449,7 +1449,7 @@ let @p = 'o\bigskip' "beamer
 "let @o = 'oitemize' "beamer
 "let @P = 'o\medskip' "beamer
 let @m = 'yyPvt{lc% <<< $r ' " latex modeline.
-"let @d = 'kO% >>>��a'
+"let @d = 'kO% >>>ýa'
 " FZF
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fh :History<cr>
@@ -1564,7 +1564,7 @@ if argc() == 2
 
 	" preview page title
 	" ${name} will be replace with the file name
-	let g:mkdp_page_title = '�${name}�'
+	let g:mkdp_page_title = '¿${name}¿'
 
 	" use a custom location for images
 	let g:mkdp_images_path = '/home/raph/.markdown_images'
@@ -1733,9 +1733,9 @@ endfunction
 command! -range MoveLastScreenshot <line1>,<line2>call MoveLastScreenshot()
 
 " beamer itemize
-" prend des lignes visuellement surlign�es et transforme en liste beamer
+" prend des lignes visuellement surlignées et transforme en liste beamer
 vnoremap ,bi :s/^\s*\(.*\)/  \\item \1/<CR>gv<Esc>'<O\begin{itemize}<Esc>'>o\end{itemize}<Esc>
-" m�me chose pour une ligne transform�e en titre de frame
+" même chose pour une ligne transformée en titre de frame
 vnoremap ,bt :s/^\s*\(.*\)/  \\begin{frame}{\1/<CR>A}<Esc>o\end{frame}<Esc>
 
 " Highlight the markers in bright colors

@@ -37,6 +37,7 @@ alias clock='tzclock  -s1000 -q -m31'
 alias codir='vim /home/raph/Recherche/LIP6/DirectionEquipeCN/JournalComnet.mdwn +'
 alias cpuondemand='sudo cpufreq-set -g ondemand'
 alias createVenv='uv venv && source .venv/bin/activate && uv pip install -r requirements.txt'
+alias activateVenv='source .venv/bin/activate && uv pip install -r requirements.txt'
 alias deeptask='bla=`od -vAn -N1 -tu1 < /dev/urandom | tr -d " "`; cp Templates/template-deepwork.mdwn /tmp/deeptask$bla; mpc load korn; mpc play; vim /tmp/deeptask$bla +Goyo +'
 alias delhi='ssh -Y -l fournier woolthorpe.lip6.fr'
 alias dfh="df -h | grep -v tmpfs | sed '/sdb5/i ================================================' | sed '/sdb5/a ================================================'"
@@ -277,6 +278,7 @@ alias yt='yt-dlp'
 #alias z='devour zathura'
 alias zatPDF='F=$(fd "(epub|pdf)$" ~/Pdf /home/raph/Cloud/NextcloudFS/A-INBOX | sort | rofi -dmenu -i -fullscreen -p "PDF :") && zathura $'
 alias zds="find ~/downloads -type f -printf '%C@ %p\0' | sort -rz | sed -Ezn '1s/[^ ]* //p' | xargs -0 zathura "
+alias zo="zathura output/slides.pdf"
 alias zhome='sudo netcfg home'
 alias zihapconf="$VIMEXEC .config/zihap/*toml -O"
 alias zlibrary='tor-browser http://bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion'

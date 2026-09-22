@@ -68,5 +68,30 @@ toggle-ads() {
     fi
 }
 
-parufind () {paru -Sl | awk \'{print $2($4=="" ? "" : " \*")}\' | fzf -q "$1" -m --preview \'cat <(echo {1} | cut -d " " -f 1 | paru -Si -) <(echo {1} | cut -d " " -f 1 | paru -Fl - | awk "{print $2}")\' | cut -d " " -f 1 | xargs -ro paru -S}
+parufind() {paru -Sl | awk \'{print $2($4=="" ? "" : " \*")}\' | fzf -q "$1" -m --preview \'cat <(echo {1} | cut -d " " -f 1 | paru -Si -) <(echo {1} | cut -d " " -f 1 | paru -Fl - | awk "{print $2}")\' | cut -d " " -f 1 | xargs -ro paru -S}
 
+# Quickly copy a template directory into the current directory
+mkfromtemplate() {
+  local templates_dir="${HOME}/Templates"
+
+  # Ensure the Templates directory exists
+  if [[ ! -d "$templates_dir" ]]; then
+    echo "Error: Directory '$templates_dir' does not exist." >&2
+    return 1
+  fi
+
+  # Select a template folder using fzf
+  local selected_template
+  selected_template=$(find "$templates_dir" -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | fzf --prompt="Select Template > ")
+
+  # If a selection was made, copy its contents to the current directory
+  if [[ -n "$selected_template" ]]; then
+    local src_dir="${templates_dir}/${selected_template}"
+    
+    # Copy contents (including hidden files) into current directory
+    cp -r "$src_dir"/* "$src_dir"/* . 2>/dev/null
+    echo "Copied '$selected_template' template to current directory."
+  else
+    echo "No template selected."
+  fi
+}
