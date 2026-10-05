@@ -59,6 +59,7 @@ else
   cat $file
 fi
 
+echo "run .scripts/toggleLightTheme.sh if necessary to have calendar in light/dark" 
 
 # wal -f ~/Configurations/PywalThemes/dark/zenburn.json
 # wal -l -f Configurations/PywalThemes/light/base16-solarized.json

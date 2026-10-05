@@ -95,3 +95,12 @@ mkfromtemplate() {
     echo "No template selected."
   fi
 }
+
+gconfig() {
+  local root
+  root=$(git rev-parse --show-toplevel 2>/dev/null) || {
+    echo "Not inside a git repository" >&2
+    return 1
+  }
+  cat "$root/.git/config"
+}
