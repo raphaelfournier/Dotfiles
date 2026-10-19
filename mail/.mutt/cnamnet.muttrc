@@ -10,7 +10,6 @@ folder-hook . "push <last-entry><current-middle>"
 
 set from      = "raphael.fourniersniehotta@lecnam.net"
 set sendmail  = "/usr/bin/msmtp -a cnam"
-macro index S   "<save-message><enter>"
 folder-hook CNAMnet/ "push <last-entry><current-middle>"
 set mbox      = "+CNAMnet/Archives"
 set record    = "+CNAMnet/Archives/"

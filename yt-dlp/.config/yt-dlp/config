@@ -1,4 +1,4 @@
--o [%(channel.:10)s]_%(title)+.100U_[%(id)s][%(duration>%H-%M-%S)s]
+-o %(channel.:10)s_%(title)+.100U_[%(id)s][%(duration>%H-%M-%S)s]
 #-f "bv[height<=1080]*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b"
 #--write-auto-subs
 #--sub-langs "en,en-orig"
