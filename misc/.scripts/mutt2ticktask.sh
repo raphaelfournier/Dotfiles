@@ -1,29 +1,42 @@
 #!/bin/bash
+# Mutt → TickTick : transforme le mail reçu sur stdin en tâche.
 
-# 1. Capture the full email from stdin
+# 1. Capturer le mail complet depuis stdin
 RAW_EMAIL=$(cat)
 
-# 2. Extract Author and Subject using formail (reliable) 
-# or grep/sed (built-in)
-#AUTHOR=$(echo "$RAW_EMAIL" | formail -x From: | xargs)
-AUTHOR=$(echo "$RAW_EMAIL" | formail -x From: | perl -MEncode -ne 'print Encode::encode("utf-8", Encode::decode("MIME-Header", $_))' | xargs)
-DATE=$(echo "$RAW_EMAIL" | formail -x Date: | xargs)
-#SUBJECT=$(echo "$RAW_EMAIL" | formail -x Subject: | xargs -0)
-SUBJECT=$(echo "$RAW_EMAIL" | formail -x Subject: | xargs -d '\n')
+# 2. Décoder un en-tête de façon fiable :
+#    - formail -c recolle les en-têtes repliés sur plusieurs lignes
+#    - perl -CS lit ET écrit en UTF-8 (c'était la cause des « � »)
+#    - decode("MIME-Header") traite les =?UTF-8?Q?...?= / =?ISO-8859-1?B?...?=
+#    - sed supprime les espaces en début/fin (remplace xargs, qui casse sur les apostrophes)
+decode_header() {
+    printf '%s\n' "$RAW_EMAIL" \
+        | formail -c -x "$1" \
+        | perl -CS -MEncode -ne 'print Encode::decode("MIME-Header", $_)' \
+        | sed -E 's/^[[:space:]]+//; s/[[:space:]]+$//'
+}
 
-# 3. Get the Maildir (Passed as the first argument from Mutt)
-#MAILDIR=$1
+AUTHOR=$(decode_header From:)
+DATE=$(decode_header Date:)
+SUBJECT=$(decode_header Subject:)
 
-if [[ $AUTHOR =~ ^(.+)\ \<(.+)\>$ ]]; then
-    full_name="${BASH_REMATCH[1]}"
-    email="${BASH_REMATCH[2]}"
+# 3. Nom et adresse de l'expéditeur
+re='^(.*)<([^>]+)>$'
+if [[ $AUTHOR =~ $re ]]; then
+    full_name=$(sed -E 's/^[[:space:]"]+|[[:space:]"]+$//g' <<< "${BASH_REMATCH[1]}")
+    email=${BASH_REMATCH[2]}
+else
+    email=$AUTHOR            # en-tête du type « From: jean@exemple.fr »
 fi
+full_name=${full_name:-$email}
 
+# 4. Date courte et sujet nettoyé (supprime aussi les « Re: Re: », « Fwd: », « TR: »…)
 date_courte=$(date -d "$DATE" +"%d %b %y à %H:%M")
-decoded_subject=$(echo "$SUBJECT" | perl -MEncode -ne 'print Encode::decode("MIME-Header", $_)' | sed -E 's/^\s*(Re: |Fwd: )//gI' )
+subject=$(sed -E 's/^((re|fwd?|tr)[[:space:]]*:[[:space:]]*)+//I' <<< "$SUBJECT")
 
-
-# 4. Execute your command
-#echo -e "Mail de $full_name du $date_courte\n$decoded_subject" >> ~/essai
-#echo -e "$decoded_subject\nMail de $full_name du $date_courte\n" >> ~/tests
-echo -e "$decoded_subject\nMail de $full_name du $date_courte\n" | ticktask "foobar" && notify-send ticktask -t 3000 "tâche créée" || notify-send ticktask -u critical -t 3000 "not sent"
+# 5. Envoi vers TickTick
+if printf '%s\nMail de %s du %s\n\n' "$subject" "$full_name" "$date_courte" | ticktask "foobar"; then
+    notify-send -t 3000 ticktask "tâche créée"
+else
+    notify-send -u critical -t 3000 ticktask "not sent"
+fi

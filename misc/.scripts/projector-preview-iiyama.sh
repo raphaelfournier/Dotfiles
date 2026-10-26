@@ -35,6 +35,7 @@ FFMPEG_PID=$!
 
 # Launch mpv preview
 mpv \
+    --script=~/.scripts/mpv/curseur.lua \
     --profile=low-latency \
     --untimed \
     --vf="scale=${PREVIEW_WIDTH}:${PREVIEW_HEIGHT}" \
