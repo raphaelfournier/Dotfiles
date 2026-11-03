@@ -1,0 +1,100 @@
+#!/usr/bin/env python3
+
+import sys
+import os
+import shlex
+import subprocess
+
+# Default log file path (hardcoded)
+DEFAULT_LOG_PATH = os.path.expanduser("~/Mail/logs/msmtp.log")
+
+# Terminal ANSI Color Codes
+COLOR_RESET  = "\033[0m"
+COLOR_CYAN   = "\033[1;36m"
+COLOR_YELLOW = "\033[1;33m"
+COLOR_GREEN  = "\033[1;32m"
+COLOR_RED    = "\033[1;31m"
+COLOR_DIM    = "\033[2;37m"
+
+def format_line(line):
+    line = line.strip()
+    if not line:
+        return ""
+
+    try:
+        parts = shlex.split(line)
+    except Exception:
+        return f"Raw: {line}\n"
+
+    if len(parts) < 2:
+        return f"Raw: {line}\n"
+
+    date, time = parts[0], parts[1]
+    kv = {}
+    for item in parts[2:]:
+        if "=" in item:
+            k, v = item.split("=", 1)
+            kv[k] = v
+
+    # Extract fields with safe fallbacks
+    recipient = kv.get("recipients", kv.get("to", "unknown"))
+    exitcode  = kv.get("exitcode", "UNKNOWN")
+    sender    = kv.get("from", "-")
+    host      = kv.get("host", "-")
+    tls       = kv.get("tls", "-")
+    auth      = kv.get("auth", "-")
+    size      = kv.get("mailsize", "-")
+    status    = kv.get("smtpstatus", "-")
+    msg       = kv.get("smtpmsg", "-")
+
+    # Status color indicator
+    code_color = COLOR_GREEN if exitcode == "EX_OK" else COLOR_RED
+
+    output = []
+    # Line 1: Quick glance (Timestamp, Recipient, Exit Code)
+    output.append(f"{COLOR_CYAN}[{date} {time}]{COLOR_RESET} -> {COLOR_YELLOW}{recipient}{COLOR_RESET} | Status: {code_color}{exitcode}{COLOR_RESET}")
+    # Line 2: Server details on a single line
+    output.append(f"  {COLOR_DIM}From:{COLOR_RESET} {sender}  |  {COLOR_DIM}Host:{COLOR_RESET} {host}  |  {COLOR_DIM}TLS:{COLOR_RESET} {tls}  |  {COLOR_DIM}Auth:{COLOR_RESET} {auth}  |  {COLOR_DIM}Size:{COLOR_RESET} {size}b")
+    # Line 3: Full preserved SMTP response
+    output.append(f"  {COLOR_DIM}SMTP Response:{COLOR_RESET} ({status}) {msg}")
+    output.append("-" * 75)
+
+    return "\n".join(output) + "\n"
+
+def main():
+    # If stdin is piped (e.g. cat log | format-msmtp), read stdin
+    if not sys.stdin.isatty():
+        input_stream = sys.stdin
+        pager = None
+    else:
+        # Determine source file (CLI arg or hardcoded default)
+        log_file = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_LOG_PATH
+        if not os.path.exists(log_file):
+            sys.stderr.write(f"Error: Log file not found at '{log_file}'\n")
+            sys.exit(1)
+
+        input_stream = open(log_file, "r", encoding="utf-8", errors="replace")
+
+        # Auto-pipe through less -R if stdout is connected to a terminal
+        if sys.stdout.isatty():
+            pager = subprocess.Popen(["less", "-R", "+G"], stdin=subprocess.PIPE, text=True)
+            sys.stdout = pager.stdin
+        else:
+            pager = None
+
+    try:
+        for line in input_stream:
+            formatted = format_line(line)
+            if formatted:
+                sys.stdout.write(formatted)
+    except (KeyboardInterrupt, BrokenPipeError):
+        pass
+    finally:
+        if input_stream != sys.stdin:
+            input_stream.close()
+        if pager:
+            pager.stdin.close()
+            pager.wait()
+
+if __name__ == "__main__":
+    main()
