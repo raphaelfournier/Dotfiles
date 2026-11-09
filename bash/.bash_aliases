@@ -24,6 +24,7 @@ alias buildwiki="rsync -avz /home/raph/Meetings/ /home/raph/wiki/RaphWiki/meetin
 alias c='chromium'
 alias cdc='cd ~/Current'
 alias cdd='cd && ls -tr'
+alias cds='cd ~/.scripts/ && ls -tr'
 alias cde='cd ..'
 alias cfp="$VIMEXEC .remind/cfp.rem"
 alias changescreen='echo -e "local awful = require(\"awful\");awful.screen.focus_relative( 1)" | awesome-client'
